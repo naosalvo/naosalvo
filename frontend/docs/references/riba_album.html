@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NÃO SALVO — Álbum de Figurinhas da Internet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050507;--pan:#0a0a10;--line:#1c1c2a;--txt:#ececf6;--mut:#8a8aa3;--acc:#7a4dff;
+ --Comum:#8e939c;--Relevante:#3fcf5a;--Raro:#2f8cff;--Relíquia:#a35cff;--Lendário:#f2b22a;--Mítico:#ff4a4a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 500px at 50% -10%,#16102e 0%,transparent 60%),var(--bg);color:var(--txt);font-family:Inter,sans-serif;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.disp{font-family:Rajdhani,sans-serif}
+header{display:flex;align-items:center;gap:26px;padding:12px 26px;border-bottom:1px solid #15151f;flex-wrap:wrap}
+.logo{font-family:Rajdhani;font-weight:700;font-size:28px;line-height:.9;letter-spacing:1px}
+.logo small{display:block;font-size:8.5px;font-family:Inter;color:#9b7dff;letter-spacing:2px;margin-top:4px;font-weight:500}
+nav{display:flex;gap:6px;flex:1;justify-content:center;flex-wrap:wrap}
+nav button{padding:12px 14px;font-size:12px;font-weight:700;letter-spacing:1px;color:#c0c0d6;text-transform:uppercase;border-bottom:2px solid transparent}
+nav button.on,nav button:hover{color:#fff;border-color:var(--acc)}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr) 280px;gap:18px;padding:16px 22px 40px;max-width:1500px;margin:0 auto}
+.side h6{font-size:10.5px;letter-spacing:1.4px;color:var(--mut);font-weight:700;margin:6px 0 10px;text-transform:uppercase}
+.col{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;width:100%;text-align:left;padding:10px;border-radius:10px;border:1px solid transparent;margin-bottom:4px}
+.col:hover{background:#0f0f18}
+.col.on{border-color:#4a3399;background:#12102a;box-shadow:0 0 18px #7a4dff33}
+.col .ic{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:24px}
+.col b{display:block;font-size:12px;letter-spacing:.3px;text-transform:uppercase;font-weight:700}
+.col small{font-size:10.5px;color:var(--mut)}
+.bar{height:5px;border-radius:3px;background:#1d1d2c;overflow:hidden;margin-top:5px;flex:1}
+.bar i{display:block;height:100%;border-radius:3px}
+.prow{display:flex;align-items:center;gap:8px}.prow span{font-size:10.5px;color:var(--mut)}
+.tot{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.tot .n{font-family:Rajdhani;font-size:40px;font-weight:700;color:#9b7dff;line-height:1}.tot .n small{font-size:20px;color:var(--mut);font-weight:500}
+.rar{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:#c8c8dc;margin-top:6px}
+.rar span{display:flex;align-items:center;gap:5px}.rar i{width:11px;height:11px;border-radius:3px}
+.packbtn{width:100%;margin-top:16px;padding:12px;border-radius:10px;background:linear-gradient(135deg,#5a35e8,#b44cff);font-weight:700;letter-spacing:.6px;font-size:12.5px;box-shadow:0 0 22px #7a4dff66}
+.packbtn:disabled{opacity:.45;box-shadow:none;cursor:default}
+.ghost{width:100%;margin-top:8px;padding:9px;border:1px solid var(--line);border-radius:8px;font-size:11px;color:var(--mut)}
+.ghost:hover{border-color:#4a3399;color:#fff}
+/* álbum */
+.album{position:relative;background:linear-gradient(180deg,#0d0d14,#08080d);border:1px solid #232333;border-radius:22px;padding:22px 26px 18px 54px;box-shadow:0 0 50px #00000099,inset 0 0 40px #7a4dff0d;min-width:0}
+.rings{position:absolute;left:-10px;top:26px;bottom:26px;width:36px;background:radial-gradient(circle at 50% 50%,#2a2a36 0 6px,#d8d8e2 6.5px 8px,#555 8.5px 10px,transparent 10.5px) 0 0/36px 34px repeat-y}
+.ahead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.ahead h1{font-family:Rajdhani;font-size:36px;letter-spacing:1px;line-height:1;font-weight:700;text-transform:uppercase}
+.ahead .pr{display:flex;align-items:center;gap:12px;margin-top:6px;font-size:13px;color:#c8c8dc}.ahead .pr .bar{width:170px;margin:0;height:7px}
+.about{border:1px solid #2a2a3a;border-radius:8px;padding:9px 14px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.about:hover{border-color:var(--acc)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{position:relative;aspect-ratio:3/4.1;border-radius:14px;padding:6px;text-align:left;border:2px solid var(--rc);background:linear-gradient(160deg,#1a1a24,#0b0b12);box-shadow:0 0 16px color-mix(in srgb,var(--rc) 40%,transparent);transition:.2s;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 0 28px color-mix(in srgb,var(--rc) 70%,transparent)}
+.card.sel{outline:2px solid #fff;outline-offset:2px}
+.card .top{display:flex;justify-content:space-between;font-size:10.5px;font-weight:800;letter-spacing:.6px;padding:2px 5px 4px;font-family:Rajdhani}
+.card .top em{font-style:normal;color:var(--rc);text-transform:uppercase}
+.card .art{flex:1;border-radius:8px;display:grid;place-items:center;font-size:clamp(40px,5.5vw,70px);position:relative;overflow:hidden}
+.card .art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff33 48%,transparent 60%);transform:translateX(-120%);transition:transform .6s}
+.card:hover .art::after{transform:translateX(120%)}
+.card .nm{margin-top:6px;border:1px solid color-mix(in srgb,var(--rc) 70%,#000);border-radius:6px;background:#06060b;text-align:center;font-family:Rajdhani;font-weight:700;font-size:clamp(11px,1.3vw,15px);text-transform:uppercase;padding:6px 4px;letter-spacing:.4px}
+.card .ft{text-align:center;font-size:9.5px;color:var(--mut);padding:5px 0 2px;letter-spacing:.5px}
+.card .star{position:absolute;right:8px;top:30px;font-size:16px;z-index:2}
+.card.lock .art{background:repeating-linear-gradient(45deg,#14141f 0 6px,#101019 6px 12px);font-size:64px;color:#242436}
+.card.lock{--rc:#3a2a6a}
+.card .cp{position:absolute;left:8px;top:30px;font-size:10px;background:#000b;border-radius:10px;padding:1px 6px;z-index:2;font-weight:700}
+.pager{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.pager button{width:36px;height:34px;border:1px solid #2a2a3a;border-radius:8px;font-weight:700;font-size:13px}
+.pager button.on{background:#6a3df0;border-color:#6a3df0;box-shadow:0 0 14px #7a4dff88}
+.pager button:disabled{opacity:.3}
+/* detalhe */
+.det{border-left:1px solid var(--line);padding-left:18px;position:sticky;top:14px;align-self:start}
+.det .h{display:flex;justify-content:space-between;align-items:center}
+.det .h b{font-family:Rajdhani;font-size:26px}
+.chipR{border:1px solid var(--rc);color:var(--rc);padding:5px 11px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:color-mix(in srgb,var(--rc) 14%,transparent)}
+.det .card{margin:12px 0 14px;width:100%;pointer-events:none;aspect-ratio:3/3.9}
+.det h2{font-family:Rajdhani;font-size:26px;line-height:1.05}
+.det p{font-size:12.5px;color:#b6b6cc;line-height:1.55;margin:8px 0 14px}
+.kv{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);padding:4px 0}.kv b{color:#fff;font-weight:600}
+.bigbtn{width:100%;padding:12px;border:1px solid #6a3df0;border-radius:8px;color:#c4a8ff;font-weight:700;letter-spacing:.5px;font-size:12px;margin-top:12px;text-transform:uppercase;background:#1a1240}
+.bigbtn:hover{background:#2a1a66}
+.sm{width:100%;padding:11px;font-size:12px;font-weight:600;color:#cfcfe6;margin-top:4px}
+.copies{text-align:center;font-size:11px;color:var(--mut);margin-top:10px}
+/* modais */
+.modal{position:fixed;inset:0;background:#000d;display:none;place-items:center;z-index:40;padding:20px;backdrop-filter:blur(5px);overflow:auto}
+.modal.open{display:grid}
+.mbox{background:#0a0a12;border:1px solid #4a3399;border-radius:18px;padding:24px;max-width:760px;width:100%;box-shadow:0 0 60px #7a4dff55;position:relative}
+.mbox h3{font-family:Rajdhani;font-size:28px;text-align:center;margin-bottom:4px}
+.mbox>p{text-align:center;color:var(--mut);font-size:13px;margin-bottom:16px}
+.pack{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;perspective:900px}
+.flip{position:relative;aspect-ratio:3/4.1;transform-style:preserve-3d;transition:transform .7s;cursor:pointer}
+.flip.f{transform:rotateY(180deg)}
+.flip>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px}
+.flip .back{background:linear-gradient(135deg,#2a1a66,#0d0820);border:2px solid #6a3df0;display:grid;place-items:center;font-size:54px;box-shadow:0 0 24px #7a4dff66}
+.flip .front{transform:rotateY(180deg)}
+.flip .front .card{width:100%;height:100%;pointer-events:none}
+.new{position:absolute;top:-8px;right:-6px;background:#ff3b6b;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:99px;z-index:5;letter-spacing:.5px}
+.mclose{margin:18px auto 0;display:block;padding:11px 28px;border-radius:10px;background:#5a35e8;font-weight:700;letter-spacing:.6px}
+.rk{display:flex;align-items:center;gap:12px;padding:9px 6px;border-bottom:1px solid var(--line);font-size:13px}
+.rk b{width:22px;text-align:center;color:var(--mut)}.rk .av{width:30px;height:30px;border-radius:50%;overflow:hidden}.rk .av svg{width:100%;height:100%;display:block}.rk span{flex:1}.rk em{font-style:normal;color:#9b7dff;font-weight:700}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#1a1240;border:1px solid #6a3df0;padding:10px 18px;border-radius:99px;font-size:13px;z-index:70;display:none}
+.note{grid-column:1/-1;text-align:center;font-size:11px;color:#5a5a74;margin-top:6px}
+@media(max-width:1100px){.layout{grid-template-columns:200px minmax(0,1fr)}.det{grid-column:1/-1;border:0;padding:0;position:static;max-width:380px;margin:0 auto}}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.album{padding-left:34px}.pack{grid-template-columns:repeat(3,1fr);gap:8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NÃO<br>SALVO<small>A HISTÓRIA DA INTERNET</small></div>
+  <nav id="nav"></nav>
+  <div id="acct"></div>
+</header>
+
+<div class="layout">
+  <aside class="side">
+    <h6>Minhas coleções</h6>
+    <div id="cols"></div>
+    <button class="ghost" onclick="openRank()" style="margin-top:6px">☰ VER TODAS AS COLEÇÕES / RANKING</button>
+    <div class="tot">
+      <h6>Cartas totais</h6>
+      <div class="n"><span id="tn">0</span> <small>/ 100</small></div>
+      <h6 style="margin-top:12px">Raridades</h6>
+      <div class="rar" id="rar"></div>
+    </div>
+    <button class="packbtn" id="packBtn" onclick="openPack()">🎁 ABRIR PACOTE</button>
+    <div style="font-size:10.5px;color:var(--mut);text-align:center;margin-top:6px" id="packInfo"></div>
+    <button class="ghost" onclick="resetAll()">↺ Reiniciar álbum (teste)</button>
+  </aside>
+
+  <main class="album">
+    <div class="rings"></div>
+    <div class="ahead">
+      <div><h1 id="ct"></h1><div class="pr"><span id="cp"></span><div class="bar"><i id="cb"></i></div><span id="cpp"></span></div></div>
+      <button class="about" onclick="about()">ⓘ Sobre a coleção</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="pager" id="pager"></div>
+  </main>
+
+  <aside class="det" id="det"></aside>
+  <p class="note">Protótipo inicial · todas as figurinhas são personagens fictícios de exemplo. Troque pelos criadores e memes reais que você quiser incluir.</p>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this&&!packOpen)closeModal()"><div class="mbox" id="mbox"></div></div>
+<div class="toast" id="toast"></div>
+
+<style>
+.sg-cta{background:linear-gradient(90deg,#1d5bff,#7a4dff);color:#fff;font-weight:800;letter-spacing:.6px;font-size:12px;padding:10px 16px;border-radius:99px;border:2px solid #fff;box-shadow:0 0 18px #3d6bff88;cursor:pointer;font-family:inherit}
+.sg-acct{display:flex;align-items:center;gap:10px;color:#fff;text-align:left;font-size:13px;line-height:1.15;cursor:pointer;background:none;border:0;font-family:inherit}
+.sg-acct b{display:block;color:#6fb0ff;font-size:12px}
+.sg-av{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid #3d8bff;display:block;flex:none}
+.sg-av svg{display:block;width:100%;height:100%}
+#sgm{position:fixed;inset:0;z-index:50;background:#000d;display:none;overflow:auto;padding:20px;backdrop-filter:blur(5px);font-family:Inter,Nunito,sans-serif;color:#e8ecf6}
+#sgm.open{display:block}
+.sg-box{max-width:1080px;margin:0 auto;background:#05080f;border:1px solid #17306e;border-radius:18px;box-shadow:0 0 60px #1d5bff44;display:grid;grid-template-columns:300px 300px 1fr;gap:26px;padding:26px;position:relative}
+.sg-x{position:absolute;right:14px;top:10px;font-size:26px;color:#8590ad;cursor:pointer;background:none;border:0}
+.sg-box h2{font-family:Rajdhani,"Baloo 2",sans-serif;font-size:34px;line-height:1;font-weight:700;margin:8px 0}
+.sg-box h2 em{font-style:normal;color:#3d8bff;display:block}
+.sg-box p.s{color:#8590ad;font-size:13px;line-height:1.5;margin-bottom:14px}
+.sg-step{display:inline-block;font-size:10px;letter-spacing:1px;color:#6fb0ff;border:1px solid #1d3a8a;border-radius:6px;padding:3px 8px}
+.sg-box label{display:block;font-size:10px;letter-spacing:1px;color:#8590ad;margin:12px 0 5px;font-weight:700;text-transform:uppercase}
+.sg-box input.t{width:100%;background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:12px;color:#fff;font:inherit;font-size:13px;outline:0}
+.sg-box input.t:focus{border-color:#3d8bff}
+.sg-err{color:#ff6b8a;font-size:12px;min-height:16px;margin-top:8px}
+.sg-go{width:100%;margin-top:10px;padding:14px;border-radius:8px;background:linear-gradient(180deg,#2a6bff,#1245c8);color:#fff;font-weight:700;letter-spacing:1px;border:0;cursor:pointer;font:inherit;font-weight:700;box-shadow:0 0 24px #1d5bff66}
+.sg-soc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sg-soc button{background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:11px;color:#cfd6ee;font:inherit;font-size:13px;cursor:pointer}
+.sg-pv{text-align:center}
+.sg-pv .big{width:260px;height:260px;margin:14px auto 12px;border-radius:50%;overflow:hidden;border:4px solid #12286a;box-shadow:0 0 40px #1d5bff77}
+.sg-pv .big svg{width:100%;height:100%;display:block}
+.sg-shuf{background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:9px 14px;color:#cfd6ee;font:inherit;font-size:12px;cursor:pointer}
+.sg-tabs{display:flex;gap:4px;border-bottom:1px solid #17306e;margin-bottom:14px}
+.sg-tabs button{flex:1;padding:10px 4px;font-size:11px;font-weight:700;letter-spacing:.8px;color:#8590ad;background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;text-transform:uppercase}
+.sg-tabs button.on{color:#fff;border-color:#3d8bff}
+.sg-opts h5{font-size:10px;letter-spacing:1.2px;color:#8590ad;margin:12px 0 8px;font-weight:700}
+.sg-row{display:flex;flex-wrap:wrap;gap:8px}
+.sg-o{min-width:52px;min-height:52px;border-radius:12px;border:2px solid #17306e;background:#0a1020;display:grid;place-items:center;cursor:pointer;color:#cfd6ee;font:inherit;font-size:11px;padding:4px 8px;text-align:center;line-height:1.15}
+.sg-o.on{border-color:#3d8bff;box-shadow:0 0 12px #3d8bff88}
+.sg-o i{display:block;width:34px;height:34px;border-radius:50%;border:1px solid #fff3;margin:0 auto}
+.sg-o span{font-size:20px;display:block}
+.sg-o.sq{border-radius:10px}
+.sg-note{font-size:11px;color:#5d6a8f;margin-top:14px;line-height:1.4}
+@media(max-width:980px){.sg-box{grid-template-columns:1fr}}
+</style>
+
+<div id="sgm" onclick="if(event.target===this)closeSignup()">
+  <div class="sg-box">
+    <button class="sg-x" onclick="closeSignup()" aria-label="Fechar">×</button>
+    <div>
+      <span class="sg-step">PASSO 1 DE 1</span>
+      <h2>CRIAR CONTA<br>É SÓ O COMEÇO.<em>CRIE SEU AVATAR.</em></h2>
+      <p class="s">Todo mundo começa com o mesmo gato.<br>A internet é sua. O estilo também.</p>
+      <label>Nome de usuário</label><input class="t" id="sgU" placeholder="ex: internauta_2006" maxlength="20">
+      <label>E-mail</label><input class="t" id="sgE" type="email" placeholder="ex: voce@email.com">
+      <label>Senha</label><input class="t" id="sgP" type="password" placeholder="Crie uma senha segura">
+      <div class="sg-err" id="sgErr"></div>
+      <button class="sg-go" onclick="submitSignup()">CONTINUAR →</button>
+      <p class="s" style="text-align:center;margin:10px 0 4px">ou cadastre-se com</p>
+      <div class="sg-soc"><button onclick="this.textContent='Em breve'">Google</button><button onclick="this.textContent='Em breve'">Discord</button></div>
+    </div>
+    <div class="sg-pv">
+      <div style="font-weight:700;letter-spacing:.5px">🐾 PERSONALIZE SEU GATO</div>
+      <div class="s" style="color:#8590ad;font-size:12px">Neste museu, todo avatar é um gatinho.</div>
+      <div class="big" id="sgBig"></div>
+      <button class="sg-shuf" onclick="sgShuffle()">🔀 EMBARALHAR TUDO</button>
+    </div>
+    <div class="sg-opts">
+      <div class="sg-tabs" id="sgTabs"></div>
+      <div id="sgOpts"></div>
+      <p class="sg-note">Protótipo: nenhuma conta real é criada. O avatar e o nome ficam salvos só neste navegador, e a senha não é guardada.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const SG={
+ fur:[["Cinza","#9b9ba1"],["Laranja","#e8932f"],["Preto","#24242a"],["Branco","#f2eee6"],["Marrom","#8a6a45"],["Grafite","#5b5c66"],["Creme","#e6c99a"],["Azulado","#7d8ca6"],["Chocolate","#4a3226"],["Rosa","#e69ad0"]],
+ pat:["Liso","Tigrado","Pintado","Smoking","Máscara"],
+ eye:[["Âmbar","#e6a21a"],["Verde","#5bbf3a"],["Azul","#2f8cff"],["Esmeralda","#19c29a"],["Roxo","#9a5cff"]],
+ acc:[["Nenhum","🚫"],["Óculos redondo","👓"],["Óculos escuro","🕶️"],["Boné","🧢"],["Gorro","🧶"],["Fone","🎧"],["Bandana","🧣"],["Corrente","⛓️"],["Monóculo","🧐"]],
+ clo:[["Hoodie","#1c1c24"],["Camiseta","#ececec"],["Jaqueta jeans","#3d6aa8"],["Maletom","#cfc7b4"],["Jaqueta bomber","#4b5a3a"],["Camisa xadrez","#b3262d"],["Regata","#22222a"],["Pelado","#0000"]],
+ bg:[["Azul",["#2a6bff","#0a2a8a"]],["Roxo",["#7a4dff","#2a1070"]],["Rosa",["#ff6bd0","#7a2aa8"]],["Verde",["#19c29a","#06503f"]],["Sol",["#ffb12a","#d9561a"]],["Noite",["#1a1f4a","#05060f"]],["Menta",["#7ef0c8","#1a8a7a"]],["Vermelho",["#ff5a6a","#7a1030"]]]
+};
+let sgN=0;
+function catSVG(o){
+  const id="g"+(sgN++),fur=SG.fur[o.fur][1],eye=SG.eye[o.eye][1],bg=SG.bg[o.bg][1],clo=o.clo,acc=o.acc,pat=o.pat;
+  const dk="rgba(0,0,0,.28)";
+  let s=`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${id}" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="${bg[0]}"/><stop offset="1" stop-color="${bg[1]}"/></radialGradient>
+  <pattern id="${id}p" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 6H12M6 0V12" stroke="#00000055" stroke-width="2"/></pattern></defs>
+  <rect width="200" height="200" fill="url(#${id})"/>`;
+  // corpo
+  s+=`<path d="M28 205Q30 150 72 140L128 140Q170 150 172 205Z" fill="${fur}"/>`;
+  const cc=SG.clo[clo][1];
+  if(clo===0) s+=`<path d="M28 205Q30 150 72 140Q100 166 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M60 146Q100 176 140 146" stroke="#2b2b38" stroke-width="7" fill="none"/><path d="M92 165v26M108 165v26" stroke="#ddd" stroke-width="2"/><path d="M70 188h60l6 17H64z" fill="#15151c"/>`;
+  else if(clo===1) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M76 142Q100 160 124 142" stroke="#bbb" stroke-width="3" fill="none"/>`;
+  else if(clo===2) s+=`<path d="M28 205Q30 150 72 140L100 168L128 140Q170 150 172 205Z" fill="${cc}"/><path d="M100 168V205M72 140L88 176M128 140L112 176" stroke="#25497c" stroke-width="2.5"/><rect x="40" y="178" width="20" height="9" fill="#2f5a95"/>`;
+  else if(clo===3) s+=`<path d="M28 205Q30 150 72 140Q100 154 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M72 146Q100 164 128 146" stroke="#a99f88" stroke-width="6" fill="none"/>`;
+  else if(clo===4) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M100 158V205" stroke="#2c3a20" stroke-width="3"/><path d="M62 144Q100 164 138 144" stroke="#d98a2a" stroke-width="6" fill="none"/>`;
+  else if(clo===5) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="url(#${id}p)"/><path d="M80 144L100 166L120 144" stroke="#7a1218" stroke-width="3" fill="none"/>`;
+  else if(clo===6) s+=`<path d="M68 142L76 205M132 142L124 205" stroke="${cc}" stroke-width="10"/><path d="M76 205Q100 180 124 205" fill="${fur}"/>`;
+  // bandana atrás do rosto
+  if(acc===6) s+=`<path d="M62 138Q100 150 138 138L100 182Z" fill="#d6282f"/><circle cx="90" cy="150" r="2" fill="#fff"/><circle cx="108" cy="150" r="2" fill="#fff"/><circle cx="99" cy="164" r="2" fill="#fff"/>`;
+  // orelhas
+  const ear=pat===4?"#4b3a30":fur;
+  s+=`<path d="M54 76L56 26L96 56Z" fill="${ear}"/><path d="M146 76L144 26L104 56Z" fill="${ear}"/><path d="M62 64L63 38L84 55Z" fill="#e89aa8"/><path d="M138 64L137 38L116 55Z" fill="#e89aa8"/>`;
+  // cabeça
+  s+=`<ellipse cx="100" cy="98" rx="54" ry="47" fill="${fur}"/>`;
+  if(pat===1) s+=`<g stroke="${dk}" stroke-width="4" stroke-linecap="round" fill="none"><path d="M100 53v15M88 55l3 13M112 55l-3 13M48 96h14M50 107h14M152 96h-14M150 107h-14"/></g>`;
+  if(pat===2) s+=`<g fill="${dk}"><circle cx="70" cy="68" r="7"/><circle cx="132" cy="72" r="6"/><circle cx="56" cy="104" r="6"/><circle cx="146" cy="100" r="7"/><circle cx="104" cy="62" r="4"/></g>`;
+  if(pat===3) s+=`<path d="M100 52Q92 74 94 96L106 96Q108 74 100 52Z" fill="#f4f1ea"/><ellipse cx="100" cy="120" rx="26" ry="18" fill="#f4f1ea"/>`;
+  if(pat===4) s+=`<ellipse cx="100" cy="106" rx="34" ry="30" fill="#4b3a30" opacity=".6"/>`;
+  s+=`<ellipse cx="100" cy="118" rx="20" ry="13" fill="#fff" opacity=".22"/>`;
+  // olhos
+  [[80,96],[120,96]].forEach(([x,y])=>{s+=`<ellipse cx="${x}" cy="${y}" rx="11.5" ry="12.5" fill="${eye}"/><ellipse cx="${x}" cy="${y}" rx="4.6" ry="9.5" fill="#101018"/><circle cx="${x-3.5}" cy="${y-4.5}" r="2.8" fill="#fff"/><circle cx="${x+3}" cy="${y+4}" r="1.3" fill="#fff" opacity=".8"/>`});
+  s+=`<path d="M94 112h12l-6 7z" fill="#e58b9b"/><path d="M100 119v4M100 123q-6 6-12 2M100 123q6 6 12 2" stroke="#3a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <g stroke="#fff" stroke-opacity=".75" stroke-width="1.2" stroke-linecap="round"><path d="M70 116L38 110M70 122L40 126M130 116L162 110M130 122L160 126"/></g>`;
+  // acessórios
+  if(acc===1) s+=`<g fill="none" stroke="#2a2a30" stroke-width="3"><circle cx="80" cy="96" r="15"/><circle cx="120" cy="96" r="15"/><path d="M95 94h10M65 92L52 86M135 92L148 86"/></g>`;
+  if(acc===2) s+=`<g fill="#0c0c12"><rect x="62" y="84" width="34" height="22" rx="8"/><rect x="104" y="84" width="34" height="22" rx="8"/></g><path d="M96 90h8M62 90L50 84M138 90L150 84" stroke="#0c0c12" stroke-width="3"/><path d="M68 90h12" stroke="#fff" stroke-opacity=".4" stroke-width="2"/>`;
+  if(acc===3) s+=`<path d="M52 66Q54 24 100 24Q146 24 148 66Q100 54 52 66Z" fill="#2d5bd1"/><path d="M52 64Q100 50 148 64Q170 68 176 76Q120 62 52 70Z" fill="#1c3f9c"/><circle cx="100" cy="24" r="4" fill="#1c3f9c"/>`;
+  if(acc===4) s+=`<path d="M50 70Q52 20 100 20Q148 20 150 70Q100 58 50 70Z" fill="#c8402f"/><rect x="48" y="62" width="104" height="14" rx="7" fill="#9e2e20"/><circle cx="100" cy="16" r="7" fill="#e2e2e2"/>`;
+  if(acc===5) s+=`<path d="M50 100Q42 20 100 20Q158 20 150 100" stroke="#222" stroke-width="7" fill="none"/><rect x="38" y="82" width="18" height="34" rx="9" fill="#2a2a36"/><rect x="144" y="82" width="18" height="34" rx="9" fill="#2a2a36"/><rect x="42" y="88" width="8" height="22" rx="4" fill="#3d8bff"/><rect x="150" y="88" width="8" height="22" rx="4" fill="#3d8bff"/>`;
+  if(acc===7) s+=`<path d="M66 144Q100 178 134 144" stroke="#f0c040" stroke-width="5" fill="none" stroke-dasharray="7 3"/>`;
+  if(acc===8) s+=`<circle cx="120" cy="96" r="16" fill="#ffffff14" stroke="#d4a82a" stroke-width="3"/><path d="M134 108Q142 140 130 170" stroke="#d4a82a" stroke-width="1.8" fill="none"/>`;
+  return s+"</svg>";
+}
+const rnd=n=>Math.floor(Math.random()*n);
+let sgO={fur:0,pat:1,eye:0,acc:0,clo:0,bg:0},sgTab=0,sgAcct=null;
+try{sgAcct=JSON.parse(localStorage.getItem("naosalvo_acct")||"null")}catch(e){}
+if(sgAcct)sgO=sgAcct.av;
+const SG_TABS=["1. Pelo","2. Acessórios","3. Roupa","4. Fundo"];
+function sgRender(){
+  document.getElementById("sgBig").innerHTML=catSVG(sgO);
+  document.getElementById("sgTabs").innerHTML=SG_TABS.map((t,i)=>`<button class="${i===sgTab?'on':''}" onclick="sgTab=${i};sgRender()">${t}</button>`).join("");
+  const sel=(k,i)=>sgO[k]===i?" on":"";
+  let h="";
+  if(sgTab===0){
+    h+=`<h5>COR DO PELO</h5><div class="sg-row">${SG.fur.map((f,i)=>`<button class="sg-o${sel('fur',i)}" title="${f[0]}" onclick="sgSet('fur',${i})"><i style="background:${f[1]}"></i></button>`).join("")}</div>`;
+    h+=`<h5>PADRÃO</h5><div class="sg-row">${SG.pat.map((p,i)=>`<button class="sg-o sq${sel('pat',i)}" onclick="sgSet('pat',${i})">${p}</button>`).join("")}</div>`;
+    h+=`<h5>COR DOS OLHOS</h5><div class="sg-row">${SG.eye.map((f,i)=>`<button class="sg-o${sel('eye',i)}" title="${f[0]}" onclick="sgSet('eye',${i})"><i style="background:${f[1]}"></i></button>`).join("")}</div>`;
+  }
+  if(sgTab===1) h+=`<h5>ACESSÓRIOS (OPCIONAL)</h5><div class="sg-row">${SG.acc.map((a,i)=>`<button class="sg-o sq${sel('acc',i)}" onclick="sgSet('acc',${i})"><span>${a[1]}</span>${a[0]}</button>`).join("")}</div>`;
+  if(sgTab===2) h+=`<h5>ROUPA (OPCIONAL)</h5><div class="sg-row">${SG.clo.map((c,i)=>`<button class="sg-o sq${sel('clo',i)}" onclick="sgSet('clo',${i})"><i style="background:${c[1]==='#0000'?'#222':c[1]};width:26px;height:26px;margin-bottom:4px"></i>${c[0]}</button>`).join("")}</div>`;
+  if(sgTab===3) h+=`<h5>FUNDO</h5><div class="sg-row">${SG.bg.map((b,i)=>`<button class="sg-o${sel('bg',i)}" title="${b[0]}" onclick="sgSet('bg',${i})"><i style="background:radial-gradient(circle at 35% 30%,${b[1][0]},${b[1][1]})"></i></button>`).join("")}</div>`;
+  document.getElementById("sgOpts").innerHTML=h;
+}
+function sgSet(k,i){sgO[k]=i;sgRender()}
+function sgShuffle(){sgO={fur:rnd(SG.fur.length),pat:rnd(SG.pat.length),eye:rnd(SG.eye.length),acc:rnd(SG.acc.length),clo:rnd(SG.clo.length),bg:rnd(SG.bg.length)};sgRender()}
+function openSignup(){
+  if(sgAcct){document.getElementById("sgU").value=sgAcct.user;document.getElementById("sgE").value=sgAcct.email||""}
+  document.getElementById("sgErr").textContent="";document.getElementById("sgm").classList.add("open");sgRender();
+}
+function closeSignup(){document.getElementById("sgm").classList.remove("open")}
+function submitSignup(){
+  const u=document.getElementById("sgU").value.trim(),e=document.getElementById("sgE").value.trim(),p=document.getElementById("sgP").value;
+  const er=document.getElementById("sgErr");
+  if(!/^[\w.-]{3,20}$/.test(u))return er.textContent="Usuário: 3 a 20 caracteres (letras, números, _ . -).";
+  if(!/^\S+@\S+\.\S+$/.test(e))return er.textContent="Digite um e-mail válido.";
+  if(!sgAcct&&p.length<6)return er.textContent="A senha precisa de pelo menos 6 caracteres.";
+  sgAcct={user:u,email:e,av:{...sgO}};
+  try{localStorage.setItem("naosalvo_acct",JSON.stringify(sgAcct))}catch(x){}
+  closeSignup();updateAccount();
+}
+function updateAccount(){
+  const el=document.getElementById("acct");if(!el)return;
+  el.innerHTML=sgAcct?`<button class="sg-acct" onclick="openSignup()"><span class="sg-av">${catSVG(sgAcct.av)}</span><span>${sgAcct.user}<b>Gato nível 1</b></span></button>`:`<button class="sg-cta" onclick="openSignup()">🐱 CRIAR CONTA</button>`;
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSignup()});
+updateAccount();
+</script>
+<script>
+const RAR_ORDER=["Comum","Relevante","Raro","Relíquia","Lendário","Mítico"];
+const RAR_ICON={Comum:"⬢",Relevante:"⬢",Raro:"⬢",Relíquia:"⬢",Lendário:"⬢",Mítico:"⬢"};
+const PATTERN=["Mítico","Lendário","Lendário","Relíquia","Relíquia","Raro","Raro","Raro","Relevante","Relevante","Relevante","Relevante","Relevante","Comum","Comum","Comum","Comum","Comum","Comum","Comum"];
+const WEIGHT={Comum:50,Relevante:25,Raro:14,Relíquia:7,Lendário:3.5,Mítico:.5};
+const COLS=[
+ {n:"Fotolog Legends",ic:"📷",c:"#7a4dff",bg:["#3a2a8a","#120a30"],want:12,about:"A era dos espelhos, glitter e textos coloridos. As figuras que dominaram os álbuns de foto.",fl:["Suas fotos e frases marcaram uma geração.","Um dos perfis mais comentados da época.","Famoso pelos cliques de espelho e pelos comentários em sequência.","Lenda das fotos com layout colorido."],
+  names:[["Rei do Espelho","📸"],["Rainha do Glitter","✨"],["Cara do Boné Torto","🧢"],["Dona dos Textos Coloridos","🌈"],["O Mestre do Flash","⚡"],["Menina da Franja","💇"],["Ator de Selfie","🤳"],["Poser de Calçada","🕶️"],["A do Sorrisão","😁"],["Careta Oficial","😜"],["Duo do Banheiro","🚿"],["Gótico do Bairro","🦇"],["Skatista de Plantão","🛹"],["Fã de Emo Rock","🎸"],["Rainha do Close","💄"],["Fotógrafo Amador","📷"],["O das 1000 Fotos","🗂️"],["Comentarista Fiel","💬"],["Dono do Layout Neon","💡"],["A Última do Mês","📅"]]},
+ {n:"Orkut Legend",ic:"💜",c:"#ff4da6",bg:["#8a1d5a","#2a0618"],want:7,about:"Comunidades, depoimentos e scraps. Os personagens que viveram no Orkut.",fl:["Presença certa em todas as comunidades.","Famoso pelos depoimentos gigantes.","Sempre online, sempre com um recado.","Lenda dos testes e correntes."],
+  names:[["Dono de 500 Comunidades","👥"],["Rainha dos Depoimentos","💌"],["Fake Famoso","🎭"],["Moderador Lendário","🛡️"],["Scrapbook Infinito","📜"],["O Troll da Comunidade","🧌"],["Cupido do Orkut","💘"],["Mestre dos Testes","🧪"],["Colecionador de Amigos","🤝"],["Rei da Foto de Perfil","🖼️"],["Fã Clube Oficial","🎤"],["Admin Misterioso","🕵️"],["Criador de Correntes","⛓️"],["O Eterno Online","🟢"],["Vidente do Horóscopo","🔮"],["Voz do Recado","📣"],["Hacker de Senha","🔑"],["Sumido Retornado","🔙"],["Ex do Status","💔"],["Guardião do Tópico","🏰"]]},
+ {n:"YouTube Clássico",ic:"▶️",c:"#ff3b3b",bg:["#8a1d1d","#2a0606"],want:12,about:"Os primeiros criadores de vídeo: câmera tremida, webcam e muita criatividade.",fl:["Pioneiro dos vídeos caseiros.","Conquistou público com muito improviso.","Do quarto para a internet inteira.","Clássico dos primeiros anos da plataforma."],
+  names:[["Vlogueiro de Quarto","🎥"],["Rei do Unboxing","📦"],["Resenhista de Tudo","🧐"],["Gamer da Madrugada","🎮"],["Dublador Caseiro","🎙️"],["Cantor de Chuveiro","🚿"],["Mestre do Tutorial","🛠️"],["Humorista de Webcam","😂"],["Dona do Cabelo Cacheado","🌀"],["O Narrador de Jogo","📢"],["Cozinheiro de Panela Única","🍳"],["Coverzeiro de Violão","🎸"],["Reagidor Profissional","😮"],["O das Listas Top 10","🔟"],["Fã de Teoria","🧠"],["Youtuber Mirim","🧒"],["Rei do Slime","🧪"],["Dançarino de Esquina","💃"],["Review de Lanche","🍔"],["Canal de 3 Inscritos","📉"]]},
+ {n:"Memes Icônicos",ic:"🤪",c:"#f2b22a",bg:["#8a6a1d","#2a1f06"],want:9,about:"Bichos, caras e situações que viraram piada nacional.",fl:["Virou figurinha em todo grupo de zap.","Estampou milhares de imagens com legenda.","Todo mundo reconhece de primeira.","Meme eterno, nunca sai de moda."],
+  names:[["Gato do Susto","🙀"],["Cachorro Caramelo Filósofo","🐕"],["Sapo da Alegria","🐸"],["Tiozão do Churrasco","🍖"],["Moço do Ai Que Delícia","😋"],["Menino do Choro","😭"],["Coruja do Foguete","🦉"],["Vovó Influencer","👵"],["O Vestido Polêmico","👗"],["Placa Torta","🪧"],["Capivara Zen","🦫"],["Pato Hacker","🦆"],["Urso da Bronca","🐻"],["Dancinha do Elevador","🛗"],["Bebê Desconfiado","👶"],["Peixe Confuso","🐟"],["Carinha do 7x1","😢"],["Pão de Queijo Triste","🧀"],["Mandioca Saudada","🌿"],["Meme Sem Nome","❓"]]},
+ {n:"Blogs & Épicos",ic:"✍️",c:"#ff8a2a",bg:["#8a461d","#2a1306"],want:4,about:"Blogspot, fóruns e textos gigantes. A internet de quando se escrevia muito.",fl:["Textão que ninguém terminava de ler.","Blog com música tocando sozinha.","Cronista oficial da madrugada.","Lenda dos fóruns e das fanfics."],
+  names:[["Poeta do Blogspot","🖋️"],["Diário da Adolescente","📔"],["Crítico de Cinema","🎬"],["Blog de Receitas","🍰"],["Cronista da Madrugada","🌙"],["Teorias da Conspiração","🛸"],["Fanfic Gigante","📚"],["O das Tags Infinitas","🏷️"],["Mestre da Música Tocando","🎵"],["Tutorial de HTML","💻"],["Opinião Polêmica","🔥"],["Resenha de Livro","📖"],["Crônica do Ônibus","🚌"],["Álbum de Viagem","🧳"],["Blog do Gato","🐈"],["Autor de Contos","✒️"],["Fórum Eterno","🗣️"],["Contador de Visitas","🔢"],["Link da Barra Lateral","🔗"],["Última Postagem","🪦"]]}
+];
+const CARDS=[];
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+COLS.forEach((c,ci)=>c.names.forEach(([n,e],i)=>{
+  const r=rng(ci*100+i+7),d=new Date(2026,Math.floor(r()*10),1+Math.floor(r()*27));
+  CARDS.push({id:ci+"-"+i,ci,i,num:String(i+1).padStart(3,"0"),name:n,e,r:PATTERN[i],desc:`${n}: ${c.fl[i%4]} Presença garantida no álbum de ${c.n}.`,date:d.toLocaleDateString("pt-BR")});
+}));
+const byId=Object.fromEntries(CARDS.map(c=>[c.id,c]));
+const $=id=>document.getElementById(id);
+const PER=6;
+let S=null,ci=0,page=0,sel="0-1",packOpen=false;
+
+function freshState(){
+  const owned={};
+  COLS.forEach((c,k)=>{const r=rng(k+99),idx=[...Array(20).keys()];
+    for(let j=19;j>0;j--){const m=Math.floor(r()*(j+1));[idx[j],idx[m]]=[idx[m],idx[j]]}
+    const pick=idx.filter(x=>x!==0).slice(0,c.want);pick.forEach(i=>owned[k+"-"+i]=1)});
+  const first=CARDS.find(c=>owned[c.id]);return{owned,fav:first.id,packs:{d:"",n:0}};
+}
+try{S=JSON.parse(localStorage.getItem("naosalvo_album")||"null")}catch(e){}
+if(!S||!S.owned)S=freshState();
+const save=()=>{try{localStorage.setItem("naosalvo_album",JSON.stringify(S))}catch(e){}};
+const today=()=>new Date().toISOString().slice(0,10);
+const packsLeft=()=>S.packs.d===today()?Math.max(0,3-S.packs.n):3;
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(t._t);t._t=setTimeout(()=>t.style.display="none",2200)}
+const owned=c=>S.owned[c.id]||0;
+
+function cardHTML(c,opt={}){
+  const has=owned(c)>0||opt.force;
+  const col=COLS[c.ci],rc=`var(--${c.r})`;
+  if(!has) return `<button class="card lock ${opt.sel?'sel':''}" onclick="pick('${c.id}')"><div class="top"><span>${c.num}</span><em style="color:#6a4dc4">${c.r}</em></div><div class="art">?</div><div class="nm">???</div><div class="ft">${col.n.toUpperCase()}</div></button>`;
+  return `<button class="card ${opt.sel?'sel':''}" style="--rc:${rc}" onclick="pick('${c.id}')">
+   <div class="top"><span>${c.num}</span><em>⬢ ${c.r}</em></div>
+   ${S.fav===c.id?'<span class="star">⭐</span>':''}${owned(c)>1?`<span class="cp">x${owned(c)}</span>`:''}
+   <div class="art" style="background:linear-gradient(150deg,${col.bg[0]},${col.bg[1]})">${c.e}</div>
+   <div class="nm">${c.name}</div><div class="ft">${col.n.toUpperCase()}</div></button>`;
+}
+function renderCols(){
+  $("cols").innerHTML=COLS.map((c,k)=>{
+    const n=CARDS.filter(x=>x.ci===k&&owned(x)>0).length,p=Math.round(n/20*100);
+    return `<button class="col ${k===ci?'on':''}" onclick="setCol(${k})"><div class="ic" style="background:${c.c}33;border:1px solid ${c.c}66">${c.ic}</div>
+    <div><b>${c.n}</b><small>${n} / 20 cartas</small><div class="prow"><div class="bar"><i style="width:${p}%;background:${c.c}"></i></div><span>${p}%</span></div></div></button>`}).join("");
+  const tot=CARDS.filter(c=>owned(c)>0);
+  $("tn").textContent=tot.length;
+  $("rar").innerHTML=RAR_ORDER.map(r=>`<span><i style="background:var(--${r})"></i>${tot.filter(c=>c.r===r).length}</span>`).join("");
+  const pl=packsLeft();$("packBtn").disabled=pl===0;$("packInfo").textContent=pl?`${pl} pacote(s) grátis hoje`:"Volte amanhã para mais pacotes";
+}
+function renderAlbum(){
+  const c=COLS[ci],list=CARDS.filter(x=>x.ci===ci),n=list.filter(x=>owned(x)>0).length,p=Math.round(n/20*100),pages=Math.ceil(list.length/PER);
+  $("ct").textContent=c.n;$("cp").textContent=`${n} / 20 cartas`;$("cb").style.cssText=`width:${p}%;background:${c.c}`;$("cpp").textContent=p+"%";
+  $("cards").innerHTML=list.slice(page*PER,page*PER+PER).map(x=>cardHTML(x,{sel:x.id===sel})).join("");
+  $("pager").innerHTML=`<button ${page===0?'disabled':''} onclick="pg(${page-1})">‹</button>`+Array.from({length:pages},(_,i)=>`<button class="${i===page?'on':''}" onclick="pg(${i})">${i+1}</button>`).join("")+`<button ${page>=pages-1?'disabled':''} onclick="pg(${page+1})">›</button>`;
+}
+function renderDet(){
+  const c=byId[sel],has=owned(c)>0,col=COLS[c.ci];
+  if(!has){$("det").innerHTML=`<div class="h"><b>${c.num}</b><span class="chipR" style="--rc:var(--${c.r})">⬢ ${c.r}</span></div>${cardHTML(c,{})}<h2>???</h2><p>Você ainda não tem esta carta. Abra pacotes para descobrir quem é.</p><div class="kv"><span>Coleção</span><b>${col.n}</b></div><div class="kv"><span>Raridade</span><b style="color:var(--${c.r})">${c.r}</b></div>`;return}
+  $("det").innerHTML=`<div class="h"><b>${c.num}</b><span class="chipR" style="--rc:var(--${c.r})">⬢ ${c.r}</span></div>${cardHTML(c,{})}
+  <h2>${c.name}</h2><p>${c.desc}</p>
+  <div class="kv"><span>☆ Descoberta em</span></div><div class="kv"><span>📅 ${c.date}</span></div>
+  <div class="kv"><span>Raridade</span><b style="color:var(--${c.r})">⬢ ${c.r}</b></div>
+  <button class="bigbtn" onclick="setFav()">${S.fav===c.id?'★ É A SUA FAVORITA':'☆ DEFINIR COMO FAVORITA'}</button>
+  <button class="sm" onclick="share()">⤴ COMPARTILHAR</button>
+  <div class="copies">Você possui ${owned(c)} cópia${owned(c)>1?'s':''} desta carta</div>`;
+}
+const renderAll=()=>{renderCols();renderAlbum();renderDet()};
+function pick(id){sel=id;renderAlbum();renderDet()}
+function setCol(k){ci=k;page=0;sel=CARDS.find(c=>c.ci===k).id;renderAll()}
+function pg(p){page=p;renderAlbum()}
+function setFav(){S.fav=sel;save();renderAll();toast("Carta favorita definida ⭐")}
+function share(){const c=byId[sel],t=`Consegui a carta ${c.num} "${c.name}" (${c.r}) no álbum do Não Salvo!`;try{navigator.clipboard.writeText(t).then(()=>toast("Texto copiado!"),()=>toast(t))}catch(e){toast(t)}}
+function about(){openModal(`<h3>${COLS[ci].n}</h3><p>${COLS[ci].about}</p><button class="mclose" onclick="closeModal()">FECHAR</button>`)}
+function openModal(h){$("mbox").innerHTML=h;$("modal").classList.add("open")}
+function closeModal(){$("modal").classList.remove("open");packOpen=false}
+
+function drawCard(){
+  let tot=0;RAR_ORDER.forEach(r=>tot+=WEIGHT[r]);let x=Math.random()*tot,rar="Comum";
+  for(const r of RAR_ORDER){if(x<WEIGHT[r]){rar=r;break}x-=WEIGHT[r]}
+  const pool=CARDS.filter(c=>c.r===rar);return pool[Math.floor(Math.random()*pool.length)];
+}
+function openPack(){
+  if(packsLeft()===0)return;
+  if(S.packs.d!==today())S.packs={d:today(),n:0};S.packs.n++;
+  const got=[drawCard(),drawCard(),drawCard()].map(c=>({c,isNew:owned(c)===0}));
+  // contagem de repetidas dentro do mesmo pacote
+  got.forEach(g=>{S.owned[g.c.id]=(S.owned[g.c.id]||0)+1});save();packOpen=true;
+  openModal(`<h3>🎁 Pacote aberto!</h3><p>Toque nas cartas para revelar.</p><div class="pack">${got.map((g,i)=>`<div style="position:relative">${g.isNew?'<span class="new">NOVA!</span>':''}<div class="flip" onclick="this.classList.add('f')" id="fl${i}"><div class="back">❓</div><div class="front">${cardHTML(g.c,{force:true})}</div></div></div>`).join("")}</div>
+  <button class="mclose" onclick="revealAll(this)">REVELAR TUDO</button>`);
+  renderAll();
+}
+function revealAll(b){const f=[...document.querySelectorAll(".flip")];if(f.every(x=>x.classList.contains("f"))){closeModal();return}f.forEach((x,i)=>setTimeout(()=>x.classList.add("f"),i*250));b.textContent="FECHAR"}
+function resetAll(){S=freshState();save();ci=0;page=0;sel=(CARDS.find(c=>c.ci===0&&owned(c))||CARDS[0]).id;renderAll();toast("Álbum reiniciado")}
+function openRank(){
+  const me=CARDS.filter(c=>owned(c)>0).length;
+  const people=[["colecionador_pro",94],["gatoNostalgico",81],["viralizador",67],["neto23",me],["faqo",22],["lendarium",15]].sort((a,b)=>b[1]-a[1]);
+  openModal(`<h3>🏆 Ranking de colecionadores</h3><p>Exemplo com usuários fictícios. Você está como neto23 só se tiver este nome; aqui usamos seu total.</p>${people.map(([n,v],i)=>`<div class="rk"><b>${i+1}</b><span class="av">${catSVG({fur:(i*3)%10,pat:i%5,eye:i%5,acc:(i*2)%9,clo:i%7,bg:i%8})}</span><span>${n}${n==="neto23"?" (você)":""}</span><em>${v} / 100</em></div>`).join("")}<button class="mclose" onclick="closeModal()">FECHAR</button>`);
+}
+$("nav").innerHTML=[["Início"],["Álbum"],["Coleções"],["Disquetes"],["Eventos"],["Ranking"]].map(([n],i)=>`<button class="${i===1?'on':''}" onclick="${n==='Ranking'?'openRank()':n==='Coleções'?'document.getElementById(\'cols\').scrollIntoView({behavior:\'smooth\'})':n==='Álbum'?'window.scrollTo({top:0,behavior:\'smooth\'})':'toast(\''+n+': em breve\')'}">${n}</button>`).join("");
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!packOpen)closeModal();if(e.key==="ArrowRight"&&!document.querySelector(".modal.open"))pg(Math.min(page+1,3));if(e.key==="ArrowLeft"&&!document.querySelector(".modal.open"))pg(Math.max(page-1,0))});
+sel=(CARDS.find(c=>c.ci===0&&owned(c))||CARDS[0]).id;renderAll();
+</script>

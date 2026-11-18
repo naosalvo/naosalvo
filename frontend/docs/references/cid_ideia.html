@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=811c3204-c309-42d4-b20a-d8864da07fa3
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Não Salvo — Arquivo da Internet Brasileira (conceito de fã)</title>
+<meta name="description" content="Museu colaborativo da internet brasileira: viaje pelos anos, salve memes, abra pacotes e complete seu álbum de cartas. Conceito feito por fã.">
+<meta name="theme-color" content="#04060c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NÃO SALVO — E no fim o plano era salvar.">
+<meta property="og:description" content="Crie seu gato, abra pacotes grátis todo dia e complete o álbum da internet brasileira.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04060c;--bg2:#070b16;--panel:#0a1020;--panel2:#0e1630;--line:#16223f;--line2:#1d2f5a;
+  --txt:#e9eefc;--mut:#7d89ad;--blue:#1f6bff;--blue2:#3d86ff;--glow:rgba(31,107,255,.55);
+  --gold:#f5c542;--purple:#a46bff;--red:#ff4766;--green:#25d07a;
+  --cond:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font:14px/1.5 Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+button{font:inherit;cursor:pointer;color:inherit}
+input,select,textarea{font:inherit;color:var(--txt)}
+a{color:inherit;text-decoration:none}
+.hidden{display:none!important}
+.fan{background:var(--gold);color:#111;text-align:center;font-size:11px;font-weight:700;padding:5px 10px;letter-spacing:.2px}
+.cond{font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;border:1px solid var(--line2);background:var(--panel2);padding:10px 16px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.4px;transition:.15s}
+.btn:hover{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+.btn.pri{background:linear-gradient(180deg,#2a74ff,#1553d6);border-color:#2a74ff;box-shadow:0 6px 24px rgba(31,107,255,.35)}
+.btn.pri:hover{filter:brightness(1.12)}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.glowbox{border:1px solid rgba(61,134,255,.55);border-radius:16px;background:linear-gradient(180deg,rgba(14,24,52,.9),rgba(6,10,22,.95));box-shadow:0 0 0 1px rgba(31,107,255,.15),0 0 40px rgba(31,107,255,.25),inset 0 0 60px rgba(31,107,255,.06)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.h4{font-family:var(--cond);font-size:20px;text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:8px}
+.more{font-size:11px;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:.5px;background:none;border:0}
+.badge{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px;border:1px solid}
+.b-Relíquia{color:var(--purple);border-color:var(--purple);background:rgba(164,107,255,.12)}
+.b-Lendário{color:var(--gold);border-color:var(--gold);background:rgba(245,197,66,.12)}
+.b-Mítico{color:var(--red);border-color:var(--red);background:rgba(255,71,102,.12)}
+.b-Clássico{color:var(--blue2);border-color:var(--blue2);background:rgba(61,134,255,.12)}
+.b-Novo{color:var(--green);border-color:var(--green);background:rgba(37,208,122,.12)}
+
+/* logo */
+.logo{display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none}
+.logo .lw{font-family:var(--cond);font-weight:800;font-size:30px;line-height:.82;text-transform:uppercase}
+.logo .ls{font-size:10px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;line-height:1.4}
+
+/* ---------- LANDING ---------- */
+#landing{position:relative;min-height:calc(100vh - 26px);overflow:hidden}
+.mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px;padding:6px;opacity:.22;filter:saturate(.6);pointer-events:none;transform:rotate(-4deg) scale(1.15)}
+.mosaic div{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-size:36px}
+#landing::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 25% 45%,rgba(4,6,12,.96) 30%,rgba(4,6,12,.7) 60%,rgba(4,6,12,.9));pointer-events:none}
+.ltop{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.lhero{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:40px 0 60px}
+.bigt{font-family:var(--cond);font-weight:800;font-size:clamp(46px,6.4vw,88px);line-height:.9;text-transform:uppercase}
+.bigt em{font-style:normal;color:var(--blue2);text-shadow:0 0 30px var(--glow)}
+.lsub{color:#c3cbe4;font-size:16px;max-width:460px;margin:18px 0 28px}
+.sso{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sso .btn svg{width:18px;height:18px}
+.ssoic{width:46px;height:44px;padding:0}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px;max-width:640px}
+.feat{font-size:11px;color:var(--mut)}.feat b{display:block;color:var(--blue2);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin:6px 0 2px}
+.feat i{font-style:normal;font-size:22px}
+.lprev{padding:22px}
+.lprev .yrs{display:flex;justify-content:space-between;margin:18px 0 10px;position:relative}
+.lprev .yrs::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.lprev .yrs span{position:relative;background:var(--bg2);padding:2px 6px;font-family:var(--cond);font-size:16px;color:var(--mut)}
+.lprev .yrs span.on{color:#fff;font-size:22px;text-shadow:0 0 14px var(--glow)}
+.lock{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:12px;color:var(--mut)}
+
+/* ---------- SIGNUP ---------- */
+#signup{min-height:calc(100vh - 26px)}
+.stop{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.steps{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase}
+.steps .st{width:26px;height:26px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center}
+.steps .st.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 14px var(--glow)}
+.steps .st.done{border-color:var(--blue);color:var(--blue2)}
+.steps .ln{width:28px;height:2px;background:var(--line2)}
+.sgrid{display:grid;grid-template-columns:340px 1fr;gap:40px;padding:34px 0 60px}
+.stitle{font-family:var(--cond);font-weight:800;font-size:44px;line-height:.92;text-transform:uppercase;margin-bottom:12px}
+.stitle em{font-style:normal;color:var(--blue2)}
+.fl{display:block;font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 6px}
+.in{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:12px 14px}
+.in:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,107,255,.2)}
+.provtag{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--mut);background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:999px;margin-top:4px}
+.builder{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:start}
+.bprev{text-align:center}
+.bprev .av{width:280px;height:280px;border-radius:50%;margin:0 auto 14px;box-shadow:0 0 0 3px var(--blue),0 0 50px var(--glow);overflow:hidden}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow:auto}
+.tabs button{background:none;border:0;padding:10px 14px;font-size:12px;font-weight:700;text-transform:uppercase;color:var(--mut);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button.on{color:#fff;border-bottom-color:var(--blue)}
+.osec{margin-bottom:18px}
+.osec h6{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--mut);letter-spacing:.5px;margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.sw{width:46px;height:46px;border-radius:10px;border:2px solid var(--line2);position:relative}
+.sw.on,.opt.on{border-color:var(--blue);box-shadow:0 0 0 2px rgba(31,107,255,.35),0 0 16px var(--glow)}
+.sw.on::after,.opt.on::after{content:"✓";position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;display:grid;place-items:center;font-weight:800}
+.opt{width:84px;border:2px solid var(--line2);border-radius:12px;background:var(--panel);padding:6px 4px 6px;text-align:center;position:relative;font-size:11px;color:#c3cbe4}
+.opt .mini{width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto 4px}
+.cardwrap{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+.cardwrap .cv{width:min(600px,100%);border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px var(--blue),0 0 60px var(--glow)}
+.cardwrap .cv svg{display:block;width:100%;height:auto}
+
+/* ---------- APP ---------- */
+header.nav{position:sticky;top:0;z-index:20;background:rgba(4,6,12,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nbar{display:flex;align-items:center;gap:22px;height:70px}
+.nlinks{display:flex;gap:4px;height:100%}
+.nlinks button{background:none;border:0;padding:0 12px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#b8c2df;border-bottom:2px solid transparent;display:flex;align-items:center;gap:6px}
+.nlinks button.on{color:#fff;border-bottom-color:var(--blue);background:linear-gradient(0deg,rgba(31,107,255,.15),transparent)}
+.nsearch{flex:1;max-width:320px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:0 12px}
+.nsearch input{flex:1;background:none;border:0;padding:10px 0;outline:none;font-size:13px}
+.me{display:flex;align-items:center;gap:10px;cursor:pointer;margin-left:auto}
+.me .av{width:42px;height:42px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px var(--blue)}
+.me b{display:block;font-size:13px}.me small{color:var(--blue2);font-weight:700;font-size:11px}
+.burger{display:none;background:none;border:0;font-size:24px}
+
+.page{padding:26px 0 70px}
+.hhero{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;margin-bottom:26px}
+.hhero .bigt{font-size:clamp(40px,4.6vw,66px)}
+.hcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.today{padding:20px 22px;position:relative;overflow:hidden}
+.today .tl{font-size:11px;font-weight:800;color:var(--blue2);text-transform:uppercase;letter-spacing:.8px}
+.today .ago{font-family:var(--cond);font-weight:800;font-size:54px;line-height:.9;text-transform:uppercase}
+.today .ago em{font-style:normal;color:var(--blue2);text-shadow:0 0 24px var(--glow)}
+.today .ys{color:var(--mut);font-size:13px;margin:4px 0 12px}
+.tlist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tdots{display:flex;gap:7px;margin-top:14px}
+.tdots button{width:9px;height:9px;border-radius:50%;border:0;background:var(--line2);padding:0}
+.tdots button.on{background:var(--blue);box-shadow:0 0 8px var(--glow)}
+
+.mc{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;position:relative}
+.mc:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 30px rgba(31,107,255,.25)}
+.mc .th{aspect-ratio:16/10;display:grid;place-items:center;font-size:40px;position:relative;background-size:cover;background-position:center}
+.mc .th::after{content:"▶";position:absolute;left:8px;bottom:6px;font-size:11px;color:#fff;text-shadow:0 1px 4px #000}
+.mc .bd{padding:8px 10px}
+.mc .tt{font-size:12.5px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:31px}
+.mc .yy{font-size:11px;color:var(--mut);display:flex;justify-content:space-between;align-items:center;margin-top:3px}
+.mc .bdg{position:absolute;top:6px;left:6px}
+.mc .svd{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);border-radius:6px;padding:1px 6px;font-size:11px}
+
+.tline{padding:18px 20px 22px;margin-bottom:26px}
+.tlhead{display:flex;justify-content:space-between;align-items:center}
+.yrow{display:flex;align-items:center;gap:6px;margin:18px 0 20px}
+.yarrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);background:var(--panel);flex:none}
+.ytrack{flex:1;display:flex;justify-content:space-between;position:relative;overflow-x:auto;padding:4px 0 2px;scrollbar-width:none}
+.ytrack::-webkit-scrollbar{display:none}
+.ytrack::before{content:"";position:absolute;left:0;right:0;bottom:9px;height:2px;background:linear-gradient(90deg,rgba(31,107,255,.15),var(--blue),rgba(31,107,255,.15))}
+.yb{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:46px;font-family:var(--cond);font-weight:700;font-size:16px;color:#9aa6c9;position:relative}
+.yb i{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--glow);display:block;z-index:1}
+.yb.on{color:#fff;font-size:30px;text-shadow:0 0 18px var(--glow)}
+.yb.on i{width:16px;height:16px;background:#fff;box-shadow:0 0 0 4px var(--blue),0 0 20px var(--glow)}
+.yb.empty i{background:var(--line2);box-shadow:none}
+.ydetail{display:grid;grid-template-columns:150px 1fr 150px;gap:18px;align-items:stretch}
+.yside{display:flex;flex-direction:column;justify-content:center;gap:6px;cursor:pointer;opacity:.75;transition:.15s}
+.yside:hover{opacity:1}
+.yside .n{font-family:var(--cond);font-weight:800;font-size:52px;line-height:.9;color:var(--blue2)}
+.yside p{font-size:12px;color:var(--mut)}
+.ycenter{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:16px;border:1px solid var(--line2);border-radius:14px;background:rgba(10,16,32,.7)}
+.ycenter .n{font-family:var(--cond);font-weight:800;font-size:78px;line-height:.85;text-shadow:0 0 30px var(--glow)}
+.ycenter .tg{color:#c3cbe4;font-size:14px;margin:8px 0 14px}
+.ycenter .cnt{font-size:11px;color:var(--mut);margin-bottom:10px}
+.ygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.yempty{display:grid;place-items:center;text-align:center;color:var(--mut);font-size:13px;border:1px dashed var(--line2);border-radius:10px;padding:20px;grid-column:1/-1}
+
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:26px}
+.cols .panel{padding:16px}
+.li{display:flex;gap:10px;align-items:center;padding:7px 4px;border-radius:8px;cursor:pointer}
+.li:hover{background:var(--panel2)}
+.li .lt{width:62px;height:40px;border-radius:6px;flex:none;display:grid;place-items:center;font-size:20px;background-size:cover;background-position:center}
+.li .ln{flex:1;min-width:0}.li .ln b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}
+.li .ln small{color:var(--mut);font-size:11px}
+.rk{display:flex;align-items:center;gap:10px;padding:7px 2px;border-top:1px solid var(--line);font-size:13px}
+.rk:first-child{border-top:0}
+.rk .pos{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--panel2);flex:none}
+.rk .pos.p1{background:var(--gold);color:#111}.rk .pos.p2{background:#c7d1e8;color:#111}.rk .pos.p3{background:#d08b4c;color:#111}
+.rk .ra{width:28px;height:28px;border-radius:50%;overflow:hidden;flex:none}
+.rk .xp{margin-left:auto;color:var(--mut);font-size:12px;font-weight:600}
+.rk.me-row{background:rgba(31,107,255,.12);border-radius:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.chip.on{background:var(--blue);border-color:var(--blue);box-shadow:0 0 14px var(--glow)}
+.fstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.fstrip .panel{padding:14px;display:flex;gap:12px;align-items:center}
+.fstrip i{font-style:normal;font-size:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;flex:none}
+.fstrip b{display:block;font-size:11px;color:var(--blue2);text-transform:uppercase;letter-spacing:.5px}
+.fstrip small{color:var(--mut);font-size:11px;line-height:1.3;display:block}
+.grid5{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.ptitle{font-family:var(--cond);font-weight:800;font-size:46px;text-transform:uppercase;line-height:.95;margin-bottom:6px}
+.psub{color:var(--mut);margin-bottom:20px}
+.vt{position:relative;padding-left:90px}
+.vt::before{content:"";position:absolute;left:40px;top:0;bottom:0;width:2px;background:linear-gradient(var(--blue),rgba(31,107,255,.1))}
+.vty{position:relative;margin-bottom:30px}
+.vty .mk{position:absolute;left:-90px;top:0;width:80px;text-align:center}
+.vty .mk span{display:inline-block;font-family:var(--cond);font-weight:800;font-size:22px;background:var(--bg);border:2px solid var(--blue);border-radius:999px;padding:2px 10px;box-shadow:0 0 14px var(--glow)}
+.vty h3{font-family:var(--cond);font-size:22px;text-transform:uppercase;margin-bottom:10px;color:#c3cbe4;font-weight:700}
+.prof{display:grid;grid-template-columns:320px 1fr;gap:26px}
+.prof .av{width:200px;height:200px;border-radius:50%;overflow:hidden;margin:0 auto 12px;box-shadow:0 0 0 3px var(--blue),0 0 40px var(--glow)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.stats div{background:var(--panel2);border-radius:8px;padding:10px 4px;text-align:center}
+.stats b{display:block;font-family:var(--cond);font-size:26px;line-height:1}
+.stats span{font-size:10px;color:var(--mut);text-transform:uppercase}
+.xpbar{height:8px;border-radius:99px;background:var(--panel2);overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#7fb0ff);box-shadow:0 0 10px var(--glow)}
+.disc{font-size:11px;color:var(--mut);margin-top:30px;text-align:center}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(2,4,10,.78);backdrop-filter:blur(4px);z-index:50;display:grid;place-items:center;padding:20px;overflow:auto}
+.modal{width:min(820px,100%);max-height:calc(100vh - 40px);overflow:auto;padding:22px;position:relative}
+.mx{position:absolute;top:12px;right:14px;background:none;border:0;font-size:26px;color:var(--mut)}
+.mview{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.mview .pl{aspect-ratio:16/9;border-radius:12px;overflow:hidden;display:grid;place-items:center;font-size:80px;background-size:cover;background-position:center}
+.mview iframe{width:100%;height:100%;border:0}
+.mview h2{font-family:var(--cond);font-size:34px;line-height:1;text-transform:uppercase;margin:8px 0}
+.disc-by{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:10px;margin:12px 0}
+.disc-by .ra{width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tags span{font-size:11px;background:var(--panel2);border-radius:4px;padding:2px 7px;color:#b8c2df}
+.warn{border:1px solid var(--gold);background:rgba(245,197,66,.08);border-radius:10px;padding:12px;margin-top:12px;font-size:13px}
+.warn.bad{border-color:var(--red);background:rgba(255,71,102,.08)}
+.warn .li{margin-top:8px;background:rgba(0,0,0,.25)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140px);background:var(--blue);color:#fff;font-weight:700;padding:12px 18px;border-radius:10px;transition:transform .25s;z-index:80;box-shadow:0 0 30px var(--glow)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- ÁLBUM ---------- */
+.alb{display:grid;grid-template-columns:250px 1fr 300px;gap:22px;align-items:start}
+.cols-side .colb{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;border:1px solid transparent;cursor:pointer;margin-bottom:6px}
+.cols-side .colb:hover{background:var(--panel2)}
+.cols-side .colb.on{border-color:var(--blue);background:rgba(31,107,255,.1);box-shadow:0 0 18px rgba(31,107,255,.2)}
+.colb .ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:22px;flex:none}
+.colb b{display:block;font-size:12px;text-transform:uppercase}.colb small{font-size:11px;color:var(--mut)}
+.pbar{height:5px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:4px}.pbar i{display:block;height:100%}
+.binder{position:relative;padding:22px 22px 22px 46px;border-radius:16px;background:linear-gradient(180deg,#0d1222,#070a14);border:1px solid var(--line2);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.binder::before{content:"";position:absolute;left:14px;top:20px;bottom:20px;width:14px;background:repeating-linear-gradient(180deg,transparent 0 22px,#9aa6c9 22px 30px,transparent 30px 44px);border-radius:8px;opacity:.6}
+.stk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.stk{position:relative;border-radius:12px;padding:6px;cursor:pointer;transition:.15s;background:#0b0f1e;border:2px solid var(--rc,#333);box-shadow:0 0 16px color-mix(in srgb,var(--rc) 35%,transparent)}
+.stk:hover{transform:translateY(-3px) rotate(-.6deg)}
+.stk.sel{outline:2px solid #fff;outline-offset:2px}
+.stk .top{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:800;padding:2px 4px 5px}
+.stk .top .rr{color:var(--rc);text-transform:uppercase}
+.stk .art{aspect-ratio:1;border-radius:8px;overflow:hidden;background:#05070d}
+.stk .nm{font-family:var(--cond);font-weight:800;font-size:15px;text-transform:uppercase;text-align:center;line-height:1.05;padding:6px 2px 2px;min-height:38px;display:grid;place-items:center}
+.stk .cl{font-size:9px;text-align:center;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+.stk .qty{position:absolute;bottom:6px;right:8px;background:var(--rc);color:#111;font-size:10px;font-weight:900;border-radius:6px;padding:0 5px}
+.stk.lock{--rc:#2a3352!important;box-shadow:none;background:repeating-linear-gradient(45deg,#0a0e1a 0 8px,#0c1120 8px 16px)}
+.stk.lock .art{display:grid;place-items:center;font-family:var(--cond);font-size:46px;color:#2a3352;background:transparent}
+.stk.lock .nm{color:#3a4466}
+.stk .new{position:absolute;top:-8px;left:-8px;background:var(--green);color:#03140b;font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;transform:rotate(-8deg)}
+.detail .big{border-radius:16px;padding:8px;border:3px solid var(--rc);box-shadow:0 0 40px color-mix(in srgb,var(--rc) 50%,transparent);background:#0b0f1e;margin-bottom:14px}
+.detail .big .art{aspect-ratio:1;border-radius:10px;overflow:hidden}
+.packzone{display:grid;place-items:center;text-align:center;gap:16px;padding:10px 0}
+.pack{width:220px;height:300px;border-radius:18px;cursor:pointer;position:relative;background:linear-gradient(160deg,#1f6bff,#0a1f5c 60%,#ff3bd4);box-shadow:0 0 0 3px #f5c542,0 0 60px rgba(245,197,66,.45);display:grid;place-items:center;animation:wob 1.6s ease-in-out infinite;overflow:hidden}
+.pack::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.35) 45%,transparent 60%);animation:shine 2.2s infinite}
+.pack .pl{font-family:var(--cond);font-weight:800;font-size:44px;line-height:.85;text-transform:uppercase;text-shadow:0 4px 20px rgba(0,0,0,.5)}
+@keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.03)}}
+@keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.pack.boom{animation:boom .5s forwards}
+@keyframes boom{to{transform:scale(1.4);opacity:0;filter:brightness(3)}}
+.reveal{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.flip{perspective:900px;cursor:pointer}
+.flip .in{position:relative;transition:transform .6s;transform-style:preserve-3d}
+.flip.open .in{transform:rotateY(180deg)}
+.flip .fr,.flip .bk{backface-visibility:hidden}
+.flip .bk{position:absolute;inset:0;border-radius:12px;background:linear-gradient(160deg,#1f6bff,#0a1f5c);border:2px solid #f5c542;display:grid;place-items:center;font-family:var(--cond);font-size:28px;font-weight:800}
+.flip .fr{transform:rotateY(180deg)}
+@media(max-width:1100px){.alb{grid-template-columns:1fr}.reveal{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.reveal{grid-template-columns:repeat(2,1fr)}}
+
+@media(max-width:1100px){
+  .nlinks{display:none}.burger{display:block}
+  .nlinks.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--line);height:auto;padding:8px}
+  .nlinks.open button{padding:12px;border-bottom:0}
+  .hhero,.lhero,.sgrid,.builder,.prof,.cardwrap{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .fstrip{grid-template-columns:repeat(2,1fr)}
+  .ydetail{grid-template-columns:1fr}.yside{display:none}
+  .ycenter{grid-template-columns:1fr}
+  .mview{grid-template-columns:1fr}
+}
+@media(max-width:640px){.nsearch{display:none}.tlist,.ygrid{grid-template-columns:repeat(2,1fr)}.feats{grid-template-columns:repeat(2,1fr)}.row2{grid-template-columns:1fr}.me b,.me small{display:none}}
+
+/* =========================================================
+   v4 · VISUAL, CARTAS HOLOGRÁFICAS, PACOTE, FEED, ERAS
+   ========================================================= */
+:root{--ease:cubic-bezier(.2,.8,.2,1);--navh:70px}
+html{scroll-padding-top:calc(var(--navh) + 16px)}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:
+ radial-gradient(40% 35% at 15% 20%,rgba(31,107,255,.22),transparent 70%),
+ radial-gradient(35% 30% at 85% 12%,rgba(164,107,255,.16),transparent 70%),
+ radial-gradient(40% 40% at 70% 92%,rgba(255,59,212,.10),transparent 70%);animation:aur 24s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate3d(3%,2%,0) scale(1.08)}}
+:focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px}
+.btn:focus-visible,.chip:focus-visible,.fb:focus-visible{box-shadow:0 0 0 5px var(--blue)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mut{color:var(--mut)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* entrada de página */
+.page>*{animation:pin .5s var(--ease) both}
+.page>*:nth-child(2){animation-delay:.05s}.page>*:nth-child(3){animation-delay:.1s}.page>*:nth-child(4){animation-delay:.15s}.page>*:nth-child(5){animation-delay:.2s}
+@keyframes pin{from{opacity:0;transform:translateY(12px)}}
+
+/* navegação / botões */
+header.nav{background:rgba(4,6,12,.72);backdrop-filter:blur(16px) saturate(1.4)}
+.nlinks.open{top:100%}
+.page{padding:26px 24px 70px}
+.nbar{gap:12px}
+.nbar .btn,.nbar .me{flex:none;white-space:nowrap}
+.nlinks{flex:none}
+.nlinks button{white-space:nowrap;padding:0 9px}
+.nsearch{flex:none;width:200px;transition:width .25s var(--ease)}
+.nsearch:focus-within{width:280px;border-color:var(--blue)}
+.nsearch label{cursor:text;display:grid;place-items:center;width:20px}
+.nsearch input{min-width:0}
+@media(max-width:1500px){.logo .ls{display:none}.me b,.me small{display:none}.nsearch{width:150px}}
+@media(max-width:1280px){.nsearch{width:44px;padding:0 10px}.nsearch input{width:0;flex:0 0 0;padding:0}.nsearch:focus-within{width:220px}.nsearch:focus-within input{flex:1;width:auto}}
+.hs{display:inline}
+.btn{min-height:36px;transition:transform .18s var(--ease),box-shadow .2s,border-color .2s,filter .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.pri{background:linear-gradient(180deg,#3a82ff,#1553d6);position:relative;overflow:hidden}
+.btn.pri::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-120%);transition:transform .6s}
+.btn.pri:hover::after{transform:translateX(120%)}
+.mx{width:40px;height:40px;display:grid;place-items:center;border-radius:50%}
+.mx:hover{color:#fff;background:rgba(255,255,255,.08)}
+.tabs{flex-wrap:wrap;overflow:visible}
+.ytrack{overflow:visible}
+
+/* memes */
+.mc{transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
+.mc .th::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55))}
+.mc:hover .th{filter:saturate(1.25)}
+.panel,.glowbox{backdrop-filter:blur(6px)}
+
+/* landing */
+.mosaic{animation:drift 70s linear infinite alternate}
+@keyframes drift{from{transform:rotate(-4deg) scale(1.15) translateY(0)}to{transform:rotate(-4deg) scale(1.15) translateY(-7%)}}
+.bigt em{background:linear-gradient(90deg,#3d86ff,#a8c8ff,#3d86ff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 18px var(--glow));animation:grad 6s linear infinite}
+@keyframes grad{to{background-position:200% 0}}
+.fan3{display:flex;justify-content:center;padding:6px 0 20px}
+.fan3 .stk{width:150px;margin:0 -16px;transform-origin:50% 120%}
+.fan3 .stk:hover{z-index:5!important}
+.lstats{display:flex;gap:10px;margin:0 0 16px}
+.lstats div{flex:1;text-align:center;background:rgba(31,107,255,.08);border:1px solid var(--line2);border-radius:10px;padding:8px 4px}
+.lstats b{display:block;font-family:var(--cond);font-size:30px;line-height:1;color:#fff}
+.lstats span{font-size:10px;text-transform:uppercase;color:var(--mut);letter-spacing:.5px}
+
+/* ---------- cartas: inclinação 3D + brilho holográfico + borda animada ---------- */
+.stk{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;--rot:0deg;transform:perspective(800px) rotateX(var(--ry)) rotateY(var(--rx)) rotate(var(--rot));transition:transform .35s var(--ease),box-shadow .3s;will-change:transform;background:linear-gradient(180deg,#121a33,#080b16);overflow:visible}
+.stk.tilting{transition:transform .08s linear,box-shadow .3s}
+.stk:hover{transform:perspective(800px) rotateX(var(--ry)) rotateY(var(--rx)) rotate(var(--rot)) translateY(-4px) scale(1.03);z-index:2}
+.stk .art{position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 -30px 40px -20px rgba(0,0,0,.5)}
+.stk .nm{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:8px;margin-top:6px;min-height:34px}
+.stk.lock:hover{transform:translateY(-2px)}
+.stk.lock::after{display:none}
+.stk::after,.big::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;z-index:3;mix-blend-mode:overlay;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.3),transparent 42%)}
+.stk:hover::after,.stk.tilting::after,.big.tilting::after{opacity:1}
+.stk.r-epico::after,.stk.r-lendario::after,.stk.r-mtv::after,.stk.r-mitico::after,.big.r-epico::after,.big.r-lendario::after,.big.r-mtv::after,.big.r-mitico::after{mix-blend-mode:color-dodge;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.38),transparent 38%),repeating-linear-gradient(115deg,rgba(255,59,212,.3) 0 8%,rgba(61,134,255,.3) 12%,rgba(37,208,122,.28) 18%,rgba(245,197,66,.3) 24%,rgba(255,59,212,.3) 30%);background-size:100% 100%,220% 220%;background-position:0 0,var(--mx) var(--my)}
+.stk.r-epico:hover::after,.stk.r-lendario:hover::after,.stk.r-mtv:hover::after,.stk.r-mitico:hover::after,.stk.tilting.r-epico::after,.stk.tilting.r-lendario::after,.stk.tilting.r-mtv::after,.stk.tilting.r-mitico::after,.big.tilting.r-epico::after,.big.tilting.r-lendario::after,.big.tilting.r-mtv::after,.big.tilting.r-mitico::after{opacity:.5}
+.stk.r-lendario,.stk.r-mtv,.stk.r-mitico,.big.r-lendario,.big.r-mtv,.big.r-mitico{border-color:transparent;background:linear-gradient(180deg,#121a33,#080b16) padding-box,linear-gradient(120deg,var(--rc),#fff 22%,var(--rc) 45%,#fff 70%,var(--rc)) border-box;background-size:100% 100%,300% 100%;background-position:0 0,0 0;animation:foil 5s linear infinite,glowp 2.6s ease-in-out infinite}
+@keyframes foil{to{background-position:0 0,300% 0}}
+@keyframes glowp{50%{box-shadow:0 0 36px color-mix(in srgb,var(--rc) 70%,transparent)}}
+.detail .big{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:relative;transform:perspective(900px) rotateX(var(--ry)) rotateY(var(--rx));transition:transform .35s var(--ease)}
+.detail .big.tilting{transition:transform .08s linear}
+.stk .qty{z-index:4}
+.shcard .stk,.vit .stk{width:100%}
+.vit{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:14px}
+.vit .stk .nm{font-size:13px;min-height:30px}
+
+/* ---------- pacote ---------- */
+.pstage{position:relative;display:grid;place-items:center;width:100%;padding:20px 0;min-height:340px}
+.pack{--aura:#f5c542}
+.pack:focus-visible{outline-offset:8px}
+.pglow{position:absolute;inset:-30%;background:radial-gradient(circle,var(--aura),transparent 60%);opacity:0}
+.pack .psm{font-size:11px;font-weight:800;margin-top:10px;letter-spacing:1px}
+.pack.charge{animation:pshake .09s linear infinite;box-shadow:0 0 0 3px var(--aura),0 0 90px var(--aura)}
+.pack.charge .pglow{animation:pglow 1.2s ease-in forwards}
+@keyframes pshake{0%{transform:translate(-3px,1px) rotate(-1.5deg)}25%{transform:translate(3px,-2px) rotate(1.5deg)}50%{transform:translate(-2px,-2px) rotate(-1deg)}75%{transform:translate(3px,2px) rotate(2deg)}100%{transform:translate(-3px,1px) rotate(-1.5deg)}}
+@keyframes pglow{from{transform:scale(.4);opacity:.2}to{transform:scale(1.5);opacity:1}}
+.pmsg{color:var(--gold);font-weight:700;max-width:520px}
+.ptxt{font-size:26px;font-weight:800;text-transform:uppercase}
+.flash{position:fixed;inset:0;z-index:90;pointer-events:none;animation:fl .7s forwards}
+@keyframes fl{from{opacity:1}to{opacity:0}}
+.fxc{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:95;pointer-events:none}
+.shk{animation:shk .5s}
+@keyframes shk{10%,90%{transform:translate(-2px,1px)}20%,80%{transform:translate(4px,-2px)}30%,50%,70%{transform:translate(-6px,3px)}40%,60%{transform:translate(6px,-3px)}}
+.modal.wide{width:min(1020px,100%)}
+.reveal{align-items:stretch}
+.flip{outline-offset:4px;border-radius:12px;height:100%}
+.flip .in,.flip .fr{height:100%}
+.flip .fr .stk{height:100%;display:flex;flex-direction:column}
+.flip .fr .stk .nm{flex:1}
+.flip .bk{background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 8px,transparent 8px 16px),linear-gradient(160deg,#1f6bff,#0a1f5c);box-shadow:0 0 22px rgba(31,107,255,.5)}
+.flip:not(.open):hover .in{transform:rotateY(-14deg) translateY(-3px)}
+.flip.open .fr .stk{animation:pop .55s var(--ease)}
+@keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.07)}}
+.flip .new,.tprev .new{position:absolute;top:-8px;left:-8px;z-index:5;background:var(--green);color:#03140b;font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;transform:rotate(-8deg)}
+.pact{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.pres{display:grid;gap:10px;justify-items:center;color:var(--blue2);font-weight:700;min-height:20px}
+
+/* ---------- compartilhar / trocas / perfil público ---------- */
+.shr{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}
+.shimg{width:100%;border-radius:14px;border:1px solid var(--line2);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.shbtn{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.shc{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center}
+.tprev{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px}
+.tprev .stk{width:130px}
+.tarrow{font-size:30px;color:var(--blue2)}
+.tl2{font-size:11px;text-transform:uppercase;margin-bottom:6px;text-align:center}
+.pubp{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}
+.pav{width:120px;height:120px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--blue),0 0 30px var(--glow)}
+
+/* ---------- diário / sequência / missões ---------- */
+.daily{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:22px;padding:18px 20px;margin-bottom:26px;background:linear-gradient(135deg,rgba(255,138,61,.08),rgba(31,107,255,.08)),var(--panel)}
+.dbig{font-size:46px;font-weight:800;line-height:1;margin:6px 0}
+.dbig small{font-size:14px;font-family:Inter,sans-serif;color:var(--mut);text-transform:none;font-weight:600;letter-spacing:0}
+.sdots{display:flex;gap:6px;margin:8px 0}
+.sd{width:32px;height:32px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--mut)}
+.sd.on{background:linear-gradient(135deg,#ff8a3d,#ff4766);border-color:transparent;color:#fff;box-shadow:0 0 12px rgba(255,138,61,.5)}
+.ms{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13px}
+.ms.ok{color:var(--green)}
+
+/* ---------- máquina do tempo por eras ---------- */
+.tline{--era:#3d86ff;--era2:rgba(61,134,255,.5);position:relative;overflow:hidden;border-color:var(--era2);transition:border-color .5s,box-shadow .5s;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 0 50px var(--era2),inset 0 0 70px color-mix(in srgb,var(--era) 10%,transparent)}
+.tline::before{content:attr(data-mark);position:absolute;right:-10px;top:-30px;font-size:220px;line-height:1;opacity:.07;pointer-events:none}
+.tline[data-era=orkut]{--era:#ff4fa3;--era2:rgba(255,79,163,.5)}
+.tline[data-era=msn]{--era:#3d86ff;--era2:rgba(61,134,255,.5)}
+.tline[data-era=vine]{--era:#ffb020;--era2:rgba(255,176,32,.5)}
+.tline[data-era=tok]{--era:#19e3ff;--era2:rgba(25,227,255,.5)}
+.tline .yb i{background:var(--era);box-shadow:0 0 8px var(--era2)}
+.tline .yb.on i{background:#fff;box-shadow:0 0 0 4px var(--era),0 0 20px var(--era)}
+.tline .yb.empty i{background:var(--line2);box-shadow:none}
+.tline .ytrack::before{background:linear-gradient(90deg,transparent,var(--era),transparent)}
+.tline .ycenter{border-color:var(--era2);animation:yswap .45s var(--ease)}
+.tline .ycenter .n{text-shadow:0 0 30px var(--era)}
+.tline .yside .n{color:var(--era)}
+.tline[data-era=orkut] .ycenter .n{font-family:"Trebuchet MS",Verdana,sans-serif;font-weight:900;letter-spacing:-2px;text-transform:none;font-size:68px}
+.tline[data-era=msn] .ycenter .n{font-family:Tahoma,Verdana,sans-serif;font-weight:700;text-transform:none;font-size:68px}
+.tline[data-era=vine] .ycenter .n{font-family:Impact,var(--cond);font-weight:400}
+.tline[data-era=tok] .ycenter .n{text-shadow:3px 0 #ff2d6f,-3px 0 #19e3ff}
+.era{font-size:12px;color:var(--era,var(--blue2));font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+.era small{color:var(--mut);text-transform:none;font-weight:500;letter-spacing:0;margin-left:4px}
+@keyframes yswap{from{opacity:.2;transform:translateX(14px)}}
+.yslide{display:none;margin:12px 0}
+.yslide label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.yslide b{color:#fff}
+.yslide input{width:100%;height:32px;accent-color:var(--era)}
+
+/* ---------- feed vertical ---------- */
+#page.feedmode{padding:0;max-width:none}
+.feedwrap{display:grid;justify-items:center;position:relative}
+.feed{width:min(480px,100%);height:calc(100vh - var(--navh));height:calc(100dvh - var(--navh));overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior:contain}
+.feed::-webkit-scrollbar{display:none}
+.feed:focus-visible{outline:0;box-shadow:inset 0 0 0 3px var(--blue)}
+.fi{position:relative;height:calc(100vh - var(--navh));height:calc(100dvh - var(--navh));scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;display:grid;grid-template-rows:1fr auto}
+@media(min-width:700px){.feed{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+.fbg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(28px) saturate(1.3) brightness(.55);transform:scale(1.1)}
+.fshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.1) 40%,rgba(4,6,12,.92))}
+.fmedia{position:relative;display:grid;place-items:center;padding:16px 16px 0;align-self:center;width:100%}
+.fposter,.fmedia iframe{width:100%;aspect-ratio:16/9;border-radius:16px;border:0;box-shadow:0 20px 60px rgba(0,0,0,.6);background-size:cover;background-position:center}
+.fposter{display:grid;place-items:center;font-size:48px;color:#fff;text-shadow:0 2px 14px #000}
+.femoji{font-size:clamp(110px,26vh,220px);line-height:1;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(2deg)}}
+.finfo{position:relative;padding:12px 82px 26px 18px}
+.finfo h2{font-size:clamp(30px,5.4vh,44px);line-height:.95;margin:8px 0 2px}
+.frow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fyear{font-size:12px;color:#c3cbe4;font-weight:600}
+.fago{color:var(--blue2);font-family:var(--cond);font-size:20px;font-weight:700;text-transform:uppercase}
+.finfo p{font-size:13px;color:#d6ddf2;margin:6px 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fby{font-size:12px;color:#b8c2df}
+.frail{position:absolute;right:10px;bottom:26px;display:grid;gap:12px}
+.fb{width:58px;min-height:58px;border-radius:16px;border:1px solid rgba(255,255,255,.2);background:rgba(10,16,32,.72);backdrop-filter:blur(8px);display:grid;place-items:center;font-size:22px;padding:6px 0;line-height:1;transition:transform .15s,border-color .15s}
+.fb small{font-size:10px;font-weight:700;color:#c3cbe4;margin-top:2px}
+.fb:hover{border-color:var(--blue);transform:scale(1.06)}
+.fb[aria-pressed=true]{border-color:var(--green);box-shadow:0 0 14px rgba(37,208,122,.4)}
+.fkeys{display:none;font-size:11px;color:var(--mut);pointer-events:none}
+@media(min-width:900px){.fkeys{display:block;position:absolute;left:24px;top:24px}}
+
+/* ---------- responsivo (reflow 320px, sem rolagem horizontal como navegação) ---------- */
+@media(max-width:1100px){
+  .ytrack{display:none}.yslide{display:block}.yrow{justify-content:space-between}.yarrow{width:44px;height:44px}
+  .daily{grid-template-columns:1fr}.shr,.shc{grid-template-columns:1fr}.shimg{max-width:260px}
+}
+@media(max-width:900px){.hs{display:none}}
+@media(max-width:640px){
+  .nbar{height:auto;min-height:64px;flex-wrap:wrap;gap:8px;padding:6px 0}
+  .logo .ls{display:none}.logo .lw{font-size:24px}
+  .nbar .btn{padding:8px 10px;font-size:12px}
+  .pubp{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .fan3 .stk{width:104px;margin:0 -12px}
+  .lstats b{font-size:24px}
+  .tprev .stk{width:104px}
+  .ptitle{font-size:36px}
+}
+</style>
+</head>
+<body>
+<div class="fan">⚠️ CONCEITO FEITO POR FÃ — não é o site oficial do Não Salvo. Login simulado; nada sai do seu navegador.</div>
+
+<!-- ================= LANDING ================= -->
+<section id="landing">
+  <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="ltop">
+      <div class="logo"><div class="lw">Não<br>Salvo</div><div class="ls">Arquivo da internet<br>brasileira</div></div>
+      <button class="btn ghost" data-login="Google">Entrar</button>
+    </div>
+    <div class="lhero">
+      <div>
+        <div class="bigt">E no fim<br>o plano do<br><em>Não Salvo</em><br>era salvar.</div>
+        <p class="lsub">Um museu colaborativo e cronológico dos memes, vídeos virais e momentos inesquecíveis da internet brasileira. Viaje pelos anos. Salve o que a internet quase perdeu.</p>
+        <div class="sso">
+          <button class="btn pri" data-login="Google"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
+          <span style="color:var(--mut);font-size:12px">ou entre com</span>
+          <button class="btn ssoic" data-login="Discord" title="Discord"><svg viewBox="0 0 24 24" fill="#8c9eff"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.6-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg></button>
+          <button class="btn ssoic" data-login="X" title="X"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2.3h3.4l-7.4 8.4 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9L.9 2.3h7l4.8 6.4 5.5-6.4zm-1.2 17.9h1.9L7 4.2H5L17 20.2z"/></svg></button>
+          <button class="btn ssoic" data-login="Twitch" title="Twitch"><svg viewBox="0 0 24 24" fill="#a970ff"><path d="M4.3 2 3 5.4v13.8h4.7V22h2.6l2.7-2.8h3.9L22 14.1V2H4.3zm15.9 11.2-2.9 3H12.6l-2.6 2.6v-2.6H6.1V3.8h14.1v9.4zM17.4 7.1v5.1h-1.8V7.1h1.8zm-4.8 0v5.1h-1.8V7.1h1.8z"/></svg></button>
+        </div>
+        <div class="feats">
+          <div class="feat"><i>👥</i><b>Colaborativo</b>A comunidade envia e preserva a história</div>
+          <div class="feat"><i>🗂️</i><b>Organizado</b>Tudo separado por ano e categoria</div>
+          <div class="feat"><i>☁️</i><b>Eternizado</b>Se caiu na internet, aqui fica pra sempre</div>
+          <div class="feat"><i>🐱</i><b>Feito por fãs</b>Todo internauta é um gato. Sem exceção.</div>
+        </div>
+      </div>
+      <div class="glowbox lprev">
+        <div class="fan3" id="lfan" aria-hidden="true"></div>
+        <div class="lstats" id="lstats"></div>
+        <div class="cond" style="font-size:13px;color:var(--blue2);font-weight:700">⏱ Linha do tempo da internet brasileira</div>
+        <div class="yrs"><span>2006</span><span>2008</span><span>2010</span><span class="on">2012</span><span>2014</span><span>2016</span><span>2019</span></div>
+        <div class="tlist" id="lprev"></div>
+        <div class="lock">🔒 Crie seu gato para entrar no museu, viajar pelos anos e salvar memes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIGNUP ================= -->
+<section id="signup" class="hidden">
+  <div class="wrap">
+    <div class="stop">
+      <div class="logo" id="sLogo"><div class="lw">Não<br>Salvo</div><div class="ls">Arquivo da internet<br>brasileira</div></div>
+      <div class="steps" id="steps"></div>
+    </div>
+
+    <!-- step 1 -->
+    <div class="sgrid" id="s1">
+      <div>
+        <div class="stitle">Criar conta<br>é só o começo.<br><em>Depois vem o gato.</em></div>
+        <p style="color:#c3cbe4">Todo mundo aqui é um gatinho. A internet é sua. O estilo também.</p>
+        <div class="provtag" id="provTag"></div>
+      </div>
+      <form id="f1" class="panel" style="padding:24px;max-width:520px">
+        <label class="fl" for="nick">Nome de usuário</label>
+        <input class="in" id="nick" maxlength="20" required placeholder="ex: internauta_2006" autocomplete="off">
+        <label class="fl" for="since">Em que ano você entrou na internet?</label>
+        <select class="in" id="since"></select>
+        <label class="fl" for="fav">Meme do coração (opcional)</label>
+        <select class="in" id="fav"><option value="">— escolher depois —</option></select>
+        <button class="btn pri" style="width:100%;margin-top:22px">Continuar → criar meu gato</button>
+      </form>
+    </div>
+
+    <!-- step 2 -->
+    <div id="s2" class="hidden" style="padding:30px 0 60px">
+      <div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:22px">
+        <div><div class="h4" style="font-size:26px">🐾 Personalize seu gato</div><p style="color:var(--mut)">Obrigatório. Ninguém entra no museu sem um gatinho.</p></div>
+        <div style="display:flex;gap:10px"><button class="btn ghost" id="back1">← Voltar</button><button class="btn pri" id="go3">Continuar →</button></div>
+      </div>
+      <div class="builder">
+        <div class="bprev">
+          <div class="av" id="bigCat"></div>
+          <button class="btn ghost" id="shuffle">🔀 Embaralhar tudo</button>
+        </div>
+        <div>
+          <div class="tabs" id="tabs"></div>
+          <div id="topts"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- step 3 -->
+    <div id="s3" class="hidden" style="padding:34px 0 60px">
+      <div class="cardwrap">
+        <div class="cv" id="cardBox"></div>
+        <div>
+          <div class="stitle">Bem-vindo ao<br><em>museu</em>, internauta.</div>
+          <p style="color:#c3cbe4;max-width:380px">Essa é sua carteirinha oficial. Baixa, posta e marca os amigos — quanto mais gato, mais museu.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+            <button class="btn" id="dlCard">⬇ Baixar carteirinha</button>
+            <button class="btn" id="cpCard">📋 Copiar convite</button>
+            <button class="btn pri" id="enter">Entrar no museu →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<section id="app" class="hidden">
+  <header class="nav">
+    <div class="wrap nbar">
+      <div class="logo" data-go="home" tabindex="0" role="button" aria-label="Não Salvo — início"><div class="lw">Não<br>Salvo</div><div class="ls">Arquivo da internet<br>brasileira</div></div>
+      <nav class="nlinks" id="nlinks">
+        <button data-go="home">🏠 Início</button>
+        <button data-go="feed">🎞 Feed</button>
+        <button data-go="album" style="color:var(--gold)">📒 Álbum</button>
+        <button data-go="anos">⏱ Explorar por ano</button>
+        <button data-go="cats">🗂 Categorias</button>
+        <button id="navRand">🔀 Aleatório</button>
+        <button data-go="rank">🏆 Ranking</button>
+      </nav>
+      <div class="nsearch"><label for="q" aria-hidden="true">🔍</label><input id="q" aria-label="Buscar memes, tags e criadores" placeholder="Buscar memes, tags, criadores…"></div>
+      <button class="btn" id="streakBtn" aria-label="Sua sequência diária" style="border-color:#ff8a3d;color:#ff8a3d">🔥 <span id="streakN">0</span></button>
+      <button class="btn" id="packBtn" aria-label="Abrir pacote" style="border-color:var(--gold);color:var(--gold)">🎁 <span id="packN">0</span></button>
+      <button class="btn pri" id="openSubmit" aria-label="Salvar meme">＋<span class="hs"> Salvar meme</span></button>
+      <div class="me" data-go="perfil" tabindex="0" role="button" aria-label="Meu perfil"><div class="av" id="meAv"></div><div><b id="meNick"></b><small id="meXp"></small></div></div>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+  <main class="wrap page" id="page"></main>
+</section>
+
+<div id="modalRoot"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   DADOS
+   ========================================================= */
+const NOW=new Date(), CUR_YEAR=NOW.getFullYear();
+const YEARS=[];for(let y=2004;y<=CUR_YEAR;y++)YEARS.push(y);
+const TAG={2004:"O Orkut chegou e nada mais foi igual.",2005:"TV + internet = os primeiros virais.",2006:"A era dos vídeos passados por e-mail.",2007:"Orkut, MSN e bordões de cinema.",2008:"Toda festa tinha uma dancinha.",2009:"O Twitter começa a falar português.",2010:"O YouTube brasileiro nasceu aqui.",2011:"Sertanejo + futebol = viral global.",2012:"O ano do caos absoluto no Facebook.",2013:"Novos memes, novas lendas.",2014:"Copa em casa. Você sabe o placar.",2015:"Briga de escola, Vine e funk.",2016:"O Brasil exporta GIFs pro mundo.",2017:"O áudio do Zap venceu.",2018:"Desafio pra tudo.",2019:"Uma caneta mudou tudo.",2020:"O mundo parou; as lives não.",2021:"Reality show virou assunto nacional.",2022:"Receba!",2023:"Cortes, cortes e mais cortes.",2024:"Tudo vira trend em 24 horas.",2025:"Ainda está sendo escrito.",2026:"Acontecendo agora. Salve antes que suma."};
+const CATS={videos:"🎬 Vídeos",musica:"🎵 Música",tv:"📺 TV & Programas",zoeira:"🤡 Zoeira",gifs:"🌀 GIFs",fotos:"📸 Fotos",esporte:"⚽ Esporte",internet:"🌐 Internet",youtube:"▶️ YouTubers",filmes:"🎞️ Cinema"};
+const CATG={videos:["#1f6bff","#0a2a6b"],musica:["#a46bff","#2a1060"],tv:["#ff8a3d","#5a1d00"],zoeira:["#ff4766","#4a0614"],gifs:["#25d07a","#06381f"],fotos:["#f5c542","#4a3500"],esporte:["#2bd4d4","#063a3a"],internet:["#7f8bff","#151a4a"],youtube:["#ff3b3b","#3a0000"],filmes:["#9aa6c9","#1a1f30"]};
+const BOTS=[
+ {nick:"jpsilva",xp:12540,cat:{fur:"#8d6e63",pattern:"tigrado",eyes:"#f5b400",hair:"nenhum",hairc:"#2b1d14",acc:"oculos_escuros",outfit:"moletom",bg:"#1f6bff"}},
+ {nick:"bruninhotv",xp:9320,cat:{fur:"#ff9a3c",pattern:"tigrado",eyes:"#3ec46d",hair:"topete",hairc:"#ff6f00",acc:"fone",outfit:"camiseta",bg:"#7b2ff7"}},
+ {nick:"viralizador",xp:7860,cat:{fur:"#2b2b2f",pattern:"lisa",eyes:"#ffd400",hair:"moicano",hairc:"#ff3bd4",acc:"corrente",outfit:"jaqueta",bg:"#ff4766"}},
+ {nick:"faqs",xp:6130,cat:{fur:"#f2f2f2",pattern:"siames",eyes:"#4aa3ff",hair:"franja",hairc:"#6d4c41",acc:"oculos_redondos",outfit:"xadrez",bg:"#25d07a"}},
+ {nick:"lendarin",xp:5430,cat:{fur:"#9e9e9e",pattern:"frajola",eyes:"#a46bff",hair:"nenhum",hairc:"#222",acc:"monoculo",outfit:"terno",bg:"#f5c542"}},
+];
+const S0=[
+ ["Orkut chega ao Brasil",2004,"internet","🌸","Relíquia","Comunidades, depoimentos e scraps. O começo de tudo.",["orkut","rede social"]],
+ ["Ruth Lemos: 'sanduíche-iche'",2005,"tv","🥪","Relíquia","A entrevista de TV que virou um dos primeiros virais brasileiros. (ano aproximado)",["telejornal","gafe"]],
+ ["Tapa na Pantera",2006,"videos","🐆","Relíquia","O curta que circulou por e-mail, MSN e Orkut até cansar.",["curta","clássico"]],
+ ["Tropa de Elite: 'Pede pra sair!'",2007,"filmes","🎖️","Lendário","Bordões do Capitão Nascimento antes mesmo do filme estrear.",["cinema","bordão"]],
+ ["Dança do Créu",2008,"musica","💃","Lendário","Velocidade 1, 2, 3, 4… e 5.",["funk","dança"]],
+ ["Dança do Quadrado",2008,"musica","⬜","Lendário","Cada um no seu quadrado.",["dança","festa"]],
+ ["Rebolation",2009,"musica","🕺","Clássico","A dancinha que dominou festas e vídeos caseiros. (ano aproximado)",["axé","dança"]],
+ ["Cala Boca Galvão",2010,"esporte","🗣️","Mítico","Brasileiros convenceram o mundo de que era uma campanha para salvar um pássaro.",["copa","twitter"]],
+ ["Felipe Neto: 'Não faz sentido'",2010,"youtube","🕶️","Lendário","Os óculos escuros e os desabafos que inauguraram o YouTube BR.",["youtube","vlog"]],
+ ["Ai se eu te pego (dancinha)",2011,"musica","⚽","Lendário","Da balada sertaneja para os gramados do mundo inteiro.",["sertanejo","dança"]],
+ ["Luiza que está no Canadá",2012,"tv","🍁","Mítico","Um comercial, uma frase e o Brasil inteiro falando da Luiza.",["comercial","bordão"]],
+ ["Para Nossa Alegria",2012,"videos","🎤","Lendário","Um louvor caseiro com uma risada impossível de segurar.",["música","risada"]],
+ ["Nissim Ourfali",2012,"videos","🎉","Lendário","O vídeo de bar mitzvah que todo mundo sabia cantar.",["paródia"]],
+ ["Lelek Lek Lek",2012,"musica","🎵","Clássico","O passinho e o refrão que não saíam da cabeça.",["funk","passinho"]],
+ ["Nana Gouvea no furacão",2012,"fotos","🌪️","Relíquia","Um ensaio no meio da destruição virou montagem em todo lugar.",["montagem","photoshop"]],
+ ["Rei do Camarote",2013,"zoeira","🍾","Lendário","As dicas de balada que viraram meme instantâneo.",["balada","ostentação"]],
+ ["Inês Brasil e o vídeo do BBB",2013,"tv","👑","Mítico","A inscrição para o reality que virou entidade da internet.",["bbb","diva"]],
+ ["Sabe de nada, inocente",2013,"tv","😏","Clássico","O bordão que entrou de vez no vocabulário.",["bordão"]],
+ ["7 a 1",2014,"esporte","⚽","Mítico","Brasil x Alemanha na Copa em casa. A internet não perdoou.",["copa","futebol"],"2014-07-08"],
+ ["O fim do Orkut",2014,"internet","🪦","Relíquia","O Orkut foi desligado e uma geração ficou órfã de comunidades.",["orkut","nostalgia"],"2014-09-30"],
+ ["Já acabou, Jéssica?",2015,"videos","🥊","Lendário","Uma briga de escola, uma pergunta e um meme eterno.",["bordão","escola"]],
+ ["Tá tranquilo, tá favorável",2015,"musica","😎","Lendário","O funk que virou estado de espírito.",["funk","bordão"]],
+ ["Nazaré confusa",2016,"tv","🧮","Mítico","A cena de novela com equações flutuando virou meme mundial.",["novela","reação"]],
+ ["Gretchen reagindo a tudo",2016,"gifs","💋","Mítico","Os GIFs que viraram linguagem universal. (ano aproximado)",["gif","reação"]],
+ ["Irineu, você não sabe nem eu",2017,"zoeira","🤷","Clássico","Pergunta sem resposta, resposta sem sentido. (ano aproximado)",["bordão"]],
+ ["Gemidão do Zap",2017,"zoeira","📢","Lendário","O áudio que destruiu reputações em grupos de família.",["whatsapp","pegadinha"]],
+ ["Que tiro foi esse?",2018,"musica","💥","Lendário","O hit que virou desafio no Brasil inteiro.",["desafio","funk"]],
+ ["Caneta Azul",2019,"musica","🖊️","Mítico","Uma caneta azul, uma música e milhões de covers.",["música","cover"]],
+ ["A era das lives",2020,"internet","📡","Clássico","Todo mundo em casa, todo mundo ao vivo.",["live","quarentena"]],
+ ["Gil do Vigor: 'Tchaki tchaki'",2021,"tv","💜","Lendário","O reality que rendeu bordão para o ano inteiro.",["bbb","bordão"]],
+ ["Luva de Pedreiro: 'Receba!'",2022,"esporte","🧤","Lendário","Golaços no campo de terra e um grito que rodou o mundo.",["futebol","bordão"]],
+ ["Morango do amor",2025,"zoeira","🍓","Clássico","A sobremesa que lotou feeds e confeitarias.",["comida","trend"]],
+ ["Bebê reborn",2025,"zoeira","👶","Clássico","A polêmica que dominou programas, memes e até debates.",["trend","polêmica"]],
+];
+let seedN=0;
+const SEED=S0.map(([t,y,c,e,r,d,tags,date],i)=>({id:"s"+i,t,y,c,e,r,d,tags,date:date||null,url:null,
+  by:BOTS[i%BOTS.length].nick,sv:Math.round(4000/(1+((i*7)%13))+((i*37)%90)),added:Date.now()-((i*53)%40+1)*3600e3*(i<4?1:6)}));
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const ST={user:null,memes:[...SEED],saved:[],view:"home",year:2012,cat:"todas",q:"",todayIdx:0,start:Date.now(),draft:null,returnTo:null};
+function persist(){try{localStorage.setItem("naosalvo_v3",JSON.stringify({user:ST.user,saved:ST.saved,mine:ST.memes.filter(m=>m.mine),album:ST.album,packs:ST.packs,lastDaily:ST.lastDaily,favCard:ST.favCard,streak:ST.streak,mis:ST.mis,offers:ST.offers,applied:ST.applied,sound:ST.sound,refBy:ST.refBy}))}catch(e){}}
+function restore(){try{const d=JSON.parse(localStorage.getItem("naosalvo_v3")||"null");if(!d||!d.user)return false;ST.user=d.user;ST.saved=d.saved||[];ST.album=d.album||{};ST.packs=d.packs||0;ST.lastDaily=d.lastDaily||null;ST.favCard=d.favCard||null;ST.streak=d.streak||{count:0,best:0};ST.mis=d.mis||null;ST.offers=d.offers||{};ST.applied=d.applied||[];ST.sound=d.sound!==false;ST.refBy=d.refBy||null;(d.mine||[]).forEach(m=>{if(!ST.memes.find(x=>x.id===m.id))ST.memes.unshift(m)});return true}catch(e){return false}}
+
+/* =========================================================
+   GATO (SVG)
+   ========================================================= */
+const OPT={
+ fur:["#9e9e9e","#ff9a3c","#2b2b2f","#f2f2f2","#e8cfa6","#8d6e63","#6f7d96","#5a4033","#ffb3c8","#7b2ff7"],
+ pattern:[["lisa","Lisa"],["tigrado","Tigrado"],["manchas","Malhado"],["siames","Siamês"],["frajola","Frajola"]],
+ eyes:["#f5b400","#3ec46d","#4aa3ff","#2bd4d4","#a46bff","#ff4766","#8d5524"],
+ hair:[["nenhum","Nenhum"],["topete","Topete"],["franja","Franja"],["moicano","Moicano"],["cachos","Cachos"],["coque","Coque"]],
+ hairc:["#2b1d14","#6d4c41","#f5c542","#ff6f00","#ff3bd4","#1f6bff","#f2f2f2","#222"],
+ acc:[["nenhum","Nenhum"],["oculos_redondos","Óculos redondo"],["oculos_escuros","Óculos escuro"],["bone","Boné"],["gorro","Gorro"],["fone","Fone"],["corrente","Corrente"],["monoculo","Monóculo"],["laco","Laço"],["bandana","Bandana"]],
+ outfit:[["moletom","Moletom"],["camiseta","Camiseta"],["jaqueta","Jaqueta jeans"],["xadrez","Camisa xadrez"],["regata","Regata"],["terno","Terno"],["nada","Só o pelo"]],
+ bg:["#1f6bff","#7b2ff7","#ff3bd4","#25d07a","#f5c542","#ff4766","#2bd4d4","#0b0f1e"]
+};
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+function val(o){return Array.isArray(o)?o[0]:o}
+function randomCat(){return{fur:rnd(OPT.fur),pattern:val(rnd(OPT.pattern)),eyes:rnd(OPT.eyes),hair:val(rnd(OPT.hair)),hairc:rnd(OPT.hairc),acc:val(rnd(OPT.acc)),outfit:val(rnd(OPT.outfit)),bg:rnd(OPT.bg)}}
+function shade(h,a){let c=parseInt(h.slice(1),16),r=c>>16,g=c>>8&255,b=c&255;const f=v=>Math.max(0,Math.min(255,Math.round(a<0?v*(1+a):v+(255-v)*a)));return"#"+[f(r),f(g),f(b)].map(v=>v.toString(16).padStart(2,"0")).join("")}
+let uidc=0;
+function catSVG(a,attrs=""){
+ const u="k"+(++uidc),fur=a.fur,dk=shade(fur,fur==="#2b2b2f"?.25:-.38),hc=a.hairc;
+ const earC=a.pattern==="siames"?shade(fur,-.55):fur;
+ let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" ${attrs}><defs><clipPath id="${u}h"><ellipse cx="100" cy="106" rx="58" ry="50"/></clipPath><clipPath id="${u}c"><circle cx="100" cy="100" r="100"/></clipPath>
+ <pattern id="${u}x" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#c62828"/><rect width="7" height="14" fill="#7f1d1d" opacity=".6"/><rect width="14" height="6" fill="#1e293b" opacity=".45"/></pattern>
+ <radialGradient id="${u}g" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="${shade(a.bg,.25)}"/><stop offset="1" stop-color="${shade(a.bg,-.35)}"/></radialGradient></defs><g clip-path="url(#${u}c)"><rect width="200" height="200" fill="url(#${u}g)"/>`;
+ if(a.outfit==="moletom")s+=`<path d="M30 200 C26 120 50 62 100 62 C150 62 174 120 170 200Z" fill="#15151b"/>`;
+ // corpo
+ s+=`<path d="M36 210 C38 168 64 150 100 150 C136 150 162 168 164 210Z" fill="${fur}"/>`;
+ if(a.pattern==="frajola")s+=`<path d="M76 210 C78 176 90 158 100 158 C110 158 122 176 124 210Z" fill="#fff"/>`;
+ const torso=(fill,extra="")=>`<path d="M34 210 C36 170 62 154 100 154 C138 154 164 170 166 210Z" fill="${fill}"/>${extra}`;
+ switch(a.outfit){
+  case"moletom":s+=torso("#1c1c24",`<path d="M84 156 Q100 176 116 156" stroke="#0e0e12" stroke-width="5" fill="none"/><path d="M91 166 v22 M109 166 v22" stroke="#e9eefc" stroke-width="2.5" stroke-linecap="round"/><rect x="72" y="188" width="56" height="16" rx="5" fill="#15151b"/>`);break;
+  case"camiseta":s+=torso("#f4f4f6",`<path d="M84 155 Q100 170 116 155" stroke="#c9ccd6" stroke-width="4" fill="none"/>`);break;
+  case"jaqueta":s+=torso("#3d6fb6",`<path d="M86 156 L100 196 L114 156Z" fill="#f4f4f6"/><path d="M70 160 L88 156 L96 186Z M130 160 L112 156 L104 186Z" fill="#2c5490"/><circle cx="76" cy="188" r="3" fill="#d4a017"/><circle cx="124" cy="188" r="3" fill="#d4a017"/>`);break;
+  case"xadrez":s+=torso(`url(#${u}x)`,`<path d="M86 155 L100 172 L114 155" stroke="#7f1d1d" stroke-width="4" fill="none"/>`);break;
+  case"regata":s+=`<path d="M62 210 C62 180 70 166 76 158 L84 158 C86 172 114 172 116 158 L124 158 C130 166 138 180 138 210Z" fill="#f4f4f6"/>`;break;
+  case"terno":s+=torso("#16181f",`<path d="M86 155 L100 200 L114 155Z" fill="#f4f4f6"/><path d="M96 162 L104 162 L106 192 L100 200 L94 192Z" fill="#e53935"/>`);break;
+ }
+ // orelhas
+ s+=`<path d="M48 90 L55 32 L94 64Z" fill="${earC}"/><path d="M152 90 L145 32 L106 64Z" fill="${earC}"/><path d="M58 80 L61 46 L84 64Z" fill="#f5a3b5"/><path d="M142 80 L139 46 L116 64Z" fill="#f5a3b5"/>`;
+ // cabeça
+ s+=`<ellipse cx="100" cy="106" rx="58" ry="50" fill="${fur}"/><g clip-path="url(#${u}h)">`;
+ if(a.pattern==="tigrado")s+=`<g fill="${dk}"><path d="M92 56 L98 56 L97 78 L94 78Z"/><path d="M102 56 L108 56 L106 78 L103 78Z"/><path d="M82 60 L87 58 L90 74 L87 75Z"/><path d="M118 60 L113 58 L110 74 L113 75Z"/><path d="M40 104 L62 108 L62 112 L40 110Z"/><path d="M42 118 L60 118 L60 122 L44 124Z"/><path d="M160 104 L138 108 L138 112 L160 110Z"/><path d="M158 118 L140 118 L140 122 L156 124Z"/></g>`;
+ if(a.pattern==="manchas")s+=`<ellipse cx="66" cy="72" rx="28" ry="22" fill="${dk}"/><ellipse cx="146" cy="134" rx="22" ry="18" fill="${dk}"/><ellipse cx="128" cy="62" rx="10" ry="8" fill="${dk}"/>`;
+ if(a.pattern==="siames")s+=`<ellipse cx="100" cy="122" rx="34" ry="28" fill="${shade(fur,-.55)}" opacity=".85"/>`;
+ if(a.pattern==="frajola")s+=`<ellipse cx="100" cy="132" rx="34" ry="24" fill="#fff"/><path d="M96 70 L104 70 L110 112 L90 112Z" fill="#fff"/>`;
+ s+=`</g>`;
+ // olhos
+ [78,122].forEach(x=>{s+=`<ellipse cx="${x}" cy="100" rx="12.5" ry="13.5" fill="${a.eyes}" stroke="#1a1a1a" stroke-width="1.6"/><ellipse cx="${x}" cy="101" rx="4" ry="10" fill="#0d0d0d"/><circle cx="${x+4.5}" cy="95" r="3.4" fill="#fff"/><circle cx="${x-4}" cy="106" r="1.5" fill="#fff" opacity=".8"/>`});
+ s+=`<ellipse cx="64" cy="122" rx="8" ry="4.5" fill="#ff8fa3" opacity=".45"/><ellipse cx="136" cy="122" rx="8" ry="4.5" fill="#ff8fa3" opacity=".45"/>`;
+ s+=`<path d="M94 116 L106 116 L100 123Z" fill="#f08aa0"/><path d="M100 123 q-6 8 -12 3 M100 123 q6 8 12 3" stroke="#3a2a2a" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+ s+=`<g stroke="${fur==="#f2f2f2"||fur==="#e8cfa6"?"#9a9a9a":"#f4f4f4"}" stroke-width="1.4" stroke-linecap="round" opacity=".85"><path d="M62 118 L30 112 M62 123 L30 126 M138 118 L170 112 M138 123 L170 126"/></g>`;
+ // cabelo
+ switch(a.hair){
+  case"topete":s+=`<path d="M78 64 C74 38 104 26 126 40 C112 38 106 46 110 58 C100 50 88 54 78 64Z" fill="${hc}"/>`;break;
+  case"franja":s+=`<path d="M52 86 C54 52 146 52 148 86 C136 72 126 80 116 70 C108 80 96 72 88 78 C80 70 66 80 52 86Z" fill="${hc}"/>`;break;
+  case"moicano":s+=`<path d="M84 64 L88 30 L95 52 L100 22 L105 52 L112 30 L116 64Z" fill="${hc}"/>`;break;
+  case"cachos":s+=`<g fill="${hc}"><circle cx="70" cy="66" r="11"/><circle cx="84" cy="57" r="12"/><circle cx="100" cy="54" r="13"/><circle cx="116" cy="57" r="12"/><circle cx="130" cy="66" r="11"/></g>`;break;
+  case"coque":s+=`<path d="M64 74 C70 54 130 54 136 74 C120 64 80 64 64 74Z" fill="${hc}"/><circle cx="100" cy="44" r="14" fill="${hc}"/><rect x="90" y="54" width="20" height="5" rx="2.5" fill="#ff3bd4"/>`;break;
+ }
+ // acessórios
+ switch(a.acc){
+  case"oculos_redondos":s+=`<g fill="rgba(255,255,255,.12)" stroke="#1a1a1a" stroke-width="3.2"><circle cx="78" cy="100" r="16"/><circle cx="122" cy="100" r="16"/></g><path d="M94 98 Q100 93 106 98 M62 98 L46 94 M138 98 L154 94" stroke="#1a1a1a" stroke-width="3" fill="none"/>`;break;
+  case"oculos_escuros":s+=`<g fill="#0a0a0a" stroke="#000" stroke-width="2"><rect x="60" y="88" width="36" height="22" rx="8"/><rect x="104" y="88" width="36" height="22" rx="8"/></g><path d="M96 96 L104 96 M60 94 L46 90 M140 94 L154 90" stroke="#000" stroke-width="3"/><path d="M66 93 L76 93" stroke="#fff" stroke-width="2.5" opacity=".7" stroke-linecap="round"/>`;break;
+  case"bone":s+=`<path d="M46 80 C48 36 152 36 154 80Z" fill="#e53935"/><path d="M100 78 L172 80 C174 88 150 92 128 86Z" fill="#b71c1c"/><circle cx="100" cy="42" r="4" fill="#b71c1c"/><text x="100" y="70" text-anchor="middle" font-family="Arial Black,Impact" font-size="15" fill="#fff">NS</text>`;break;
+  case"gorro":s+=`<path d="M44 82 C46 30 154 30 156 82Z" fill="#3949ab"/><rect x="42" y="72" width="116" height="16" rx="8" fill="#283593"/><circle cx="100" cy="30" r="10" fill="#e9eefc"/>`;break;
+  case"fone":s+=`<path d="M46 104 C38 34 162 34 154 104" stroke="#16161c" stroke-width="8" fill="none"/><rect x="32" y="90" width="20" height="32" rx="9" fill="#1f6bff"/><rect x="148" y="90" width="20" height="32" rx="9" fill="#1f6bff"/>`;break;
+  case"corrente":s+=`<path d="M66 154 Q100 184 134 154" stroke="#f5c542" stroke-width="5.5" fill="none" stroke-dasharray="7 3"/><circle cx="100" cy="174" r="8" fill="#f5c542" stroke="#b8860b" stroke-width="2"/><text x="100" y="178" text-anchor="middle" font-size="9" font-weight="900" fill="#7a5a00">$</text>`;break;
+  case"monoculo":s+=`<circle cx="122" cy="100" r="16" fill="rgba(255,255,255,.12)" stroke="#d4a017" stroke-width="3"/><path d="M136 108 Q146 140 132 160" stroke="#d4a017" stroke-width="1.6" fill="none"/>`;break;
+  case"laco":s+=`<g transform="translate(64 50) rotate(-20)"><path d="M0 0 L-18 -12 L-18 12Z M0 0 L18 -12 L18 12Z" fill="#ff3bd4"/><circle r="6" fill="#ff7ae0"/></g>`;break;
+  case"bandana":s+=`<path d="M60 150 Q100 166 140 150 L100 190Z" fill="#d32f2f"/><g fill="#fff" opacity=".8"><circle cx="90" cy="162" r="2"/><circle cx="110" cy="162" r="2"/><circle cx="100" cy="174" r="2"/></g>`;break;
+ }
+ return s+`</g></svg>`;
+}
+
+/* =========================================================
+   UTIL
+   ========================================================= */
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
+function hash(s){let h=7;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h}
+function memberNo(n){return String(10000+hash(n)%89999).padStart(6,"0")}
+function level(xp){const L=[[0,"Lurker"],[100,"Internauta"],[300,"Arqueólogo de meme"],[800,"Curador"],[2000,"Guardião do acervo"],[5000,"Lenda do Orkut"]];let cur=L[0],nx=null;for(let i=0;i<L.length;i++){if(xp>=L[i][0]){cur=L[i];nx=L[i+1]||null}}return{name:cur[1],min:cur[0],next:nx}}
+function userCat(nick){if(ST.user&&nick===ST.user.nick)return ST.user.cat;const b=BOTS.find(b=>b.nick===nick);return b?b.cat:{...randomCat(),fur:"#9e9e9e"}}
+function ytId(m){return m.url&&m.key&&m.key.startsWith("yt:")?m.key.slice(3):null}
+function thumbStyle(m){const id=ytId(m);if(id)return`background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;const g=CATG[m.c]||CATG.videos;return`background:radial-gradient(circle at 30% 25%,${g[0]}cc,${g[1]} 75%)`}
+function thumbEmoji(m){return ytId(m)?"":m.e}
+function plain(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim()}
+function normUrl(u){
+ try{const x=new URL(u.trim());const h=x.hostname.replace(/^(www\.|m\.|mobile\.|vm\.)/,"");
+  if(h==="youtu.be")return"yt:"+x.pathname.slice(1,12);
+  if(h.endsWith("youtube.com")){if(x.searchParams.get("v"))return"yt:"+x.searchParams.get("v");const m=x.pathname.match(/\/(shorts|embed|live)\/([\w-]{6,})/);if(m)return"yt:"+m[2]}
+  if(h.endsWith("tiktok.com")){const m=x.pathname.match(/video\/(\d+)/);if(m)return"tt:"+m[1]}
+  if(h==="x.com"||h==="twitter.com"){const m=x.pathname.match(/status\/(\d+)/);if(m)return"tw:"+m[1]}
+  if(h.endsWith("instagram.com")){const m=x.pathname.match(/\/(p|reel|reels)\/([\w-]+)/);if(m)return"ig:"+m[2]}
+  return h+x.pathname.replace(/\/+$/,"").toLowerCase();
+ }catch(e){return null}
+}
+function similar(a,b){const A=new Set(plain(a).split(" ").filter(w=>w.length>2)),B=new Set(plain(b).split(" ").filter(w=>w.length>2));if(!A.size||!B.size)return 0;let i=0;A.forEach(w=>{if(B.has(w))i++});const pa=plain(a),pb=plain(b);if(pa.length>5&&(pa.includes(pb)||pb.includes(pa)))return 1;return i/Math.min(A.size,B.size)}
+function memesOf(y){return ST.memes.filter(m=>m.y===y).sort((a,b)=>b.sv-a.sv)}
+function isSaved(id){return ST.saved.includes(id)}
+function addXp(n,why){ST.user.xp+=n;persist();toast(`+${n} XP · ${why}`);refreshMe()}
+
+/* =========================================================
+   LANDING
+   ========================================================= */
+function initLanding(){
+ const all=[...SEED,...SEED,...SEED,...SEED];
+ $("mosaic").innerHTML=all.map(m=>`<div style="${thumbStyle(m)}">${m.e}</div>`).join("");
+ $("lprev").innerHTML=memesOf(2012).slice(0,3).map(card).join("");
+ $("lfan").innerHTML=["Inês Brasil","Astrid Fontenelle","Felipe Neto"].map((n,i)=>{const c=CR.find(x=>x.n===n);return c?stk(c,{force:1,noclick:1,noQty:1,noNew:1,extra:`--rot:${(i-1)*9}deg;z-index:${i===1?3:1};`}):""}).join("");
+ $("lstats").innerHTML=`<div><b>${SEED.length}</b><span>memes salvos</span></div><div><b>${CR.length}</b><span>cartas pra colecionar</span></div><div><b>1</b><span>pacote grátis por dia</span></div>`;
+ document.querySelectorAll("[data-login]").forEach(b=>b.onclick=()=>startSignup(b.dataset.login));
+}
+
+/* =========================================================
+   SIGNUP
+   ========================================================= */
+let STEP=1, TAB=0;
+function startSignup(prov){
+ ST.draft={prov,cat:randomCat()};
+ $("landing").classList.add("hidden");$("signup").classList.remove("hidden");
+ $("provTag").innerHTML=`✓ Conectado via <b style="color:#fff">${esc(prov)}</b> (simulado)`;
+ const sel=$("since");sel.innerHTML=YEARS.slice().reverse().concat([2003,2002,2001,2000]).sort((a,b)=>a-b).map(y=>`<option ${y===2009?"selected":""}>${y}</option>`).join("");
+ $("fav").innerHTML=`<option value="">— escolher depois —</option>`+SEED.map(m=>`<option value="${m.id}">${esc(m.t)} (${m.y})</option>`).join("");
+ goStep(1);scrollTo(0,0);
+}
+function goStep(n){STEP=n;["s1","s2","s3"].forEach((id,i)=>$(id).classList.toggle("hidden",i+1!==n));
+ $("steps").innerHTML=`Passo ${n} de 3 `+[1,2,3].map(i=>`<span class="st ${i===n?"on":i<n?"done":""}">${i<n?"✓":i}</span>`).join(`<span class="ln"></span>`);
+ if(n===2)renderBuilder();if(n===3)renderCard();}
+$("f1").onsubmit=e=>{e.preventDefault();let n=$("nick").value.trim().replace(/[^\w.]/g,"_");if(n.length<3){toast("Nick precisa de pelo menos 3 caracteres");return}
+ if(BOTS.some(b=>b.nick.toLowerCase()===n.toLowerCase())){toast("Esse nick já é de outro gato 🐱");return}
+ Object.assign(ST.draft,{nick:n,since:+$("since").value,fav:$("fav").value});goStep(2)};
+$("back1").onclick=()=>{if(ST.returnTo){ST.returnTo=null;showApp();return}goStep(1)};
+$("go3").onclick=()=>{if(ST.returnTo){ST.user.cat=ST.draft.cat;persist();ST.returnTo=null;showApp();toast("Gato atualizado 🐱");return}goStep(3)};
+$("shuffle").onclick=()=>{ST.draft.cat=randomCat();renderBuilder()};
+$("sLogo").onclick=()=>{if(!ST.user){$("signup").classList.add("hidden");$("landing").classList.remove("hidden")}};
+const TABS=[["1. Pelo",["fur","pattern"]],["2. Olhos",["eyes"]],["3. Cabelo",["hair","hairc"]],["4. Acessórios",["acc"]],["5. Roupa",["outfit"]],["6. Fundo",["bg"]]];
+const LBL={fur:"Cor do pelo",pattern:"Padrão",eyes:"Cor dos olhos",hair:"Estilo",hairc:"Cor do cabelo",acc:"Acessório",outfit:"Roupa",bg:"Fundo"};
+function renderBuilder(){
+ const c=ST.draft.cat;$("bigCat").innerHTML=catSVG(c,'width="100%" height="100%"');
+ $("tabs").innerHTML=TABS.map((t,i)=>`<button class="${i===TAB?"on":""}" data-t="${i}">${t[0]}</button>`).join("");
+ $("tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{TAB=+b.dataset.t;renderBuilder()});
+ $("topts").innerHTML=TABS[TAB][1].map(k=>{
+  const list=OPT[k];
+  const items=list.map(o=>{const v=val(o);
+   if(typeof o==="string")return`<button class="sw ${c[k]===v?"on":""}" style="background:${v}" data-k="${k}" data-v="${v}" title="${v}"></button>`;
+   const prev={...c,[k]:v};if(k!=="acc"&&k!=="hair")prev.acc="nenhum";
+   return`<button class="opt ${c[k]===v?"on":""}" data-k="${k}" data-v="${v}"><div class="mini">${catSVG(prev,'width="100%" height="100%"')}</div>${o[1]}</button>`}).join("");
+  return`<div class="osec"><h6>${LBL[k]}</h6><div class="opts">${items}</div></div>`}).join("");
+ $("topts").querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{c[b.dataset.k]=b.dataset.v;renderBuilder()});
+}
+function cardSVG(u){
+ const cat=catSVG(u.cat,'x="34" y="78" width="196" height="196"');const lv=level(u.xp||0);
+ const fav=u.fav?ST.memes.find(m=>m.id===u.fav):null;
+ return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+ <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1430"/><stop offset="1" stop-color="#03050b"/></linearGradient>
+ <radialGradient id="cgl" cx="20%" cy="60%" r="50%"><stop offset="0" stop-color="#1f6bff" stop-opacity=".55"/><stop offset="1" stop-color="#1f6bff" stop-opacity="0"/></radialGradient></defs>
+ <rect width="600" height="340" rx="22" fill="url(#cg)"/><rect width="600" height="340" rx="22" fill="url(#cgl)"/>
+ <rect x="6" y="6" width="588" height="328" rx="18" fill="none" stroke="#3d86ff" stroke-opacity=".7" stroke-width="2"/>
+ <g font-family="Barlow Condensed, Arial Narrow, Impact, sans-serif" font-weight="800" fill="#e9eefc">
+  <text x="34" y="44" font-size="26">NÃO SALVO</text>
+  <text x="566" y="44" font-size="15" text-anchor="end" fill="#3d86ff" letter-spacing="1.5">CARTEIRINHA DO INTERNAUTA</text>
+ </g>
+ <circle cx="132" cy="176" r="101" fill="#1f6bff"/>${cat}
+ <g font-family="Inter, Arial, sans-serif" fill="#e9eefc">
+  <text x="262" y="104" font-size="11" fill="#7d89ad" font-weight="700" letter-spacing="1">NICK</text>
+  <text x="262" y="136" font-size="30" font-weight="800">@${esc(u.nick)}</text>
+  <text x="262" y="172" font-size="11" fill="#7d89ad" font-weight="700" letter-spacing="1">NA INTERNET DESDE</text>
+  <text x="262" y="198" font-size="22" font-weight="800">${u.since}</text>
+  <text x="420" y="172" font-size="11" fill="#7d89ad" font-weight="700" letter-spacing="1">NÍVEL</text>
+  <text x="420" y="198" font-size="18" font-weight="800" fill="#3d86ff">${esc(lv.name)}</text>
+  <text x="262" y="234" font-size="11" fill="#7d89ad" font-weight="700" letter-spacing="1">MEME DO CORAÇÃO</text>
+  <text x="262" y="258" font-size="17" font-weight="700">${fav?esc(fav.t.length>34?fav.t.slice(0,33)+"…":fav.t):"Ainda escolhendo…"}</text>
+ </g>
+ <g font-family="Barlow Condensed, Arial Narrow, Impact, sans-serif" font-weight="800">
+  <text x="566" y="312" font-size="34" text-anchor="end" fill="#e9eefc">Nº ${memberNo(u.nick)}</text>
+  <text x="262" y="312" font-size="14" fill="#7d89ad" letter-spacing="1">E NO FIM O PLANO ERA SALVAR.</text>
+ </g></svg>`;
+}
+function renderCard(){const d=ST.draft;$("cardBox").innerHTML=cardSVG({...d,xp:0})}
+function downloadCard(u){
+ const img=new Image();img.onload=()=>{const cv=document.createElement("canvas");cv.width=1200;cv.height=680;const x=cv.getContext("2d");x.drawImage(img,0,0,1200,680);
+  cv.toBlob(b=>{if(!b){toast("Não deu pra gerar a imagem aqui 😿");return}const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=`carteirinha-naosalvo-${u.nick}.png`;document.body.appendChild(a);a.click();a.remove();toast("Carteirinha baixada! Posta e marca o Cid 📸")})};
+ img.onerror=()=>toast("Não deu pra gerar a imagem aqui 😿");
+ img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(cardSVG(u));
+}
+function copy(txt,ok){(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast(ok)).catch(()=>toast(txt))}
+const invite=u=>`🐱 Sou o internauta Nº ${memberNo(u.nick)} do NÃO SALVO — na internet desde ${u.since}. Cria teu gato pelo meu convite e ganha +2 pacotes: ${inviteLink(u.nick)}`;
+$("dlCard").onclick=()=>downloadCard({...ST.draft,xp:0});
+$("cpCard").onclick=()=>copy(invite(ST.draft),"Convite copiado! Cola no Discord 📋");
+$("enter").onclick=()=>{const d=ST.draft;ST.user={nick:d.nick,prov:d.prov,since:d.since,fav:d.fav,cat:d.cat,xp:20,joined:Date.now()};
+ const ref=getRef();let bonus="";if(ref&&ref.toLowerCase()!==d.nick.toLowerCase()){ST.packs+=2;ST.refBy=ref;bonus=` · +2 pacotes pelo convite de @${ref}`}
+ persist();showApp();toast(`Bem-vindo, @${d.nick}! +20 XP por criar seu gato 🐱${bonus}`)};
+
+/* =========================================================
+   APP
+   ========================================================= */
+function showApp(){["landing","signup"].forEach(i=>$(i).classList.add("hidden"));$("app").classList.remove("hidden");refreshMe();go(ST.view||"home");dailyCheck();setTimeout(runPendingDL,250)}
+function refreshMe(){const u=ST.user;refreshPacks();$("meAv").innerHTML=catSVG(u.cat,'width="100%" height="100%"');$("meNick").textContent=u.nick;$("meXp").textContent=u.xp.toLocaleString("pt-BR")+" XP"}
+function go(v,opt={}){ST.view=v;if(opt.cat)ST.cat=opt.cat;if(opt.year)ST.year=opt.year;
+ document.querySelectorAll("#nlinks [data-go]").forEach(b=>{const on=b.dataset.go===v;b.classList.toggle("on",on);on?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
+ $("nlinks").classList.remove("open");$("burger").setAttribute("aria-expanded","false");
+ teardownFeed();$("page").classList.toggle("feedmode",v==="feed");setNavH();
+ ({home:pHome,anos:pAnos,cats:pCats,rank:pRank,perfil:pPerfil,album:pAlbum,feed:pFeed})[v]();const fan=document.querySelector(".fan");scrollTo({top:v==="feed"&&fan?fan.offsetHeight:0,behavior:v==="feed"||RM()?"auto":"smooth"})}
+function RM(){return matchMedia("(prefers-reduced-motion: reduce)").matches}
+function setNavH(){const h=document.querySelector("header.nav");document.documentElement.style.setProperty("--navh",(h?h.offsetHeight||70:70)+"px")}
+addEventListener("resize",setNavH);
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+$("burger").onclick=()=>{const o=$("nlinks").classList.toggle("open");$("burger").setAttribute("aria-expanded",o)};
+$("streakBtn").onclick=()=>{go("home");setTimeout(()=>{const e=$("dailyBox");e&&e.scrollIntoView({behavior:RM()?"auto":"smooth"})},120)};
+$("navRand").onclick=()=>openMeme(rnd(ST.memes).id);
+$("openSubmit").onclick=()=>openSubmit();
+$("q").addEventListener("input",e=>{ST.q=e.target.value;if(ST.view!=="cats")go("cats");else renderCatGrid()});
+
+function card(m){return`<div class="mc" tabindex="0" role="button" aria-label="${esc(m.t)}, ${m.y}" onclick="openMeme('${m.id}')"><div class="th" style="${thumbStyle(m)}">${thumbEmoji(m)}<span class="bdg"><span class="badge b-${m.r}">${m.r}</span></span><span class="svd">💾 ${m.sv}</span></div><div class="bd"><div class="tt">${esc(m.t)}</div><div class="yy"><span>${m.y}</span><span>${isSaved(m.id)?"✅":""}</span></div></div></div>`}
+function li(m,right){return`<div class="li" tabindex="0" role="button" aria-label="${esc(m.t)}" onclick="openMeme('${m.id}')"><div class="lt" style="${thumbStyle(m)}">${thumbEmoji(m)}</div><div class="ln"><b>${esc(m.t)}</b><small>${right||m.y}</small></div></div>`}
+function users(){const map={};BOTS.forEach(b=>map[b.nick]={nick:b.nick,xp:b.xp});map[ST.user.nick]={nick:ST.user.nick,xp:ST.user.xp,me:1};return Object.values(map).sort((a,b)=>b.xp-a.xp)}
+function rankRows(n){return users().slice(0,n).map((u,i)=>`<div class="rk ${u.me?"me-row":""}"><span class="pos ${i<3?"p"+(i+1):""}">${i+1}</span><span class="ra">${catSVG(userCat(u.nick),'width="100%" height="100%"')}</span><b>${esc(u.nick)}${u.me?" (você)":""}</b><span class="xp">${u.xp.toLocaleString("pt-BR")} XP</span></div>`).join("")}
+
+/* ---- Hoje há X anos ---- */
+function todaySlides(){
+ const md=String(NOW.getMonth()+1).padStart(2,"0")+"-"+String(NOW.getDate()).padStart(2,"0");
+ const exact=ST.memes.filter(m=>m.date&&m.date.slice(5)===md);
+ const slides=[];
+ if(exact.length){const byY={};exact.forEach(m=>(byY[m.y]=byY[m.y]||[]).push(m));Object.keys(byY).sort().forEach(y=>slides.push({y:+y,ago:CUR_YEAR-y,exact:true,list:byY[y]}))}
+ [10,12,14,15,20,8,5].forEach(n=>{const y=CUR_YEAR-n;const l=memesOf(y);if(l.length&&!slides.find(s=>s.y===y))slides.push({y,ago:n,exact:false,list:l})});
+ return slides;
+}
+function renderToday(){
+ const sl=todaySlides(),s=sl[ST.todayIdx%sl.length];const box=$("todayBox");if(!box||!s)return;
+ const dstr=NOW.toLocaleDateString("pt-BR",{day:"2-digit",month:"long"});
+ box.innerHTML=`<div class="tl">📅 ${s.exact?`Neste exato dia · ${dstr}`:`O que rolava há ${s.ago} anos`}</div>
+  <div class="ago">Hoje há <em>${s.ago}</em> anos</div>
+  <div class="ys">${s.exact?`${dstr} de ${s.y}`:`Em ${s.y}: ${esc(TAG[s.y]||"")}`}</div>
+  <div class="tlist">${s.list.slice(0,3).map(card).join("")}</div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="tdots">${sl.map((_,i)=>`<button class="${i===ST.todayIdx%sl.length?"on":""}" onclick="ST.todayIdx=${i};renderToday()"></button>`).join("")}</div>
+  <button class="more" style="margin-top:12px" onclick="go('home');ST.year=${s.y};renderTimeline();document.getElementById('tline').scrollIntoView({behavior:'smooth'})">Viajar para ${s.y} →</button></div>
+  ${!sl.some(x=>x.exact)?`<div style="font-size:11px;color:var(--mut);margin-top:10px">Ninguém salvou nada com data de ${dstr} ainda. Seja o primeiro — envie com a data exata.</div>`:""}`;
+}
+let todayTimer=null;
+/* ---- linha do tempo ---- */
+const ERAS=[
+ {max:2008,k:"orkut",n:"Era Orkut",ic:"🌸",d:"scraps, depoimentos e fotolog"},
+ {max:2013,k:"msn",n:"Era MSN & Facebook",ic:"💬",d:"nick cheio de ~*~ e bordão na timeline"},
+ {max:2018,k:"vine",n:"Era Vine & Zap",ic:"📲",d:"áudio de zap, funk e desafio"},
+ {max:9999,k:"tok",n:"Era TikTok",ic:"🎵",d:"trend de 24 horas"}];
+const eraOf=y=>ERAS.find(e=>y<=e.max);
+function setYear(y){if(y===ST.year||!YEARS.includes(y))return;ST.year=y;track("year");renderTimeline()}
+function renderTimeline(){
+ const y=ST.year,list=memesOf(y),i=YEARS.indexOf(y),py=YEARS[i-1],ny=YEARS[i+1],era=eraOf(y);
+ const tl=$("tline");if(tl){tl.dataset.era=era.k;tl.dataset.mark=era.ic}
+ const et=$("eraTag");if(et)et.innerHTML=`<span aria-hidden="true">${era.ic}</span> ${era.n} <small>${era.d}</small>`;
+ const yr=$("yrange");if(yr){yr.min=YEARS[0];yr.max=YEARS[YEARS.length-1];yr.value=y;yr.setAttribute("aria-valuetext",String(y));yr.oninput=e=>setYear(+e.target.value);const yl=$("yrangeL");if(yl)yl.textContent=y}
+ $("ytrack").innerHTML=YEARS.map(yy=>`<button class="yb ${yy===y?"on":""} ${memesOf(yy).length?"":"empty"}" data-y="${yy}" aria-label="Ano ${yy}"${yy===y?' aria-current="true"':""}>${yy}<i></i></button>`).join("");
+ $("ytrack").querySelectorAll(".yb").forEach(b=>b.onclick=()=>setYear(+b.dataset.y));
+ const side=(yy,dir)=>yy?`<div class="yside" tabindex="0" role="button" aria-label="Ir para ${yy}" onclick="setYear(${yy})"><div class="n">${dir<0?"‹ ":""}${yy}${dir>0?" ›":""}</div><p>${esc(TAG[yy]||"")}</p><span class="more">Ver ano →</span></div>`:`<div></div>`;
+ $("ydetail").innerHTML=`${side(py,-1)}
+  <div class="ycenter"><div><div class="n">${y}</div><div class="tg">${esc(TAG[y]||"")}</div><div class="cnt">${list.length} meme${list.length===1?"":"s"} salvo${list.length===1?"":"s"} · ${CUR_YEAR-y} anos atrás</div>
+   <button class="btn pri" onclick="go('anos');setTimeout(()=>{const e=document.getElementById('y${y}');e&&e.scrollIntoView({behavior:'smooth'})},80)">Explorar ${y} →</button></div>
+   <div class="ygrid">${list.slice(0,5).map(card).join("")}${list.length?`<div class="mc" style="display:grid;place-items:center;text-align:center;padding:12px" onclick="openSubmit(${y})"><div><div style="font-size:28px">＋</div><div class="more">Salvar um meme de ${y}</div></div></div>`:`<div class="yempty"><div>🕳️ Nenhum meme de ${y} salvo ainda.<br><br><button class="btn pri" onclick="openSubmit(${y})">Ser o primeiro descobridor de ${y}</button></div></div>`}</div></div>
+  ${side(ny,1)}`;
+}
+function pHome(){
+ const u=ST.user,hot=[...ST.memes].sort((a,b)=>b.sv-a.sv).slice(0,5),last=[...ST.memes].sort((a,b)=>b.added-a.added).slice(0,5);
+ $("page").innerHTML=`
+ <div class="hhero">
+  <div style="display:flex;flex-direction:column;justify-content:center">
+   <div class="bigt">E no fim<br>o plano do<br><em>Não Salvo</em><br>era salvar.</div>
+   <p class="lsub" style="margin:14px 0 0">Bem-vindo de volta, <b style="color:#fff">@${esc(u.nick)}</b>. ${ST.memes.length} memes salvos pela comunidade — e contando.</p>
+   <div class="hcta"><button class="btn pri" onclick="document.getElementById('tline').scrollIntoView({behavior:'smooth'})">⏱ Explorar por ano</button><button class="btn" onclick="openSubmit()">＋ Salvar um meme</button></div>
+  </div>
+  <div class="glowbox today" id="todayBox"></div>
+ </div>
+ <div class="panel daily" id="dailyBox"></div>
+ <div class="glowbox tline" id="tline">
+  <div class="tlhead"><div><div class="h4"><span aria-hidden="true">⏱</span> Máquina do tempo</div><div class="era" id="eraTag"></div></div><button class="more" onclick="go('anos')">Ver todos os anos ▦</button></div>
+  <div class="yrow"><button class="yarrow" aria-label="Ano anterior" onclick="stepYear(-1)">‹</button><div class="ytrack" id="ytrack"></div><button class="yarrow" aria-label="Próximo ano" onclick="stepYear(1)">›</button></div>
+  <div class="yslide"><label for="yrange">Ano: <b id="yrangeL"></b></label><input type="range" id="yrange" step="1"></div>
+  <div class="ydetail" id="ydetail"></div>
+ </div>
+ <div class="cols">
+  <div class="panel"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div class="h4">📈 Em alta agora</div><button class="more" onclick="go('rank')">Ver todos →</button></div>${hot.map(m=>li(m,`${m.y} · 💾 ${m.sv}`)).join("")}</div>
+  <div class="panel"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div class="h4">🆕 Últimos salvos</div><button class="more" onclick="go('cats')">Ver todos →</button></div>${last.map(m=>li(m,`${m.y} · por @${esc(m.by)}`)).join("")}</div>
+  <div class="panel"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div class="h4">🏆 Top colaboradores</div><button class="more" onclick="go('rank')">Ranking →</button></div>${rankRows(5)}
+   <div style="border-top:1px solid var(--line);margin-top:10px;padding-top:12px"><div class="h4" style="font-size:16px">Que tal salvar um meme?</div><p style="font-size:12px;color:var(--mut);margin:4px 0 10px">Quem salva primeiro vira o <b style="color:var(--gold)">descobridor</b> pra sempre. +50 XP.</p><button class="btn" onclick="openSubmit()">☁ Enviar meme</button></div></div>
+ </div>
+ <div class="panel" style="padding:16px;margin-bottom:26px"><div class="h4" style="margin-bottom:12px">🗂 Navegue por categorias</div><div class="chips">${Object.entries(CATS).map(([k,v])=>`<button class="chip" onclick="go('cats',{cat:'${k}'})">${v}</button>`).join("")}</div></div>
+ <div class="fstrip">
+  <div class="panel"><i>👥</i><div><b>Colaborativo</b><small>A comunidade envia, edita e preserva a história</small></div></div>
+  <div class="panel"><i>🗂️</i><div><b>Organizado</b><small>Tudo separado por ano, categoria e contexto</small></div></div>
+  <div class="panel"><i>☁️</i><div><b>Sem repetição</b><small>Link duplicado não entra. Um meme, um descobridor.</small></div></div>
+  <div class="panel"><i>🐱</i><div><b>Feito por gatos</b><small>Todo internauta aqui é um gatinho</small></div></div>
+  <div class="panel"><i>⏱️</i><div><b>Você está aqui há</b><small id="timer" style="font-family:var(--cond);font-size:24px;color:#fff;font-weight:800"></small></div></div>
+ </div>
+ <p class="disc">Acervo inicial de exemplo montado para o conceito — alguns anos são aproximados e a comunidade revisa tudo.</p>`;
+ renderToday();renderDaily();renderTimeline();tick();
+ clearInterval(todayTimer);todayTimer=setInterval(()=>{if(ST.view==="home"&&$("todayBox")){ST.todayIdx++;renderToday()}},7000);
+}
+function stepYear(d){const i=YEARS.indexOf(ST.year)+d;if(i>=0&&i<YEARS.length)setYear(YEARS[i])}
+function tick(){const el=$("timer");if(el){const s=Math.floor((Date.now()-ST.start)/1000);el.textContent=`${Math.floor(s/3600)}h ${String(Math.floor(s/60)%60).padStart(2,"0")}m ${String(s%60).padStart(2,"0")}s`}
+ const np=$("nextPack");if(np){const n=new Date(),m=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1),s=Math.max(0,Math.floor((m-n)/1000)),p=v=>String(v).padStart(2,"0");np.textContent=`${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(s%60)}`}}
+setInterval(tick,1000);
+
+function pAnos(){
+ $("page").innerHTML=`<div class="ptitle">Explorar por ano</div><p class="psub">Uma viagem de ${YEARS[0]} até hoje. Clica num meme pra abrir, ou salva o que está faltando.</p>
+ <div class="vt">${YEARS.slice().reverse().map(y=>{const l=memesOf(y);return`<div class="vty" id="y${y}"><div class="mk"><span>${y}</span></div><h3>${esc(TAG[y]||"")} <span style="font-size:13px;color:var(--mut);font-family:Inter">· ${l.length} memes</span></h3>
+ <div class="grid5">${l.map(card).join("")}<div class="mc" style="display:grid;place-items:center;min-height:150px;border-style:dashed" onclick="openSubmit(${y})"><div style="text-align:center"><div style="font-size:26px">＋</div><div class="more">Salvar meme de ${y}</div></div></div></div></div>`}).join("")}</div>`;
+}
+function pCats(){
+ $("page").innerHTML=`<div class="ptitle">Categorias</div><p class="psub">Filtra por tipo ou usa a busca lá em cima.</p>
+ <div class="chips" id="catChips" style="margin-bottom:20px"></div><div id="catGrid"></div>`;
+ renderCatGrid();
+}
+function renderCatGrid(){
+ const ch=$("catChips");if(!ch)return;
+ ch.innerHTML=[["todas","✨ Todas"],...Object.entries(CATS)].map(([k,v])=>`<button class="chip ${ST.cat===k?"on":""}" onclick="ST.cat='${k}';renderCatGrid()">${v}</button>`).join("");
+ const q=plain(ST.q||"");
+ const l=ST.memes.filter(m=>(ST.cat==="todas"||m.c===ST.cat)&&(!q||plain(m.t+" "+m.d+" "+(m.tags||[]).join(" ")+" "+m.by+" "+m.y).includes(q))).sort((a,b)=>a.y-b.y);
+ $("catGrid").innerHTML=l.length?`<div class="grid5">${l.map(card).join("")}</div>`:`<div class="yempty" style="padding:40px">Nada encontrado${q?` para "${esc(ST.q)}"`:""}. Isso, sim, é não salvo. <br><br><button class="btn pri" onclick="openSubmit()">Salvar esse meme</button></div>`;
+}
+function pRank(){
+ const top=[...ST.memes].sort((a,b)=>b.sv-a.sv).slice(0,10);
+ $("page").innerHTML=`<div class="ptitle">Ranking</div><p class="psub">XP vem de salvar memes novos (+50) e montar sua coleção (+5).</p>
+ <div class="cols" style="grid-template-columns:1fr 1.4fr"><div class="panel" style="padding:16px"><div class="h4" style="margin-bottom:8px">🏆 Colaboradores</div>${rankRows(20)}</div>
+ <div class="panel" style="padding:16px"><div class="h4" style="margin-bottom:8px">💾 Memes mais salvos</div>${top.map((m,i)=>li(m,`#${i+1} · ${m.y} · 💾 ${m.sv} · descoberto por @${esc(m.by)}`)).join("")}</div></div>`;
+}
+function pPerfil(){
+ const u=ST.user,lv=level(u.xp),mine=ST.memes.filter(m=>m.by===u.nick),col=ST.memes.filter(m=>isSaved(m.id));
+ const pct=lv.next?Math.round((u.xp-lv.min)/(lv.next[0]-lv.min)*100):100;
+ const yearsDone=new Set(col.map(m=>m.y)).size;
+ $("page").innerHTML=`<div class="prof"><div class="panel" style="padding:22px;text-align:center;align-self:start">
+  <div class="av">${catSVG(u.cat,'width="100%" height="100%"')}</div>
+  <div class="cond" style="font-size:30px;font-weight:800">@${esc(u.nick)}</div>
+  <div style="color:var(--blue2);font-weight:700;font-size:13px">${esc(lv.name)} · Nº ${memberNo(u.nick)}</div>
+  <div style="color:var(--mut);font-size:12px;margin:2px 0 12px">Na internet desde ${u.since} · via ${esc(u.prov)}</div>
+  <div class="xpbar"><i style="width:${pct}%"></i></div><div style="font-size:11px;color:var(--mut);margin-top:4px">${u.xp} XP${lv.next?` · faltam ${lv.next[0]-u.xp} para ${lv.next[1]}`:" · nível máximo"}</div>
+  <div class="stats"><div><b>${col.length}</b><span>Coleção</span></div><div><b>${mine.length}</b><span>Descobertas</span></div><div><b>${yearsDone}</b><span>Anos</span></div></div>
+  <div style="display:grid;gap:8px"><button class="btn" onclick="editCat()">🐾 Editar meu gato</button><button class="btn pri" onclick="sharePublic()">🌐 Compartilhar meu perfil público</button><button class="btn" onclick="downloadCard(ST.user)">⬇ Baixar carteirinha</button><button class="btn" onclick="copy(invite(ST.user),'Convite copiado! Quem entrar ganha +2 pacotes 🎁')">🎁 Copiar convite (+2 pacotes pra quem entrar)</button><button class="btn ghost" onclick="logout()" style="color:var(--red)">Sair</button></div>
+ </div>
+ <div>
+  <div class="panel" style="padding:16px;margin-bottom:18px"><div class="h4" style="margin-bottom:6px">🪪 Sua carteirinha</div><div style="max-width:560px;border-radius:14px;overflow:hidden">${cardSVG(u).replace('width="600" height="340"','width="100%"')}</div></div>
+  ${vitrine()}
+  <div class="panel" style="padding:16px;margin-bottom:18px"><div class="h4" style="margin-bottom:4px">💾 Sua coleção · ${col.length}/${ST.memes.length}</div><p style="font-size:12px;color:var(--mut);margin-bottom:12px">Complete um ano inteiro pra mostrar que você viveu aquilo.</p>${col.length?`<div class="grid5">${col.map(card).join("")}</div>`:`<div class="yempty">Abre um meme e clica em "Salvar na coleção".</div>`}</div>
+  <div class="panel" style="padding:16px"><div class="h4" style="margin-bottom:12px">⭐ Suas descobertas</div>${mine.length?`<div class="grid5">${mine.map(card).join("")}</div>`:`<div class="yempty">Você ainda não descobriu nenhum meme. <br><br><button class="btn pri" onclick="openSubmit()">Salvar o primeiro</button></div>`}</div>
+ </div></div>`;
+}
+function editCat(){ST.returnTo="perfil";ST.draft={...ST.user,cat:{...ST.user.cat}};$("app").classList.add("hidden");$("signup").classList.remove("hidden");goStep(2);
+ $("steps").innerHTML=`Editando seu gato`;$("go3").textContent="Salvar gato ✓";$("back1").textContent="← Cancelar"}
+function logout(){try{localStorage.removeItem("naosalvo_v3")}catch(e){}location.reload()}
+
+/* =========================================================
+   MODAIS
+   ========================================================= */
+let lastFocus=null,objUrl=null;
+function modal(html){if(!$("modalRoot").firstChild)lastFocus=document.activeElement;
+ $("modalRoot").innerHTML=`<div class="scrim" id="scrim"><div class="glowbox modal" role="dialog" aria-modal="true" aria-label="Janela"><div class="mbody">${html}</div><button class="mx" aria-label="Fechar" onclick="closeModal()">×</button></div></div>`;
+ $("scrim").onclick=e=>{if(e.target.id==="scrim")closeModal()};
+ const h=$("modalRoot").querySelector("h2,.h4,.cond");const d=$("modalRoot").querySelector(".modal");if(h&&h.textContent.trim())d.setAttribute("aria-label",h.textContent.trim().slice(0,60));
+ const mx=d.querySelector(".mx");mx&&mx.focus({preventScroll:true})}
+function closeModal(){$("modalRoot").innerHTML="";if(objUrl){URL.revokeObjectURL(objUrl);objUrl=null}if(lastFocus&&document.contains(lastFocus)){try{lastFocus.focus({preventScroll:true})}catch(e){}}lastFocus=null}
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closeModal();
+ const sc=$("scrim");
+ if(e.key==="Tab"&&sc){const f=[...sc.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex="0"]')].filter(x=>x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];
+  if(e.shiftKey&&(document.activeElement===a||!sc.contains(document.activeElement))){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}
+ if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches('[role="button"]:not(button)')){e.preventDefault();e.target.click()}
+});
+
+function openMeme(id){
+ const m=ST.memes.find(x=>x.id===id);if(!m)return;const yid=ytId(m);
+ ST._seenView=ST._seenView||new Set();if(!ST._seenView.has(id)){ST._seenView.add(id);track("view")}
+ const src=m.url||`https://www.youtube.com/results?search_query=${encodeURIComponent(m.t+" meme")}`;
+ const rel=memesOf(m.y).filter(x=>x.id!==m.id).slice(0,3);
+ modal(`<div class="mview"><div>
+  <div class="pl" style="${yid?"":thumbStyle(m)}">${yid?`<iframe src="https://www.youtube-nocookie.com/embed/${yid}" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>`:m.e}</div>
+  ${rel.length?`<div style="margin-top:14px"><div class="h4" style="font-size:15px;margin-bottom:8px">Também em ${m.y}</div><div class="tlist">${rel.map(card).join("")}</div></div>`:""}
+ </div><div>
+  <div style="display:flex;gap:8px;align-items:center"><span class="badge b-${m.r}">${m.r}</span><span style="color:var(--mut);font-size:12px">${CATS[m.c]||""}</span></div>
+  <h2>${esc(m.t)}</h2>
+  <div style="color:var(--blue2);font-family:var(--cond);font-size:22px;font-weight:800">${m.date?new Date(m.date+"T12:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"}):m.y} · há ${CUR_YEAR-m.y} anos</div>
+  <p style="color:#c3cbe4;margin-top:8px">${esc(m.d)}</p>
+  <div class="tags">${(m.tags||[]).map(t=>`<span>#${esc(t)}</span>`).join("")}</div>
+  <div class="disc-by"><span class="ra">${catSVG(userCat(m.by),'width="100%" height="100%"')}</span><div style="font-size:12px"><span style="color:var(--gold);font-weight:800">⭐ DESCOBRIDOR</span><br><b>@${esc(m.by)}</b> salvou primeiro</div></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+   <button class="btn ${isSaved(m.id)?"":"pri"}" onclick="toggleSave('${m.id}')">${isSaved(m.id)?"✅ Na sua coleção":"💾 Salvar na coleção"}</button>
+   <a class="btn" href="${esc(src)}" target="_blank" rel="noopener">${m.url?"Ver original ↗":"Procurar no YouTube ↗"}</a>
+   <button class="btn" aria-label="Compartilhar meme" onclick="shareMeme('${m.id}')">📤 Compartilhar</button>
+  </div>
+  <div style="font-size:12px;color:var(--mut);margin-top:10px">💾 ${m.sv} internautas têm esse meme na coleção</div>
+ </div></div>`);
+}
+function toggleSave(id){const m=ST.memes.find(x=>x.id===id);
+ if(isSaved(id)){ST.saved=ST.saved.filter(x=>x!==id);m.sv--;persist()}
+ else{ST.saved.push(id);m.sv++;
+  const yr=memesOf(m.y),done=yr.every(x=>isSaved(x.id));addXp(5,"meme na coleção");track("save");
+  if(done&&yr.length>1)setTimeout(()=>toast(`🏅 Você completou ${m.y}! Viveu cada meme desse ano.`),900)}
+ openMeme(id);if(ST.view!=="home")go(ST.view);}
+
+function openSubmit(year){
+ const y=year||"";
+ modal(`<div class="h4" style="font-size:26px">☁ Salvar um meme</div>
+ <p style="color:var(--mut);font-size:13px;margin:4px 0 6px">Cola o link (YouTube, TikTok, X, Instagram…). Se alguém já salvou, a gente avisa — nada de duplicado no acervo.</p>
+ <form id="sf">
+  <label class="fl">Link do meme</label><input class="in" id="sUrl" required placeholder="https://youtube.com/watch?v=…">
+  <label class="fl">Nome do meme</label><input class="in" id="sT" required maxlength="80" placeholder="Ex: Luiza que está no Canadá">
+  <div id="dup"></div>
+  <div class="row2"><div><label class="fl">Ano em que viralizou</label><select class="in" id="sY">${YEARS.map(yy=>`<option ${yy===(+y||CUR_YEAR-10)?"selected":""}>${yy}</option>`).join("")}</select></div>
+  <div><label class="fl">Data exata (opcional · alimenta o "Hoje há X anos")</label><input class="in" type="date" id="sD"></div></div>
+  <div class="row2"><div><label class="fl">Categoria</label><select class="in" id="sC">${Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></div>
+  <div><label class="fl">Tags (separadas por vírgula)</label><input class="in" id="sTags" placeholder="bordão, tv, novela"></div></div>
+  <label class="fl">Contexto: o que aconteceu?</label><textarea class="in" id="sDesc" maxlength="300" rows="3" placeholder="Conta pra quem não viveu."></textarea>
+  <button class="btn pri" id="sBtn" style="width:100%;margin-top:18px">Salvar no acervo · +50 XP</button>
+ </form>`);
+ let dupHard=null,dupSoft=null,softOk=false;
+ const check=()=>{
+  const key=normUrl($("sUrl").value),t=$("sT").value.trim();
+  dupHard=key?ST.memes.find(m=>m.key&&m.key===key):null;
+  dupSoft=!dupHard&&t.length>3?ST.memes.map(m=>[m,similar(t,m.t)]).filter(x=>x[1]>=.6).sort((a,b)=>b[1]-a[1])[0]?.[0]:null;
+  let h="";
+  if($("sUrl").value&&!key)h=`<div class="warn bad">🔗 Esse link não parece válido.</div>`;
+  else if(dupHard)h=`<div class="warn bad">🚫 <b>Esse meme já foi salvo</b> por <b>@${esc(dupHard.by)}</b>. Mesmo link, mesmo vídeo — não entra duplicado.${li(dupHard,`${dupHard.y} · 💾 ${dupHard.sv}`)}<div style="margin-top:8px;font-size:12px">Você pode adicionar ele à sua coleção.</div></div>`;
+  else if(dupSoft)h=`<div class="warn">🤔 <b>Parece com um meme que já está no acervo:</b>${li(dupSoft,`${dupSoft.y} · descoberto por @${esc(dupSoft.by)}`)}<label style="display:flex;gap:8px;align-items:center;margin-top:8px;font-size:12px"><input type="checkbox" id="softOk" ${softOk?"checked":""}> Não, é outro meme</label></div>`;
+  $("dup").innerHTML=h;const so=$("softOk");if(so)so.onchange=()=>{softOk=so.checked;check()};
+  $("sBtn").disabled=!!dupHard||($("sUrl").value&&!key)||(dupSoft&&!softOk);
+ };
+ $("sUrl").addEventListener("input",check);$("sT").addEventListener("input",check);
+ $("sf").onsubmit=e=>{e.preventDefault();check();if($("sBtn").disabled)return;
+  const key=normUrl($("sUrl").value),c=$("sC").value,d=$("sD").value||null;let yy=+$("sY").value;if(d)yy=+d.slice(0,4);
+  const em={videos:"🎬",musica:"🎵",tv:"📺",zoeira:"🤡",gifs:"🌀",fotos:"📸",esporte:"⚽",internet:"🌐",youtube:"▶️",filmes:"🎞️"};
+  const m={id:"u"+Date.now(),t:$("sT").value.trim(),y:yy,c,e:em[c],r:"Novo",d:$("sDesc").value.trim()||"Sem contexto ainda. A comunidade completa.",
+   tags:$("sTags").value.split(",").map(s=>s.trim()).filter(Boolean).slice(0,6),date:d,url:$("sUrl").value.trim(),key,by:ST.user.nick,sv:1,added:Date.now(),mine:true};
+  ST.memes.unshift(m);ST.saved.push(m.id);closeModal();addXp(50,`você é o descobridor de "${m.t}"`);ST.year=yy;go(ST.view);setTimeout(()=>openMeme(m.id),300);
+ };
+}
+
+/* =========================================================
+   ÁLBUM DE FIGURINHAS
+   ========================================================= */
+const RAR={comum:{l:"Comum",c:"#9aa6c9",w:46},raro:{l:"Raro",c:"#3d86ff",w:28},epico:{l:"Épico",c:"#a46bff",w:14},lendario:{l:"Lendário",c:"#f5c542",w:7},mtv:{l:"Lenda da MTV",c:"#ff3bd4",w:4},mitico:{l:"Mítico",c:"#ff4766",w:1}};
+const COLS=[
+ {id:"blogs",n:"Humor Raiz & Blogs",ic:"📰",bg:"#ff7a00"},
+ {id:"mtv",n:"Lendas da MTV",ic:"📺",bg:"#ff3bd4"},
+ {id:"yt",n:"YouTube Clássico",ic:"▶️",bg:"#e62117"},
+ {id:"stream",n:"Streamers",ic:"🎮",bg:"#9146ff"},
+ {id:"memes",n:"Personalidades dos Memes",ic:"🤡",bg:"#25d07a"},
+ {id:"foto",n:"Fotolog & MSN",ic:"📸",bg:"#2bd4d4"},
+];
+const CR=[
+ // [nome, coleção, raridade, descrição, acessório, roupa]
+ ["Maurício Cid","blogs","mitico","Criador do Não Salvo. Transformou a zoeira em blog e o blog em lenda.","oculos_escuros","moletom"],
+ ["Kibe Loco","blogs","lendario","Um dos blogs de humor mais acessados da internet brasileira raiz.","bone","camiseta"],
+ ["Jacaré Banguela","blogs","epico","Humor raiz da era dos blogs.","nenhum","camiseta"],
+ ["Ah Negão!","blogs","epico","Blog de humor clássico dos anos 2000.","fone","regata"],
+ ["Desciclopédia","blogs","raro","A enciclopédia que ninguém deveria levar a sério.","monoculo","terno"],
+ ["Mundo Canibal","blogs","raro","Animações em Flash que rodaram todos os computadores.","gorro","camiseta"],
+ ["Astrid Fontenelle","mtv","mtv","A primeira VJ da MTV Brasil.","oculos_redondos","jaqueta"],
+ ["Marcos Mion","mtv","mtv","Piores Clipes do Mundo e muita bagunça na MTV.","bone","xadrez"],
+ ["Cazé Peçanha","mtv","mtv","VJ que marcou a geração MTV.","fone","camiseta"],
+ ["Gastão Moreira","mtv","mtv","A voz do rock pesado na MTV.","corrente","jaqueta"],
+ ["Thunderbird","mtv","mtv","VJ clássico, ícone da MTV dos anos 90.","oculos_escuros","jaqueta"],
+ ["Penélope Nova","mtv","mtv","VJ que conversava sem filtro com a juventude.","laco","regata"],
+ ["Sabrina Parlatore","mtv","lendario","VJ e apresentadora da era de ouro da MTV.","nenhum","camiseta"],
+ ["Didi Effe","mtv","lendario","VJ que fez parte da história da emissora.","fone","moletom"],
+ ["Edgard Piccoli","mtv","lendario","VJ do Disk MTV e de muitos clipes.","nenhum","terno"],
+ ["Marimoon","mtv","epico","Cabelo colorido e a cara da MTV dos anos 2000.","laco","moletom"],
+ ["Titi Müller","mtv","epico","VJ da última grande geração da MTV.","oculos_redondos","xadrez"],
+ ["Hermes e Renato","mtv","mtv","O humor mais nonsense que a TV brasileira já viu.","bandana","xadrez"],
+ ["Felipe Neto","yt","lendario","Os óculos escuros e o 'Não Faz Sentido' que inauguraram o YouTube BR.","oculos_escuros","camiseta"],
+ ["Whindersson Nunes","yt","lendario","Do Piauí para o topo do YouTube brasileiro.","nenhum","regata"],
+ ["Porta dos Fundos","yt","lendario","O canal de esquetes que mudou o humor na internet.","nenhum","terno"],
+ ["Cauê Moura","yt","epico","Desce a Letra e vlogs sem papas na língua.","bone","moletom"],
+ ["Kéfera","yt","epico","5inco Minutos e uma geração de vlogueiras.","laco","camiseta"],
+ ["Christian Figueiredo","yt","epico","Eu Fico Loko e as histórias da adolescência.","nenhum","xadrez"],
+ ["Galo Frito","yt","raro","Paródias e esquetes da era de ouro.","bandana","camiseta"],
+ ["Parafernalha","yt","raro","Esquetes que viralizaram nas redes.","nenhum","camiseta"],
+ ["Felipe Castanhari","yt","epico","Canal Nostalgia: relembrando tudo que a gente viveu.","fone","moletom"],
+ ["Manual do Mundo","yt","raro","Experimentos que todo mundo tentou repetir em casa.","oculos_redondos","jaqueta"],
+ ["Jovem Nerd","yt","lendario","Nerdcast e a cultura nerd brasileira.","oculos_redondos","camiseta"],
+ ["Rezende Evil","yt","raro","Minecraft e uma geração inteira de fãs mirins.","fone","moletom"],
+ ["AuthenticGames","yt","raro","Gameplay para a criançada dos anos 2010.","fone","camiseta"],
+ ["Gaules","stream","lendario","A tribo, o bom dia e as maratonas de live.","fone","moletom"],
+ ["Casimiro","stream","lendario","Reacts que viraram evento nacional.","nenhum","camiseta"],
+ ["Alanzoka","stream","epico","Gameplays de terror e risada garantida.","fone","moletom"],
+ ["Cellbit","stream","epico","RPG, mistério e lives que viraram série.","nenhum","terno"],
+ ["Nobru","stream","raro","Do Free Fire para o mundo.","bone","regata"],
+ ["Loud Coringa","stream","raro","A energia da LOUD em forma de pessoa.","corrente","moletom"],
+ ["Inês Brasil","memes","mitico","Entidade da internet. Não precisa de mais nada.","corrente","regata"],
+ ["Gretchen","memes","lendario","Rainha dos GIFs de reação no mundo inteiro.","laco","regata"],
+ ["Manoel Gomes","memes","lendario","A Caneta Azul que o Brasil inteiro cantou.","nenhum","camiseta"],
+ ["Luva de Pedreiro","memes","epico","Receba! Golaços no campo de terra.","bone","regata"],
+ ["Ednaldo Pereira","memes","epico","Vale nada, vale tudo.","oculos_escuros","terno"],
+ ["Jojo Todynho","memes","raro","Que tiro foi esse?","corrente","regata"],
+ ["Gil do Vigor","memes","raro","Tchaki tchaki! O BBB que virou bordão.","nenhum","camiseta"],
+ ["Compadre Washington","memes","raro","Sabe de nada, inocente.","oculos_escuros","camiseta"],
+ ["O Emo de Franja","foto","comum","Franja no olho, foto de cima e 200 comentários.","nenhum","moletom"],
+ ["Selfie com Flash no Espelho","foto","comum","A foto oficial de perfil de 2006.","nenhum","regata"],
+ ["Nick com ~*~","foto","comum","~*~ Ser feliz é... ~*~ (ocupado)","laco","camiseta"],
+ ["Passando pra Deixar um Beijo","foto","comum","O scrap que todo mundo recebeu.","nenhum","camiseta"],
+ ["Dono da Comunidade","foto","raro","Moderador de 'Eu odeio acordar cedo'.","oculos_redondos","xadrez"],
+ ["O Chamar Atenção do MSN","foto","comum","Tremeu a tela de todo mundo.","fone","moletom"],
+ ["Mestre do Photoscape","foto","raro","Moldura, brilho e texto em Comic Sans.","bone","camiseta"],
+ ["O 'Add Aí'","foto","comum","Deixava o e-mail do MSN em toda comunidade.","nenhum","regata"],
+].map(([n,col,r,d,acc,out],i)=>({id:"c"+String(i+1).padStart(3,"0"),num:i+1,n,col,r,d,acc,out}));
+function mul(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function creatorCat(c){const r=mul(hash(c.n));const p=a=>a[Math.floor(r()*a.length)];
+ return{fur:p(OPT.fur),pattern:val(p(OPT.pattern)),eyes:p(OPT.eyes),hair:c.col==="foto"&&c.n.includes("Emo")?"franja":val(p(OPT.hair)),hairc:c.col==="foto"&&c.n.includes("Emo")?"#222":p(OPT.hairc),acc:c.acc,outfit:c.out,bg:RAR[c.r].c}}
+ST.album=ST.album||{};ST.packs=ST.packs||0;ST.lastDaily=null;ST.favCard=null;ST.alCol="blogs";ST.alSel=null;ST.newIds=[];
+ST.streak=ST.streak||{count:0,best:0};ST.mis=ST.mis||null;ST.offers=ST.offers||{};ST.applied=ST.applied||[];ST.sound=ST.sound!==false;ST.refBy=ST.refBy||null;
+const LIVE=/[?&]live=1/.test(location.search);
+const owned=id=>(ST.album[id]||0)>0;
+const ownedCount=()=>CR.filter(c=>owned(c.id)).length;
+const dupes=()=>CR.reduce((a,c)=>a+Math.max(0,(ST.album[c.id]||0)-1),0);
+function ymd(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function todayKey(){return ymd(new Date())}
+function yestKey(){const d=new Date();d.setDate(d.getDate()-1);return ymd(d)}
+function refreshPacks(){const n=$("packN");if(n)n.textContent=LIVE?"∞":ST.packs;const s=$("streakN");if(s)s.textContent=ST.streak.count||0;const b=$("streakBtn");if(b)b.setAttribute("aria-label",`Sequência diária: ${ST.streak.count||0} dia${ST.streak.count===1?"":"s"}`)}
+/* ---- pacote diário + sequência (streak) ----
+   dia 3 = +1 pacote · cada múltiplo de 7 = +2 · dia 30 = +3 extra */
+function streakBonus(n){return (n%7===0?2:0)+(n===3?1:0)+(n===30?3:0)}
+function nextBonusDay(n){for(let d=n+1;d<=n+60;d++)if(streakBonus(d))return d;return n+7}
+function dailyCheck(){
+ const k=todayKey();
+ if(ST.lastDaily!==k){
+  const first=!ST.lastDaily,cont=ST.lastDaily===yestKey(),prev=ST.streak.count||0;
+  ST.streak.count=cont?prev+1:1;ST.streak.best=Math.max(ST.streak.best||0,ST.streak.count);
+  const bonus=streakBonus(ST.streak.count);ST.packs+=(first?2:1)+bonus;ST.lastDaily=k;persist();refreshPacks();
+  let m=first?"🎉 Bem-vindo! Você ganhou 2 pacotes pra começar seu álbum.":`☀️ Pacote diário liberado! 🔥 ${ST.streak.count} dia${ST.streak.count===1?"":"s"} seguido${ST.streak.count===1?"":"s"}.`;
+  if(bonus)m+=` Bônus de sequência: +${bonus} pacote${bonus>1?"s":""}!`;
+  if(!first&&!cont&&prev>1)m+=` Sua sequência de ${prev} dias acabou — recomeçou agora.`;
+  setTimeout(()=>{if(!$("modalRoot").firstChild)openPackModal(m);else toast("🎁 Pacote diário liberado!")},700)}
+ refreshPacks();
+}
+/* ---- missões diárias (locais, determinísticas por data) ---- */
+const MIS_POOL=[{k:"save",t:"Salvar 2 memes na coleção",n:2},{k:"view",t:"Abrir 4 memes pra ler o contexto",n:4},{k:"pack",t:"Abrir 1 pacote",n:1},{k:"share",t:"Compartilhar 1 carta ou meme",n:1},{k:"feed",t:"Ver 5 memes no Feed",n:5},{k:"year",t:"Viajar por 3 anos na máquina do tempo",n:3}];
+function missions(){const d=todayKey();if(!ST.mis||ST.mis.d!==d)ST.mis={d,p:{},c:{}};
+ const r=mul(hash(d));return MIS_POOL.map(m=>({m,s:r()})).sort((a,b)=>a.s-b.s).slice(0,3).map(x=>x.m)}
+function track(k){if(!ST.user)return;const ms=missions(),m=ms.find(x=>x.k===k);if(!m||ST.mis.c[k])return;
+ ST.mis.p[k]=(ST.mis.p[k]||0)+1;
+ if(ST.mis.p[k]>=m.n){ST.mis.c[k]=1;ST.user.xp+=15;toast(`🎯 Missão cumprida: ${m.t} · +15 XP`);
+  if(ms.every(x=>ST.mis.c[x.k])){ST.packs++;setTimeout(()=>toast("🎁 Todas as missões de hoje! +1 pacote"),2700)}}
+ persist();refreshMe();renderDaily()}
+function renderDaily(){const b=$("dailyBox");if(!b)return;
+ const n=ST.streak.count||0,pos=n?((n-1)%7)+1:0,nb=nextBonusDay(n),ms=missions(),done=ms.filter(x=>ST.mis.c[x.k]).length;
+ b.innerHTML=`<div class="dcol"><div class="h4"><span aria-hidden="true">🔥</span> Sequência</div>
+  <div class="dbig cond">${n} <small>dia${n===1?"":"s"} seguido${n===1?"":"s"}</small></div>
+  <div class="sdots" role="img" aria-label="${pos} de 7 dias da semana cumpridos">${[1,2,3,4,5,6,7].map(i=>`<span class="sd ${i<=pos?"on":""}">${i===3||i===7?"🎁":i}</span>`).join("")}</div>
+  <small class="mut">Recorde: ${ST.streak.best||0} · próximo bônus no dia ${nb}</small></div>
+  <div class="dcol"><div class="h4"><span aria-hidden="true">⏳</span> Próximo pacote diário</div>
+  <div class="dbig cond" id="nextPack">--:--:--</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn pri" onclick="openPackModal()">🎁 Abrir pacote (${LIVE?"∞":ST.packs})</button><button class="btn" onclick="copy(invite(ST.user),'Convite copiado! Quem entrar pelo link ganha +2 pacotes 🎁')">🔗 Convidar (+2 pra eles)</button></div></div>
+  <div class="dcol"><div class="h4"><span aria-hidden="true">🎯</span> Missões de hoje <small class="mut">${done}/3</small></div>
+  ${ms.map(m=>{const p=Math.min(ST.mis.p[m.k]||0,m.n),ok=ST.mis.c[m.k];return`<div class="ms ${ok?"ok":""}"><span>${ok?"✅":"⬜"} ${m.t}</span><b>${p}/${m.n}</b></div>`}).join("")}
+  <small class="mut">+15 XP cada · as 3 juntas dão +1 pacote</small></div>`;tick()}
+function drawCard(minR){
+ const pool=Object.entries(RAR).filter(([k])=>!minR||k!=="comum");const tot=pool.reduce((a,[,v])=>a+v.w,0);let x=Math.random()*tot,rk="comum";
+ for(const[k,v]of pool){x-=v.w;if(x<=0){rk=k;break}}
+ let l=CR.filter(c=>c.r===rk);if(!l.length)l=CR;return l[Math.floor(Math.random()*l.length)];
+}
+function openPack(){
+ if(ST.packs<1&&!LIVE)return null;if(!LIVE)ST.packs--;
+ const cards=[drawCard(true),drawCard(),drawCard(),drawCard(),drawCard()].sort(()=>Math.random()-.5);
+ const res=cards.map(c=>{const isNew=!owned(c.id);ST.album[c.id]=(ST.album[c.id]||0)+1;return{c,isNew}});
+ ST.newIds=res.filter(r=>r.isNew).map(r=>r.c.id);
+ const xp=res.reduce((a,r)=>a+(r.isNew?({comum:2,raro:5,epico:10,lendario:25,mtv:30,mitico:60})[r.c.r]:1),0);
+ ST.user.xp+=xp;persist();refreshPacks();refreshMe();track("pack");return{res,xp};
+}
+function stk(c,opts={}){
+ const R=RAR[c.r],q=ST.album[c.id]||0,col=COLS.find(x=>x.id===c.col);
+ if(!q&&!opts.force)return`<div class="stk lock" tabindex="0" role="button" aria-label="Carta ${c.num} ainda não descoberta" onclick="ST.alSel='${c.id}';renderAlbum()"><div class="top"><span>${String(c.num).padStart(3,"0")}</span><span aria-hidden="true">🔒</span></div><div class="art">?</div><div class="nm">???</div><div class="cl">${col.ic} ${col.n}</div></div>`;
+ const act=opts.noclick?"":`tabindex="0" role="button" aria-label="Carta ${c.num}: ${esc(c.n)}, ${R.l}" onclick="ST.alSel='${c.id}';renderAlbum()"`;
+ return`<div class="stk r-${c.r} ${ST.alSel===c.id?"sel":""}" style="--rc:${R.c};${opts.extra||""}" ${act}>${ST.newIds.includes(c.id)&&!opts.noNew?'<span class="new">NOVA!</span>':""}<div class="top"><span>${String(c.num).padStart(3,"0")}</span><span class="rr">◆ ${R.l}</span></div><div class="art">${catSVG(creatorCat(c),'width="100%" height="100%"')}</div><div class="nm">${esc(c.n)}</div><div class="cl">${col.ic} ${col.n}</div>${q>1&&!opts.noQty?`<span class="qty">x${q}</span>`:""}</div>`;
+}
+function pAlbum(){
+ $("page").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+  <div><div class="ptitle">Álbum da Internet Brasileira</div><p class="psub" style="margin:0">Todo dia um pacote novo. Complete as coleções e relembre quem fez a nossa internet.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="openTrade()">🔁 Trocar com amigo</button><button class="btn" onclick="tradeDupes()">♻️ 5 repetidas → 1 pacote (<span id="dupN">${dupes()}</span>)</button><button class="btn pri" onclick="openPackModal()">🎁 Abrir pacote (${LIVE?"∞":ST.packs})</button></div></div>
+  <div class="alb"><div class="cols-side" id="alSide"></div><div class="binder" id="alGrid"></div><div class="detail" id="alDet"></div></div>`;
+ renderAlbum();
+}
+function renderAlbum(){
+ const side=$("alSide");if(!side)return;
+ const rc={};Object.keys(RAR).forEach(k=>rc[k]=CR.filter(c=>c.r===k&&owned(c.id)).length);
+ side.innerHTML=`<div class="h4" style="font-size:14px;color:var(--mut);margin-bottom:8px">Minhas coleções</div>`+COLS.map(col=>{const l=CR.filter(c=>c.col===col.id),o=l.filter(c=>owned(c.id)).length,p=Math.round(o/l.length*100);
+  return`<div class="colb ${ST.alCol===col.id?"on":""}" tabindex="0" role="button" aria-label="Coleção ${col.n}: ${o} de ${l.length} cartas" onclick="ST.alCol='${col.id}';ST.alSel=null;renderAlbum()"><div class="ic" style="background:${col.bg}">${col.ic}</div><div style="flex:1;min-width:0"><b>${col.n}</b><small>${o} / ${l.length} cartas · ${p}%${p===100?" 🏅":""}</small><div class="pbar"><i style="width:${p}%;background:${col.bg}"></i></div></div></div>`}).join("")+
+  `<div class="panel" style="padding:14px;margin-top:14px"><div style="font-size:11px;color:var(--mut);text-transform:uppercase;font-weight:700">Cartas totais</div><div class="cond" style="font-size:40px;font-weight:800;line-height:1"><span style="color:var(--blue2)">${ownedCount()}</span><span style="font-size:22px;color:var(--mut)"> / ${CR.length}</span></div>
+  <div style="font-size:11px;color:var(--mut);text-transform:uppercase;font-weight:700;margin-top:10px">Raridades</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;font-size:12px">${Object.entries(RAR).map(([k,v])=>`<span title="${v.l}"><span style="color:${v.c}">◆</span> ${rc[k]}</span>`).join("")}</div></div>`;
+ const col=COLS.find(c=>c.id===ST.alCol),l=CR.filter(c=>c.col===col.id),o=l.filter(c=>owned(c.id)).length;
+ $("alGrid").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div><div class="cond" style="font-size:30px;font-weight:800">${col.ic} ${col.n}</div><div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)">${o} / ${l.length} cartas<div class="pbar" style="width:160px;margin:0"><i style="width:${o/l.length*100}%;background:${col.bg}"></i></div></div></div></div><div class="stk-grid">${l.map(c=>stk(c)).join("")}</div>`;
+ const c=CR.find(x=>x.id===ST.alSel)||l.find(x=>owned(x.id));const det=$("alDet");
+ if(!c){det.innerHTML=`<div class="panel" style="padding:20px;text-align:center;color:var(--mut)">Nenhuma carta dessa coleção ainda.<br><br><button class="btn pri" onclick="openPackModal()">🎁 Abrir pacote</button></div>`;return}
+ const R=RAR[c.r];
+ if(!owned(c.id)){det.innerHTML=`<div class="big" style="--rc:#2a3352;text-align:center"><div class="art" style="display:grid;place-items:center;font-size:90px;color:#2a3352;font-family:var(--cond)">?</div></div><div class="cond" style="font-size:26px;font-weight:800">Carta ${String(c.num).padStart(3,"0")} · ???</div><p style="color:var(--mut);font-size:13px">Você ainda não tem essa figurinha. Quem será? Abre pacotes pra descobrir — ou peça pra um amigo.</p><button class="btn" onclick="wishCard('${c.id}')">🙏 Pedir essa carta pra um amigo</button>`;return}
+ det.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span class="cond" style="font-size:24px;font-weight:800">${String(c.num).padStart(3,"0")}</span><span class="badge" style="color:${R.c};border-color:${R.c}">◆ ${R.l}</span></div>
+  <div class="big tilt r-${c.r}" style="--rc:${R.c}"><div class="art">${catSVG(creatorCat(c),'width="100%" height="100%"')}</div><div class="cond" style="text-align:center;font-size:24px;font-weight:800;padding-top:6px">${esc(c.n)}</div></div>
+  <p style="color:#c3cbe4;font-size:13px">${esc(c.d)}</p>
+  <div style="font-size:12px;color:var(--mut);margin:10px 0">Você tem <b style="color:#fff">${ST.album[c.id]}</b> cópia${ST.album[c.id]>1?"s":""} desta carta</div>
+  <div style="display:grid;gap:8px"><button class="btn ${ST.favCard===c.id?"":"pri"}" onclick="ST.favCard='${c.id}';persist();renderAlbum();toast('⭐ Carta favorita definida')">${ST.favCard===c.id?"⭐ Sua favorita":"☆ Definir como favorita"}</button>
+  <button class="btn" onclick="shareCard('${c.id}')">📤 Compartilhar carta</button>
+  ${(ST.album[c.id]||0)>1?`<button class="btn" onclick="openTrade({g:'${c.id}'})">🔁 Trocar essa repetida</button>`:""}</div>`;
+}
+function tradeDupes(){
+ if(dupes()<5){toast(`Você precisa de 5 repetidas (tem ${dupes()})`);return}
+ let n=5;for(const c of CR){while(n>0&&(ST.album[c.id]||0)>1){ST.album[c.id]--;n--}}
+ ST.packs++;persist();refreshPacks();toast("♻️ 5 repetidas viraram 1 pacote!");if(ST.view==="album")pAlbum();
+}
+/* ---------- áudio / haptics / partículas (tudo opcional e respeita prefers-reduced-motion) ---------- */
+const RK=Object.keys(RAR),HYPE={comum:0,raro:0,epico:1,lendario:2,mtv:3,mitico:4};
+let AC=null;
+function actx(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();return AC}catch(e){return null}}
+function tone(f,d,type="sine",v=.08,at=0,f2){const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain(),t=a.currentTime+at;o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.05)}
+function sfx(k,lv=0){if(!ST.sound)return;
+ if(k==="charge"){tone(110,1.1,"sawtooth",.05,0,520);tone(220,1.1,"triangle",.04,0,900)}
+ else if(k==="boom"){tone(140,.5,"sine",.18,0,38);tone(900,.25,"square",.03,0,200)}
+ else if(k==="flip")tone(520,.07,"triangle",.06,0,780);
+ else if(k==="chime")[523,659,784,1046,1318].slice(0,2+lv).forEach((f,i)=>tone(f,.5,"triangle",.07,i*.09))}
+function vib(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+function toggleSound(){ST.sound=!ST.sound;persist();const b=$("sndBtn");if(b){b.textContent=ST.sound?"🔊 Som ligado":"🔇 Som desligado";b.setAttribute("aria-pressed",ST.sound)}if(ST.sound)sfx("flip")}
+function flash(c){if(RM())return;const d=document.createElement("div");d.className="flash";d.style.background=`radial-gradient(circle,#fff 0,${c} 45%,transparent 75%)`;document.body.appendChild(d);setTimeout(()=>d.remove(),700)}
+function fx(color,n=80,ox,oy){if(RM())return;const cv=document.createElement("canvas");cv.className="fxc";cv.width=innerWidth;cv.height=innerHeight;cv.setAttribute("aria-hidden","true");document.body.appendChild(cv);const g=cv.getContext("2d");
+ ox=ox??innerWidth/2;oy=oy??innerHeight/2;const cols=[color,"#fff","#f5c542",color];
+ const P=Array.from({length:n},()=>{const a=Math.random()*Math.PI*2,s=4+Math.random()*9;return{x:ox,y:oy,vx:Math.cos(a)*s,vy:Math.sin(a)*s-4,r:2+Math.random()*4,c:cols[Math.floor(Math.random()*cols.length)],l:1,rot:Math.random()*6,vr:(Math.random()-.5)*.4}});
+ let t=0;(function f(){t++;g.clearRect(0,0,cv.width,cv.height);let alive=0;P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.22;p.vx*=.985;p.l-=.011;p.rot+=p.vr;if(p.l>0){alive++;g.globalAlpha=Math.max(0,p.l);g.fillStyle=p.c;g.save();g.translate(p.x,p.y);g.rotate(p.rot);g.fillRect(-p.r,-p.r/2,p.r*2,p.r);g.restore()}});if(alive&&t<220)requestAnimationFrame(f);else cv.remove()})()}
+
+/* ---------- abertura de pacote ---------- */
+let REV=null;
+const bestOf=res=>res.reduce((a,x)=>RK.indexOf(x.c.r)>RK.indexOf(a.c.r)?x:a);
+function openPackModal(msg){
+ const n=LIVE?"∞":ST.packs;
+ modal(`<div class="packzone" id="pz">
+  ${msg?`<div class="pmsg">${msg}</div>`:""}
+  ${ST.packs<1&&!LIVE?`<div class="cond ptxt">Sem pacotes 😿</div><p style="color:var(--mut)">Volte amanhã pro pacote diário, convide um amigo (+2 pacotes) ou troque 5 repetidas por 1 pacote.</p><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button class="btn" onclick="tradeDupes();openPackModal()">♻️ Trocar repetidas (${dupes()})</button><button class="btn pri" onclick="copy(invite(ST.user),'Convite copiado! Quem entrar ganha +2 pacotes 🎁')">🔗 Convidar amigo</button></div>`:
+  `<div class="pstage"><div class="pack" id="packEl" tabindex="0" role="button" aria-label="Abrir pacote" onclick="doOpen()"><div class="pglow"></div><div style="position:relative"><div class="pl">Não<br>Salvo</div><div class="psm">5 FIGURINHAS · 1 RARA+</div></div></div></div>
+  <div class="cond ptxt" id="packHint">Toca no pacote pra abrir</div><div style="color:var(--mut);font-size:12px">Pacotes disponíveis: ${n}${LIVE?" (modo live)":""}</div>
+  <button class="btn ghost" id="sndBtn" aria-pressed="${ST.sound}" onclick="toggleSound()">${ST.sound?"🔊 Som ligado":"🔇 Som desligado"}</button>`}</div>`);
+ const p=$("packEl");if(p)p.focus({preventScroll:true});
+}
+function doOpen(){
+ const el=$("packEl");if(!el||el.dataset.busy)return;const r=openPack();if(!r){openPackModal();return}
+ el.dataset.busy=1;const best=bestOf(r.res),bc=RAR[best.c.r].c;
+ el.style.setProperty("--aura",bc);el.classList.add("charge");$("packHint").textContent="Algo está vindo…";
+ sfx("charge");vib([20,40,20]);
+ setTimeout(()=>{el.classList.add("boom");flash(bc);sfx("boom");vib([40,30,80]);setTimeout(()=>showReveal(r,best),RM()?50:420)},RM()?150:1200);
+}
+function showReveal(r,best){
+ REV={r,best,ord:r.res.map((x,i)=>i).sort((a,b)=>RK.indexOf(r.res[a].c.r)-RK.indexOf(r.res[b].c.r))};
+ $("pz").innerHTML=`<div class="cond ptxt">Clica nas cartas pra revelar</div>
+  <div class="reveal" style="width:100%">${r.res.map((x,i)=>`<div class="flip" id="fl${i}" tabindex="0" role="button" aria-label="Revelar carta ${i+1} de 5" onclick="flipCard(${i})"><div class="in"><div class="bk"><span>NS</span></div><div class="fr">${stk(x.c,{force:1,noclick:1,noQty:1,noNew:1})}${x.isNew?'<span class="new" style="position:absolute;top:-8px;left:-8px">NOVA!</span>':'<span class="badge" style="position:absolute;top:-8px;left:-6px;background:#111;color:var(--mut);border-color:var(--line2)">REPETIDA</span>'}</div></div></div>`).join("")}</div>
+  <div class="pact"><button class="btn" onclick="revealAll()">Revelar todas</button>
+  ${(ST.packs>0||LIVE)?`<button class="btn pri" onclick="openPackModal()">🎁 Abrir outro (${LIVE?"∞":ST.packs})</button>`:""}<button class="btn" onclick="closeModal();go('album')">📒 Ver álbum</button></div>
+  <div id="pres" class="pres"></div><div id="revlive" class="sr" aria-live="polite"></div>`;
+ const mdl=document.querySelector(".modal");if(mdl)mdl.classList.add("wide");
+ if(ST.view==="album")renderAlbum();
+}
+function flipCard(i){
+ const f=$("fl"+i);if(!f||f.classList.contains("open")||!REV)return;const x=REV.r.res[i],R=RAR[x.c.r];
+ f.classList.add("open");f.setAttribute("aria-label",`Carta ${i+1}: ${x.c.n}, ${R.l}${x.isNew?", nova":", repetida"}`);
+ $("revlive").textContent=`${x.c.n}, ${R.l}${x.isNew?", nova":", repetida"}`;
+ sfx("flip");vib(15);setTimeout(()=>hype(f,x.c.r),320);
+ if([...document.querySelectorAll(".flip")].every(e=>e.classList.contains("open")))setTimeout(finishReveal,700);
+}
+function hype(f,rk){const lv=HYPE[rk];if(lv<1)return;const b=f.getBoundingClientRect();fx(RAR[rk].c,[0,40,90,130,180][lv],b.left+b.width/2,b.top+b.height/2);sfx("chime",lv);vib(lv>=2?[30,30,60]:20);
+ const m=document.querySelector(".modal");if(m&&lv>=3&&!RM()){m.classList.remove("shk");void m.offsetWidth;m.classList.add("shk");if(lv>=4)flash(RAR[rk].c)}}
+function revealAll(){if(!REV)return;REV.ord.forEach((i,k)=>setTimeout(()=>flipCard(i),RM()?k*60:k*(k===REV.ord.length-1?900:520)))}
+function finishReveal(){const p=$("pres");if(!p||!REV)return;const{r,best}=REV;
+ p.innerHTML=`<div style="color:var(--blue2);font-weight:700">+${r.xp} XP · ${r.res.filter(x=>x.isNew).length} novas · ${ownedCount()}/${CR.length} no álbum</div>
+ <button class="btn pri" onclick="shareCard('${best.c.id}')">📤 Compartilhar ${esc(best.c.n)} (${RAR[best.c.r].l})</button>`}
+$("packBtn").onclick=()=>openPackModal();
+
+/* =========================================================
+   LINKS · COMPARTILHAR · TROCAS · PERFIL PÚBLICO · FEED
+   (tudo funciona sem servidor: o estado viaja dentro do link)
+   ========================================================= */
+const b64e=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let s="";b.forEach(x=>s+=String.fromCharCode(x));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
+const b64d=s=>{try{s=String(s).replace(/-/g,"+").replace(/_/g,"/");const bin=atob(s);return JSON.parse(new TextDecoder().decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))}catch(e){return null}};
+const cleanNick=s=>s&&/^[\w.]{3,20}$/.test(s)?s:null;
+function baseUrl(){return location.href.split("#")[0].split("?")[0]}
+function inviteLink(nick){return baseUrl()+"?ref="+encodeURIComponent(nick)}
+function link(h){return(ST.user?inviteLink(ST.user.nick):baseUrl())+"#"+h}
+function getRef(){try{const q=new URLSearchParams(location.search).get("ref");if(cleanNick(q)){localStorage.setItem("naosalvo_ref",q);return q}return cleanNick(localStorage.getItem("naosalvo_ref"))}catch(e){return null}}
+const cname=id=>(CR.find(c=>c.id===id)||{n:"?"}).n;
+
+/* ---------- compartilhar (imagem story 9:16 + Web Share API) ---------- */
+function rarityLine(c){const R=RAR[c.r];return R.w<=14?`Só ${R.w}% das cartas sorteadas são ${R.l}.`:`Coleção ${COLS.find(x=>x.id===c.col).n}.`}
+function cardLink(c){return link("carta="+c.id+(ST.user?"&by="+encodeURIComponent(ST.user.nick):""))}
+function shareText(c){return`Tirei ${c.n} (${RAR[c.r].l}) no álbum do NÃO SALVO 🐱 ${rarityLine(c)} Abre teus pacotes grátis:`}
+function storySVG(c,by){
+ const R=RAR[c.r],col=COLS.find(x=>x.id===c.col),num=String(c.num).padStart(3,"0"),fs=Math.max(56,Math.min(96,Math.floor(1500/Math.max(8,c.n.length))));
+ const F="Impact,'Arial Narrow',Arial,sans-serif",host=esc(location.host||"naosalvo");
+ return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+ <defs><linearGradient id="sb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1226"/><stop offset="1" stop-color="#03050a"/></linearGradient>
+ <radialGradient id="sg" cx="50%" cy="40%" r="55%"><stop offset="0" stop-color="${R.c}" stop-opacity=".6"/><stop offset="1" stop-color="${R.c}" stop-opacity="0"/></radialGradient>
+ <clipPath id="sc"><rect x="150" y="430" width="780" height="780" rx="36"/></clipPath></defs>
+ <rect width="1080" height="1920" fill="url(#sb)"/><rect width="1080" height="1920" fill="url(#sg)"/>
+ <text x="540" y="170" font-size="100" fill="#e9eefc" text-anchor="middle" font-family="${F}" letter-spacing="3">NÃO SALVO</text>
+ <text x="540" y="232" font-size="30" fill="#7d89ad" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" letter-spacing="5">${by?`@${esc(by).toUpperCase()} TIROU UMA CARTA`:"UMA CARTA DO ÁLBUM"}</text>
+ <rect x="110" y="320" width="860" height="1140" rx="48" fill="#0b0f1e" stroke="${R.c}" stroke-width="12"/>
+ <rect x="122" y="332" width="836" height="1116" rx="38" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
+ <text x="160" y="397" font-size="56" fill="#e9eefc" font-family="${F}">${num}</text>
+ <text x="920" y="397" font-size="46" fill="${R.c}" text-anchor="end" font-family="${F}">◆ ${esc(R.l.toUpperCase())}</text>
+ <g clip-path="url(#sc)"><rect x="150" y="430" width="780" height="780" fill="${R.c}"/>${catSVG(creatorCat(c),'x="150" y="430" width="780" height="780"')}</g>
+ <text x="540" y="1335" font-size="${fs}" fill="#fff" text-anchor="middle" font-family="${F}">${esc(c.n.toUpperCase())}</text>
+ <text x="540" y="1395" font-size="28" fill="#7d89ad" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" letter-spacing="4">${esc(col.n.toUpperCase())}</text>
+ <text x="540" y="1560" font-size="40" fill="${R.c}" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800">${esc(rarityLine(c))}</text>
+ <rect x="190" y="1620" width="700" height="130" rx="24" fill="#1f6bff"/>
+ <text x="540" y="1690" font-size="56" fill="#fff" text-anchor="middle" font-family="${F}" letter-spacing="2">ABRA SEUS PACOTES GRÁTIS</text>
+ <text x="540" y="1735" font-size="28" fill="#cfe0ff" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700">${host}</text>
+ <text x="540" y="1840" font-size="30" fill="#7d89ad" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" letter-spacing="4">E NO FIM O PLANO ERA SALVAR.</text></svg>`;
+}
+function svgToBlob(svg,w,h){return new Promise((ok,no)=>{const img=new Image();img.onload=()=>{const cv=document.createElement("canvas");cv.width=w;cv.height=h;cv.getContext("2d").drawImage(img,0,0,w,h);cv.toBlob(b=>b?ok(b):no(new Error("blob")))};img.onerror=()=>no(new Error("img"));img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)})}
+let SHR=null;
+async function shareCard(id){
+ const c=CR.find(x=>x.id===id);if(!c)return;let blob=null;
+ try{blob=await svgToBlob(storySVG(c,ST.user&&ST.user.nick),1080,1920)}catch(e){}
+ const url=cardLink(c),text=shareText(c),file=`naosalvo-${c.id}.png`;
+ if(blob&&navigator.canShare){try{const f=new File([blob],file,{type:"image/png"});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],text:`${text} ${url}`});track("share");return}}catch(e){if(e&&e.name==="AbortError")return}}
+ shareModal({title:`Compartilhar ${c.n}`,blob,url,text,file});
+}
+function shareModal(o){
+ let src="";if(o.blob){if(objUrl)URL.revokeObjectURL(objUrl);objUrl=src=URL.createObjectURL(o.blob)}
+ SHR=o;
+ modal(`<div class="shr">${src?`<img class="shimg" src="${src}" alt="Pré-visualização da imagem para compartilhar">`:""}<div><h2 class="cond" style="font-size:30px">${esc(o.title)}</h2><p style="color:#c3cbe4;margin:6px 0 12px">${esc(o.text)}</p>${o.extra||""}
+ <label class="fl" for="shUrl">Link</label><input class="in" id="shUrl" readonly value="${esc(o.url)}" onfocus="this.select()">
+ <div class="shbtn">${src?`<button class="btn pri" onclick="shDl()">⬇ Baixar imagem (story)</button>`:""}<button class="btn ${src?"":"pri"}" onclick="shCopy()">📋 Copiar texto + link</button>
+ <a class="btn" target="_blank" rel="noopener" onclick="track('share')" href="https://wa.me/?text=${encodeURIComponent(o.text+" "+o.url)}">WhatsApp</a>
+ <a class="btn" target="_blank" rel="noopener" onclick="track('share')" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(o.text)}&amp;url=${encodeURIComponent(o.url)}">X (Twitter)</a></div></div></div>`);
+}
+function shDl(){if(!SHR||!SHR.blob)return;const a=document.createElement("a");a.href=URL.createObjectURL(SHR.blob);a.download=SHR.file||"naosalvo.png";document.body.appendChild(a);a.click();a.remove();track("share");toast("Imagem baixada! Posta no story e marca o Cid 📸")}
+function shCopy(){if(!SHR)return;track("share");copy(SHR.text+" "+SHR.url,"Copiado! Cola no zap ou no Discord 📋")}
+async function shareMeme(id){const m=ST.memes.find(x=>x.id===id);if(!m)return;const url=link("meme="+m.id),text=`💾 ${m.t} (${m.y}) — salvo no NÃO SALVO, o arquivo da internet brasileira.`;
+ if(navigator.share){try{await navigator.share({title:m.t,text,url});track("share");return}catch(e){if(e&&e.name==="AbortError")return}}
+ shareModal({title:`Compartilhar: ${m.t}`,text,url})}
+
+/* ---------- links profundos ---------- */
+let DL=null,LASTDL=null,TRADE=null;
+function parseDL(){const h=location.hash.replace(/^#/,"");if(!h)return null;const p=new URLSearchParams(h);for(const k of["carta","perfil","troca","confirma","quero","meme"])if(p.has(k))return{k,v:p.get(k),by:p.get("by")};return null}
+function captureDL(){const d=parseDL();if(d){DL=d;history.replaceState(null,"",location.pathname+location.search)}}
+function runPendingDL(){if(!DL||!ST.user)return;const d=DL;DL=null;openDL(d)}
+function handleDL(){captureDL();if(!DL)return;
+ if(ST.user){if(!$("app").classList.contains("hidden"))runPendingDL();return}
+ const d=DL;if(d.k==="carta"||d.k==="perfil"){DL=null;openDL(d)}else if(d.k==="troca"||d.k==="quero")openDL(d);else needLogin()}
+function openDL(d){LASTDL=d;const cid=v=>CR.find(c=>c.id===v);
+ if(d.k==="carta"){const c=cid(d.v);if(c)openSharedCard(c,cleanNick(d.by))}
+ else if(d.k==="perfil"){const s=b64d(d.v);if(s)openPublicProfile(s)}
+ else if(d.k==="troca"){const o=b64d(d.v);if(o)openTradeOffer(o)}
+ else if(d.k==="confirma"){const o=b64d(d.v);if(o)applyConfirm(o)}
+ else if(d.k==="quero"){const c=cid(d.v);if(c)openWish(c,cleanNick(d.by))}
+ else if(d.k==="meme"){if(ST.memes.find(m=>m.id===d.v))openMeme(d.v)}}
+function needLogin(){modal(`<h2 class="cond" style="font-size:30px">Entre pra continuar</h2><p style="color:#c3cbe4;margin:8px 0 14px">Esse link precisa de uma conta. Crie seu gato em 1 minuto — o link continua te esperando.</p><button class="btn pri" onclick="DL=LASTDL||DL;closeModal();startSignup('Google')">🐱 Criar meu gato</button>`)}
+function info(title,html,extra=""){modal(`<h2 class="cond" style="font-size:30px">${esc(title)}</h2><p style="color:#c3cbe4;margin:8px 0 14px">${html}</p>${extra}<button class="btn pri" onclick="closeModal();go('album')">📒 Ver álbum</button>`)}
+const SIGNUP_CTA=`DL=LASTDL;closeModal();startSignup('Google')`,SIGNUP_PLAIN=`closeModal();startSignup('Google')`;
+function openSharedCard(c,by){const R=RAR[c.r];
+ modal(`<div class="shc"><div class="shcard">${stk(c,{force:1,noclick:1,noQty:1,noNew:1})}</div><div>
+  <span class="badge" style="color:${R.c};border-color:${R.c}">◆ ${R.l}</span><h2 class="cond" style="font-size:38px;margin:8px 0">${esc(c.n)}</h2>
+  <p style="color:#c3cbe4">${esc(c.d)}</p><p style="color:var(--gold);font-weight:700;margin:10px 0">${esc(rarityLine(c))}</p>
+  ${by?`<p style="color:var(--mut);margin-bottom:12px">Tirada por <b style="color:#fff">@${esc(by)}</b></p>`:""}
+  ${ST.user?`<button class="btn pri" onclick="closeModal();openPackModal()">🎁 Abrir meus pacotes</button>`:`<button class="btn pri" onclick="${SIGNUP_PLAIN}">🐱 Criar meu gato e ganhar pacotes</button>`}</div></div>`)}
+
+/* ---------- pedir carta ---------- */
+function wishCard(id){const c=CR.find(x=>x.id===id);if(!c)return;
+ shareModal({title:"Pedir essa carta",text:`🙏 Procuro a carta #${String(c.num).padStart(3,"0")} (${RAR[c.r].l}) do álbum do NÃO SALVO. Se você tiver repetida, bora trocar?`,url:link("quero="+c.id+"&by="+encodeURIComponent(ST.user.nick))})}
+function openWish(c,by){const dup=(ST.album[c.id]||0)>1;
+ modal(`<div class="shc"><div class="shcard">${stk(c,{force:1,noclick:1,noQty:1,noNew:1})}</div><div>
+  <h2 class="cond" style="font-size:32px">${by?`@${esc(by)} procura essa carta`:"Alguém procura essa carta"}</h2>
+  <p style="color:#c3cbe4;margin:8px 0 14px">${esc(c.n)} · ${RAR[c.r].l}. ${!ST.user?"Crie seu gato pra trocar.":dup?"Você tem ela repetida! Que tal propor uma troca?":"Você não tem essa carta repetida — abra pacotes e tente a sorte."}</p>
+  ${!ST.user?`<button class="btn pri" onclick="${SIGNUP_CTA}">🐱 Criar meu gato</button>`:dup?`<button class="btn pri" onclick="openTrade({g:'${c.id}'})">🔁 Criar oferta de troca</button>`:`<button class="btn pri" onclick="closeModal();openPackModal()">🎁 Abrir pacotes</button>`}</div></div>`)}
+
+/* ---------- trocas por link (sem servidor) ---------- */
+const cOpt=(c,sel)=>`<option value="${c.id}" ${sel?"selected":""}>#${String(c.num).padStart(3,"0")} ${esc(c.n)} — ${RAR[c.r].l}</option>`;
+function offerUrl(id,o){return link("troca="+b64e({i:id,n:ST.user.nick,g:o.g,w:o.w}))}
+function offerText(o){return`🔁 Troca no NÃO SALVO: eu dou ${cname(o.g)} e quero ${cname(o.w)}. Vale pra 1 pessoa só — aceita?`}
+function openTrade(pre){pre=pre||{};
+ const dup=CR.filter(c=>(ST.album[c.id]||0)>1),miss=CR.filter(c=>!owned(c.id)),offers=Object.entries(ST.offers||{}).sort((a,b)=>b[1].ts-a[1].ts).slice(0,6);
+ modal(`<h2 class="cond" style="font-size:30px"><span aria-hidden="true">🔁</span> Trocar cartas com um amigo</h2>
+ <p style="color:var(--mut);font-size:13px;margin:4px 0 12px">Sem servidor: você gera um link, seu amigo aceita e te devolve um link de confirmação. Só vale trocar cartas <b>repetidas</b>. Aceite apenas ofertas de quem você conhece.</p>
+ ${!dup.length?`<div class="warn">Você ainda não tem cartas repetidas. Abra pacotes e volte aqui.</div>`:!miss.length?`<div class="warn">Você já tem todas as cartas! 🏅</div>`:
+ `<label class="fl" for="tg">Eu dou (repetida)</label><select class="in" id="tg">${dup.map(c=>cOpt(c,c.id===pre.g)).join("")}</select>
+ <label class="fl" for="tw">Eu quero</label><select class="in" id="tw">${COLS.map(col=>{const l=miss.filter(c=>c.col===col.id);return l.length?`<optgroup label="${esc(col.n)}">${l.map(c=>cOpt(c,c.id===pre.w)).join("")}</optgroup>`:""}).join("")}</select>
+ <div class="tprev" id="tprev" aria-hidden="true"></div><button class="btn pri" id="tmk" style="width:100%;margin-top:12px">Gerar link de troca</button>`}
+ ${offers.length?`<h3 class="cond" style="font-size:20px;margin:18px 0 6px">Minhas ofertas</h3>${offers.map(([id,o])=>`<div class="ms ${o.st==="done"?"ok":""}"><span>${o.st==="done"?"✅":"⏳"} dou ${esc(cname(o.g))} · quero ${esc(cname(o.w))}${o.with?` · com @${esc(o.with)}`:""}</span>${o.st==="done"?"<b>concluída</b>":`<button class="more" onclick="copyOffer('${id}')">copiar link</button>`}</div>`).join("")}`:""}`);
+ if(dup.length&&miss.length){
+  const upd=()=>{const g=CR.find(c=>c.id===$("tg").value),w=CR.find(c=>c.id===$("tw").value);$("tprev").innerHTML=`${stk(g,{force:1,noclick:1,noQty:1,noNew:1})}<span class="tarrow">⇄</span>${stk(w,{force:1,noclick:1,noQty:1,noNew:1})}`};
+  $("tg").onchange=upd;$("tw").onchange=upd;upd();
+  $("tmk").onclick=()=>{const o={g:$("tg").value,w:$("tw").value,ts:Date.now(),st:"open"},id=Math.random().toString(36).slice(2,8);ST.offers[id]=o;persist();
+   shareModal({title:"Link de troca pronto",text:offerText(o),url:offerUrl(id,o),extra:`<div class="tprev">${stk(CR.find(c=>c.id===o.g),{force:1,noclick:1,noQty:1,noNew:1})}<span class="tarrow">⇄</span>${stk(CR.find(c=>c.id===o.w),{force:1,noclick:1,noQty:1,noNew:1})}</div>`})}}
+}
+function copyOffer(id){const o=ST.offers[id];if(!o)return;copy(offerText(o)+" "+offerUrl(id,o),"Link da oferta copiado 📋")}
+function openTradeOffer(o){
+ const nick=cleanNick(String(o.n||"")),g=CR.find(c=>c.id===o.g),w=CR.find(c=>c.id===o.w);
+ if(!nick||!g||!w||!/^[a-z0-9]{4,10}$/.test(String(o.i||"")))return info("Link de troca inválido","Esse link está quebrado ou foi alterado.");
+ TRADE={i:o.i,n:nick,g:g.id,w:w.id};const me=ST.user;let msg,btn="";
+ if(!me){msg="Crie seu gato pra aceitar essa troca.";btn=`<button class="btn pri" onclick="${SIGNUP_CTA}">🐱 Criar meu gato</button>`}
+ else if(nick===me.nick)msg="Essa é a sua própria oferta. Mande o link pra um amigo.";
+ else if(ST.applied.includes(o.i))msg="Você já aceitou essa troca.";
+ else if((ST.album[w.id]||0)<2){msg=`Pra aceitar você precisa ter <b>${esc(w.n)}</b> repetida (${owned(w.id)?"você só tem 1 cópia":"você ainda não tem"}).`;btn=`<button class="btn" onclick="closeModal();openPackModal()">🎁 Abrir pacotes</button>`}
+ else{msg=`Você dá <b>${esc(w.n)}</b> (repetida) e recebe <b>${esc(g.n)}</b>${owned(g.id)?" — você já tem essa, ela vira repetida.":" — carta nova no seu álbum!"}`;btn=`<button class="btn pri" onclick="acceptTrade()">✅ Aceitar troca</button>`}
+ modal(`<h2 class="cond" style="font-size:30px"><span aria-hidden="true">🔁</span> @${esc(nick)} quer trocar</h2>
+ <div class="tprev"><div><div class="mut tl2">@${esc(nick)} dá</div>${stk(g,{force:1,noclick:1,noQty:1,noNew:1})}</div><span class="tarrow">⇄</span><div><div class="mut tl2">e quer</div>${stk(w,{force:1,noclick:1,noQty:1,noNew:1})}</div></div>
+ <p style="color:#c3cbe4;margin:12px 0">${msg}</p>${btn}<p class="mut" style="font-size:11px;margin-top:10px">Troca por confiança: aceite só se a oferta foi enviada pra você.</p>`);
+}
+function acceptTrade(){const o=TRADE;if(!o||!ST.user)return;const g=CR.find(c=>c.id===o.g),w=CR.find(c=>c.id===o.w);
+ if(ST.applied.includes(o.i)||(ST.album[w.id]||0)<2){toast("Essa troca não está mais disponível");return}
+ const wasNew=!owned(g.id);ST.album[w.id]--;ST.album[g.id]=(ST.album[g.id]||0)+1;ST.applied.push(o.i);ST.newIds=wasNew?[g.id]:[];ST.user.xp+=10;persist();refreshMe();
+ if(ST.view==="album")renderAlbum();
+ shareModal({title:"Troca feita! 🎉 Agora avise "+"@"+o.n,text:`✅ Aceitei sua troca no NÃO SALVO! Abre esse link pra receber ${w.n}:`,url:link("confirma="+b64e({i:o.i,n:ST.user.nick})),
+  extra:`<p style="color:#c3cbe4;margin-bottom:10px">Você recebeu <b>${esc(g.n)}</b>. Mande o link abaixo pra <b>@${esc(o.n)}</b> pra ele receber <b>${esc(w.n)}</b>.</p><div class="tprev">${stk(g,{force:1,noclick:1,noQty:1,noNew:1})}</div>`});
+}
+function applyConfirm(o){
+ if(!ST.user)return needLogin();const off=ST.offers[String(o.i||"")];
+ if(!off)return info("Confirmação não reconhecida","Essa oferta não foi criada neste navegador/conta.");
+ if(off.st==="done")return info("Essa troca já foi concluída","Nada mais a fazer por aqui.");
+ const g=CR.find(c=>c.id===off.g),w=CR.find(c=>c.id===off.w);
+ if((ST.album[g.id]||0)<2)return info("Não deu pra concluir",`Você não tem mais <b>${esc(g.n)}</b> repetida.`);
+ const wasNew=!owned(w.id);ST.album[g.id]--;ST.album[w.id]=(ST.album[w.id]||0)+1;off.st="done";off.with=cleanNick(String(o.n||""))||"um amigo";ST.newIds=wasNew?[w.id]:[];ST.user.xp+=10;persist();refreshMe();
+ info(`Troca concluída com @${off.with} 🎉`,`Você deu <b>${esc(g.n)}</b> e recebeu <b>${esc(w.n)}</b>.`,`<div class="tprev">${stk(w,{force:1,noclick:1,noQty:1,noNew:1})}</div>`);
+}
+
+/* ---------- perfil público (snapshot dentro do link) ---------- */
+const HEX=/^#[0-9a-f]{6}$/i;
+function cleanCat(c){c=c||{};const pick=(k,l,fb)=>l.map(val).includes(c[k])?c[k]:fb,col=(k,fb)=>HEX.test(c[k])?c[k]:fb;
+ return{fur:col("fur","#9e9e9e"),pattern:pick("pattern",OPT.pattern,"lisa"),eyes:col("eyes","#f5b400"),hair:pick("hair",OPT.hair,"nenhum"),hairc:col("hairc","#2b1d14"),acc:pick("acc",OPT.acc,"nenhum"),outfit:pick("outfit",OPT.outfit,"moletom"),bg:col("bg","#1f6bff")}}
+const ownedMask=()=>CR.map(c=>owned(c.id)?1:0).join("");
+const profileLink=u=>link("perfil="+b64e({n:u.nick,c:u.cat,x:u.xp,s:u.since,f:ST.favCard,o:ownedMask()}));
+function showcase(list,fav,force){const top=[...list].sort((a,b)=>RK.indexOf(b.r)-RK.indexOf(a.r)).filter(c=>!fav||c.id!==fav.id).slice(0,fav?5:6);return(fav?[fav,...top]:top).map(c=>stk(c,{force,noclick:1,noQty:1,noNew:1})).join("")}
+function vitrine(){const fav=CR.find(c=>c.id===ST.favCard&&owned(c.id)),mine=CR.filter(c=>owned(c.id));
+ return`<div class="panel" style="padding:16px;margin-bottom:18px"><div class="h4" style="margin-bottom:4px"><span aria-hidden="true">🏆</span> Minha vitrine</div><p style="font-size:12px;color:var(--mut);margin-bottom:12px">Sua carta favorita e as mais raras aparecem no seu perfil público.</p>${mine.length?`<div class="vit">${showcase(mine,fav,0)}</div>`:`<div class="yempty">Abra pacotes pra montar sua vitrine.</div>`}</div>`}
+async function sharePublic(){const u=ST.user,url=profileLink(u),text=`🐱 Meu perfil no NÃO SALVO: ${ownedCount()}/${CR.length} cartas · ${level(u.xp).name}. Vem comparar o álbum:`;
+ if(navigator.share){try{await navigator.share({title:`@${u.nick} no NÃO SALVO`,text,url});track("share");return}catch(e){if(e&&e.name==="AbortError")return}}
+ shareModal({title:"Meu perfil público",text,url})}
+function openPublicProfile(s){
+ const nick=cleanNick(String(s.n||""));if(!nick)return info("Perfil inválido","Esse link de perfil está quebrado.");
+ const cat=cleanCat(s.c),xp=Math.max(0,Math.min(1e7,+s.x||0)),since=+s.s>=1990&&+s.s<=CUR_YEAR?+s.s:null,mask=/^[01]{1,200}$/.test(s.o||"")?s.o:"",has=c=>mask[c.num-1]==="1";
+ const mine=CR.filter(has),lv=level(xp),fav=CR.find(c=>c.id===s.f&&has(c));let cmp="";
+ if(ST.user&&nick!==ST.user.nick){const theirs=mine.filter(c=>!owned(c.id)).length,mineDup=CR.filter(c=>(ST.album[c.id]||0)>1&&!has(c)).length;
+  cmp=`<div class="warn" style="margin:12px 0"><b>Comparando com você:</b> @${esc(nick)} tem <b>${theirs}</b> carta${theirs===1?"":"s"} que você não tem · você tem <b>${mineDup}</b> repetida${mineDup===1?"":"s"} que ele não tem.<div style="margin-top:8px"><button class="btn" onclick="openTrade()">🔁 Propor uma troca</button></div></div>`}
+ modal(`<div class="pubp"><div class="pav">${catSVG(cat,'width="100%" height="100%"')}</div><div>
+  <h2 class="cond" style="font-size:36px">@${esc(nick)}</h2><div style="color:var(--blue2);font-weight:700">${esc(lv.name)} · Nº ${memberNo(nick)}</div>
+  <div style="color:var(--mut);font-size:12px">${since?`Na internet desde ${since} · `:""}${xp.toLocaleString("pt-BR")} XP · ${mine.length}/${CR.length} cartas</div>
+  <div class="xpbar" style="margin-top:8px"><i style="width:${Math.round(mine.length/CR.length*100)}%"></i></div></div></div>
+  ${cmp}${mine.length?`<h3 class="cond" style="font-size:20px;margin:16px 0 8px">Vitrine</h3><div class="vit">${showcase(mine,fav,1)}</div>`:`<p class="mut" style="margin-top:14px">Esse internauta ainda não abriu pacotes.</p>`}
+  <div style="margin-top:16px">${ST.user?"":`<button class="btn pri" onclick="${SIGNUP_PLAIN}">🐱 Criar meu gato e montar meu álbum</button>`}</div>`);
+}
+
+/* ---------- feed vertical ---------- */
+let feedIO=null;
+function shuffled(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const fPoster=m=>ytId(m)?`<div class="fposter" style="${thumbStyle(m)}"><span aria-hidden="true">▶</span></div>`:`<div class="femoji" aria-hidden="true">${m.e}</div>`;
+function fItem(m){const yid=ytId(m),era=eraOf(m.y);
+ return`<article class="fi" data-id="${m.id}" data-yt="${yid||""}" aria-label="${esc(m.t)}, ${m.y}"><div class="fbg" style="${thumbStyle(m)}"></div><div class="fshade"></div>
+ <div class="fmedia">${fPoster(m)}</div>
+ <div class="finfo"><div class="frow"><span class="badge b-${m.r}">${m.r}</span><span class="fyear">${m.y} · ${era.ic} ${era.n}</span></div>
+ <h2 class="cond">${esc(m.t)}</h2><div class="fago">há ${CUR_YEAR-m.y} anos</div><p>${esc(m.d)}</p><div class="fby">⭐ descoberto por <b>@${esc(m.by)}</b> · 💾 <span id="sv_${m.id}">${m.sv}</span></div></div>
+ <div class="frail"><button class="fb" id="fs_${m.id}" aria-pressed="${isSaved(m.id)}" aria-label="Salvar na coleção" onclick="feedSave('${m.id}')">${isSaved(m.id)?"✅":"💾"}<small>Salvar</small></button>
+ <button class="fb" aria-label="Compartilhar meme" onclick="shareMeme('${m.id}')">📤<small>Enviar</small></button>
+ <button class="fb" aria-label="Ver detalhes" onclick="openMeme('${m.id}')">ℹ️<small>Detalhes</small></button>
+ <button class="fb" aria-label="Próximo meme" onclick="feedMove(1)">⬇<small>Próximo</small></button></div></article>`}
+function pFeed(){
+ $("page").innerHTML=`<div class="feedwrap"><div class="feed" id="feed" tabindex="0" role="feed" aria-label="Feed de memes. Use as setas para cima e para baixo para navegar e a tecla S para salvar.">${shuffled(ST.memes).slice(0,6).map(fItem).join("")}</div><p class="fkeys">⌨ ↑ ↓ navegar · S salvar</p></div>`;
+ observeFeed();$("feed").focus({preventScroll:true});
+}
+function observeFeed(){const f=$("feed");if(!f)return;
+ if(!feedIO)feedIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>=.65)activateFeed(e.target)}),{root:f,threshold:[.65]});
+ f.querySelectorAll(".fi:not([data-o])").forEach(el=>{el.dataset.o=1;feedIO.observe(el)})}
+function activateFeed(el){
+ document.querySelectorAll("#feed .fi.on").forEach(x=>{if(x!==el){x.classList.remove("on");if(x.dataset.yt){const mm=ST.memes.find(a=>a.id===x.dataset.id);x.querySelector(".fmedia").innerHTML=fPoster(mm)}}});
+ if(el.classList.contains("on"))return;el.classList.add("on");
+ if(el.dataset.yt)el.querySelector(".fmedia").innerHTML=`<iframe title="Vídeo do meme" src="https://www.youtube-nocookie.com/embed/${el.dataset.yt}?autoplay=1&mute=1&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+ ST._fv=ST._fv||new Set();if(!ST._fv.has(el.dataset.id)){ST._fv.add(el.dataset.id);track("feed")}
+ const items=[...document.querySelectorAll("#feed .fi")];if(items.indexOf(el)>=items.length-3){$("feed").insertAdjacentHTML("beforeend",shuffled(ST.memes).slice(0,6).map(fItem).join(""));observeFeed()}
+}
+function teardownFeed(){if(feedIO){feedIO.disconnect();feedIO=null}}
+function feedMove(d){const f=$("feed");if(!f)return;const it=[...f.querySelectorAll(".fi")];let i=it.findIndex(x=>x.classList.contains("on"));if(i<0)i=0;const t=it[Math.max(0,Math.min(it.length-1,i+d))];t&&t.scrollIntoView({behavior:RM()?"auto":"smooth",block:"start"})}
+function feedSave(id){const m=ST.memes.find(x=>x.id===id);if(!m)return;
+ if(isSaved(id)){ST.saved=ST.saved.filter(x=>x!==id);m.sv--;persist()}else{ST.saved.push(id);m.sv++;addXp(5,"meme na coleção");track("save")}
+ const b=$("fs_"+id);if(b){b.innerHTML=`${isSaved(id)?"✅":"💾"}<small>Salvar</small>`;b.setAttribute("aria-pressed",isSaved(id))}const s=$("sv_"+id);if(s)s.textContent=m.sv}
+document.addEventListener("keydown",e=>{if(ST.view!=="feed"||$("scrim")||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+ if(e.key==="ArrowDown"||e.key==="j"){e.preventDefault();feedMove(1)}else if(e.key==="ArrowUp"||e.key==="k"){e.preventDefault();feedMove(-1)}
+ else if(e.key==="s"||e.key==="S"){const a=document.querySelector("#feed .fi.on");a&&feedSave(a.dataset.id)}});
+
+/* ---------- efeito holográfico nas cartas (inclinação + brilho que segue o ponteiro) ---------- */
+let tiltEl=null;
+function resetTilt(t){["--rx","--ry","--mx","--my"].forEach(k=>t.style.removeProperty(k));t.classList.remove("tilting")}
+document.addEventListener("pointermove",e=>{
+ const t=e.target.closest?e.target.closest(".stk:not(.lock),.big.tilt"):null;
+ if(tiltEl&&tiltEl!==t)resetTilt(tiltEl);tiltEl=t||null;if(!t||RM())return;
+ const r=t.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+ t.style.setProperty("--rx",((px-.5)*16).toFixed(1)+"deg");t.style.setProperty("--ry",((.5-py)*16).toFixed(1)+"deg");t.style.setProperty("--mx",(px*100).toFixed(0)+"%");t.style.setProperty("--my",(py*100).toFixed(0)+"%");t.classList.add("tilting")});
+document.addEventListener("pointerleave",()=>{if(tiltEl){resetTilt(tiltEl);tiltEl=null}});
+addEventListener("hashchange",handleDL);
+
+/* =========================================================
+   BOOT
+   ========================================================= */
+getRef();captureDL();
+initLanding();
+if(restore())showApp();else handleDL();
+</script>
+</body>
+</html>

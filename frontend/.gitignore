@@ -1,0 +1,21 @@
+# Dependencies and cache
+node_modules/
+.npm/
+*.log
+
+# OS metadata
+Thumbs.db
+.DS_Store
+
+# IDE & Editor
+.vscode/
+.idea/
+
+# Temp files
+*.tmp
+inspect_*.py
+
+# Ferramentas locais e referencias visuais (nao fazem parte do projeto)
+.impeccable/
+.claude/
+docs/references/*.png

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NÃO SALVO — Museu da Internet Brasileira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04060d;--panel:#0a0f1c;--line:#14224a;--blue:#1d5bff;--neon:#3d8bff;--txt:#e8ecf6;--mut:#8590ad}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1200px 600px at 20% -10%,#0b1a45 0%,transparent 60%),var(--bg);color:var(--txt);font-family:Inter,sans-serif;min-height:100vh}
+h1,h2,h3,.disp{font-family:Rajdhani,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+header{display:flex;align-items:center;gap:24px;padding:14px 28px;border-bottom:1px solid #0f1830;flex-wrap:wrap}
+.logo{font-family:Rajdhani;font-weight:700;font-size:26px;line-height:.9;letter-spacing:1px}
+.logo small{display:block;font-size:10px;font-family:Inter;color:var(--mut);letter-spacing:0;font-weight:400;margin-top:4px}
+nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+nav button{padding:9px 14px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:.8px;color:var(--mut);text-transform:uppercase}
+nav button.on,nav button:hover{color:#fff;background:#0e1d4d;box-shadow:inset 0 -2px 0 var(--neon)}
+.search{background:#0a1226;border:1px solid var(--line);border-radius:10px;padding:9px 14px;color:var(--txt);width:240px;font-size:13px;outline:none}
+.search:focus{border-color:var(--neon)}
+.xp{font-size:12px;color:var(--mut);text-align:right}.xp b{color:var(--neon);display:block;font-size:13px}
+main{padding:24px 28px 60px;max-width:1280px;margin:0 auto}
+.top{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;align-items:center;margin-bottom:28px}
+.hero h1{font-size:clamp(38px,5vw,60px);line-height:.95;font-weight:700;letter-spacing:1px}
+.hero h1 em{font-style:normal;color:var(--neon);display:block}
+.hero p{color:var(--mut);margin:16px 0 20px;font-size:14px;max-width:340px;line-height:1.5}
+.btn{background:var(--blue);color:#fff;padding:12px 20px;border-radius:8px;font-weight:600;font-size:13px;letter-spacing:.5px;box-shadow:0 0 24px #1d5bff55}
+.btn:hover{background:#3a74ff}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+.sec-title{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.5px;color:var(--mut);font-weight:600;margin-bottom:10px;text-transform:uppercase}
+.sec-title a{color:var(--neon);cursor:pointer}
+.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);cursor:pointer;transition:.2s;text-align:left}
+.card:hover{transform:translateY(-3px);border-color:var(--neon);box-shadow:0 0 22px #1d5bff44}
+.thumb{aspect-ratio:4/3;display:grid;place-items:center;font-size:54px;position:relative}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000b)}
+.thumb i{position:absolute;left:10px;top:10px;z-index:2;font-style:normal;font-size:11px;background:#000a;padding:3px 7px;border-radius:5px;font-family:Rajdhani;letter-spacing:1px}
+.thumb span{position:relative;z-index:1;filter:drop-shadow(0 4px 12px #000a)}
+.meta{padding:10px 12px 12px}
+.meta h3{font-size:16px;font-weight:600;line-height:1.1}
+.meta small{color:var(--mut);font-size:12px}
+.tag{display:inline-block;font-size:9px;letter-spacing:1px;font-weight:700;padding:2px 6px;border-radius:4px;margin-top:6px;text-transform:uppercase;background:#1a1040;color:#a98bff;font-family:Inter}
+.tag.Lendário{background:#3a2a00;color:#ffc84d}.tag.Mítico{background:#3a0f2c;color:#ff6bb3}.tag.Clássico{background:#0b2a4a;color:#5cc0ff}
+.timeline{border:1px solid var(--neon);border-radius:18px;padding:18px 22px 24px;background:linear-gradient(180deg,#07112b,#060a16);box-shadow:0 0 40px #1d5bff33,inset 0 0 40px #1d5bff14;margin-bottom:24px}
+.years{display:flex;align-items:flex-end;justify-content:space-between;position:relative;padding:18px 0 8px;overflow-x:auto;gap:4px}
+.years::before{content:"";position:absolute;left:0;right:0;bottom:15px;height:2px;background:linear-gradient(90deg,transparent,var(--neon),transparent);box-shadow:0 0 10px var(--neon)}
+.y{flex:1;min-width:46px;text-align:center;position:relative;font-family:Rajdhani;font-weight:600;font-size:14px;color:#c6cfe6;padding-bottom:22px}
+.y::after{content:"";position:absolute;bottom:10px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.y.on{font-size:34px;color:#fff;text-shadow:0 0 18px var(--neon)}
+.y.on::after{width:14px;height:14px;margin-left:-7px;bottom:8px;background:#fff;box-shadow:0 0 14px #fff,0 0 28px var(--neon)}
+.y:hover{color:#fff}
+.stage{display:grid;grid-template-columns:90px 1fr 90px;gap:16px;align-items:center;margin-top:12px}
+.side{color:#55659a;text-align:center;cursor:pointer}
+.side:hover{color:#fff}
+.side b{display:block;font-family:Rajdhani;font-size:36px}
+.side small{font-size:11px}
+.cur{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:18px;background:#070c1b}
+.cur h2{font-size:56px;line-height:1;font-weight:700;text-shadow:0 0 20px #1d5bff88}
+.cur p{color:var(--mut);font-size:13px;margin:8px 0 14px;line-height:1.45}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mini .card .thumb{aspect-ratio:16/10;font-size:32px}
+.mini .meta{padding:6px 8px}.mini .meta h3{font-size:13px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+.fact{border:1px solid var(--line);border-radius:12px;padding:16px;background:#080d1b}
+.fact b{display:block;color:var(--neon);font-family:Rajdhani;letter-spacing:1px;text-transform:uppercase;font-size:13px;margin-bottom:4px}
+.fact span{font-size:12px;color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);padding:6px 12px;border-radius:99px;font-size:12px;color:var(--mut)}
+.chip.on,.chip:hover{border-color:var(--neon);color:#fff;background:#0e1d4d}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.modal{position:fixed;inset:0;background:#000c;display:none;place-items:center;z-index:9;padding:20px;backdrop-filter:blur(4px)}
+.modal.open{display:grid}
+.box{background:var(--panel);border:1px solid var(--neon);border-radius:16px;max-width:640px;width:100%;overflow:hidden;box-shadow:0 0 50px #1d5bff55}
+.box .thumb{aspect-ratio:16/8;font-size:90px}
+.box .body{padding:20px 24px 24px}
+.box h2{font-size:30px}
+.box p{color:#b9c2dc;font-size:14px;line-height:1.6;margin:10px 0 16px}
+.note{font-size:11px;color:#5d6a8f;text-align:center;margin-top:30px}
+.fade{animation:f .35s ease}
+@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:860px){.top,.cur{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.side{display:none}.facts{grid-template-columns:1fr 1fr}.search{width:100%}.rail{grid-template-columns:1fr 1fr}.rail .card:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NÃO<br>SALVO<small>Arquivo da internet brasileira</small></div>
+  <nav id="nav"></nav>
+  <input class="search" id="q" placeholder="Buscar vídeos, tags, criadores…">
+  <div id="acct"></div>
+</header>
+
+<main>
+  <section class="top">
+    <div class="hero">
+      <h1>E NO FIM<br>O PLANO DO<em>NÃO SALVO</em>ERA SALVAR.</h1>
+      <p>Um museu colaborativo de vídeos virais, memes e momentos inesquecíveis da nossa internet.</p>
+      <button class="btn" onclick="go(2012,true)">▦ EXPLORAR POR ANO</button>
+    </div>
+    <div>
+      <div class="sec-title"><span>Clássicos da internet brasileira</span><a onclick="setView('todos')">VER TODOS →</a></div>
+      <div class="rail" id="rail"></div>
+    </div>
+  </section>
+
+  <section class="timeline" id="tl">
+    <div class="sec-title"><span>◷ Linha do tempo da internet brasileira</span><a onclick="setView('todos')">VER TODOS OS ANOS</a></div>
+    <div class="years" id="years"></div>
+    <div class="stage">
+      <div class="side" id="prev"></div>
+      <div class="cur fade" id="cur"></div>
+      <div class="side" id="next"></div>
+    </div>
+  </section>
+
+  <section id="browse">
+    <div class="sec-title"><span id="browseTitle">Todos os registros</span></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="facts">
+    <div class="fact"><b>Colaborativo</b><span>A comunidade envia, edita e preserva a história.</span></div>
+    <div class="fact"><b>Organizado</b><span>Separado por ano, categoria e contexto.</span></div>
+    <div class="fact"><b>Eternizado</b><span>Se caiu na internet, aqui fica pra sempre.</span></div>
+    <div class="fact"><b>Você está aqui há</b><span id="timer">0m</span></div>
+  </section>
+  <p class="note">Protótipo inicial · os registros são exemplos para testar a navegação e precisam ser revisados antes de virar acervo de verdade.</p>
+</main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeM()"><div class="box" id="box"></div></div>
+
+<script>
+// ---- DADOS (exemplos; cada ano tem um resumo de "o que rolava" + registros) ----
+const YEARS = {
+2004:{lema:"O ano do Orkut",txt:"O Orkut chega e rapidamente vira a rede social dos brasileiros. Depoimentos, comunidades e scraps dominam as noites.",
+  items:[["Orkut vira febre","📒","Clássico","Comunidades, depoimentos e scraps: a primeira grande rede social de massa no Brasil.","Redes"],
+         ["Era dos Fotologs","📷","Relíquia","Fotos de espelho, textos coloridos e comentários em sequência.","Redes"],
+         ["MSN e os nicks","💬","Clássico","Nomes com símbolos, recadinhos de status e o barulhinho de aviso.","Cultura"]]},
+2005:{lema:"Nasce o YouTube",txt:"Vídeos começam a circular pela web. Lan houses lotadas e conversas no MSN até de madrugada.",
+  items:[["Chegada do YouTube","▶️","Clássico","O site de vídeos é criado e muda a forma de circular conteúdo.","Vídeos"],
+         ["Lan houses","🖥️","Relíquia","Ponto de encontro para jogos, Orkut e downloads demorados.","Cultura"],
+         ["Correntes de e-mail","✉️","Clássico","Encaminhe para 10 pessoas ou tenha azar. Todo mundo recebia uma.","Cultura"]]},
+2006:{lema:"Vídeos caseiros",txt:"Câmeras de celular e webcams alimentam os primeiros vídeos caseiros virais. O Twitter nasce lá fora.",
+  items:[["Primeiros virais","🎞️","Relíquia","Vídeos de baixa qualidade que passavam de e-mail em e-mail.","Vídeos"],
+         ["Comunidades do Orkut","👥","Clássico","\"Eu odeio acordar cedo\" e milhares de outras comunidades.","Redes"],
+         ["Ringtones e MP3","🎵","Relíquia","Toques polifônicos e músicas baixadas em programas de compartilhamento.","Música"]]},
+2007:{lema:"O filme que vazou",txt:"Cópias de um filme nacional circulam pela internet antes do lançamento e viram assunto nacional.",
+  items:[["Tropa de Elite vaza","🎬","Lendário","Cópias circularam antes da estreia e a frase do filme virou bordão.","Vídeos"],
+         ["Fotolog x Orkut","⚔️","Relíquia","Duas formas de se mostrar: o álbum e o perfil.","Redes"],
+         ["Bordões de filme","📢","Clássico","Frases repetidas em recados, comunidades e rodas de amigos.","Cultura"]]},
+2008:{lema:"Memes de rede",txt:"As imagens com frases viram linguagem. Fóruns e blogs espalham piadas internas para todo o país.",
+  items:[["Imagens com texto","🖼️","Clássico","Fotos com legendas engraçadas circulando em fóruns e blogs.","Imagens"],
+         ["Blogs pessoais","📝","Relíquia","Diários públicos com layout customizado e música tocando sozinha.","Cultura"],
+         ["Vídeos de reação","😂","Relíquia","Gente reagindo a tudo, antes de isso ter nome.","Vídeos"]]},
+2009:{lema:"Twitter e trending topics",txt:"O Twitter ganha força no Brasil e os assuntos mais comentados passam a ser disputados.",
+  items:[["Trending topics","📈","Clássico","Hashtags brasileiras começam a aparecer nos assuntos do mundo.","Redes"],
+         ["Fim de uma era?","🌀","Relíquia","Usuários começam a migrar dos scraps para as timelines.","Redes"],
+         ["Memes de TV","📺","Clássico","Cenas de novelas e programas viram figurinhas e piadas.","TV"]]},
+2010:{lema:"Copa, vuvuzela e Galvão",txt:"A Copa da África do Sul rende campanhas no Twitter e memes de narração.",
+  items:[["Cala a boca, Galvão","🎙️","Lendário","Campanha na internet durante a Copa que virou assunto mundial.","Esportes"],
+         ["Vuvuzelas","📯","Clássico","O zumbido do estádio virou piada em tudo.","Esportes"],
+         ["Memes de Copa","⚽","Clássico","Fotos de jogadores e torcedores viram imagem de reação.","Esportes"]]},
+2011:{lema:"Ai se eu te pego",txt:"Uma música explode nas redes, ganha coreografia em estádios do mundo todo e vira fenômeno.",
+  items:[["Ai se eu te pego","🕺","Lendário","Fenômeno musical que tomou conta de vídeos, danças e comemorações.","Música"],
+         ["YouTube brasileiro","▶️","Clássico","Criadores nacionais começam a ganhar audiência própria.","Vídeos"],
+         ["Rage comics","😤","Relíquia","Quadrinhos simples com rostos prontos para qualquer situação.","Imagens"]]},
+2012:{lema:"O ano do caos absoluto no Facebook",txt:"O Facebook passa a Orkut no Brasil. Páginas de humor, compartilhamentos e músicas de fora viram febre.",
+  items:[["Facebook passa o Orkut","👍","Mítico","A migração em massa que mudou o rumo das redes no país.","Redes"],
+         ["Gangnam Style","🐴","Lendário","A dança do cavalinho chega a festas, escolas e programas de TV.","Música"],
+         ["Páginas de humor","😆","Clássico","Imagens, correntes e compartilhamentos em escala nunca vista.","Imagens"],
+         ["Era do \"Curtir e compartilhar\"","🔁","Relíquia","Posts pedindo curtidas, compartilhamentos e \"amém\".","Cultura"]]},
+2013:{lema:"Junho e os memes",txt:"As ruas e as redes se misturam. Os cartazes e frases viram memes em tempo real.",
+  items:[["Protestos de junho","🪧","Lendário","As redes sociais foram o centro da mobilização e das piadas.","Política"],
+         ["Luiza no Canadá","🍁","Mítico","Um vídeo de turista virou frase usada por todo mundo.","Vídeos"],
+         ["Doge","🐕","Clássico","O meme do cachorro com frases em fonte colorida.","Imagens"]]},
+2014:{lema:"7x1",txt:"A Copa é no Brasil e a derrota para a Alemanha gera a maior onda de memes esportivos já vista.",
+  items:[["7 x 1","😭","Lendário","Um placar que virou bordão e ponto de referência para tudo.","Esportes"],
+         ["Desafio do balde","🧊","Clássico","Vídeos de gente jogando água gelada por uma causa.","Vídeos"],
+         ["Memes de Copa","🏆","Clássico","Torcida, lágrimas e piadas rápidas.","Esportes"]]},
+2015:{lema:"A cor do vestido",txt:"Uma foto de vestido divide a internet. O humor político e os cortes de vídeo viram marca registrada.",
+  items:[["O vestido azul e preto","👗","Lendário","Uma única foto, duas cores, milhões de discussões.","Imagens"],
+         ["Saudando a mandioca","🌿","Mítico","Um discurso político virou bordão e remix.","Política"],
+         ["Vídeos de reação","🎧","Clássico","Streamers e youtubers brasileiros dominam a audiência.","Vídeos"]]},
+2016:{lema:"Pokémon Go e Vine",txt:"Gente na rua atrás de bichinhos. Vídeos curtos começam a ocupar o lugar dos textos.",
+  items:[["Pokémon Go","📱","Lendário","Praças lotadas de gente com o celular na mão.","Games"],
+         ["Bela, recatada e do lar","🏠","Clássico","Uma manchete que virou piada por semanas.","Política"],
+         ["Vídeos curtos","🎬","Relíquia","Os seis segundos do Vine e as primeiras dancinhas.","Vídeos"]]},
+2017:{lema:"Stories e fidget spinner",txt:"Os Stories mudam a forma de postar. O brinquedo giratório toma conta das escolas.",
+  items:[["Stories em tudo","⭕","Clássico","Fotos e vídeos que somem em 24 horas.","Redes"],
+         ["Fidget spinner","🌀","Relíquia","O brinquedo que todo mundo tinha na mochila.","Cultura"],
+         ["Memes de WhatsApp","🟢","Clássico","Figurinhas, áudios longos e correntes de bom dia.","Cultura"]]},
+2018:{lema:"TikTok chega",txt:"O app de vídeos curtos cresce muito e a internet vira um grande palco de dancinhas.",
+  items:[["TikTok explode","🎵","Lendário","O aplicativo vira o centro da cultura jovem.","Redes"],
+         ["Copa e memes","⚽","Clássico","Mais uma Copa, mais uma enxurrada de imagens.","Esportes"],
+         ["Fake news no zap","📨","Relíquia","Correntes enganosas ganham as redes em ano eleitoral.","Política"]]},
+2019:{lema:"Era dos desafios",txt:"Desafios, dancinhas e remix de áudio. Qualquer frase pode virar tendência em horas.",
+  items:[["Desafios virais","🎯","Clássico","Todo mundo repete a mesma coreografia ou piada.","Vídeos"],
+         ["Memes de áudio","🔊","Clássico","Trechos curtos viram trilha de milhares de vídeos.","Vídeos"],
+         ["Lives de música","🎤","Lendário","As transmissões ao vivo viram evento nacional.","Música"]]},
+"2020+":{lema:"Pandemia, lives e o agora",txt:"Isolamento, videochamadas e memes de quarentena. A internet vira praça, escola e escritório.",
+  items:[["Memes de quarentena","😷","Lendário","Humor para lidar com a rotina trancada em casa.","Cultura"],
+         ["Reuniões por vídeo","💻","Clássico","\"Você está mudo\" virou frase universal.","Cultura"],
+         ["IA e novos memes","🤖","Mítico","Imagens e vozes geradas por inteligência artificial viram piada.","Imagens"]]}
+};
+const KEYS = Object.keys(YEARS);
+const GRAD = ["#1d3a8a,#0b0f2a","#5b1d8a,#14061f","#8a3a1d,#2a0f06","#1d8a6e,#06241d","#8a1d4a,#240614","#1d6e8a,#06202a","#7a8a1d,#1f2406"];
+const grad = s => "linear-gradient(135deg,"+GRAD[[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%GRAD.length]+")";
+
+// flatten
+let ALL = [];
+KEYS.forEach(y=>YEARS[y].items.forEach(([t,e,r,d,c])=>ALL.push({t,e,r,d,c,y})));
+const CLASSICS = ["Ai se eu te pego","7 x 1","Cala a boca, Galvão","Gangnam Style","Luiza no Canadá","O vestido azul e preto"].map(n=>ALL.find(a=>a.t===n)).filter(Boolean);
+
+let cur = "2012", cat = "Todas", query = "", view = "ano";
+
+const $ = id => document.getElementById(id);
+const card = (a, big) => `<button class="card" onclick="openM('${a.t.replace(/'/g,"\\'")}')">
+  <div class="thumb" style="background:${grad(a.t)}"><i>${a.y}</i><span>${a.e}</span></div>
+  <div class="meta"><h3>${a.t}</h3>${big?`<small>${a.c}</small><br>`:""}<span class="tag ${a.r}">${a.r}</span></div></button>`;
+
+function renderNav(){
+  const items=[["ano","Início"],["ano","Explorar por ano"],["cat","Categorias"],["rand","Aleatório"],["rank","Ranking"]];
+  $("nav").innerHTML = items.map((x,i)=>`<button class="${(x[0]===view&&i!==1&&i!==0)||(i===0&&view==='ano')?'on':''}" onclick="nav('${x[0]}',${i})">${x[1]}</button>`).join("");
+}
+function nav(k,i){
+  if(k==="rand"){const a=ALL[Math.floor(Math.random()*ALL.length)];go(a.y);openM(a.t);return}
+  if(k==="ano"){i===0?window.scrollTo({top:0,behavior:"smooth"}):$("tl").scrollIntoView({behavior:"smooth"});setView("ano");return}
+  setView(k);$("browse").scrollIntoView({behavior:"smooth"});
+}
+function setView(v){view=v;if(v==="todos"||v==="cat"||v==="rank"){query="";$("q").value="";cat="Todas"}renderNav();renderGrid();if(v!=="ano")$("browse").scrollIntoView({behavior:"smooth"})}
+
+function renderYears(){
+  $("years").innerHTML = KEYS.map(y=>`<button class="y ${y===cur?'on':''}" onclick="go('${y}')">${y}</button>`).join("");
+  const el=$("years").querySelector(".on"); el&&el.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
+}
+function renderCur(){
+  const i=KEYS.indexOf(cur), d=YEARS[cur], p=KEYS[i-1], n=KEYS[i+1];
+  $("prev").innerHTML = p?`<b>${p}</b><small>‹ anterior</small>`:"";
+  $("next").innerHTML = n?`<b>${n}</b><small>próximo ›</small>`:"";
+  $("prev").onclick = ()=>p&&go(p); $("next").onclick = ()=>n&&go(n);
+  const el=$("cur"); el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
+  el.innerHTML = `<div><h2 class="disp">${cur}</h2><div class="disp" style="color:var(--neon);font-size:17px;font-weight:600;margin-top:4px">${d.lema}</div>
+    <p>${d.txt}</p><button class="btn" onclick="setView('ano');$('browse').scrollIntoView({behavior:'smooth'})">EXPLORAR ${cur} →</button></div>
+    <div class="mini">${d.items.slice(0,3).map(it=>card({t:it[0],e:it[1],r:it[2],d:it[3],c:it[4],y:cur})).join("")}</div>`;
+  // fix: put title+text left, cards right
+}
+function renderGrid(){
+  let list = ALL;
+  let title = "Todos os registros";
+  if(view==="ano"&&!query){list=ALL.filter(a=>a.y===cur);title="Registros de "+cur}
+  if(view==="rank"){list=[...ALL].sort((a,b)=>["Mítico","Lendário","Clássico","Relíquia"].indexOf(a.r)-["Mítico","Lendário","Clássico","Relíquia"].indexOf(b.r));title="Ranking por raridade"}
+  if(query){const q=query.toLowerCase();list=ALL.filter(a=>(a.t+a.d+a.c+a.y).toLowerCase().includes(q));title=`Busca: “${query}”`}
+  if(cat!=="Todas")list=list.filter(a=>a.c===cat);
+  $("browseTitle").textContent=title;
+  const cats=["Todas",...new Set(ALL.map(a=>a.c))];
+  $("chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" onclick="cat='${c}';renderGrid()">${c}</button>`).join("");
+  $("grid").innerHTML=list.length?list.map(a=>card(a,true)).join(""):`<p style="color:var(--mut)">Nada por aqui ainda. Que tal ser o primeiro a salvar?</p>`;
+}
+function go(y,scroll){cur=String(y);view="ano";query="";$("q").value="";cat="Todas";renderNav();renderYears();renderCur();renderGrid();history.replaceState(null,"","#"+cur.replace("+","mais"));if(scroll)$("tl").scrollIntoView({behavior:"smooth"})}
+
+function openM(t){
+  const a=ALL.find(x=>x.t===t); if(!a)return;
+  $("box").innerHTML=`<div class="thumb" style="background:${grad(a.t)}"><i>${a.y}</i><span>${a.e}</span></div>
+  <div class="body"><span class="tag ${a.r}">${a.r}</span> <span class="tag" style="background:#10182f;color:#8590ad">${a.c}</span>
+  <h2 class="disp" style="margin-top:8px">${a.t}</h2><p>${a.d}</p>
+  <p style="font-size:12px;color:#6b7799">Contexto de ${a.y}: ${YEARS[a.y].lema}.</p>
+  <div style="display:flex;gap:10px"><button class="btn" onclick="go('${a.y}');closeM();$('tl').scrollIntoView({behavior:'smooth'})">Ver o ano ${a.y}</button><button class="btn ghost" onclick="closeM()">Fechar</button></div></div>`;
+  $("modal").classList.add("open");
+}
+function closeM(){$("modal").classList.remove("open")}
+
+$("q").addEventListener("input",e=>{query=e.target.value.trim();renderGrid()});
+document.addEventListener("keydown",e=>{
+  if(e.target.tagName==="INPUT")return;
+  if(e.key==="Escape")closeM();
+  const i=KEYS.indexOf(cur);
+  if(e.key==="ArrowRight"&&KEYS[i+1])go(KEYS[i+1]);
+  if(e.key==="ArrowLeft"&&KEYS[i-1])go(KEYS[i-1]);
+});
+$("rail").innerHTML=CLASSICS.slice(0,3).map(a=>card(a)).join("");
+const t0=Date.now();setInterval(()=>{const m=Math.floor((Date.now()-t0)/60000);$("timer").textContent=m+"m explorando a história da internet"},15000);
+$("timer").textContent="0m explorando a história da internet";
+
+const h=location.hash.slice(1).replace("mais","+");
+if(YEARS[h]) cur=h;
+renderNav();renderYears();renderCur();renderGrid();
+</script>
+<style>
+.sg-cta{background:linear-gradient(90deg,#1d5bff,#7a4dff);color:#fff;font-weight:800;letter-spacing:.6px;font-size:12px;padding:10px 16px;border-radius:99px;border:2px solid #fff;box-shadow:0 0 18px #3d6bff88;cursor:pointer;font-family:inherit}
+.sg-acct{display:flex;align-items:center;gap:10px;color:#fff;text-align:left;font-size:13px;line-height:1.15;cursor:pointer;background:none;border:0;font-family:inherit}
+.sg-acct b{display:block;color:#6fb0ff;font-size:12px}
+.sg-av{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid #3d8bff;display:block;flex:none}
+.sg-av svg{display:block;width:100%;height:100%}
+#sgm{position:fixed;inset:0;z-index:50;background:#000d;display:none;overflow:auto;padding:20px;backdrop-filter:blur(5px);font-family:Inter,Nunito,sans-serif;color:#e8ecf6}
+#sgm.open{display:block}
+.sg-box{max-width:1080px;margin:0 auto;background:#05080f;border:1px solid #17306e;border-radius:18px;box-shadow:0 0 60px #1d5bff44;display:grid;grid-template-columns:300px 300px 1fr;gap:26px;padding:26px;position:relative}
+.sg-x{position:absolute;right:14px;top:10px;font-size:26px;color:#8590ad;cursor:pointer;background:none;border:0}
+.sg-box h2{font-family:Rajdhani,"Baloo 2",sans-serif;font-size:34px;line-height:1;font-weight:700;margin:8px 0}
+.sg-box h2 em{font-style:normal;color:#3d8bff;display:block}
+.sg-box p.s{color:#8590ad;font-size:13px;line-height:1.5;margin-bottom:14px}
+.sg-step{display:inline-block;font-size:10px;letter-spacing:1px;color:#6fb0ff;border:1px solid #1d3a8a;border-radius:6px;padding:3px 8px}
+.sg-box label{display:block;font-size:10px;letter-spacing:1px;color:#8590ad;margin:12px 0 5px;font-weight:700;text-transform:uppercase}
+.sg-box input.t{width:100%;background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:12px;color:#fff;font:inherit;font-size:13px;outline:0}
+.sg-box input.t:focus{border-color:#3d8bff}
+.sg-err{color:#ff6b8a;font-size:12px;min-height:16px;margin-top:8px}
+.sg-go{width:100%;margin-top:10px;padding:14px;border-radius:8px;background:linear-gradient(180deg,#2a6bff,#1245c8);color:#fff;font-weight:700;letter-spacing:1px;border:0;cursor:pointer;font:inherit;font-weight:700;box-shadow:0 0 24px #1d5bff66}
+.sg-soc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sg-soc button{background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:11px;color:#cfd6ee;font:inherit;font-size:13px;cursor:pointer}
+.sg-pv{text-align:center}
+.sg-pv .big{width:260px;height:260px;margin:14px auto 12px;border-radius:50%;overflow:hidden;border:4px solid #12286a;box-shadow:0 0 40px #1d5bff77}
+.sg-pv .big svg{width:100%;height:100%;display:block}
+.sg-shuf{background:#0a1020;border:1px solid #17306e;border-radius:8px;padding:9px 14px;color:#cfd6ee;font:inherit;font-size:12px;cursor:pointer}
+.sg-tabs{display:flex;gap:4px;border-bottom:1px solid #17306e;margin-bottom:14px}
+.sg-tabs button{flex:1;padding:10px 4px;font-size:11px;font-weight:700;letter-spacing:.8px;color:#8590ad;background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;text-transform:uppercase}
+.sg-tabs button.on{color:#fff;border-color:#3d8bff}
+.sg-opts h5{font-size:10px;letter-spacing:1.2px;color:#8590ad;margin:12px 0 8px;font-weight:700}
+.sg-row{display:flex;flex-wrap:wrap;gap:8px}
+.sg-o{min-width:52px;min-height:52px;border-radius:12px;border:2px solid #17306e;background:#0a1020;display:grid;place-items:center;cursor:pointer;color:#cfd6ee;font:inherit;font-size:11px;padding:4px 8px;text-align:center;line-height:1.15}
+.sg-o.on{border-color:#3d8bff;box-shadow:0 0 12px #3d8bff88}
+.sg-o i{display:block;width:34px;height:34px;border-radius:50%;border:1px solid #fff3;margin:0 auto}
+.sg-o span{font-size:20px;display:block}
+.sg-o.sq{border-radius:10px}
+.sg-note{font-size:11px;color:#5d6a8f;margin-top:14px;line-height:1.4}
+@media(max-width:980px){.sg-box{grid-template-columns:1fr}}
+</style>
+
+<div id="sgm" onclick="if(event.target===this)closeSignup()">
+  <div class="sg-box">
+    <button class="sg-x" onclick="closeSignup()" aria-label="Fechar">×</button>
+    <div>
+      <span class="sg-step">PASSO 1 DE 1</span>
+      <h2>CRIAR CONTA<br>É SÓ O COMEÇO.<em>CRIE SEU AVATAR.</em></h2>
+      <p class="s">Todo mundo começa com o mesmo gato.<br>A internet é sua. O estilo também.</p>
+      <label>Nome de usuário</label><input class="t" id="sgU" placeholder="ex: internauta_2006" maxlength="20">
+      <label>E-mail</label><input class="t" id="sgE" type="email" placeholder="ex: voce@email.com">
+      <label>Senha</label><input class="t" id="sgP" type="password" placeholder="Crie uma senha segura">
+      <div class="sg-err" id="sgErr"></div>
+      <button class="sg-go" onclick="submitSignup()">CONTINUAR →</button>
+      <p class="s" style="text-align:center;margin:10px 0 4px">ou cadastre-se com</p>
+      <div class="sg-soc"><button onclick="this.textContent='Em breve'">Google</button><button onclick="this.textContent='Em breve'">Discord</button></div>
+    </div>
+    <div class="sg-pv">
+      <div style="font-weight:700;letter-spacing:.5px">🐾 PERSONALIZE SEU GATO</div>
+      <div class="s" style="color:#8590ad;font-size:12px">Neste museu, todo avatar é um gatinho.</div>
+      <div class="big" id="sgBig"></div>
+      <button class="sg-shuf" onclick="sgShuffle()">🔀 EMBARALHAR TUDO</button>
+    </div>
+    <div class="sg-opts">
+      <div class="sg-tabs" id="sgTabs"></div>
+      <div id="sgOpts"></div>
+      <p class="sg-note">Protótipo: nenhuma conta real é criada. O avatar e o nome ficam salvos só neste navegador, e a senha não é guardada.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const SG={
+ fur:[["Cinza","#9b9ba1"],["Laranja","#e8932f"],["Preto","#24242a"],["Branco","#f2eee6"],["Marrom","#8a6a45"],["Grafite","#5b5c66"],["Creme","#e6c99a"],["Azulado","#7d8ca6"],["Chocolate","#4a3226"],["Rosa","#e69ad0"]],
+ pat:["Liso","Tigrado","Pintado","Smoking","Máscara"],
+ eye:[["Âmbar","#e6a21a"],["Verde","#5bbf3a"],["Azul","#2f8cff"],["Esmeralda","#19c29a"],["Roxo","#9a5cff"]],
+ acc:[["Nenhum","🚫"],["Óculos redondo","👓"],["Óculos escuro","🕶️"],["Boné","🧢"],["Gorro","🧶"],["Fone","🎧"],["Bandana","🧣"],["Corrente","⛓️"],["Monóculo","🧐"]],
+ clo:[["Hoodie","#1c1c24"],["Camiseta","#ececec"],["Jaqueta jeans","#3d6aa8"],["Maletom","#cfc7b4"],["Jaqueta bomber","#4b5a3a"],["Camisa xadrez","#b3262d"],["Regata","#22222a"],["Pelado","#0000"]],
+ bg:[["Azul",["#2a6bff","#0a2a8a"]],["Roxo",["#7a4dff","#2a1070"]],["Rosa",["#ff6bd0","#7a2aa8"]],["Verde",["#19c29a","#06503f"]],["Sol",["#ffb12a","#d9561a"]],["Noite",["#1a1f4a","#05060f"]],["Menta",["#7ef0c8","#1a8a7a"]],["Vermelho",["#ff5a6a","#7a1030"]]]
+};
+let sgN=0;
+function catSVG(o){
+  const id="g"+(sgN++),fur=SG.fur[o.fur][1],eye=SG.eye[o.eye][1],bg=SG.bg[o.bg][1],clo=o.clo,acc=o.acc,pat=o.pat;
+  const dk="rgba(0,0,0,.28)";
+  let s=`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${id}" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="${bg[0]}"/><stop offset="1" stop-color="${bg[1]}"/></radialGradient>
+  <pattern id="${id}p" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 6H12M6 0V12" stroke="#00000055" stroke-width="2"/></pattern></defs>
+  <rect width="200" height="200" fill="url(#${id})"/>`;
+  // corpo
+  s+=`<path d="M28 205Q30 150 72 140L128 140Q170 150 172 205Z" fill="${fur}"/>`;
+  const cc=SG.clo[clo][1];
+  if(clo===0) s+=`<path d="M28 205Q30 150 72 140Q100 166 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M60 146Q100 176 140 146" stroke="#2b2b38" stroke-width="7" fill="none"/><path d="M92 165v26M108 165v26" stroke="#ddd" stroke-width="2"/><path d="M70 188h60l6 17H64z" fill="#15151c"/>`;
+  else if(clo===1) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M76 142Q100 160 124 142" stroke="#bbb" stroke-width="3" fill="none"/>`;
+  else if(clo===2) s+=`<path d="M28 205Q30 150 72 140L100 168L128 140Q170 150 172 205Z" fill="${cc}"/><path d="M100 168V205M72 140L88 176M128 140L112 176" stroke="#25497c" stroke-width="2.5"/><rect x="40" y="178" width="20" height="9" fill="#2f5a95"/>`;
+  else if(clo===3) s+=`<path d="M28 205Q30 150 72 140Q100 154 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M72 146Q100 164 128 146" stroke="#a99f88" stroke-width="6" fill="none"/>`;
+  else if(clo===4) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M100 158V205" stroke="#2c3a20" stroke-width="3"/><path d="M62 144Q100 164 138 144" stroke="#d98a2a" stroke-width="6" fill="none"/>`;
+  else if(clo===5) s+=`<path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="${cc}"/><path d="M28 205Q30 150 72 140Q100 158 128 140Q170 150 172 205Z" fill="url(#${id}p)"/><path d="M80 144L100 166L120 144" stroke="#7a1218" stroke-width="3" fill="none"/>`;
+  else if(clo===6) s+=`<path d="M68 142L76 205M132 142L124 205" stroke="${cc}" stroke-width="10"/><path d="M76 205Q100 180 124 205" fill="${fur}"/>`;
+  // bandana atrás do rosto
+  if(acc===6) s+=`<path d="M62 138Q100 150 138 138L100 182Z" fill="#d6282f"/><circle cx="90" cy="150" r="2" fill="#fff"/><circle cx="108" cy="150" r="2" fill="#fff"/><circle cx="99" cy="164" r="2" fill="#fff"/>`;
+  // orelhas
+  const ear=pat===4?"#4b3a30":fur;
+  s+=`<path d="M54 76L56 26L96 56Z" fill="${ear}"/><path d="M146 76L144 26L104 56Z" fill="${ear}"/><path d="M62 64L63 38L84 55Z" fill="#e89aa8"/><path d="M138 64L137 38L116 55Z" fill="#e89aa8"/>`;
+  // cabeça
+  s+=`<ellipse cx="100" cy="98" rx="54" ry="47" fill="${fur}"/>`;
+  if(pat===1) s+=`<g stroke="${dk}" stroke-width="4" stroke-linecap="round" fill="none"><path d="M100 53v15M88 55l3 13M112 55l-3 13M48 96h14M50 107h14M152 96h-14M150 107h-14"/></g>`;
+  if(pat===2) s+=`<g fill="${dk}"><circle cx="70" cy="68" r="7"/><circle cx="132" cy="72" r="6"/><circle cx="56" cy="104" r="6"/><circle cx="146" cy="100" r="7"/><circle cx="104" cy="62" r="4"/></g>`;
+  if(pat===3) s+=`<path d="M100 52Q92 74 94 96L106 96Q108 74 100 52Z" fill="#f4f1ea"/><ellipse cx="100" cy="120" rx="26" ry="18" fill="#f4f1ea"/>`;
+  if(pat===4) s+=`<ellipse cx="100" cy="106" rx="34" ry="30" fill="#4b3a30" opacity=".6"/>`;
+  s+=`<ellipse cx="100" cy="118" rx="20" ry="13" fill="#fff" opacity=".22"/>`;
+  // olhos
+  [[80,96],[120,96]].forEach(([x,y])=>{s+=`<ellipse cx="${x}" cy="${y}" rx="11.5" ry="12.5" fill="${eye}"/><ellipse cx="${x}" cy="${y}" rx="4.6" ry="9.5" fill="#101018"/><circle cx="${x-3.5}" cy="${y-4.5}" r="2.8" fill="#fff"/><circle cx="${x+3}" cy="${y+4}" r="1.3" fill="#fff" opacity=".8"/>`});
+  s+=`<path d="M94 112h12l-6 7z" fill="#e58b9b"/><path d="M100 119v4M100 123q-6 6-12 2M100 123q6 6 12 2" stroke="#3a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <g stroke="#fff" stroke-opacity=".75" stroke-width="1.2" stroke-linecap="round"><path d="M70 116L38 110M70 122L40 126M130 116L162 110M130 122L160 126"/></g>`;
+  // acessórios
+  if(acc===1) s+=`<g fill="none" stroke="#2a2a30" stroke-width="3"><circle cx="80" cy="96" r="15"/><circle cx="120" cy="96" r="15"/><path d="M95 94h10M65 92L52 86M135 92L148 86"/></g>`;
+  if(acc===2) s+=`<g fill="#0c0c12"><rect x="62" y="84" width="34" height="22" rx="8"/><rect x="104" y="84" width="34" height="22" rx="8"/></g><path d="M96 90h8M62 90L50 84M138 90L150 84" stroke="#0c0c12" stroke-width="3"/><path d="M68 90h12" stroke="#fff" stroke-opacity=".4" stroke-width="2"/>`;
+  if(acc===3) s+=`<path d="M52 66Q54 24 100 24Q146 24 148 66Q100 54 52 66Z" fill="#2d5bd1"/><path d="M52 64Q100 50 148 64Q170 68 176 76Q120 62 52 70Z" fill="#1c3f9c"/><circle cx="100" cy="24" r="4" fill="#1c3f9c"/>`;
+  if(acc===4) s+=`<path d="M50 70Q52 20 100 20Q148 20 150 70Q100 58 50 70Z" fill="#c8402f"/><rect x="48" y="62" width="104" height="14" rx="7" fill="#9e2e20"/><circle cx="100" cy="16" r="7" fill="#e2e2e2"/>`;
+  if(acc===5) s+=`<path d="M50 100Q42 20 100 20Q158 20 150 100" stroke="#222" stroke-width="7" fill="none"/><rect x="38" y="82" width="18" height="34" rx="9" fill="#2a2a36"/><rect x="144" y="82" width="18" height="34" rx="9" fill="#2a2a36"/><rect x="42" y="88" width="8" height="22" rx="4" fill="#3d8bff"/><rect x="150" y="88" width="8" height="22" rx="4" fill="#3d8bff"/>`;
+  if(acc===7) s+=`<path d="M66 144Q100 178 134 144" stroke="#f0c040" stroke-width="5" fill="none" stroke-dasharray="7 3"/>`;
+  if(acc===8) s+=`<circle cx="120" cy="96" r="16" fill="#ffffff14" stroke="#d4a82a" stroke-width="3"/><path d="M134 108Q142 140 130 170" stroke="#d4a82a" stroke-width="1.8" fill="none"/>`;
+  return s+"</svg>";
+}
+const rnd=n=>Math.floor(Math.random()*n);
+let sgO={fur:0,pat:1,eye:0,acc:0,clo:0,bg:0},sgTab=0,sgAcct=null;
+try{sgAcct=JSON.parse(localStorage.getItem("naosalvo_acct")||"null")}catch(e){}
+if(sgAcct)sgO=sgAcct.av;
+const SG_TABS=["1. Pelo","2. Acessórios","3. Roupa","4. Fundo"];
+function sgRender(){
+  document.getElementById("sgBig").innerHTML=catSVG(sgO);
+  document.getElementById("sgTabs").innerHTML=SG_TABS.map((t,i)=>`<button class="${i===sgTab?'on':''}" onclick="sgTab=${i};sgRender()">${t}</button>`).join("");
+  const sel=(k,i)=>sgO[k]===i?" on":"";
+  let h="";
+  if(sgTab===0){
+    h+=`<h5>COR DO PELO</h5><div class="sg-row">${SG.fur.map((f,i)=>`<button class="sg-o${sel('fur',i)}" title="${f[0]}" onclick="sgSet('fur',${i})"><i style="background:${f[1]}"></i></button>`).join("")}</div>`;
+    h+=`<h5>PADRÃO</h5><div class="sg-row">${SG.pat.map((p,i)=>`<button class="sg-o sq${sel('pat',i)}" onclick="sgSet('pat',${i})">${p}</button>`).join("")}</div>`;
+    h+=`<h5>COR DOS OLHOS</h5><div class="sg-row">${SG.eye.map((f,i)=>`<button class="sg-o${sel('eye',i)}" title="${f[0]}" onclick="sgSet('eye',${i})"><i style="background:${f[1]}"></i></button>`).join("")}</div>`;
+  }
+  if(sgTab===1) h+=`<h5>ACESSÓRIOS (OPCIONAL)</h5><div class="sg-row">${SG.acc.map((a,i)=>`<button class="sg-o sq${sel('acc',i)}" onclick="sgSet('acc',${i})"><span>${a[1]}</span>${a[0]}</button>`).join("")}</div>`;
+  if(sgTab===2) h+=`<h5>ROUPA (OPCIONAL)</h5><div class="sg-row">${SG.clo.map((c,i)=>`<button class="sg-o sq${sel('clo',i)}" onclick="sgSet('clo',${i})"><i style="background:${c[1]==='#0000'?'#222':c[1]};width:26px;height:26px;margin-bottom:4px"></i>${c[0]}</button>`).join("")}</div>`;
+  if(sgTab===3) h+=`<h5>FUNDO</h5><div class="sg-row">${SG.bg.map((b,i)=>`<button class="sg-o${sel('bg',i)}" title="${b[0]}" onclick="sgSet('bg',${i})"><i style="background:radial-gradient(circle at 35% 30%,${b[1][0]},${b[1][1]})"></i></button>`).join("")}</div>`;
+  document.getElementById("sgOpts").innerHTML=h;
+}
+function sgSet(k,i){sgO[k]=i;sgRender()}
+function sgShuffle(){sgO={fur:rnd(SG.fur.length),pat:rnd(SG.pat.length),eye:rnd(SG.eye.length),acc:rnd(SG.acc.length),clo:rnd(SG.clo.length),bg:rnd(SG.bg.length)};sgRender()}
+function openSignup(){
+  if(sgAcct){document.getElementById("sgU").value=sgAcct.user;document.getElementById("sgE").value=sgAcct.email||""}
+  document.getElementById("sgErr").textContent="";document.getElementById("sgm").classList.add("open");sgRender();
+}
+function closeSignup(){document.getElementById("sgm").classList.remove("open")}
+function submitSignup(){
+  const u=document.getElementById("sgU").value.trim(),e=document.getElementById("sgE").value.trim(),p=document.getElementById("sgP").value;
+  const er=document.getElementById("sgErr");
+  if(!/^[\w.-]{3,20}$/.test(u))return er.textContent="Usuário: 3 a 20 caracteres (letras, números, _ . -).";
+  if(!/^\S+@\S+\.\S+$/.test(e))return er.textContent="Digite um e-mail válido.";
+  if(!sgAcct&&p.length<6)return er.textContent="A senha precisa de pelo menos 6 caracteres.";
+  sgAcct={user:u,email:e,av:{...sgO}};
+  try{localStorage.setItem("naosalvo_acct",JSON.stringify(sgAcct))}catch(x){}
+  closeSignup();updateAccount();
+}
+function updateAccount(){
+  const el=document.getElementById("acct");if(!el)return;
+  el.innerHTML=sgAcct?`<button class="sg-acct" onclick="openSignup()"><span class="sg-av">${catSVG(sgAcct.av)}</span><span>${sgAcct.user}<b>Gato nível 1</b></span></button>`:`<button class="sg-cta" onclick="openSignup()">🐱 CRIAR CONTA</button>`;
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSignup()});
+updateAccount();
+</script>
+
+</body>
+</html>
