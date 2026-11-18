@@ -1,0 +1,20 @@
+NÃO SALVO — protótipo do site (acervo + álbum de figurinhas)
+
+Como abrir no computador:
+  Abra o arquivo index.html no navegador (dois cliques).
+
+Como publicar com um link:
+  É um site estático: basta subir esta pasta inteira para qualquer hospedagem
+  (GitHub Pages, Netlify, Vercel ou o servidor onde já está o protótipo).
+  A página inicial é o index.html.
+
+Arquivos:
+  index.html   página inicial (acervo, linha do tempo, envio de vídeos, moderação)
+  album.html   álbum de figurinhas (pacotes, loja, coleções)
+  common.js    avatar de gatinho, conta, moedas, patentes, menus e ícones
+  data.js      memes do acervo e cartas do álbum (editar aqui para mudar o conteúdo)
+  player.js    player de vídeo no estilo de cada época
+  theme.css    cores, modo claro/escuro e menus
+
+Observação: é um protótipo. Conta, moedas, cartas e envios ficam salvos só no
+navegador de quem está testando (não há servidor nem banco de dados ainda).

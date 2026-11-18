@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NÃO SALVO — Museu da Internet Brasileira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<script>try{var t=localStorage.getItem("ns_theme")}catch(e){}document.documentElement.dataset.theme=t==="dark"?"dark":"light"</script>
+<style>
+main{padding:24px 28px 60px;max-width:1280px;margin:0 auto}
+.top{display:grid;grid-template-columns:1.05fr 1.4fr;gap:32px;align-items:center;margin-bottom:28px}
+.hero{position:relative;text-align:center}
+.hero .sun{position:relative;margin:0 auto 6px;max-width:420px;aspect-ratio:640/530;display:grid;place-items:center}
+.hero .sun::after{content:"";position:absolute;inset:8% 10% 20%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--brand2) 30%,transparent),transparent);filter:blur(10px);z-index:0}
+:root[data-theme="light"] .hero .sun::after{background:radial-gradient(closest-side,#ffffffcc,transparent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .sun picture{position:relative;z-index:1;display:block;width:100%;animation:bob 4.6s cubic-bezier(.45,0,.55,1) infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+.hero .sun img{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 26px #00000055)}
+@keyframes bob{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+.hero h1{font-size:clamp(28px,3.4vw,40px);line-height:1;font-weight:700;letter-spacing:1px;margin-top:4px}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero p{color:var(--mut);margin:10px auto 18px;font-size:14px;max-width:380px;line-height:1.5}
+.hero .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.sec-title{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.5px;color:var(--mut);font-weight:700;margin-bottom:10px;text-transform:uppercase;gap:10px}
+.sec-title a{color:var(--brand);cursor:pointer;white-space:nowrap}
+.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);cursor:pointer;transition:.2s;text-align:left;box-shadow:0 2px 10px #0000000f}
+.card:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 8px 26px var(--glow)}
+.thumb{aspect-ratio:4/3;display:grid;place-items:center;font-size:54px;position:relative}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000a)}
+.thumb i{position:absolute;left:10px;top:10px;z-index:2;font-style:normal;font-size:11px;background:#000a;color:#fff;padding:3px 7px;border-radius:6px;font-family:Rajdhani;letter-spacing:1px}
+.thumb .ph{position:relative;z-index:1;color:#ffffffd9;filter:drop-shadow(0 4px 12px #0008)}
+.ico.art{width:46px;height:46px;stroke-width:1.5}.mini .ico.art{width:30px;height:30px}.today .ico.art{width:42px;height:42px}
+.thumb .th,.row .em .th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumb .th~.ph,.row .em .th~.ph{display:none}
+.row .em{position:relative;overflow:hidden;color:#fff}.row .em .ico.art{width:18px;height:18px}
+.ico.in{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:6px}
+.sec-title span,.sec-title a{display:inline-flex;align-items:center}.sec-title .ico{width:16px;height:16px;margin-right:7px;color:var(--brand)}
+.chip{display:inline-flex;align-items:center}.chip .ico.in{width:14px;height:14px;vertical-align:0}
+.ico.h{display:inline-block;width:26px;height:26px;vertical-align:-4px;margin-right:8px;color:var(--brand)}
+.ico.big{width:56px;height:56px;margin:0 auto;color:var(--brand)}
+.row em .ico.in{width:13px;height:13px;margin-right:3px}
+.btn .ico{width:17px;height:17px}
+.vp-emo .ico.art{width:96px;height:96px;color:#ffffffd9}
+.meta{padding:10px 12px 12px}
+.meta h3{font-size:16px;font-weight:600;line-height:1.1}
+.meta small{color:var(--mut);font-size:12px}
+.tag{display:inline-block;font-size:9px;letter-spacing:1px;font-weight:800;padding:2px 6px;border-radius:4px;margin-top:6px;text-transform:uppercase;background:#a35cff22;color:#8a4dff;font-family:Inter}
+.tag.Lendário{background:#f2b22a26;color:#c88a00}.tag.Mítico{background:#ff4a8a22;color:#e0306f}.tag.Clássico{background:var(--brand-soft);color:var(--brand)}
+:root[data-theme="dark"] .tag{color:#b89bff}:root[data-theme="dark"] .tag.Lendário{color:#ffc84d}:root[data-theme="dark"] .tag.Mítico{color:#ff6bb3}:root[data-theme="dark"] .tag.Clássico{color:var(--brand2)}
+.timeline{border:1px solid var(--line2);border-radius:20px;padding:18px 22px 24px;background:linear-gradient(180deg,var(--panel2),var(--panel));box-shadow:0 0 40px var(--glow);margin-bottom:24px;scroll-margin-top:140px}
+.years{display:flex;align-items:flex-end;justify-content:space-between;position:relative;padding:18px 0 8px;overflow-x:auto;gap:4px;scrollbar-width:thin}
+.years::before{content:"";position:absolute;left:0;right:0;bottom:15px;height:2px;background:linear-gradient(90deg,transparent,var(--brand),transparent)}
+.y{flex:1;min-width:46px;text-align:center;position:relative;font-family:Rajdhani;font-weight:700;font-size:14px;color:var(--mut);padding-bottom:22px}
+.y::after{content:"";position:absolute;bottom:10px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px var(--brand)}
+.y.on{font-size:34px;color:var(--txt);text-shadow:0 0 18px var(--glow)}
+.y.on::after{width:14px;height:14px;margin-left:-7px;bottom:8px;background:var(--panel);border:3px solid var(--brand)}
+.y:hover{color:var(--txt)}
+.stage{display:grid;grid-template-columns:90px 1fr 90px;gap:16px;align-items:center;margin-top:12px}
+.side{color:var(--faint);text-align:center;cursor:pointer}
+.side:hover{color:var(--brand)}
+.side b{display:block;font-family:Rajdhani;font-size:36px}
+.side small{font-size:11px}
+.cur{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--sunk)}
+.cur h2{font-size:56px;line-height:1;font-weight:700;color:var(--brand-ink)}
+.cur p{color:var(--mut);font-size:13px;margin:8px 0 14px;line-height:1.45}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mini .card .thumb{aspect-ratio:16/10;font-size:32px}
+.mini .meta{padding:6px 8px}.mini .meta h3{font-size:13px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+.fact{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--panel)}
+.fact b{display:block;color:var(--brand);font-family:Rajdhani;letter-spacing:1px;text-transform:uppercase;font-size:13px;margin-bottom:4px}
+.fact span{font-size:12px;color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);padding:7px 13px;border-radius:99px;font-size:12px;color:var(--mut);background:var(--panel)}
+.chip.on,.chip:hover{border-color:var(--brand);color:var(--brand-ink);background:var(--brand-soft)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+#browse{scroll-margin-top:140px}
+.modal{position:fixed;inset:0;background:var(--overlay);display:none;place-items:center;z-index:65;padding:20px}
+.modal.open{display:grid}
+.box{position:relative;background:var(--panel);border:1px solid var(--line2);border-radius:18px;max-width:760px;width:100%;max-height:calc(100vh - 40px);overflow:auto;box-shadow:var(--shadow)}
+.box.form{max-width:560px}
+.box .body{padding:20px 24px 24px}
+.box h2{font-size:30px}
+.box p{color:var(--mut);font-size:14px;line-height:1.6;margin:10px 0 16px}
+.box .vp{border-radius:0}
+.note{font-size:11px;color:var(--faint);text-align:center;margin-top:30px}
+.fade{animation:f .35s ease}
+@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pulse{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px;margin-bottom:24px}
+.panel{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--panel)}
+.today{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.today .ago{font-family:Rajdhani;font-size:44px;font-weight:700;line-height:.9;color:var(--brand-ink)}
+.today .ago small{display:block;font-size:13px;color:var(--brand);letter-spacing:1px;margin-top:6px;text-transform:uppercase}
+.today p{color:var(--mut);font-size:12.5px;line-height:1.45;margin:6px 0 10px}
+.today .card .thumb{aspect-ratio:1/1;font-size:46px}
+.row{display:grid;grid-template-columns:22px 40px 1fr auto;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid var(--line);cursor:pointer;width:100%;text-align:left;border-radius:8px}
+.row:last-child{border-bottom:0}
+.row:hover{background:var(--brand-soft)}
+.row b{font-family:Rajdhani;color:var(--mut);font-size:15px;text-align:center}
+.row .em{width:40px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:18px}
+.row span{font-size:13px;line-height:1.15}.row span small{display:block;color:var(--mut);font-size:11px}
+.row em{font-style:normal;font-size:11px;color:#e07a10;white-space:nowrap;font-weight:600}
+.row em.nw{color:var(--ok)}
+.card.add .thumb{background:repeating-linear-gradient(45deg,var(--brand-soft) 0 8px,var(--sunk) 8px 16px)!important;color:var(--brand);font-size:30px}
+.card.add .thumb::after{display:none}
+.card.add .meta h3{color:var(--brand)}
+.f label{display:block;font-size:10.5px;letter-spacing:1px;color:var(--mut);margin:12px 0 5px;font-weight:700;text-transform:uppercase}
+.f input,.f select,.f textarea{width:100%;background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--txt);font:inherit;font-size:13px;outline:none}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--glow)}
+.f .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.45;margin-top:12px;border:1px solid var(--line);color:var(--mut)}
+.chk.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent);color:var(--ok)}
+.chk.warn{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,transparent);color:var(--warn)}
+.chk.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent);color:var(--bad)}
+.chk b{color:var(--txt)}
+.chk button{color:var(--brand);text-decoration:underline;font-size:12.5px}
+.chk label{display:flex;gap:8px;align-items:center;margin-top:6px;color:var(--warn);font-size:12px;text-transform:none;letter-spacing:0;font-weight:500}
+.chk label input{width:auto}
+.lock{text-align:center;padding:10px 4px}
+.lock .big{font-size:54px}
+.lock h3{font-family:Rajdhani;font-size:28px;margin:6px 0}
+.lock p{color:var(--mut);font-size:13.5px;line-height:1.55;margin:6px 0 14px}
+.linkbox{border:1px dashed var(--line2);border-radius:12px;padding:12px;margin:4px 0 16px;font-size:12.5px;color:var(--mut);background:var(--sunk)}
+.linkbox b{color:var(--txt)}
+.linkbox .in{display:flex;gap:8px;margin-top:8px}.linkbox input{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);font:inherit;font-size:12.5px;outline:none}
+.linkbox .btn{padding:9px 14px}
+.linkok{display:inline-block;color:var(--ok);font-size:12.5px;margin-bottom:12px}
+.linkok a{color:var(--brand)}
+.rk{display:grid;grid-template-columns:26px 36px 1fr auto auto;gap:12px;align-items:center;padding:9px 6px;border-bottom:1px solid var(--line);font-size:13px}
+.rk.me{background:var(--brand-soft);border-radius:10px}
+.rk b{color:var(--mut);text-align:center;font-family:Rajdhani;font-size:16px}
+.rk .av{width:34px;height:34px;border-radius:50%;overflow:hidden}.rk .av svg{width:100%;height:100%;display:block}
+.rk .pt{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-left:6px}
+.rk em{font-style:normal;color:var(--brand);font-weight:700;font-family:Rajdhani;font-size:16px;text-align:right}
+.rk small{color:var(--mut);font-size:11px;text-align:right}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--sunk)}
+.q h4{font-family:Rajdhani;font-size:19px}
+.q .by{font-size:11.5px;color:var(--mut);margin:2px 0 6px}
+.q p{margin:0 0 8px;font-size:12.5px}
+.q .act{display:flex;gap:8px;flex-wrap:wrap}.q .act .btn{padding:8px 14px;font-size:12px}
+.q .flag{font-size:11.5px;color:var(--warn);margin-bottom:8px}
+.q.done{opacity:.55}
+.mine{font-size:12px;color:var(--mut);padding:6px 2px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.st-pending{color:var(--warn)}.st-approved{color:var(--ok)}
+.h4{font-size:11px;letter-spacing:1.3px;color:var(--mut);margin:8px 0}
+@media(max-width:1000px){.pulse{grid-template-columns:1fr}}
+@media(max-width:860px){
+main{display:flex;flex-direction:column}
+.top{display:contents}
+.top>.hero{order:1;margin-bottom:18px}.timeline{order:2}.top>div:not(.hero){order:3;margin-bottom:24px}.pulse{order:4}#browse{order:5}.facts{order:6}.note{order:7}
+.hero .sun{max-width:250px}.hero h1{font-size:26px}.hero p{margin:6px auto 12px}
+.timeline{padding:14px 12px 16px}.cur{padding:12px;gap:12px}.cur h2{font-size:40px}
+.top,.cur{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.side{display:none}.facts{grid-template-columns:1fr 1fr}.rail{grid-template-columns:1fr 1fr}.rail .card:nth-child(3){display:none}main{padding:16px 14px 40px}}
+@media(max-width:600px){.f .two{grid-template-columns:1fr}.today{grid-template-columns:110px 1fr}.box .body{padding:16px}}
+</style>
+</head>
+<body class="home">
+<div class="rays-wrap" aria-hidden="true"><div class="rays" id="rays"></div></div>
+
+
+<main>
+  <section class="top">
+    <div class="hero">
+      <div class="sun"><picture><source srcset="logo-hero.webp" type="image/webp"><img src="logo-hero.png" alt="Não Salvo" width="640" height="528" fetchpriority="high"></picture></div>
+      <h1>E no fim, o plano do <em>Não Salvo</em> era salvar.</h1>
+      <p>Um museu colaborativo de vídeos virais, memes e momentos inesquecíveis da nossa internet.</p>
+      <div class="btns"><button class="btn" onclick="go(2012,true)"><i data-ic="timeline"></i>Explorar por ano</button><button class="btn ghost" onclick="openSubmit()"><i data-ic="send"></i>Enviar vídeo</button></div>
+    </div>
+    <div>
+      <div class="sec-title"><span>Clássicos da internet brasileira</span><a onclick="setView('todos')">VER TODOS →</a></div>
+      <div class="rail" id="rail"></div>
+    </div>
+  </section>
+
+  <section class="pulse">
+    <div class="panel"><div class="sec-title"><span><i data-ic="timeline"></i>Hoje na história da web</span><a onclick="randomPick()"><i data-ic="random"></i>ALEATÓRIO</a></div><div id="today"></div></div>
+    <div class="panel"><div class="sec-title"><span><i data-ic="flame"></i>Em alta agora</span></div><div id="hot"></div></div>
+    <div class="panel"><div class="sec-title"><span><i data-ic="new"></i>Últimos adicionados</span><a onclick="openMod()">FILA →</a></div><div id="latest"></div></div>
+  </section>
+
+  <section class="timeline" id="tl">
+    <div class="sec-title"><span><i data-ic="clock"></i>Linha do tempo da internet brasileira</span><a onclick="setView('todos')">VER TODOS OS ANOS</a></div>
+    <div class="years" id="years"></div>
+    <div class="stage">
+      <div class="side" id="prev"></div>
+      <div class="cur fade" id="cur"></div>
+      <div class="side" id="next"></div>
+    </div>
+  </section>
+
+  <section id="browse">
+    <div class="sec-title"><span id="browseTitle">Todos os registros</span><a onclick="openSubmit()"><i data-ic="send"></i>ENVIAR VÍDEO</a></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="facts">
+    <div class="fact"><b>Colaborativo</b><span>A comunidade envia, a moderação aprova, e ninguém sobe o mesmo vídeo duas vezes.</span></div>
+    <div class="fact"><b>Organizado</b><span>Separado por ano, categoria e contexto.</span></div>
+    <div class="fact"><b>Eternizado</b><span>Se caiu na internet, aqui fica pra sempre.</span></div>
+    <div class="fact"><b>Você está aqui há</b><span id="timer">0m</span></div>
+  </section>
+  <p class="note">Protótipo · os registros são exemplos para testar a navegação e precisam ser revisados antes de virar acervo de verdade. Moedas, cartas e envios ficam só neste navegador.</p>
+</main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeM()"><div class="box" id="box"></div></div>
+
+<script src="common.js"></script>
+<script src="data.js"></script>
+<script src="player.js"></script>
+<script>
+renderHeader("inicio",{search:true,sub:[]});
+document.querySelectorAll("[data-ic]").forEach(e=>e.outerHTML=icon(e.dataset.ic));
+// ===================== ACERVO =====================
+const CAT_IC={"Vídeos":"video","TV":"tv","Música":"music","Cultura":"culture","Zoeira":"zoeira","Fotos":"photo","Esportes":"sports"};
+const CAT_EMO={"Vídeos":"🎞️","TV":"📺","Música":"🎵","Cultura":"🌐","Zoeira":"🤡","Fotos":"📸","Esportes":"⚽"};
+const yKey=y=>(parseInt(y)>=2020?"2020+":String(y));
+const KEYS=Object.keys(YEAR_INFO);
+const GRAD=["#1d3a8a,#0b0f2a","#5b1d8a,#14061f","#8a3a1d,#2a0f06","#1d8a6e,#06241d","#8a1d4a,#240614","#1d6e8a,#06202a","#7a8a1d,#1f2406"];
+const grad=s=>"linear-gradient(135deg,"+GRAD[[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%GRAD.length]+")";
+
+// fila de moderação com envios de outras pessoas (exemplos)
+const SEED_QUEUE=[
+ {id:"q1",t:"Luiza que está no Canadá",y:2012,c:"TV",by:"novato_2012",rank:0,url:"https://www.youtube.com/watch?v=exemploLuiza",d:"O comercial em que o pai cita a filha que está no Canadá e a frase vira piada nacional."},
+ {id:"q2",t:"Para Nossa Alegria (versão HD)",y:2012,c:"Música",by:"repostador",rank:1,url:"https://youtu.be/exemploAlegria",d:"Reenvio do mesmo vídeo em outra qualidade."},
+ {id:"q3",t:"Inês Brasil: Alô, alô, graças a Deus",y:2014,c:"Vídeos",by:"bandalarga99",rank:1,url:"https://youtu.be/exemploInes",d:"O vídeo de inscrição para um reality que virou bordão."},
+ {id:"q4",t:"Carreta Furacão",y:2014,c:"Música",by:"zap_da_tia",rank:0,url:"https://www.youtube.com/watch?v=exemploCarreta",d:"Os personagens dançando em cima do trenzinho da alegria."},
+ {id:"q5",t:"Nana Gouvêa posando no furacão",y:2012,c:"Fotos",by:"fotologueira",rank:1,url:"https://www.instagram.com/p/exemploNana/",d:"Ensaio de fotos em Nova York no meio da passagem de um furacão."}
+];
+const RANK_USERS=[["Cid Cidoso",15420,247,104,2],
+ ["SePPZAO",9640,231,101,4,0,"Moderador"],["Riba",9310,214,99,11],["Subversivo",8870,198,97,14],["ad_moura",8420,187,95,16],["Dev_Gon",8050,176,94,15],["Gasanzin",7610,163,92,13],
+ ["AteuDeGoianinha",7180,151,90,12],["Rulsso",6720,139,87,17],["cigarra_eletronica",6290,127,85,18],["maffeimafia",5830,114,82,19],["genery3",5360,102,80,20],["Velma",4980,93,78,21],
+ ["ipsilva",4860,88,76,0],["bruninhotv",4720,84,74,1],["viralizador",4580,79,71,3],["faqo",4390,72,69,5],["lendariin",4180,66,64,6],["gatoNostalgico",2950,41,52,7],["fotologueira",420,6,23,8],["novato_2012",60,0,9,9]];
+
+const art=a=>(a.yt?`<img class="th" src="https://i.ytimg.com/vi/${a.yt}/mqdefault.jpg" alt="" loading="lazy" decoding="async" width="320" height="180" onerror="this.remove()">`:"")+`<span class="ph">${a.art||icon(CAT_IC[a.c]||"video","art")}</span>`;
+let ALL=[];
+function buildAll(){
+  ALL=MEMES.map(m=>({...m,url:NS.links[m.id]||(m.yt?"https://www.youtube.com/watch?v="+m.yt:null)}));
+  NS.subs.filter(s=>s.status==="approved").forEach(s=>ALL.push({...s,r:"Clássico",views:120+((s.ts/1000)%300|0),saves:12,dur:35,added:s.approvedAt||nsToday(),date:s.y+"-06-01",mine:true}));
+  SEED_QUEUE.filter(q=>NS.modDone[q.id]==="ok").forEach(q=>ALL.push({...q,e:CAT_EMO[q.c],r:"Clássico",views:300,saves:20,dur:40,added:NS.modDoneAt?.[q.id]||nsToday(),date:q.y+"-06-01"}));
+  ALL.forEach(a=>{if(!a.e)a.e=CAT_EMO[a.c]||"🎞️";a.art=icon(CAT_IC[a.c]||"video","art")});
+}
+buildAll();
+const byId=id=>ALL.find(a=>a.id===id);
+
+let cur="2012",cat="Todas",query="",view="ano";
+const $=id=>document.getElementById(id);
+const card=(a,big)=>`<button class="card" onclick="openM('${a.id}')">
+  <div class="thumb" style="background:${grad(a.t)}"><i>${a.y}</i>${art(a)}</div>
+  <div class="meta"><h3>${escapeHtml(a.t)}</h3>${big?`<small>${a.c}${a.mine?" · enviado por você":""}</small><br>`:""}<span class="tag ${a.r}">${a.r}</span></div></button>`;
+const addCard=y=>`<button class="card add" onclick="openSubmit('${y}')"><div class="thumb"><span>＋</span></div><div class="meta"><h3>Salvar um viral de ${y}</h3><small>+${REWARD.approved} moedas se aprovado</small></div></button>`;
+
+const SUB_ITEMS=[
+  {k:"ano",ic:"home",label:"Início",fn:()=>{window.scrollTo({top:0,behavior:"smooth"});setView("ano")}},
+  {k:"tl",ic:"timeline",label:"Linha do tempo",fn:()=>{$("tl").scrollIntoView({behavior:"smooth"})}},
+  {k:"cat",ic:"categories",label:"Categorias",dd:1,fn:(e,b)=>openPop(b,[{ic:"all",label:"Todas",fn:()=>pickCat("Todas")},...[...new Set(ALL.map(a=>a.c))].map(c=>({ic:CAT_IC[c]||"video",label:c,note:ALL.filter(a=>a.c===c).length+"",fn:()=>pickCat(c)}))])},
+  {k:"rand",ic:"random",label:"Aleatório",fn:()=>randomPick()},
+  {k:"rank",ic:"ranking",label:"Ranking",fn:()=>openRank()},
+  {k:"album",ic:"album",label:"Álbum de figurinhas",href:"album.html"},
+  {k:"mod",ic:"moderation",label:"Moderação",fn:()=>openMod()},
+  {sp:1},
+  {k:"send",ic:"send",label:"Enviar vídeo",cta:1,fn:()=>openSubmit()}
+];
+function renderNav(){setSubOn(view==="todos"?"cat":view)}
+function pickCat(c){query="";$("q").value="";cat=c;view=c==="Todas"?"todos":"cat";renderNav();renderGrid();$("browse").scrollIntoView({behavior:"smooth"})}
+function setView(v){view=v;if(v!=="ano"){query="";$("q").value="";cat="Todas"}renderNav();renderGrid();if(v!=="ano")$("browse").scrollIntoView({behavior:"smooth"})}
+function randomPick(){const a=ALL[Math.floor(Math.random()*ALL.length)];go(yKey(a.y));openM(a.id)}
+
+// ---- Hoje na história / Em alta / Últimos ----
+const doy=s=>{const d=new Date(s+"T12:00:00");return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5)};
+function renderPulse(){
+  const t=nsToday(),td=doy(t),ty=+t.slice(0,4);
+  const withDiff=ALL.filter(a=>a.date&&!a.mine).map(a=>{let d=Math.abs(doy(a.date)-td);d=Math.min(d,365-d);return{a,d}}).sort((x,y)=>x.d-y.d);
+  const {a,d}=withDiff[0];const ago=ty-(+a.date.slice(0,4));
+  const dt=new Date(a.date+"T12:00:00").toLocaleDateString("pt-BR",{day:"numeric",month:"long",year:"numeric"});
+  $("today").innerHTML=`<div class="today">${card(a)}<div><div class="ago">Há ${ago} anos<small>${d===0?"Hoje":"Nesta semana"} · ${dt}</small></div><p>${escapeHtml(a.d).slice(0,140)}…</p><button class="btn" onclick="openM('${a.id}')">▶ RELEMBRAR</button></div></div>`;
+  // em alta: views com um "sorteio do dia" (num site real: acessos das últimas 24h)
+  const seed=+t.replace(/-/g,"");const hot=ALL.map(x=>{const h=[...x.id].reduce((s,c)=>s*31+c.charCodeAt(0),seed)%1000/1000;return{x,s:x.views*(0.35+h),g:Math.round(20+h*260)}}).sort((p,q)=>q.s-p.s).slice(0,5);
+  $("hot").innerHTML=hot.map((h,i)=>`<button class="row" onclick="openM('${h.x.id}')"><b>${i+1}</b><span class="em" style="background:${grad(h.x.t)}">${art(h.x)}</span><span>${escapeHtml(h.x.t)}<small>${h.x.y} · ${h.x.c}</small></span><em>${icon("flame","in")}+${h.g}%</em></button>`).join("");
+  const lat=[...ALL].sort((p,q)=>(q.added||"").localeCompare(p.added||"")).slice(0,5);
+  $("latest").innerHTML=lat.map(x=>{const days=Math.max(0,Math.round((new Date(t)-new Date(x.added))/864e5));return`<button class="row" onclick="openM('${x.id}')"><b>•</b><span class="em" style="background:${grad(x.t)}">${art(x)}</span><span>${escapeHtml(x.t)}<small>${x.y} · ${x.mine?"enviado por você":x.by?"por "+x.by:"acervo"}</small></span><em class="nw">${days===0?"hoje":days===1?"ontem":"há "+days+"d"}</em></button>`}).join("");
+}
+
+// ---- Linha do tempo (layout original) ----
+function renderYears(){
+  $("years").innerHTML=KEYS.map(y=>`<button class="y ${y===cur?'on':''}" onclick="go('${y}')">${y}</button>`).join("");
+  const ys=$("years"),el=ys.querySelector(".on");if(el)ys.scrollTo({left:el.offsetLeft-ys.clientWidth/2+el.clientWidth/2,behavior:"smooth"});
+}
+function renderCur(){
+  const i=KEYS.indexOf(cur),d=YEAR_INFO[cur],p=KEYS[i-1],n=KEYS[i+1];
+  $("prev").innerHTML=p?`<b>${p}</b><small>‹ anterior</small>`:"";
+  $("next").innerHTML=n?`<b>${n}</b><small>próximo ›</small>`:"";
+  $("prev").onclick=()=>p&&go(p);$("next").onclick=()=>n&&go(n);
+  const el=$("cur");el.classList.remove("fade");void el.offsetWidth;el.classList.add("fade");
+  const items=ALL.filter(a=>yKey(a.y)===cur).sort((a,b)=>b.views-a.views).slice(0,3);
+  const fill=items.map(a=>card(a));while(fill.length<3)fill.push(addCard(cur==="2020+"?2020:cur));
+  el.innerHTML=`<div><h2 class="disp">${cur}</h2><div class="disp" style="color:var(--brand);font-size:17px;font-weight:700;margin-top:4px">${d.lema}</div>
+    <p>${d.txt}</p><button class="btn" onclick="setView('ano');$('browse').scrollIntoView({behavior:'smooth'})">EXPLORAR ${cur} →</button></div>
+    <div class="mini">${fill.join("")}</div>`;
+}
+function renderGrid(){
+  let list=ALL,title="Todos os registros";
+  if(view==="ano"&&!query){list=ALL.filter(a=>yKey(a.y)===cur);title="Registros de "+cur}
+  if(query){const fold=x=>String(x).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();const q=fold(query);list=ALL.filter(a=>fold(a.t+" "+a.d+" "+a.c+" "+a.y).includes(q));title=`Busca: “${query}”`}
+  if(cat!=="Todas")list=list.filter(a=>a.c===cat);
+  list=[...list].sort((a,b)=>a.y-b.y||b.views-a.views);
+  $("browseTitle").textContent=title;
+  const cats=["Todas",...new Set(ALL.map(a=>a.c))];
+  $("chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" onclick="cat='${c}';renderGrid()">${c==="Todas"?icon("all","in")+c:icon(CAT_IC[c]||"video","in")+c}</button>`).join("");
+  $("grid").innerHTML=list.length?list.map(a=>card(a,true)).join(""):`<p style="color:var(--mut)">Nada por aqui ainda. Que tal ser o primeiro a salvar? <button class="btn" style="margin-left:8px" onclick="openSubmit()">＋ Enviar vídeo</button></p>`;
+}
+function go(y,scroll){cur=String(y);view="ano";query="";$("q").value="";cat="Todas";renderNav();renderYears();renderCur();renderGrid();if(scroll)$("tl").scrollIntoView({behavior:"smooth"})}
+
+// ---- Modal do meme com o player da época ----
+let player=null;
+function openM(id){
+  const a=byId(id);if(!a)return;player&&player.stop();
+  const rel=ALL.filter(x=>x.id!==a.id&&Math.abs(x.y-a.y)<=1).sort((p,q)=>q.views-p.views);
+  const r=rankIdx(NS.xp);
+  const link=a.url?`<div class="linkok">${icon("check","in")}${a.yt&&!NS.links[a.id]?"Vídeo original no acervo":"Link original salvo"} · <a href="${escapeHtml(a.url)}" target="_blank" rel="noopener">Assistir no ${/youtu/.test(a.url)?"YouTube":"original"} ↗</a></div>`
+    :`<div class="linkbox">${icon("link","in")}Este viral ainda está <b>sem o link do vídeo original</b>. Tem o link? Salve aqui e ganhe <b>+${REWARD.oldLink} moedas</b>.
+      ${r>=2?`<div class="in"><input id="oldLink" placeholder="https://youtube.com/watch?v=…"><button class="btn" onclick="saveOldLink('${a.id}')">SALVAR</button></div><div id="oldMsg"></div>`:`<div style="margin-top:6px;color:var(--mut)">${icon("lock","in")}Precisa da patente <b style="color:${RANKS[2].color}">Colaborador</b> (${fmt(RANKS[2].xp)} XP). Você tem ${fmt(NS.xp)} XP.</div>`}</div>`;
+  $("box").className="box";
+  $("box").innerHTML=`<button class="xclose" onclick="closeM()" aria-label="Fechar vídeo" title="Fechar (Esc)">✕</button><div id="vp">${playerHTML({...a,e:a.art})}</div>
+  <div class="body"><span class="tag ${a.r}">${a.r}</span> <span class="tag" style="background:var(--sunk);color:var(--mut)">${a.c}</span>
+  <h2 class="disp" style="margin-top:8px">${escapeHtml(a.t)}</h2><p>${escapeHtml(a.d||"")}</p>
+  <p style="font-size:12px;color:var(--faint)">Contexto de ${a.y}: ${YEAR_INFO[yKey(a.y)].lema}. ${a.by?"Enviado por "+escapeHtml(a.by)+".":a.mine?"Enviado por você.":""}</p>
+  ${link}
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="go('${yKey(a.y)}');closeM();$('tl').scrollIntoView({behavior:'smooth'})">Ver o ano ${a.y}</button><button class="btn ghost" onclick="closeM()">Fechar</button></div></div>`;
+  $("modal").classList.add("open");
+  player=initPlayer($("vp"),a,rel.map(r=>({...r,e:r.art})),openM);
+}
+function closeM(){player&&player.stop();$("modal").classList.remove("open")}
+new MutationObserver(()=>{const b=$("box");if(b&&!b.querySelector(".xclose")){const x=document.createElement("button");x.className="xclose";x.textContent="✕";x.setAttribute("aria-label","Fechar");x.onclick=closeM;b.prepend(x)}}).observe(document.getElementById("box"),{childList:true});
+
+// ---- Anti-duplicata: mesmo link ou mesmo nome não gera novo ticket ----
+function normUrl(u){
+  u=(u||"").trim();if(!u)return"";
+  try{const x=new URL(/^https?:\/\//i.test(u)?u:"https://"+u);const h=x.hostname.replace(/^(www|m|mobile|vm)\./,"");const p=x.pathname.replace(/\/+$/,"");
+    if(h==="youtu.be")return"yt:"+p.slice(1,12);
+    if(h.endsWith("youtube.com")){const v=x.searchParams.get("v");if(v)return"yt:"+v.slice(0,11);const mm=p.match(/\/(shorts|embed|live|v)\/([\w-]{6,})/);if(mm)return"yt:"+mm[2].slice(0,11)}
+    let mm=p.match(/\/video\/(\d+)/);if(h.includes("tiktok")&&mm)return"tt:"+mm[1];
+    mm=p.match(/\/status\/(\d+)/);if((h==="x.com"||h==="twitter.com")&&mm)return"x:"+mm[1];
+    mm=p.match(/\/(p|reel|tv)\/([\w-]+)/);if(h.includes("instagram")&&mm)return"ig:"+mm[2];
+    return(h+p).toLowerCase();
+  }catch(e){return u.toLowerCase()}
+}
+const normName=s=>(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/\(.*?\)/g," ").replace(/[^a-z0-9 ]/g," ").replace(/\b(o|a|os|as|de|da|do|e|que|versao|hd|original|completo|video)\b/g," ").replace(/\s+/g," ").trim();
+function sim(a,b){a=normName(a).replace(/ /g,"");b=normName(b).replace(/ /g,"");if(!a||!b)return 0;if(a===b)return 1;
+  if(a.length>5&&b.length>5&&(a.includes(b)||b.includes(a)))return .9;
+  const bg=s=>{const m=new Map();for(let i=0;i<s.length-1;i++){const k=s.slice(i,i+2);m.set(k,(m.get(k)||0)+1)}return m};
+  const A=bg(a),B=bg(b);let n=0;A.forEach((v,k)=>{n+=Math.min(v,B.get(k)||0)});return 2*n/(a.length+b.length-2)}
+function pool(){ // tudo que já existe: acervo + fila pendente
+  const p=ALL.map(a=>({t:a.t,key:a.url?normUrl(a.url):"",id:a.id,where:"acervo"}));
+  NS.subs.filter(s=>s.status==="pending").forEach(s=>p.push({t:s.t,key:s.key,id:s.id,where:"fila",ticket:s.ticket}));
+  SEED_QUEUE.filter(q=>!NS.modDone[q.id]).forEach(q=>p.push({t:q.t,key:normUrl(q.url),id:q.id,where:"fila",ticket:"#"+(300+parseInt(q.id.slice(1)))}));
+  return p;
+}
+function dupCheck(url,name){
+  const key=normUrl(url),P=pool();
+  if(key){const hit=P.find(x=>x.key&&x.key===key);if(hit)return{lvl:"bad",hit,why:"link"}}
+  if(name&&name.trim().length>=4){let best=null,bs=0;P.forEach(x=>{const s=sim(name,x.t);if(s>bs){bs=s;best=x}});
+    if(bs>=.82)return{lvl:"bad",hit:best,why:"nome",s:bs};
+    if(bs>=.55)return{lvl:"warn",hit:best,why:"nome",s:bs}}
+  return{lvl:key||name?"ok":"",key};
+}
+
+// ---- Enviar vídeo ----
+function openSubmit(y){
+  if(needAccount())return;
+  $("box").className="box form";
+  if(rankIdx(NS.xp)<1){
+    $("box").innerHTML=`<div class="body lock"><div class="big">${icon("lock","big")}</div><h3>Enviar vídeo é a partir de <span style="color:${RANKS[1].color}">Banda larga</span></h3>
+    <p>Pra não virar bagunça, quem acabou de chegar ainda não envia virais. Você precisa de <b>${fmt(RANKS[1].xp)} XP</b> (tem ${fmt(NS.xp)}).<br>Ganhe XP visitando todo dia (+${XP_GAIN.visit}), abrindo pacotes (+${XP_GAIN.pack}) e completando o álbum. Quem é do chat da live já entra como Banda larga.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="album.html" style="text-decoration:none">${icon("pack")}ABRIR PACOTE</a><button class="btn ghost" onclick="openSignup()">Sou do chat</button><button class="btn ghost" onclick="closeM()">Fechar</button></div></div>`;
+    $("modal").classList.add("open");return;
+  }
+  const yrs=[];for(let i=2026;i>=1998;i--)yrs.push(i);
+  $("box").innerHTML=`<div class="body f"><h2 class="disp">${icon("cloud","h")}Salvar viral no acervo</h2>
+   <p style="margin:4px 0 0">Se o link ou o nome já existir, não abre ticket novo. Aprovado pela moderação = <b>+${REWARD.approved} moedas</b> e +${XP_GAIN.approved} XP.</p>
+   <label>Link original (YouTube, TikTok, X, Instagram…)</label><input id="sU" placeholder="https://www.youtube.com/watch?v=…" oninput="liveCheck()">
+   <label>Nome do meme / viral</label><input id="sN" placeholder="ex: Luiza que está no Canadá" oninput="liveCheck()">
+   <div class="two"><div><label>Ano que viralizou</label><select id="sY">${yrs.map(v=>`<option ${String(v)===String(y||"")?"selected":""}>${v}</option>`).join("")}</select></div>
+   <div><label>Categoria</label><select id="sC">${Object.keys(CAT_EMO).map(c=>`<option>${c}</option>`).join("")}</select></div></div>
+   <label>Conta pra quem não viveu (contexto)</label><textarea id="sD" rows="3" placeholder="O que aconteceu, onde passou, por que viralizou…"></textarea>
+   <div id="dup"></div>
+   <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" id="sGo" onclick="sendSub()">ENVIAR PARA MODERAÇÃO</button><button class="btn ghost" onclick="closeM()">Cancelar</button></div></div>`;
+  if(!y)$("sY").value="2012";
+  $("modal").classList.add("open");
+}
+let lastDup=null;
+function liveCheck(){
+  const r=dupCheck($("sU").value,$("sN").value);lastDup=r;const el=$("dup");
+  if(!r.lvl){el.innerHTML="";return}
+  if(r.lvl==="ok"){el.innerHTML=`<div class="chk ok">${icon("check","in")}Nada igual no acervo nem na fila. ${r.key&&r.key.includes(":")?`Link reconhecido como <b>${r.key}</b>.`:""}</div>`;return}
+  const h=r.hit,where=h.where==="acervo"?`já está no acervo`:`já tem ticket ${h.ticket||""} na fila de moderação`;
+  if(r.lvl==="bad")el.innerHTML=`<div class="chk bad">${icon("xmark","in")}<b>${escapeHtml(h.t)}</b> ${where} (mesmo ${r.why}${r.s?`, ${Math.round(r.s*100)}% parecido`:""}). Não vamos abrir ticket repetido. ${h.where==="acervo"?`<button onclick="openM('${h.id}')">Ver no acervo</button>`:""}</div>`;
+  else el.innerHTML=`<div class="chk warn">${icon("alert","in")}Parece com <b>${escapeHtml(h.t)}</b> (${Math.round(r.s*100)}% parecido), que ${where}. É outro vídeo?<label><input type="checkbox" id="sOk"> Não é o mesmo, enviar assim mesmo</label></div>`;
+}
+function sendSub(){
+  const url=$("sU").value.trim(),t=$("sN").value.trim(),y=+$("sY").value,c=$("sC").value,d=$("sD").value.trim();
+  liveCheck();
+  if(!url||!t){$("dup").innerHTML=`<div class="chk bad">Preencha pelo menos o link e o nome.</div>`;return}
+  if(lastDup.lvl==="bad")return;
+  if(lastDup.lvl==="warn"&&!($("sOk")&&$("sOk").checked))return toast("Confirme que não é o mesmo vídeo");
+  const ticket="#"+(400+NS.subs.length);
+  NS.subs.push({id:"s"+Date.now(),t,url,key:normUrl(url),y,c,d:d||"Enviado pela comunidade.",e:CAT_EMO[c],status:"pending",ts:Date.now(),ticket});nsSave();
+  closeM();toast(`Envio recebido! Ticket ${ticket} na fila da moderação ⏳`,3000);scheduleApprovals();
+}
+function approveMine(s){s.status="approved";s.approvedAt=nsToday();s.by=null;NS.approvedCount++;NS.coins+=REWARD.approved;nsSave();addXP(XP_GAIN.approved);
+  buildAll();renderAll();toast(`“${s.t}” foi aprovado pela moderação: +${REWARD.approved} moedas e +${XP_GAIN.approved} XP`,3800)}
+function scheduleApprovals(){NS.subs.filter(s=>s.status==="pending").forEach(s=>{const wait=Math.max(1500,8000-(Date.now()-s.ts));clearTimeout(s._t);setTimeout(()=>{const x=NS.subs.find(z=>z.id===s.id);if(x&&x.status==="pending")approveMine(x)},wait)})}
+
+// ---- Salvar link de viral antigo (+5) ----
+function saveOldLink(id){
+  const u=$("oldLink").value.trim(),key=normUrl(u),m=$("oldMsg");
+  if(!key||!/^https?:\/\//i.test(u)&&!u.includes("."))return m.innerHTML=`<div class="chk bad">Cole um link válido.</div>`;
+  const hit=pool().find(x=>x.key&&x.key===key);
+  if(hit)return m.innerHTML=`<div class="chk bad">Esse link já está salvo em <b>${escapeHtml(hit.t)}</b>.</div>`;
+  NS.links[id]=u;NS.coins+=REWARD.oldLink;nsSave();addXP(XP_GAIN.oldLink);buildAll();openM(id);toast(`Link salvo! +${REWARD.oldLink} moedas`);
+}
+
+// ---- Moderação: patente maior modera patente menor ----
+function openMod(){
+  const r=rankIdx(NS.xp),canMod=r>=3;
+  const mine=NS.subs.slice().reverse();
+  const qs=SEED_QUEUE.map(q=>{const st=NS.modDone[q.id];const best=ALL.filter(a=>!a.by||a.id!==q.id).map(a=>({a,s:sim(q.t,a.t)})).sort((x,y)=>y.s-x.s)[0];
+    const flag=best&&best.s>=.55?`<div class="flag">${icon("alert","in")}Possível duplicata de “${escapeHtml(best.a.t)}” (${Math.round(best.s*100)}% parecido)</div>`:"";
+    const lower=q.rank<r;
+    return `<div class="q ${st?'done':''}"><h4>${icon(CAT_IC[q.c]||"video","in")}${escapeHtml(q.t)} <small style="color:var(--mut);font-family:Inter;font-size:12px">· ${q.y}</small></h4>
+     <div class="by">Ticket #${300+parseInt(q.id.slice(1))} · por <b>${q.by}</b> <span style="color:${RANKS[q.rank].color}">(${RANKS[q.rank].name})</span> · ${escapeHtml(normUrl(q.url))}</div><p>${escapeHtml(q.d)}</p>${flag}
+     <div class="act">${st?`<span class="${st==='ok'?'st-approved':'st-pending'}">${st==='ok'?'Aprovado por você':'Recusado por você'}</span>`:canMod&&lower?`<button class="btn" onclick="moderate('${q.id}','ok')">${icon("check")}Aprovar</button><button class="btn ghost" onclick="moderate('${q.id}','no')">${icon("xmark")}Recusar${best&&best.s>=.55?" (duplicata)":""}</button>`:`<span style="font-size:12px;color:var(--mut)">${icon("lock","in")}${canMod?"Só quem tem patente maior que a do autor pode moderar.":`Moderação é a partir de <b style="color:${RANKS[3].color}">Moderador</b> (${fmt(RANKS[3].xp)} XP).`}</span>`}</div></div>`}).join("");
+  $("box").className="box";
+  $("box").innerHTML=`<div class="body"><h2 class="disp">${icon("moderation","h")}Fila de moderação</h2><p>Quem tem patente mais alta modera quem tem patente mais baixa. Cada moderação vale +15 XP.</p>
+  ${mine.length?`<h4 class="h4">SEUS ENVIOS</h4>${mine.map(s=>`<div class="mine"><span>${icon(CAT_IC[s.c]||"video","in")}${escapeHtml(s.t)} <small>(${s.ticket})</small></span><span class="st-${s.status}">${s.status==="approved"?"aprovado · +"+REWARD.approved+" moedas":"aguardando moderação"}</span></div>`).join("")}<div style="height:14px"></div>`:""}
+  <h4 class="h4">ENVIOS DA COMUNIDADE</h4>${qs}
+  <button class="btn ghost" onclick="closeM()" style="margin-top:6px">Fechar</button></div>`;
+  $("modal").classList.add("open");
+}
+function moderate(id,v){NS.modDone[id]=v;NS.modDoneAt=NS.modDoneAt||{};NS.modDoneAt[id]=nsToday();nsSave();addXP(15);buildAll();renderAll();openMod();toast(v==="ok"?"Aprovado e adicionado ao acervo":"Recusado")}
+
+// ---- Ranking da galera ----
+function openRank(){
+  const me=NS.acct?[[NS.acct.user,NS.xp,NS.approvedCount,Object.keys(NS.owned).length,-1,true]]:[];
+  const list=[...RANK_USERS,...me].sort((a,b)=>b[1]-a[1]);
+  $("box").className="box";
+  $("box").innerHTML=`<div class="body"><h2 class="disp">${icon("ranking","h")}Ranking da galera</h2><p>Quem mais salvou a internet brasileira. Envio aprovado, moderação, link salvo e carta nova contam XP.</p>
+  ${list.map((u,i)=>{const r=rankOf(u[1]);const av=u[5]?NS.acct.av:{fur:(u[4]*3)%10,pat:u[4]%5,eye:u[4]%5,acc:(u[4]*2)%9,clo:u[4]%7,bg:u[4]%8};
+   return`<div class="rk ${u[5]?'me':''}"><b>${i+1}</b><span class="av">${catSVG(av)}</span><span>${escapeHtml(u[0])}${u[5]?" (você)":""}<span class="pt" style="color:${r.color};background:${r.color}22">${r.name}</span>${u[6]?`<span class="pt" style="color:${RANKS[3].color};background:${RANKS[3].color}22">${u[6]}</span>`:""}</span><small>${u[2]} envios<br>${u[3]} cartas</small><em>${fmt(u[1])} XP</em></div>`}).join("")}
+  ${NS.acct?"":`<p style="margin-top:12px">Crie sua conta pra aparecer no ranking. <button class="btn" onclick="closeM();openSignup()">${icon("cat")}Criar conta</button></p>`}
+  <button class="btn ghost" onclick="closeM()" style="margin-top:12px">Fechar</button></div>`;
+  $("modal").classList.add("open");
+}
+
+function renderAll(){SUB=SUB_ITEMS;renderNav();renderPulse();renderYears();renderCur();renderGrid();$("rail").innerHTML=ALL.filter(a=>a.r==="Mítico").sort((a,b)=>b.views-a.views).slice(0,3).map(a=>card(a)).join("")}
+function onAccountChange(){renderAll()}
+
+let qT=0;$("q").addEventListener("input",e=>{clearTimeout(qT);qT=setTimeout(()=>{query=e.target.value.trim();if(query)cat="Todas";renderGrid();if(query)$("browse").scrollIntoView({behavior:"smooth"})},180)});
+document.addEventListener("keydown",e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+  if(e.key==="Escape")closeM();
+  if($("modal").classList.contains("open"))return;
+  const i=KEYS.indexOf(cur);
+  if(e.key==="ArrowRight"&&KEYS[i+1])go(KEYS[i+1]);
+  if(e.key==="ArrowLeft"&&KEYS[i-1])go(KEYS[i-1]);
+});
+const t0=Date.now();setInterval(()=>{const m=Math.floor((Date.now()-t0)/60000);$("timer").textContent=m+"m explorando a história da internet"},15000);
+$("timer").textContent="0m explorando a história da internet";
+const h=location.hash.slice(1).replace("mais","+");if(YEAR_INFO[h])cur=h;
+renderWallet();renderAll();scheduleApprovals();
+// centraliza os raios do fundo no logo
+function placeRays(){const im=document.querySelector(".hero .sun img"),r=$("rays");if(!im||!r)return;const b=im.getBoundingClientRect();r.style.left=(b.left+b.width/2+scrollX)+"px";r.style.top=(b.top+b.height*0.42+scrollY)+"px"}
+placeRays();addEventListener("resize",placeRays);addEventListener("load",placeRays);document.querySelector(".hero .sun img").addEventListener("load",placeRays);
+</script>
+</body>
+</html>
