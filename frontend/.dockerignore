@@ -1,0 +1,30 @@
+# VCS e metadados (nunca devem ir para a web root do nginx)
+.git
+.gitignore
+.gitattributes
+.github
+
+# Tooling local
+.impeccable
+.claude
+.vscode
+.idea
+node_modules
+inspect_*.py
+
+# Docs e dados que não fazem parte do site
+docs
+README.md
+memes_data.json
+
+# Arquivos de deploy / build
+Dockerfile
+.dockerignore
+docker-stack.yml
+docker-compose*.yml
+
+# Lixo
+*.log
+*.tmp
+Thumbs.db
+.DS_Store

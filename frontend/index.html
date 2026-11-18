@@ -1,0 +1,4123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NÃO SALVO — Museu & Arquivo da Internet Brasileira</title>
+  <meta name="description" content="O arquivo histórico e museu colaborativo da internet brasileira: navegue por 20 anos de memes, abra pacotes colecionáveis e reviva momentos icônicos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030409;
+      --bg-surface: #0a0e18;
+      --bg-card: #0d1220;
+      --bg-card-hover: #131a2e;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-focus: #3d6bff;
+      --text: #f2f4f9;
+      --text-muted: #a7b0c2;
+      --accent: #2459ff;
+      --accent-hover: #3d6bff;
+      --accent-badge: #1b3aa8;
+      --blue-glow: rgba(36, 89, 255, 0.5);
+      --blue-soft: #6b8fff;
+      --green: #10b981;
+      --gold: #d97706;
+      --bronze: #92400e;
+      --red: #dc2626;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--text);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--border-focus);
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(7, 10, 18, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 0.9;
+      color: #ffffff;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      color: #ffffff;
+      background-color: var(--bg-surface);
+    }
+
+    .nav-btn.active {
+      border-bottom: 2px solid var(--border-focus);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0 12px;
+      height: 40px;
+    }
+
+    .search-bar input {
+      border: none;
+      background: none;
+      padding: 0 8px;
+      width: 170px;
+      font-size: 13px;
+    }
+
+    .badge-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .badge-btn:hover {
+      background-color: var(--bg-card);
+    }
+
+    .btn-github {
+      background-color: #24292f;
+      color: #ffffff;
+      border: 1px solid #3f4752;
+      padding: 9px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-github:hover {
+      background-color: #2f363d;
+      border-color: #57606a;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent-hover);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-card);
+      border-color: var(--border-focus);
+    }
+
+    /* Mobile toggle */
+    .mobile-menu-btn {
+      display: none;
+      font-size: 24px;
+      padding: 6px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 44px 0 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      color: #cbd5e1;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .stat-item span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Today in history card */
+    .today-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .today-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .today-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .today-tag {
+      font-size: 12px;
+      font-weight: 700;
+      background-color: var(--accent-badge);
+      color: #93c5fd;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .today-preview {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+
+    .today-thumb {
+      width: 100px;
+      height: 75px;
+      border-radius: 6px;
+      object-fit: cover;
+      background-color: #000;
+    }
+
+    .today-details h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .today-details p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Views navigation */
+    .view-container {
+      padding: 36px 0 60px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Timeline Years Rail */
+    .years-rail {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .year-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .year-btn:hover, .year-btn.active {
+      color: #ffffff;
+      background-color: var(--accent);
+      border-color: var(--accent-hover);
+    }
+
+    /* Filter Chips */
+    .chips-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover, .chip.active {
+      color: #ffffff;
+      border-color: var(--border-focus);
+      background-color: var(--bg-card);
+    }
+
+    /* Meme Cards Grid */
+    .memes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
+      gap: 20px;
+    }
+
+    .meme-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .meme-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-focus);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 16/10;
+      background-color: #020408;
+      overflow: hidden;
+    }
+
+    .card-media img, .card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .meme-card:hover .card-media img {
+      transform: scale(1.03);
+    }
+
+    .card-badge-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(7, 10, 18, 0.85);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .card-rarity {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .rarity-Mitico { background-color: #7f1d1d; color: #fca5a5; border: 1px solid #b91c1c; }
+    .rarity-Lendario { background-color: #78350f; color: #fde68a; border: 1px solid #d97706; }
+    .rarity-Reliquia { background-color: #064e3b; color: #a7f3d0; border: 1px solid #059669; }
+    .rarity-Classico { background-color: #1e3a8a; color: #bfdbfe; border: 1px solid #2563eb; }
+
+    .card-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* Album Section */
+    .album-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+    }
+
+    .album-sidebar {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .album-collections-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .collection-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .collection-btn:hover, .collection-btn.active {
+      border-color: var(--border-focus);
+      background-color: var(--bg-card-hover);
+      color: #ffffff;
+    }
+
+    .sticker-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .sticker-card {
+      aspect-ratio: 3/4.2;
+      background-color: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sticker-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .sticker-card.locked {
+      background-color: #080c14;
+      border-style: dashed;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticker-card.locked .lock-mark {
+      font-family: var(--font-display);
+      font-size: 38px;
+      color: #334155;
+      font-weight: 800;
+    }
+
+    .sticker-media {
+      flex: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #000;
+      margin-bottom: 8px;
+    }
+
+    .sticker-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sticker-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .duplicate-tag {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background-color: var(--accent);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* Avatar Maker */
+    .avatar-maker-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .avatar-preview-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-svg-container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      border: 3px solid var(--border-focus);
+      background-color: var(--bg-card);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar-options-panel {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .avatar-tab-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .avatar-opt-btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .avatar-opt-btn:hover, .avatar-opt-btn.active {
+      border-color: var(--border-focus);
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 7, 14, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .modal-close {
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    /* Booster Pack 3D Opening */
+    .booster-arena {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      perspective: 1000px;
+      margin: 20px 0;
+    }
+
+    .booster-card-flip {
+      width: min(150px, calc((100% - 32px) / 3));
+      aspect-ratio: 3/4.2;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .booster-card-flip.revealed {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .card-face.back {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-color: #3b82f6;
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .card-face.front {
+      background-color: var(--bg-card);
+      transform: rotateY(180deg);
+    }
+
+    /* Ranking */
+    .rank-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 140px 140px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rank-row.rank-head {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .rank-row > span { min-width: 0; overflow-wrap: anywhere; }
+
+    /* Toasts */
+    .toast-root {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      pointer-events: none;
+      max-width: calc(100vw - 40px);
+    }
+
+    .toast {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 380px;
+      padding: 12px 16px;
+      background-color: var(--bg-card-hover);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text);
+      animation: toast-in 0.25s ease-out both;
+    }
+
+    .toast.success { border-left-color: var(--green); }
+    .toast.error { border-left-color: var(--red); }
+    .toast.leaving { animation: toast-out 0.2s ease-in both; }
+    .toast-icon { font-size: 16px; flex-shrink: 0; }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes toast-out {
+      from { opacity: 1; transform: none; }
+      to { opacity: 0; transform: translateY(8px); }
+    }
+
+    /* Helpers */
+    .mobile-only { display: none; }
+    .gh-short { display: none; }
+    .gh-link-row {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .gh-link-row code { font-size: 14px; color: #93c5fd; word-break: break-all; min-width: 0; }
+    .section-head > div[style*="display: flex"] { flex-wrap: wrap; }
+    #memeModalBody div[style*="display: flex"] { flex-wrap: wrap; gap: 8px; }
+
+    /* Focus & motion */
+    :focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 2px;
+    }
+    input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 1px;
+    }
+    .meme-card, .sticker-card { cursor: pointer; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1280px) {
+      .gh-full { display: none; }
+      .gh-short { display: inline; }
+      .search-bar input { width: 130px; }
+    }
+
+    @media (max-width: 1100px) {
+      .search-bar { display: none; }
+      .badge-btn.streak { display: none; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .album-grid { grid-template-columns: 1fr; }
+      .avatar-maker-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      nav.main-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      nav.main-nav.open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 12px 16px 16px;
+        background-color: rgba(7, 10, 18, 0.98);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 16px 24px rgba(0, 0, 0, 0.5);
+      }
+      nav.main-nav.open .nav-btn { text-align: left; padding: 12px 14px; }
+      nav.main-nav.open .nav-btn.active { border-bottom: none; background-color: rgba(255, 255, 255, 0.08); }
+      nav.main-nav .mobile-only { display: flex; margin-top: 8px; }
+      .mobile-only .search-bar { display: flex; flex: 1; }
+      .mobile-only .search-bar input { width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .header-inner { gap: 10px; }
+      .hero-title { font-size: 34px; }
+      .hero-stats { flex-wrap: wrap; gap: 16px; }
+      .section-title { font-size: 26px; }
+      .modal-overlay { padding: 12px; }
+    }
+
+    @media (max-width: 640px) {
+      .header-actions { gap: 8px; }
+      .header-actions .badge-btn { padding: 8px 10px; }
+      .gh-short { display: none; }
+      .btn-github { padding: 9px 11px; }
+      .brand-sub { display: none; }
+      .sticker-cards { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+      .rank-row { grid-template-columns: 44px 1fr 56px 76px; padding: 12px; font-size: 13px; }
+      .rank-row.rank-head { font-size: 10px; }
+      .today-preview { flex-direction: column; align-items: flex-start; }
+      .today-thumb { width: 100%; height: 140px; }
+      .modal-header { padding: 16px; }
+      .modal-body { padding: 16px; }
+      .modal-title { font-size: 20px; }
+      .booster-arena { gap: 10px; }
+      .toast-root { right: 12px; left: 12px; bottom: 12px; align-items: stretch; max-width: none; }
+      .toast { max-width: none; }
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo { font-size: 22px; }
+      .badge-btn #packCounter { display: none; }
+      .card-face.back { font-size: 12px; }
+      .avatar-svg-container { width: 160px; height: 160px; }
+      .hero-cta .btn-primary, .hero-cta .btn-secondary { flex: 1 1 100%; justify-content: center; }
+    }
+
+    /* ===== Visual refresh: museu escuro, azul elétrico, tipografia condensada ===== */
+    body {
+      font-size: 16px;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 89, 255, 0.16), transparent 70%);
+      background-attachment: fixed;
+    }
+
+    /* Header */
+    header.site-header {
+      background-color: rgba(3, 4, 9, 0.78);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border-bottom: 1px solid var(--border);
+    }
+    header.site-header::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.55;
+    }
+    .header-inner { height: 76px; }
+    .brand-logo {
+      font-size: 30px; font-weight: 800; line-height: 0.88; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      font-family: var(--font-display); font-size: 12px; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted);
+    }
+    .nav-btn {
+      font-family: var(--font-display); font-size: 17px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase; position: relative;
+      background: none !important;
+    }
+    .nav-btn::after {
+      content: ''; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+    }
+    .nav-btn:hover::after, .nav-btn.active::after { transform: scaleX(1); }
+    .nav-btn.active { border-bottom: none; color: #fff; }
+    .search-bar, .badge-btn {
+      background-color: rgba(255, 255, 255, 0.04);
+      transition: border-color .2s, background-color .2s, box-shadow .2s;
+    }
+    .search-bar:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(36, 89, 255, 0.2); }
+    .badge-btn { font-family: var(--font-display); font-size: 15px; letter-spacing: 0.6px; text-transform: uppercase; }
+    .badge-btn:hover { border-color: var(--accent); }
+
+    /* Botões */
+    .btn-primary, .btn-secondary, .btn-github {
+      font-family: var(--font-display); font-size: 17px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase; border-radius: 10px;
+      transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background-color .2s, border-color .2s;
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, #3d6bff, #2459ff);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 24px -6px var(--blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+      transform: translateX(-120%); transition: transform .6s ease;
+    }
+    .btn-primary:hover { background: linear-gradient(180deg, #4d7aff, #2e63ff); transform: translateY(-2px); box-shadow: 0 14px 30px -6px var(--blue-glow), inset 0 1px 0 rgba(255,255,255,.3); }
+    .btn-primary:hover::after { transform: translateX(120%); }
+    .btn-primary:active, .btn-secondary:active { transform: translateY(0) scale(0.98); }
+    .btn-secondary { background-color: rgba(255, 255, 255, 0.03); border: 1px solid var(--accent); }
+    .btn-secondary:hover { background-color: rgba(36, 89, 255, 0.14); transform: translateY(-2px); box-shadow: 0 8px 22px -8px var(--blue-glow); }
+    .btn-github { background-color: rgba(255, 255, 255, 0.05); border-color: var(--border); box-shadow: none; }
+    .btn-github:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+
+    /* Hero em largura total com mosaico de memes */
+    .hero-section {
+      position: relative; isolation: isolate;
+      padding: 84px 0 64px; border-bottom: none;
+      min-height: 560px; display: flex; align-items: center;
+    }
+    .hero-section > .hero-grid { width: 100%; position: relative; z-index: 2; }
+    .hero-bg {
+      position: absolute; z-index: 0; top: 0; bottom: 0;
+      left: calc(50% - 50vw); width: 100vw; overflow: hidden; pointer-events: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-bg::before {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(3, 4, 9, 0.92) 34%, rgba(3, 4, 9, 0.35) 70%, rgba(3, 4, 9, 0.6) 100%),
+        linear-gradient(180deg, transparent 55%, var(--bg) 100%);
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0; z-index: 3;
+      background-image: radial-gradient(rgba(107, 143, 255, 0.28) 1px, transparent 1.2px);
+      background-size: 26px 26px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000 100%);
+      mask-image: linear-gradient(90deg, transparent 40%, #000 100%);
+      opacity: 0.55;
+    }
+    .mosaic {
+      position: absolute; top: -10%; right: -6%; width: 62%; height: 120%;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+      transform: perspective(1100px) rotateY(-16deg) rotateX(6deg) rotate(-4deg);
+      transform-origin: right center;
+      animation: mosaic-in 1.4s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .mosaic-col { display: flex; flex-direction: column; gap: 10px; animation: mosaic-drift 38s linear infinite; }
+    .mosaic-col:nth-child(even) { animation-direction: reverse; animation-duration: 46s; }
+    .mosaic-col:nth-child(3n) { animation-duration: 52s; }
+    .mosaic-col img {
+      width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px;
+      filter: saturate(0.7) brightness(0.8) contrast(1.05);
+      box-shadow: 0 0 0 1px rgba(107, 143, 255, 0.18);
+    }
+    @keyframes mosaic-in { from { opacity: 0; transform: perspective(1100px) rotateY(-26deg) rotateX(6deg) rotate(-4deg) translateX(80px); } }
+    @keyframes mosaic-drift { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+
+    .hero-title {
+      font-size: clamp(44px, 6.4vw, 92px); font-weight: 800; line-height: 0.92;
+      letter-spacing: 0.5px; max-width: 12ch; margin-bottom: 22px;
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+    }
+    .hero-title .hl {
+      color: var(--blue-soft); position: relative; display: inline-block;
+      background: linear-gradient(100deg, #6b8fff 20%, #a9bfff 50%, #6b8fff 80%);
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: shine 5s ease-in-out infinite;
+    }
+    @keyframes shine { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+    .hero-desc { font-size: 19px; color: #c7cfdf; max-width: 520px; }
+    .hero-cta { gap: 14px; }
+    .hero-stats { border-top: 1px solid var(--border); }
+    .stat-item b { font-size: 34px; color: #fff; }
+    .stat-item span { font-family: var(--font-display); font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Entrada escalonada do hero */
+    .hero-grid > div:first-child > * { animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+    .hero-grid > div:first-child > :nth-child(1) { animation-delay: .05s; }
+    .hero-grid > div:first-child > :nth-child(2) { animation-delay: .18s; }
+    .hero-grid > div:first-child > :nth-child(3) { animation-delay: .3s; }
+    .hero-grid > div:first-child > :nth-child(4) { animation-delay: .42s; }
+    .hero-grid > div:last-child { animation: rise .9s .5s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+    /* Painéis */
+    .today-box {
+      background: linear-gradient(180deg, rgba(13, 18, 32, 0.9), rgba(7, 10, 18, 0.9));
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(36, 89, 255, 0.08);
+    }
+    .today-title { font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Pilares */
+    .pillars {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+      padding: 34px 0; border-bottom: 1px solid var(--border);
+    }
+    .pillar { display: flex; gap: 14px; align-items: flex-start; }
+    .pillar-ico {
+      flex: none; width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center; font-size: 19px;
+      border: 1px solid rgba(107, 143, 255, 0.4); color: var(--blue-soft);
+      background: rgba(36, 89, 255, 0.1);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .pillar:hover .pillar-ico { transform: translateY(-3px) scale(1.06); box-shadow: 0 0 22px var(--blue-glow); }
+    .pillar b { display: block; font-family: var(--font-display); font-size: 16px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--blue-soft); }
+    .pillar span { font-size: 15px; color: var(--text-muted); line-height: 1.4; display: block; margin-top: 2px; }
+
+    /* Títulos de seção */
+    .section-title { font-family: var(--font-display); font-size: 34px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+    .section-subtitle { color: var(--text-muted); }
+
+    /* Linha do tempo */
+    .year-btn {
+      font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: 0.6px;
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 10px;
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), background-color .2s, box-shadow .25s, border-color .2s;
+    }
+    .year-btn:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .year-btn.active {
+      background: linear-gradient(180deg, #3d6bff, #2459ff); border-color: rgba(255, 255, 255, 0.2); color: #fff;
+      box-shadow: 0 10px 26px -8px var(--blue-glow);
+    }
+
+    /* Cards de meme */
+    .meme-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .25s, box-shadow .35s;
+      animation: rise .6s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .memes-grid > .meme-card:nth-child(1) { animation-delay: .00s; }
+    .memes-grid > .meme-card:nth-child(2) { animation-delay: .06s; }
+    .memes-grid > .meme-card:nth-child(3) { animation-delay: .12s; }
+    .memes-grid > .meme-card:nth-child(4) { animation-delay: .18s; }
+    .memes-grid > .meme-card:nth-child(5) { animation-delay: .24s; }
+    .memes-grid > .meme-card:nth-child(6) { animation-delay: .30s; }
+    .memes-grid > .meme-card:nth-child(n+7) { animation-delay: .36s; }
+    .meme-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(107, 143, 255, 0.55);
+      box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.9), 0 0 36px -10px var(--blue-glow);
+    }
+    .card-media { position: relative; }
+    .card-media::after {
+      content: '▶'; position: absolute; left: 14px; bottom: 14px;
+      width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 13px; padding-left: 2px; color: #fff;
+      background: rgba(3, 4, 9, 0.6); border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(6px); transition: transform .3s, background-color .3s;
+    }
+    .meme-card:hover .card-media::after { transform: scale(1.12); background: var(--accent); border-color: transparent; }
+    .card-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.4px; }
+
+    /* Revelar ao rolar */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Álbum e avatar */
+    .sticker-card { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+    .sticker-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 0 20px 40px -14px var(--blue-glow); }
+    .avatar-preview-box {
+      background: radial-gradient(circle at 50% 28%, rgba(36, 89, 255, 0.22), transparent 62%), var(--bg-surface);
+      border: 1px solid var(--border); border-radius: 18px;
+    }
+    .avatar-svg-container {
+      box-shadow: 0 0 0 4px rgba(36, 89, 255, 0.35), 0 0 60px -6px var(--blue-glow);
+      animation: float-soft 5s ease-in-out infinite;
+    }
+    @keyframes float-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .avatar-opt-btn { transition: transform .2s, border-color .2s, box-shadow .2s; }
+    .avatar-opt-btn:hover { transform: translateY(-2px); }
+    .avatar-opt-btn.active { box-shadow: 0 0 0 2px var(--accent), 0 0 18px -2px var(--blue-glow); }
+    .modal-box { border-radius: 18px; border: 1px solid var(--border); animation: rise .35s cubic-bezier(.2,.8,.2,1) both; }
+    .modal-title { font-family: var(--font-display); letter-spacing: .6px; text-transform: uppercase; }
+    .view-panel { animation: fade-view .45s ease both; }
+    @keyframes fade-view { from { opacity: 0; transform: translateY(10px); } }
+
+    ::selection { background: var(--accent); color: #fff; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1a2340; border-radius: 10px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    html, body { overflow-x: clip; }
+
+    /* ===== Álbum: fichário, cartas com moldura, brilho reflexivo, disquetes ===== */
+    @property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+    .eyebrow { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-soft); margin-bottom: 6px; }
+    .album-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr) 300px; gap: 22px; align-items: start; }
+    .album-side, .album-detail {
+      position: sticky; top: 92px; background: linear-gradient(180deg, rgba(13, 18, 32, .9), rgba(7, 10, 18, .9));
+      border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+    }
+    .side-label { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); margin: 14px 0 8px; }
+    .side-label:first-child { margin-top: 0; }
+    .col-list { display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow-y: auto; padding-right: 4px; }
+    .col-item {
+      display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; text-align: left;
+      padding: 10px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255, 255, 255, .03);
+      transition: transform .2s, border-color .2s, background-color .2s, box-shadow .2s;
+    }
+    .col-item:hover { transform: translateX(3px); border-color: color-mix(in srgb, var(--cc) 70%, transparent); }
+    .col-item.on { border-color: var(--cc); background: color-mix(in srgb, var(--cc) 14%, transparent); box-shadow: 0 0 22px -10px var(--cc); }
+    .col-ico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 17px; background: color-mix(in srgb, var(--cc) 22%, transparent); border: 1px solid color-mix(in srgb, var(--cc) 50%, transparent); }
+    .col-info b { display: block; font-family: var(--font-display); font-size: 16px; letter-spacing: .6px; text-transform: uppercase; line-height: 1.1; }
+    .col-info small { display: block; font-size: 12px; color: var(--text-muted); margin: 2px 0 5px; }
+    .col-item em { font-style: normal; font-family: var(--font-display); font-size: 14px; color: var(--text-muted); }
+    .col-bar { display: block; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .1); overflow: hidden; min-width: 60px; }
+    .col-bar i { display: block; height: 100%; background: var(--cc, var(--accent)); border-radius: 4px; }
+    .binder-progress .col-bar { flex: 1; max-width: 160px; }
+    .side-total-num { font-family: var(--font-display); font-size: 26px; font-weight: 800; }
+    .side-total-num strong { color: var(--blue-soft); font-size: 34px; }
+    .rarity-counts { display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-display); font-size: 16px; }
+    .side-coins { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #f5b70a; }
+
+    /* Fichário */
+    .binder { position: relative; padding-left: 38px; --cc: var(--accent); }
+    .binder-rings { position: absolute; left: 0; top: 24px; bottom: 24px; width: 54px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; pointer-events: none; }
+    .binder-rings span { display: block; height: 14px; width: 54px; border-radius: 8px; background: linear-gradient(180deg, #eef0f6, #7d8494 55%, #cdd1dc); box-shadow: 0 4px 8px rgba(0, 0, 0, .6), inset 0 1px 0 #fff; }
+    .binder-page {
+      border-radius: 20px; padding: 22px 22px 18px 34px; border: 1px solid color-mix(in srgb, var(--cc) 40%, var(--border));
+      background: radial-gradient(ellipse 70% 40% at 80% 0%, color-mix(in srgb, var(--cc) 20%, transparent), transparent 70%), linear-gradient(180deg, #0b1020, #060810);
+      box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .9);
+    }
+    .binder-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .binder-title { font-family: var(--font-display); font-size: 36px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; line-height: 1; }
+    .binder-progress { display: flex; align-items: center; gap: 12px; margin-top: 8px; font-size: 14px; color: var(--text-muted); }
+    .binder-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .pager { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .pager-btn { min-width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255, 255, 255, .04); font-family: var(--font-display); font-size: 18px; font-weight: 700; transition: border-color .2s, background-color .2s; }
+    .pager-btn:hover:not(:disabled) { border-color: var(--accent); }
+    .pager-btn.is-on { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 6px 18px -6px var(--blue-glow); }
+    .pager-btn:disabled { opacity: .35; cursor: default; }
+
+    /* Carta: moldura por raridade */
+    .ccard {
+      --rc: #9aa3b2; --frame: linear-gradient(135deg, #d7dce6, #6b7385 50%, #d7dce6);
+      position: relative; display: flex; flex-direction: column; gap: 8px; width: 100%; padding: 10px; text-align: left;
+      border: 4px solid transparent; border-radius: 18px; overflow: hidden; isolation: isolate;
+      background: linear-gradient(180deg, #0e1424, #070a12) padding-box, var(--frame) border-box;
+      box-shadow: 0 14px 28px -14px rgba(0, 0, 0, .9), 0 0 24px -12px var(--rc);
+      transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; transform-style: preserve-3d;
+    }
+    button.ccard { cursor: pointer; }
+    button.ccard:hover { transform: translateY(-5px); box-shadow: 0 22px 40px -16px rgba(0, 0, 0, .95), 0 0 34px -8px var(--rc); }
+    .ccard.is-selected { outline: 2px solid #fff; outline-offset: 3px; }
+    .ccard.r-relevante { --frame: linear-gradient(135deg, #7cf0a2, #1c8a43 50%, #7cf0a2); }
+    .ccard.r-raro { --frame: linear-gradient(135deg, #8fc0ff, #1f5fd1 50%, #8fc0ff); }
+    .ccard.r-reliquia { --frame: linear-gradient(135deg, #e0b4ff, #7a2fc4 50%, #e0b4ff); }
+    .ccard.r-lendario { --frame: linear-gradient(135deg, #fff1a8, #d89a06 45%, #ffe27a 70%, #b87800); }
+    .ccard.r-mitico { --frame: conic-gradient(from var(--ang), #ff3b47, #ffb020, #ff3b47, #ff4fd8, #7c5cff, #ff3b47); animation: spin-frame 5s linear infinite; }
+    @keyframes spin-frame { to { --ang: 360deg; } }
+    .ccard-top { display: flex; justify-content: space-between; align-items: center; }
+    .ccard-n { font-family: var(--font-display); font-size: 22px; font-weight: 800; line-height: 1; }
+    .ccard-rar { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--rc); }
+    .ccard-art {
+      position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden;
+      background: linear-gradient(#0a0e1b, #0a0e1b) padding-box, linear-gradient(180deg, color-mix(in srgb, var(--rc) 70%, transparent), transparent) border-box;
+      border: 1px solid transparent;
+    }
+    .ccard-art img, .ccard-art video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ccard-ghost { position: absolute; inset: 10% 8% 0; width: 84%; height: 90%; fill: color-mix(in srgb, var(--rc) 22%, #050710); }
+    .ccard-art::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--rc) 20%, transparent), transparent 70%); }
+    .ccard.is-owned .ccard-art::before { opacity: 0; }
+    .ccard-name { display: block; padding: 7px 10px; border-radius: 8px; background: rgba(255, 255, 255, .06); border: 1px solid var(--border); font-family: var(--font-display); font-size: 17px; font-weight: 700; text-align: center; letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ccard-col { display: block; text-align: center; font-family: var(--font-display); font-size: 14px; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ccard.is-locked { filter: saturate(.55) brightness(.85); }
+
+    /* Estilos de moldura da arte */
+    .st-polaroid .ccard-art { background: #f3efe6; border: 0; padding: 7px 7px 26px; border-radius: 4px; transform: rotate(-1.2deg); box-shadow: 0 8px 14px rgba(0, 0, 0, .5); }
+    .st-polaroid .ccard-art img, .st-polaroid .ccard-art video { border-radius: 2px; height: calc(100% - 0px); }
+    .st-polaroid.is-locked .ccard-art { background: #1d2236; }
+    .st-tv .ccard-art { border: 5px solid #1b1e2a; border-radius: 16px; outline: 2px solid color-mix(in srgb, var(--rc) 55%, transparent); box-shadow: inset 0 0 22px rgba(0, 0, 0, .8); }
+    .st-tv .ccard-art::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px); }
+    .st-film .ccard-art { border: 0; border-radius: 4px; padding: 0 18px; background: #0a0a0e; }
+    .st-film .ccard-art::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: repeating-linear-gradient(0deg, #e9e9ef 0 8px, transparent 8px 16px) 3px 2px / 9px 100% no-repeat,
+                  repeating-linear-gradient(0deg, #e9e9ef 0 8px, transparent 8px 16px) calc(100% - 3px) 2px / 9px 100% no-repeat; opacity: .85; }
+    .st-film .ccard-art img, .st-film .ccard-art video { border-radius: 2px; }
+    .st-classic .ccard-art { border-radius: 10px; }
+    .st-classic.is-owned .ccard-art { box-shadow: inset 0 0 0 2px #0a0e1b, inset 0 0 0 3px color-mix(in srgb, var(--rc) 80%, transparent); }
+
+    /* Brilho reflexivo (Relíquia, Lendário, Mítico) */
+    .ccard.foil::after {
+      content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; border-radius: 14px; mix-blend-mode: color-dodge; opacity: .55;
+      background: linear-gradient(115deg, transparent 22%, rgba(255, 255, 255, .55) 38%, rgba(120, 210, 255, .4) 46%, rgba(255, 120, 230, .4) 54%, rgba(255, 240, 150, .35) 62%, transparent 76%) 0 0 / 260% 260%;
+      animation: foil-sweep 5s ease-in-out infinite;
+    }
+    @keyframes foil-sweep { 0% { background-position: 110% 0; } 50% { background-position: -10% 100%; } 100% { background-position: 110% 0; } }
+    .ccard.foil.is-tilting::after {
+      animation: none; opacity: .75;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .85), rgba(255, 255, 255, 0) 42%),
+                  linear-gradient(115deg, rgba(255, 0, 128, .28), rgba(0, 200, 255, .28) 40%, rgba(255, 230, 0, .25) 70%, rgba(180, 80, 255, .28));
+    }
+    .ccard.foil.r-lendario .ccard-art::after, .ccard.foil.r-mitico .ccard-art::after {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: overlay; opacity: .5;
+      background: repeating-linear-gradient(125deg, rgba(255, 0, 128, .5) 0 8px, rgba(0, 220, 255, .5) 8px 16px, rgba(255, 230, 0, .5) 16px 24px, rgba(160, 90, 255, .5) 24px 32px);
+      background-size: 200% 200%; animation: holo-shift 6s linear infinite;
+    }
+    @keyframes holo-shift { to { background-position: 100% 100%; } }
+    .ccard.foil.r-mitico { box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .9), 0 0 36px -6px #ff3b47, 0 0 60px -20px #ff4fd8; }
+    .ccard.foil.r-lendario { box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .9), 0 0 34px -8px #f5b70a; }
+    .ccard.foil.r-reliquia { box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .9), 0 0 30px -10px #a855f7; }
+
+    /* Painel de detalhe */
+    .detail-card { max-width: 230px; margin: 0 auto 14px; }
+    .detail-title { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; line-height: 1.05; }
+    .detail-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 8px 0 10px; font-family: var(--font-display); font-size: 15px; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); }
+    .detail-text { font-size: 14px; color: #c7cfdf; line-height: 1.5; }
+    .detail-actions { margin-top: 14px; }
+
+    /* Disquetes e legenda de raridades */
+    .pack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+    .pack { --pc: var(--accent); padding: 16px; border-radius: 16px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(13, 18, 32, .9), rgba(7, 10, 18, .9)); transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .25s, box-shadow .3s; display: flex; flex-direction: column; gap: 6px; }
+    .pack:hover { transform: translateY(-5px); border-color: var(--pc); box-shadow: 0 20px 40px -20px var(--pc); }
+    .pack h4 { font-family: var(--font-display); font-size: 21px; letter-spacing: .5px; text-transform: uppercase; line-height: 1.05; }
+    .pack p { font-size: 13px; color: var(--text-muted); flex: 1; }
+    .pack-event { border-color: color-mix(in srgb, var(--pc) 60%, transparent); }
+    .pack-disk { position: relative; width: 84px; height: 84px; margin-bottom: 6px; border-radius: 8px 8px 14px 8px; background: linear-gradient(145deg, color-mix(in srgb, var(--pc) 85%, #fff 8%), color-mix(in srgb, var(--pc) 55%, #000)); box-shadow: 0 10px 24px -8px var(--pc), inset 0 1px 0 rgba(255, 255, 255, .35); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+    .pack:hover .pack-disk { transform: rotate(-6deg) scale(1.06); }
+    .pack-label { position: absolute; left: 10px; right: 10px; top: 28px; padding: 4px 0; text-align: center; border-radius: 3px; background: #f3efe6; color: #111; font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+    .pack-slot { position: absolute; left: 22px; right: 22px; top: 0; height: 22px; border-radius: 0 0 4px 4px; background: rgba(255, 255, 255, .85); }
+    .pack-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; }
+    .pack-foot small { font-family: var(--font-display); font-size: 14px; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); }
+    .pack-foot .btn-secondary { padding: 8px 14px; font-size: 15px; }
+    .pack-foot .btn-secondary:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+    .rarity-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .rar-chip { padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--rc) 55%, transparent); background: color-mix(in srgb, var(--rc) 9%, transparent); }
+    .rar-chip b { display: block; font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; text-transform: uppercase; color: var(--rc); }
+    .rar-chip small { color: var(--text-muted); font-size: 13px; }
+
+    /* Arena do disquete */
+    .booster-arena { flex-wrap: wrap; gap: 12px; }
+    .booster-card-flip { width: min(112px, calc((100% - 24px) / 2)); aspect-ratio: auto; height: 182px; }
+    .booster-card-flip .card-face.front { padding: 0; background: none; border: none; overflow: visible; }
+    .booster-card-flip .card-face.front .ccard { height: 100%; padding: 6px; gap: 5px; border-width: 3px; border-radius: 14px; }
+    .booster-card-flip .ccard-name { font-size: 12px; padding: 3px 4px; }
+    .booster-card-flip .ccard-n { font-size: 15px; }
+    .booster-card-flip .ccard-rar { font-size: 0; }
+    .booster-card-flip .ccard-rar i { font-size: 14px; }
+    .booster-card-flip .card-face.back { font-size: 11px; }
+    @media (max-width: 560px) { .booster-card-flip { height: 190px; } }
+    .booster-card-flip .ccard-col { display: none; }
+    .back-mark { font-size: 28px; margin-bottom: 6px; }
+    .pack-note { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); z-index: 4; white-space: nowrap; padding: 3px 10px; border-radius: 999px; font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+    .pack-note.new { background: var(--accent); color: #fff; box-shadow: 0 6px 16px -4px var(--blue-glow); }
+    .pack-note.dup { background: #1c2236; color: #f5b70a; border: 1px solid rgba(245, 183, 10, .5); }
+
+    @media (max-width: 1180px) {
+      .album-layout { grid-template-columns: 250px minmax(0, 1fr); }
+      .album-detail { grid-column: 1 / -1; position: static; display: grid; grid-template-columns: 220px 1fr; gap: 6px 22px; align-items: start; }
+      .album-detail .detail-card { grid-row: 1 / span 4; margin: 0; }
+    }
+    @media (max-width: 860px) {
+      .album-layout { grid-template-columns: 1fr; }
+      .album-side { position: static; }
+      .col-list { flex-direction: row; max-height: none; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; }
+      .col-item { min-width: 220px; }
+      .binder { padding-left: 0; }
+      .binder-rings { display: none; }
+      .binder-page { padding: 16px; }
+      .binder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .album-detail { grid-template-columns: 1fr; }
+      .album-detail .detail-card { grid-row: auto; margin: 0 auto 8px; }
+    }
+    @media (max-width: 480px) { .binder-title { font-size: 28px; } .ccard-name { font-size: 15px; } }
+    @media (prefers-reduced-motion: reduce) {
+      .ccard.r-mitico, .ccard.foil::after, .ccard.foil .ccard-art::after { animation: none !important; }
+      .pack:hover .pack-disk, button.ccard:hover { transform: none; }
+    }
+
+    /* ===== Animação do disquete ===== */
+    .pack-stage { --pc: var(--accent); --bc: #fff; display: none; position: relative; height: 320px; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; border-radius: 16px; background: radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--pc) 22%, transparent), transparent 62%); }
+    .pack-stage.show { display: flex; }
+    .pack-opener { animation: disk-drop .75s cubic-bezier(.2, .9, .3, 1) both; }
+    .pack-stage .pack-disk { width: 150px; height: 150px; margin: 0; border-radius: 10px 10px 18px 10px; }
+    .pack-stage .pack-label { top: 62px; left: 16px; right: 16px; padding: 6px 0; font-size: 22px; }
+    .pack-stage .pack-slot { left: 36px; right: 36px; height: 38px; }
+    .pack-stage.shake .pack-opener { animation: disk-shake .16s linear infinite; }
+    .pack-stage.shake .pack-disk { box-shadow: 0 0 70px 14px var(--pc), inset 0 1px 0 rgba(255, 255, 255, .35); animation: disk-charge 1s ease-in forwards; }
+    .pack-stage.burst .pack-opener { animation: disk-pop .4s ease-in forwards; }
+    .pack-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at 50% 52%, #fff 0, var(--bc) 22%, transparent 62%); }
+    .pack-stage.burst .pack-flash { animation: flash-out .75s ease-out forwards; }
+    .pack-sparks { position: absolute; left: 50%; top: 52%; width: 0; height: 0; pointer-events: none; }
+    .spark { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--bc); box-shadow: 0 0 12px 3px var(--bc); opacity: 0; }
+    .pack-stage.burst .spark { animation: spark-fly .9s var(--sd) cubic-bezier(.1, .8, .3, 1) forwards; }
+    .pack-skip { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: var(--font-display); font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); }
+    @keyframes disk-drop { from { opacity: 0; transform: translateY(-160px) scale(.5) rotate(-18deg); } }
+    @keyframes disk-shake { 0%, 100% { transform: translate(0, 0) rotate(0); } 25% { transform: translate(-5px, 2px) rotate(-5deg); } 75% { transform: translate(5px, -2px) rotate(5deg); } }
+    @keyframes disk-charge { from { filter: brightness(1); } to { filter: brightness(1.7) saturate(1.3); } }
+    @keyframes disk-pop { to { opacity: 0; transform: scale(1.9); filter: brightness(3); } }
+    @keyframes flash-out { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes spark-fly { 0% { opacity: 1; transform: translate(0, 0) scale(1.4); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); } }
+    .booster-arena.hold { display: none; }
+    .booster-arena.deal .booster-card-flip { animation: deal-in .8s cubic-bezier(.2, 1.1, .3, 1) backwards; animation-delay: calc(var(--i, 0) * 120ms); }
+    @keyframes deal-in { from { opacity: 0; transform: translateY(-170px) scale(.3) rotate(-24deg); } }
+    .booster-actions { margin-top: 22px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .booster-actions[hidden], #revealAllBtn[hidden] { display: none; }
+
+    /* ===== Ranking ===== */
+    .rank-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 30px; }
+    .rank-tab { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: .6px; padding: 8px 18px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255, 255, 255, .04); transition: border-color .2s, background-color .2s, transform .2s; }
+    .rank-tab:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .rank-tab.on { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 8px 22px -8px var(--blue-glow); }
+    .podium { display: flex; justify-content: center; align-items: flex-end; gap: 22px; margin: 0 auto 36px; max-width: 760px; }
+    .pod { flex: 1 1 0; max-width: 240px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; animation: rise .8s cubic-bezier(.2, .8, .2, 1) backwards; }
+    .pod.p1 { animation-delay: .25s; }
+    .pod.p2 { animation-delay: .1s; }
+    .pod.p3 { animation-delay: .4s; }
+    .pod-avatar { width: 108px; height: 108px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(36, 89, 255, .55); box-shadow: 0 0 34px -6px var(--blue-glow); }
+    .pod.p1 .pod-avatar { width: 134px; height: 134px; border-color: #f5b70a; box-shadow: 0 0 44px -4px rgba(245, 183, 10, .55); animation: float-soft 5s ease-in-out infinite; }
+    .pod-avatar svg { display: block; }
+    .pod-crown { font-size: 34px; line-height: 1; color: #f5b70a; text-shadow: 0 0 18px rgba(245, 183, 10, .8); animation: float-soft 3s ease-in-out infinite; }
+    .pod-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: .4px; margin-top: 4px; }
+    .pod-val { font-family: var(--font-display); font-size: 20px; color: var(--text-muted); letter-spacing: .6px; text-transform: uppercase; }
+    .pod-block { width: 100%; display: grid; place-items: center; border-radius: 12px 12px 0 0; border: 1px solid rgba(36, 89, 255, .45); border-bottom: 0; background: linear-gradient(180deg, rgba(36, 89, 255, .35), rgba(36, 89, 255, .06)); }
+    .pod-block span { font-family: var(--font-display); font-size: 34px; font-weight: 800; }
+    .pod.p1 .pod-block { height: 120px; border-color: rgba(245, 183, 10, .6); background: linear-gradient(180deg, rgba(245, 183, 10, .38), rgba(245, 183, 10, .05)); }
+    .pod.p2 .pod-block { height: 84px; }
+    .pod.p3 .pod-block { height: 60px; }
+    .rank-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border-radius: 999px; font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; color: var(--rc); border: 1px solid color-mix(in srgb, var(--rc) 65%, transparent); background: color-mix(in srgb, var(--rc) 12%, transparent); }
+    .rank-badge i { font-style: normal; font-size: 12px; }
+    .rank-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
+    .rank-table { border: 1px solid var(--border); border-radius: 16px; background: linear-gradient(180deg, rgba(13, 18, 32, .9), rgba(7, 10, 18, .9)); padding: 8px 20px 14px; }
+    .rank-head2, .rank-line { display: grid; grid-template-columns: 44px minmax(0, 1fr) 250px 90px; gap: 14px; align-items: center; }
+    .rank-head2 { padding: 14px 0 10px; font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); }
+    .rank-head2 span:last-child, .rank-xp { text-align: right; }
+    .rank-line { padding: 9px 0; border-top: 1px solid rgba(255, 255, 255, .05); animation: rise .5s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--i) * 45ms); transition: background-color .2s; }
+    .rank-line:hover { background: rgba(36, 89, 255, .07); }
+    .rank-pos { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 16px; font-weight: 800; background: #181d2c; color: var(--text-muted); }
+    .rank-pos.pos-1 { background: #f5b70a; color: #1a1300; }
+    .rank-pos.pos-2 { background: #2f86ff; color: #fff; }
+    .rank-pos.pos-3 { background: #3a63d9; color: #fff; }
+    .rank-user { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .rank-user b { font-family: var(--font-display); font-size: 19px; letter-spacing: .3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .rank-ava { flex: none; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255, 255, 255, .12); }
+    .rank-ava svg { display: block; }
+    .rank-chip { flex: none; font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 9px; border-radius: 8px; color: var(--blue-soft); background: rgba(36, 89, 255, .16); border: 1px solid rgba(36, 89, 255, .3); }
+    .rank-chip.guardian { color: #f5b70a; background: rgba(245, 183, 10, .12); border-color: rgba(245, 183, 10, .35); }
+    .rank-xp { font-family: var(--font-display); font-size: 21px; font-weight: 700; }
+    .rank-side { position: sticky; top: 92px; border: 1px solid var(--border); border-radius: 16px; background: linear-gradient(180deg, rgba(13, 18, 32, .9), rgba(7, 10, 18, .9)); padding: 20px; }
+    .rank-side h3 { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 14px; }
+    .rank-side ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .rank-side li { display: flex; gap: 12px; align-items: flex-start; }
+    .rk-ico { font-style: normal; color: var(--rc); font-size: 20px; line-height: 1.1; }
+    .rank-side li b { font-family: var(--font-display); font-size: 17px; letter-spacing: .6px; text-transform: uppercase; }
+    .rank-side li small { color: var(--text-muted); font-size: 12px; }
+    .rank-side li p { font-size: 14px; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+    @media (max-width: 1024px) { .rank-layout { grid-template-columns: 1fr; } .rank-side { position: static; } }
+    @media (max-width: 720px) {
+      .podium { gap: 10px; }
+      .pod-avatar { width: 74px; height: 74px; }
+      .pod.p1 .pod-avatar { width: 92px; height: 92px; }
+      .pod-name { font-size: 16px; word-break: break-all; }
+      .pod .rank-badge { font-size: 11px; padding: 2px 8px; white-space: normal; text-align: center; }
+      .pod-val { font-size: 16px; }
+      .rank-table { padding: 6px 12px 10px; }
+      .rank-head2, .rank-line { grid-template-columns: 34px minmax(0, 1fr) 70px; gap: 10px; }
+      .rank-head2 span:nth-child(3), .rank-patente { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pod, .pod.p1 .pod-avatar, .pod-crown, .rank-line, .pack-opener, .pack-stage .pack-disk, .spark { animation: none !important; }
+      .booster-arena.deal .booster-card-flip { animation: none; }
+    }
+
+    /* Construtor de gatos */
+    .avatar-maker-grid { grid-template-columns: 380px 1fr; }
+    .avatar-svg-container { width: 260px; height: 260px; border: none; background: none; overflow: visible; }
+    .avatar-svg-container > svg { border-radius: 50%; }
+    .cat-tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--border); margin-bottom: 20px; overflow-x: auto; }
+    .cat-tab {
+      font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      padding: 10px 16px; color: var(--text-muted); position: relative; white-space: nowrap; transition: color .2s;
+    }
+    .cat-tab::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); box-shadow: 0 0 12px var(--blue-glow); transform: scaleX(0); transition: transform .3s; }
+    .cat-tab:hover { color: #fff; }
+    .cat-tab.active { color: #fff; }
+    .cat-tab.active::after { transform: scaleX(1); }
+    .cat-group { margin-bottom: 22px; }
+    .cat-group-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    .cat-group-title small { font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text-muted); opacity: .75; margin-left: 6px; }
+    .cat-swatch-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .cat-swatch {
+      position: relative; width: 52px; height: 52px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .14);
+      transition: transform .2s cubic-bezier(.2,.8,.2,1), border-color .2s, box-shadow .2s;
+    }
+    .cat-swatch:hover { transform: scale(1.1); border-color: rgba(255, 255, 255, .5); }
+    .cat-swatch.on { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(36, 89, 255, .35), 0 0 20px -2px var(--blue-glow); }
+    .swatch-check {
+      position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--accent); color: #fff; font-size: 12px; line-height: 20px; text-align: center; font-weight: 700;
+    }
+    .cat-item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 12px; }
+    .cat-item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 6px 10px;
+      border-radius: 12px; border: 1px solid var(--border); background: rgba(255, 255, 255, .03);
+      transition: transform .2s cubic-bezier(.2,.8,.2,1), border-color .2s, box-shadow .2s, background-color .2s;
+    }
+    .cat-item:hover { transform: translateY(-3px); border-color: rgba(107, 143, 255, .6); }
+    .cat-item.on { border-color: var(--accent); background: rgba(36, 89, 255, .14); box-shadow: 0 0 0 1px var(--accent), 0 10px 24px -10px var(--blue-glow); }
+    .cat-item-art { width: 64px; height: 64px; display: block; border-radius: 50%; overflow: hidden; }
+    .cat-item-art svg { display: block; }
+    .cat-none-art { display: grid; place-items: center; font-size: 34px; color: var(--text-muted); background: rgba(255, 255, 255, .05); }
+    .cat-item-name { font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: var(--text-muted); text-align: center; line-height: 1.1; }
+    .cat-item.on .cat-item-name { color: #fff; }
+    @media (max-width: 1024px) { .avatar-maker-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .avatar-svg-container { width: 200px; height: 200px; } .cat-swatch { width: 46px; height: 46px; } }
+    .nav-btn, .badge-btn, .btn-github, .brand a { white-space: nowrap; }
+    @media (min-width: 641px) and (max-width: 1600px) {
+      .gh-full { display: none; }
+      .gh-short { display: inline; }
+    }
+    @media (max-width: 1600px) {
+      .brand-sub { display: none; }
+      .nav-btn { padding: 8px 10px; font-size: 16px; letter-spacing: 0.5px; }
+      .nav-btn::after { left: 10px; right: 10px; }
+      .search-bar input { width: 110px; }
+      .badge-btn.streak { display: none; }
+    }
+    @media (max-width: 1024px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .mosaic { width: 80%; right: -22%; opacity: .7; }
+    }
+    @media (max-width: 768px) {
+      .hero-section { padding: 48px 0 40px; min-height: 0; }
+      .hero-title { font-size: clamp(40px, 12vw, 56px); max-width: none; }
+      .hero-desc { font-size: 17px; }
+      .mosaic { width: 120%; right: -40%; opacity: .45; }
+      .section-title { font-size: 28px; }
+      .nav-btn { font-size: 18px; }
+      .nav-btn::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .pillars { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+      .stat-item b { font-size: 26px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mosaic, .mosaic-col, .hero-title .hl, .avatar-svg-container { animation: none !important; }
+      .hero-grid > div, .hero-grid > div > *, .meme-card, .view-panel, .modal-box { animation-duration: .01s !important; animation-delay: 0s !important; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn-primary::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="#home" onclick="showView('home')">
+          <div class="brand-logo">NÃO SALVO</div>
+          <span class="brand-sub">Arquivo da Internet Brasileira</span>
+        </a>
+      </div>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+        <button class="nav-btn active" onclick="showView('home')">Início</button>
+        <button class="nav-btn" onclick="showView('timeline')">Linha do Tempo</button>
+        <button class="nav-btn" onclick="showView('album')">Álbum de Cartas</button>
+        <button class="nav-btn" onclick="showView('feed')">Feed de Memes</button>
+        <button class="nav-btn" onclick="showView('avatar')">Mascote</button>
+        <button class="nav-btn" onclick="showView('ranking')">Ranking</button>
+        <div class="mobile-only">
+          <div class="search-bar">
+            <span aria-hidden="true">🔍</span>
+            <input type="search" id="searchInputMobile" placeholder="Buscar memes..." aria-label="Buscar memes" maxlength="80" autocomplete="off" oninput="handleSearch(this.value)">
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-bar">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="searchInput" placeholder="Buscar memes..." aria-label="Buscar memes" maxlength="80" autocomplete="off" oninput="handleSearch(this.value)">
+        </div>
+
+        <button class="badge-btn" onclick="showBoosterPackModal()" aria-label="Abrir pacote de figurinhas">
+          <span aria-hidden="true">🎁</span>
+          <span id="packCounter">2 Pacotes</span>
+        </button>
+
+        <button class="badge-btn streak" title="Sequência diária">
+          <span>🔥</span>
+          <span>3 dias</span>
+        </button>
+
+        <!-- Botão Solicitado: Solicite Acesso ao GitHub -->
+        <button class="btn-github" onclick="openGitHubModal()" aria-label="Solicite Acesso ao GitHub">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span class="gh-full">Solicite Acesso ao GitHub</span>
+          <span class="gh-short">Acesso GitHub</span>
+        </button>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Areas -->
+  <main class="container">
+
+    <!-- HOME VIEW -->
+    <section id="view-home" class="view-panel">
+      <div class="hero-section">
+        <div class="hero-bg" aria-hidden="true"><div class="mosaic" id="heroMosaic"></div></div>
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title">E no fim, o plano do <span class="hl">Não Salvo</span> era salvar.</h1>
+            <p class="hero-desc">
+              O museu definitivo da cultura digital brasileira. Navegue por 20 anos de momentos inesquecíveis, complete seu álbum de figurinhas e reviva a época de ouro da nossa internet.
+            </p>
+            <div class="hero-cta">
+              <button class="btn-primary" onclick="showView('timeline')">⏱ Explorar Linha do Tempo</button>
+              <button class="btn-secondary" onclick="showBoosterPackModal()">🎁 Abrir Pacote Diário</button>
+              <button class="btn-secondary" onclick="openSubmitModal()">＋ Salvar Novo Meme</button>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <b id="totalMemesCount">59</b>
+                <span>Clássicos Catalogados</span>
+              </div>
+              <div class="stat-item">
+                <b>2004 — 2026</b>
+                <span>Anos de História Web</span>
+              </div>
+              <div class="stat-item">
+                <b>100%</b>
+                <span>Comunitário & Aberto</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hoje na História -->
+          <div>
+            <div class="today-box" id="todayCard">
+              <div class="today-header">
+                <span class="today-title">📅 Hoje na História Web</span>
+                <span class="today-tag" id="todayYearsAgo">Há 12 anos</span>
+              </div>
+              <div class="today-preview" id="todayPreviewContent">
+                <!-- Injected via JS -->
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 13px; color: var(--text-muted);" id="todayDateLabel">18 de Novembro</span>
+                <button class="btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="showView('timeline')">Ver Linha do Tempo →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillars reveal">
+        <div class="pillar"><div class="pillar-ico" aria-hidden="true">👥</div><div><b>Colaborativo</b><span>A comunidade envia, edita e preserva a história.</span></div></div>
+        <div class="pillar"><div class="pillar-ico" aria-hidden="true">🗂</div><div><b>Organizado</b><span>Tudo separado por ano, categoria e contexto.</span></div></div>
+        <div class="pillar"><div class="pillar-ico" aria-hidden="true">☁</div><div><b>Eternizado</b><span>Se caiu na internet, aqui fica pra sempre.</span></div></div>
+        <div class="pillar"><div class="pillar-ico" aria-hidden="true">♥</div><div><b>Feito por fãs</b><span>Feito de fã pra fã. Como deveria ser.</span></div></div>
+      </div>
+
+      <!-- Highlights Section -->
+      <div class="view-container reveal">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">⭐ Clássicos em Destaque</h2>
+            <p class="section-subtitle">Momentos que definiram a história da internet brasileira</p>
+          </div>
+          <button class="btn-secondary" onclick="showView('timeline')">Ver Todos os Anos →</button>
+        </div>
+        <div class="memes-grid" id="homeHighlightsGrid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE VIEW -->
+    <section id="view-timeline" class="view-panel" style="display: none;">
+      <div class="view-container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">⏱ Linha do Tempo da Web BR</h2>
+            <p class="section-subtitle">Viagem cronológica pelos marcos e virais de 2004 aos dias de hoje</p>
+          </div>
+          <button class="btn-primary" onclick="openSubmitModal()">＋ Salvar Meme no Ano</button>
+        </div>
+
+        <div class="years-rail" id="timelineYearsRail">
+          <!-- Injected via JS -->
+        </div>
+
+        <div class="chips-bar" id="categoryChips">
+          <button class="chip active" onclick="filterCategory('all', this)">Todos</button>
+          <button class="chip" onclick="filterCategory('videos', this)">🎬 Vídeos</button>
+          <button class="chip" onclick="filterCategory('tv', this)">📺 TV & Entrevistas</button>
+          <button class="chip" onclick="filterCategory('musica', this)">🎵 Música</button>
+          <button class="chip" onclick="filterCategory('cultura', this)">🌐 Cultura</button>
+          <button class="chip" onclick="filterCategory('zoeira', this)">🤡 Zoeira</button>
+          <button class="chip" onclick="filterCategory('fotos', this)">📸 Fotos</button>
+        </div>
+
+        <div class="memes-grid" id="timelineGrid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ALBUM VIEW -->
+    <section id="view-album" class="view-panel" style="display: none;">
+      <div class="view-container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Álbum da Internet Brasileira</div>
+            <h2 class="section-title">Meu Álbum</h2>
+            <p class="section-subtitle">Abra disquetes, complete coleções e ganhe XP e moedas. Cartas Relíquia, Lendárias e Míticas têm brilho holográfico.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn-secondary" onclick="recycleDuplicates()">♻ 5 Repetidas → 1 Disquete</button>
+            <button class="btn-primary" onclick="showBoosterPackModal()">🎁 Abrir Disquete Diário</button>
+          </div>
+        </div>
+
+        <div class="album-layout">
+          <aside class="album-side" aria-label="Minhas coleções">
+            <div class="side-label">Minhas coleções</div>
+            <div class="col-list" id="albumCollections"></div>
+            <div id="albumTotals"></div>
+          </aside>
+          <section class="binder" id="albumBinder" aria-label="Fichário da coleção"></section>
+          <aside class="album-detail" id="albumDetail" aria-live="polite"></aside>
+        </div>
+
+        <div class="section-head" style="margin-top: 48px;">
+          <div>
+            <h2 class="section-title">Disquetes</h2>
+            <p class="section-subtitle">É assim que as cartas chegam. Cada disquete tem de 4 a 5 cartas do álbum da internet brasileira.</p>
+          </div>
+        </div>
+        <div class="pack-grid" id="packGrid"></div>
+
+        <div class="section-head" style="margin-top: 48px;">
+          <div>
+            <h2 class="section-title">Raridades</h2>
+            <p class="section-subtitle">Seis níveis, do Comum ao Mítico. Repetidas viram moedas.</p>
+          </div>
+        </div>
+        <div class="rarity-legend" id="rarityLegend"></div>
+      </div>
+    </section>
+
+    <!-- FEED VIEW -->
+    <section id="view-feed" class="view-panel" style="display: none;">
+      <div class="view-container" style="max-width: 680px; margin: 0 auto;">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">🎞 Feed Contínuo</h2>
+            <p class="section-subtitle">Use as setas ↑ ↓ do teclado para navegar ou S para salvar no seu baú</p>
+          </div>
+        </div>
+        <div id="feedStream" style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- AVATAR MAKER VIEW -->
+    <section id="view-avatar" class="view-panel" style="display: none;">
+      <div class="view-container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">🐱 Criador de Mascote (Gatopeixe)</h2>
+            <p class="section-subtitle">Customize seu avatar felino e baixe sua carteirinha oficial de membro</p>
+          </div>
+          <button class="btn-primary" onclick="downloadMemberCard()">⬇ Baixar Carteirinha</button>
+        </div>
+
+        <div class="avatar-maker-grid">
+          <div class="avatar-preview-box">
+            <div class="avatar-svg-container" id="avatarSvgContainer">
+              <!-- Rendered SVG Cat -->
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 26px; font-weight: 700; color: #fff;" id="avatarNickDisplay">@guardiao_da_web</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Membro Nº #0042 · Na internet desde 2004</p>
+            <div style="margin-top: 16px; display: flex; justify-content: center; gap: 8px;">
+              <button class="btn-secondary" onclick="randomizeCat()">🎲 Aleatório</button>
+              <button class="btn-primary" onclick="downloadMemberCard()">Carteirinha</button>
+            </div>
+          </div>
+
+          <div class="avatar-options-panel">
+            <div class="cat-tabs" id="catTabs" role="tablist" aria-label="Categorias de personalização"></div>
+            <div class="cat-pane" id="catPane"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RANKING VIEW -->
+    <section id="view-ranking" class="view-panel" style="display: none;">
+      <div class="view-container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Comunidade</div>
+            <h2 class="section-title">Ranking</h2>
+            <p class="section-subtitle">Quem mais salvou a internet brasileira. Cada envio aprovado, revisão e carta nova conta.</p>
+          </div>
+        </div>
+        <div class="rank-tabs" id="rankTabs" role="group" aria-label="Critério do ranking"></div>
+        <div class="podium" id="rankPodium"></div>
+        <div class="rank-layout">
+          <div class="rank-table">
+            <div class="rank-head2"><span>#</span><span>Internauta</span><span class="rank-patente">Patente</span><span id="rankColLabel">XP geral</span></div>
+            <div id="rankingList"></div>
+          </div>
+          <aside class="rank-side">
+            <div class="eyebrow">Patentes</div>
+            <h3>Do discado à lenda</h3>
+            <ul id="rankPatentes"></ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: SOLICITE ACESSO AO GITHUB PRIVADO -->
+  <div class="modal-overlay" id="githubModal" onclick="if(event.target===this)closeModal('githubModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">🐙 Repositório Privado no GitHub</h3>
+        <span class="modal-close" onclick="closeModal('githubModal')">✕</span>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text); font-size: 15px; margin-bottom: 16px;">
+          O código-fonte completo deste projeto está hospedado em nosso repositório privado oficial:
+        </p>
+        <div class="gh-link-row">
+          <code>https://github.com/willianjack0/naosalvo-2</code>
+          <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="copyGitHubLink()">Copiar</button>
+        </div>
+
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;">Solicitar Convite de Colaborador:</h4>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+          Informe seu usuário do GitHub ou entre em contato pelo Discord da comunidade para liberarmos acesso à branch de desenvolvimento.
+        </p>
+
+        <form id="ghRequestForm" onsubmit="handleGitHubRequest(event)">
+          <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+            <input type="text" id="ghUsernameInput" required placeholder="Seu @username do GitHub" aria-label="Usuário do GitHub" maxlength="40" autocomplete="off" style="flex: 1; min-width: 0;">
+            <button type="submit" class="btn-primary">Enviar Pedido</button>
+          </div>
+        </form>
+
+        <div style="display: flex; gap: 10px;">
+          <a href="https://github.com/willianjack0/naosalvo-2" target="_blank" rel="noopener" class="btn-secondary" style="flex: 1; justify-content: center;">
+            Abrir Página no GitHub ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BOOSTER PACK OPENING -->
+  <div class="modal-overlay" id="boosterModal" onclick="if(event.target===this)closeModal('boosterModal')">
+    <div class="modal-box" style="max-width: 680px; text-align: center;">
+      <div class="modal-header">
+        <h3 class="modal-title">🎁 Pacotinho da Internet</h3>
+        <span class="modal-close" onclick="closeModal('boosterModal')">✕</span>
+      </div>
+      <div class="modal-body">
+        <p id="boosterHint" style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+          Toque nas cartas para virar e descobrir quais figurinhas você tirou!
+        </p>
+        <div class="pack-stage" id="packStage" onclick="skipPackAnimation()" aria-hidden="true">
+          <div class="pack-opener"><div class="pack-disk"><span class="pack-label">DIÁRIO</span><span class="pack-slot"></span></div></div>
+          <div class="pack-flash"></div>
+          <div class="pack-sparks" id="packSparks"></div>
+          <small class="pack-skip">toque para pular</small>
+        </div>
+        <div class="booster-arena" id="boosterArena">
+          <!-- Injected via JS -->
+        </div>
+        <div class="booster-actions">
+          <button class="btn-secondary" id="revealAllBtn" onclick="revealAllCards()" hidden>Revelar todas</button>
+          <button class="btn-primary" onclick="closeModal('boosterModal')">Salvar no Álbum</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: MEME DETAILS -->
+  <div class="modal-overlay" id="memeModal" onclick="if(event.target===this)closeModal('memeModal')">
+    <div class="modal-box" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="memeModalTitle">Detalhes do Meme</h3>
+        <span class="modal-close" onclick="closeModal('memeModal')">✕</span>
+      </div>
+      <div class="modal-body" id="memeModalBody">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SUBMIT MEME -->
+  <div class="modal-overlay" id="submitModal" onclick="if(event.target===this)closeModal('submitModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">☁ Salvar Meme no Acervo</h3>
+        <span class="modal-close" onclick="closeModal('submitModal')">✕</span>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleMemeSubmit(event)">
+          <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Link Original (YouTube, TikTok, X, etc.)</label>
+            <input type="url" required placeholder="https://..." style="width: 100%;">
+          </div>
+          <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Nome do Meme / Viral</label>
+            <input type="text" required placeholder="Ex.: Eita Giovana" style="width: 100%;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Ano que viralizou</label>
+              <select style="width: 100%;" id="submitYearSelect"></select>
+            </div>
+            <div>
+              <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Categoria</label>
+              <select style="width: 100%;">
+                <option value="videos">Vídeos</option>
+                <option value="tv">TV</option>
+                <option value="musica">Música</option>
+                <option value="cultura">Cultura</option>
+                <option value="zoeira">Zoeira</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Conta pra quem não viveu (Contexto)</label>
+            <textarea rows="3" required placeholder="Explique brevemente o porquê de ter sido tão marcante..." style="width: 100%;"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Enviar para Curadoria (+50 XP)</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOASTS -->
+  <div class="toast-root" id="toastRoot" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- SCRIPT & LOGIC -->
+  <script>
+    const ALL_MEMES = [
+  {
+    "id": "havaianas-de-pau",
+    "title": "Havaianas de Pau",
+    "file": "havaianas-de-pau.jpg",
+    "year": 2004,
+    "date": "2004-03-15",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Mitico",
+    "by": "Irmãos Piologo",
+    "context": "A animação do Mundo Canibal que moldou o humor tosco da internet brasileira nos anos 2000. 'Para você bater na cara daquele seu irmão lazarento!'",
+    "views": 48200,
+    "saves": 1920
+  },
+  {
+    "id": "kelly-key-computador",
+    "title": "Kelly Key no Computador",
+    "file": "kelly-key-no-computador.jpg",
+    "year": 2005,
+    "date": "2005-08-20",
+    "cat": "cultura",
+    "catLabel": "Cultura",
+    "rarity": "Reliquia",
+    "by": "Internet Antiga",
+    "context": "A clássica foto de Kelly Key posando compenetrada em frente a um monitor CRT gigantesco de tubo. O auge da tecnologia dos anos 2000.",
+    "views": 21500,
+    "saves": 740
+  },
+  {
+    "id": "sanuiche-ruth-lemos",
+    "title": "Sanduíche-íche da Ruth Lemos",
+    "file": "sanuiche-iche-ruth-lemos.jpg",
+    "year": 2006,
+    "date": "2006-05-18",
+    "cat": "tv",
+    "catLabel": "TV & Programas",
+    "rarity": "Lendario",
+    "by": "Globo / YouTube",
+    "context": "A nutricionista Ruth Lemos foi dar dicas alimentares ao vivo e o retorno no ponto eletrônico começou a travar, gerando o inesquecível 'sanduíche-íche'.",
+    "views": 63400,
+    "saves": 3100
+  },
+  {
+    "id": "tapa-na-pantera",
+    "title": "Tapa na Pantera",
+    "file": "tapa-na-pantera.webp",
+    "year": 2006,
+    "date": "2006-11-22",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Mitico",
+    "by": "Maria Alice Vergueiro",
+    "context": "Curta-metragem brilhante estrelado por Maria Alice Vergueiro como Dona Pantera: 'Fumo há 30 anos, todos os dias, e nunca fiquei viciada!'",
+    "views": 94000,
+    "saves": 5800
+  },
+  {
+    "id": "deixem-a-britney-em-paz",
+    "title": "Deixem a Britney em Paz!",
+    "file": "deixem-a-britney-em-paz.jpg",
+    "year": 2007,
+    "date": "2007-09-12",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Lendario",
+    "by": "Chris Crocker / Web BR",
+    "context": "O choro desesperado e o lençol na cabeça pedindo trégua para a princesa do pop, que virou piada e referência mundial imediata.",
+    "views": 41200,
+    "saves": 1650
+  },
+  {
+    "id": "gil-brother-away",
+    "title": "Gil Brother Away: Pára com essa porra!",
+    "file": "gil-brother-away-para-com-essa-porra.jpg",
+    "year": 2007,
+    "date": "2007-10-04",
+    "cat": "tv",
+    "catLabel": "TV & Humor",
+    "rarity": "Mitico",
+    "by": "Hermes e Renato",
+    "context": "Gil Brother Away em seu ápice no Hermes e Renato com indignação pura, tapas na mesa e dialeto próprio que virou patrimônio nacional.",
+    "views": 105000,
+    "saves": 6400
+  },
+  {
+    "id": "caetano-como-voce-e-burro",
+    "title": "Como Você É Burro, Cara!",
+    "file": "caetano-veloso-como-voce-e-burro.jpg",
+    "year": 2008,
+    "date": "2008-04-10",
+    "cat": "tv",
+    "catLabel": "TV & Entrevistas",
+    "rarity": "Mitico",
+    "by": "Caetano Veloso",
+    "context": "Caetano Veloso no Vox Populi olhando nos olhos do entrevistador e disparando a frase mais usada em discussões na internet: 'Como você é burro, cara, que loucura!'",
+    "views": 128000,
+    "saves": 8900
+  },
+  {
+    "id": "pedro-cade-meu-chip",
+    "title": "Pedro, Cadê Meu Chip?",
+    "file": "edro-cade-meu-chip.jpg",
+    "year": 2008,
+    "date": "2008-06-25",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Classico",
+    "by": "Comunidade do Orkut",
+    "context": "O desabafo em vídeo de um rapaz revoltado porque o Pedro sumiu com o chip do celular dele. Um clássico da era webcam 240p.",
+    "views": 33100,
+    "saves": 1200
+  },
+  {
+    "id": "stefhany-crossfox",
+    "title": "Stefhany do Crossfox",
+    "file": "stefhany-do-crossfox.jpg",
+    "year": 2009,
+    "date": "2009-02-14",
+    "cat": "musica",
+    "catLabel": "Música",
+    "rarity": "Mitico",
+    "by": "Stefhany Absoluta",
+    "context": "Versão brasileira de 'A Thousand Miles' onde Stefhany canta: 'Eu sou linda, absoluta, eu sou Stefhany... No meu Crossfox eu vou sair!'",
+    "views": 87000,
+    "saves": 4900
+  },
+  {
+    "id": "puta-falta-de-sacanagem",
+    "title": "Puta Falta de Sacanagem",
+    "file": "puta-falta-de-sacanagem.jpg",
+    "year": 2010,
+    "date": "2010-04-18",
+    "cat": "cultura",
+    "catLabel": "Cultura & Música",
+    "rarity": "Mitico",
+    "by": "Fãs do Restart",
+    "context": "Sessão de autógrafos da banda Restart cancelada por superlotação gerou revolta, lágrimas e o bordão involuntário 'Puta falta de sacanagem!'.",
+    "views": 98000,
+    "saves": 5600
+  },
+  {
+    "id": "avassaladores-sou-foda",
+    "title": "Os Avassaladores: Sou Foda",
+    "file": "avassaladores-sou-foda.jpg",
+    "year": 2010,
+    "date": "2010-07-08",
+    "cat": "musica",
+    "catLabel": "Música",
+    "rarity": "Mitico",
+    "by": "Os Avassaladores",
+    "context": "O clipe com efeitos de chroma key caseiro mais icônico do Brasil. 'Dig-dim dig-dim dig-dim, sou foda, na cama te esculacho!'",
+    "views": 115000,
+    "saves": 7200
+  },
+  {
+    "id": "morre-diabo",
+    "title": "Morre, Diabo!",
+    "file": "morre-diabo.jpg",
+    "year": 2010,
+    "date": "2010-09-03",
+    "cat": "tv",
+    "catLabel": "TV Policial",
+    "rarity": "Lendario",
+    "by": "Brasil Urgente Curitiba",
+    "context": "Ao ser questionado pelo repórter de TV sobre o motivo de um crime, o preso responde com frieza e o grito gutural que marcou a internet.",
+    "views": 76000,
+    "saves": 3800
+  },
+  {
+    "id": "coreia-copa-naosalvo",
+    "title": "Copa na Coreia do Norte (Não Salvo)",
+    "file": "coreia-do-norte-copa-do-mundo.jpg",
+    "year": 2010,
+    "date": "2010-06-20",
+    "cat": "zoeira",
+    "catLabel": "Zoeira Histórica",
+    "rarity": "Mitico",
+    "by": "Cid Não Salvo",
+    "context": "Cid criou um canal falso fingindo ser a TV estatal norte-coreana anunciando vitórias fictícias na Copa do Mundo. A mídia internacional inteira caiu.",
+    "views": 142000,
+    "saves": 9900
+  },
+  {
+    "id": "trololo-guy",
+    "title": "Trololo Guy",
+    "file": "trololo.jpg",
+    "year": 2010,
+    "date": "2010-03-01",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Classico",
+    "by": "Eduard Khil",
+    "context": "A apresentação soviética com vocalizes ritmados virou a trilha sonora universal da trolagem em fóruns e vídeos de pegadinha.",
+    "views": 52000,
+    "saves": 2300
+  },
+  {
+    "id": "cid-naosalvo",
+    "title": "Cid Não Salvo e o Império do Humor",
+    "file": "cidnaosalvo-.jpg",
+    "year": 2011,
+    "date": "2011-01-15",
+    "cat": "cultura",
+    "catLabel": "Cultura Web",
+    "rarity": "Mitico",
+    "by": "Cid Cidoso",
+    "context": "O ápice dos blogs de humor e da blogosfera brasileira, com milhões de visitas diárias e pegadinhas que paravam o país.",
+    "views": 150000,
+    "saves": 11000
+  },
+  {
+    "id": "mamilos-polemicos",
+    "title": "Mamilos São Muito Polêmicos",
+    "file": "mamilos-uma-assunto-polemico.jpg",
+    "year": 2011,
+    "date": "2011-03-24",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Lendario",
+    "by": "Bruno",
+    "context": "O garoto Bruno gravou um vídeo curto afirmando solenemente: 'Mamilos... mamilos são muito polêmicos!' e a frase entrou para a eternidade.",
+    "views": 89000,
+    "saves": 4500
+  },
+  {
+    "id": "nao-sou-cachorro",
+    "title": "Eu Não Sou Cachorro Não!",
+    "file": "nao-sou-cachorro-nao.jpg",
+    "year": 2011,
+    "date": "2011-05-19",
+    "cat": "tv",
+    "catLabel": "TV & Notícias",
+    "rarity": "Classico",
+    "by": "TV Local",
+    "context": "Entrevista de rua onde um homem indignado com uma autuação começa a cantar Waldick Soriano aos berros diante do microfone.",
+    "views": 38000,
+    "saves": 1500
+  },
+  {
+    "id": "sonia-no-youtube",
+    "title": "Sônia, Você Tá No YouTube!",
+    "file": "sonia-youtube.jpg",
+    "year": 2011,
+    "date": "2011-07-29",
+    "cat": "tv",
+    "catLabel": "TV",
+    "rarity": "Reliquia",
+    "by": "TV Brasileira",
+    "context": "A apresentadora sendo alertada no telefone de que suas gafes já estavam circulando no recém-popularizado YouTube.",
+    "views": 29000,
+    "saves": 1100
+  },
+  {
+    "id": "menino-ima",
+    "title": "O Incrível Menino Ímã",
+    "file": "menino-ima.jpg",
+    "year": 2011,
+    "date": "2011-09-11",
+    "cat": "tv",
+    "catLabel": "TV & Jornalismo",
+    "rarity": "Reliquia",
+    "by": "Jornalismo Sensacionalista",
+    "context": "Reportagem em rede nacional com colheres e panelas grudadas no peito suado de uma criança sob a alegação de magnetismo humano.",
+    "views": 34000,
+    "saves": 1350
+  },
+  {
+    "id": "para-nossa-alegria",
+    "title": "Para Nossa Alegria!",
+    "file": "para-nossa-alegria.jpg",
+    "year": 2012,
+    "date": "2012-03-13",
+    "cat": "musica",
+    "catLabel": "Música & Família",
+    "rarity": "Mitico",
+    "by": "Jefferson e Suelen",
+    "context": "A família cantando no sofá quando o filho solta um agudo potente e desafinado que faz a mãe abandonar o quadro aos risos.",
+    "views": 180000,
+    "saves": 12500
+  },
+  {
+    "id": "gravida-de-taubate",
+    "title": "A Grávida de Taubaté",
+    "file": "gravida-de-taubate.webp",
+    "year": 2012,
+    "date": "2012-01-20",
+    "cat": "tv",
+    "catLabel": "TV & Fofoca",
+    "rarity": "Mitico",
+    "by": "Record TV / Chris Flores",
+    "context": "A mulher que enganou programas de televisão com uma barriga colossal de silicone dizendo estar grávida de quadrigêmeas.",
+    "views": 165000,
+    "saves": 11200
+  },
+  {
+    "id": "nissim-ourfali",
+    "title": "Nissim Ourfali: Vamos Pra Baleia",
+    "file": "nissim-ourfali-vamos-para-baleira.webp",
+    "year": 2012,
+    "date": "2012-08-09",
+    "cat": "musica",
+    "catLabel": "Música & Família",
+    "rarity": "Mitico",
+    "by": "Família Ourfali",
+    "context": "Vídeo convite de Bar Mitzvah parodiando One Direction: 'O que eu mais gosto é de ir pra Baleia!' que viralizou e virou caso judicial sobre o direito ao esquecimento.",
+    "views": 130000,
+    "saves": 8400
+  },
+  {
+    "id": "quero-cafe",
+    "title": "Eu Quero Café!",
+    "file": "quero-cafe.webp",
+    "year": 2012,
+    "date": "2012-06-14",
+    "cat": "tv",
+    "catLabel": "TV & Notícias",
+    "rarity": "Lendario",
+    "by": "Jornal Local",
+    "context": "Idoso revoltado após longa espera no posto de saúde bate na mesa e exige café com voz grave e indignação absoluta.",
+    "views": 79000,
+    "saves": 4200
+  },
+  {
+    "id": "serjao-berranteiro",
+    "title": "Serjão Berranteiro: Aqui Tem Coragem!",
+    "file": "aqui-tem-coragem-cacador-onca-berranteiro-serjao-berranteiro.jpg",
+    "year": 2012,
+    "date": "2012-09-17",
+    "cat": "videos",
+    "catLabel": "Vídeos & Lendas",
+    "rarity": "Classico",
+    "by": "Serjão Berranteiro",
+    "context": "O lendário matador de onça que almoçava e jantava onça: 'Aqui tem coragem! Berranteiro de primeira!'",
+    "views": 47000,
+    "saves": 2100
+  },
+  {
+    "id": "quadrado-de-oito",
+    "title": "Passinho do Quadrado",
+    "file": "quadrado.jpg",
+    "year": 2012,
+    "date": "2012-05-02",
+    "cat": "musica",
+    "catLabel": "Dança & Música",
+    "rarity": "Classico",
+    "by": "Bonde das Maravilhas",
+    "context": "A coreografia acrobática que ensinava a formar ângulos retos com o corpo e dominou bailes e programas de auditório.",
+    "views": 58000,
+    "saves": 2600
+  },
+  {
+    "id": "mil-reais-raca-negra",
+    "title": "Mil Reais ou Show do Raça Negra?",
+    "file": "mil-rea-sou-raca-negra.jpg",
+    "year": 2012,
+    "date": "2012-10-11",
+    "cat": "tv",
+    "catLabel": "TV",
+    "rarity": "Classico",
+    "by": "Turma do Didi",
+    "context": "Criança aos prantos na televisão precisando escolher entre mil reais em barras de ouro ou um abraço do grupo Raça Negra.",
+    "views": 46000,
+    "saves": 1900
+  },
+  {
+    "id": "rei-do-camarote",
+    "title": "Alexander: O Rei do Camarote",
+    "file": "rei-do-camarote.jpg",
+    "year": 2013,
+    "date": "2013-11-03",
+    "cat": "tv",
+    "catLabel": "TV & Lifestyle",
+    "rarity": "Mitico",
+    "by": "Veja SP",
+    "context": "Os 10 mandamentos do empresário que gastava fortunas na balada: champanhe com foguinho, roupas de grife e agregação de valor.",
+    "views": 110000,
+    "saves": 6700
+  },
+  {
+    "id": "gordinho-ave-maria",
+    "title": "Ave Maria, Doido!",
+    "file": "gordinho-ava-maria.jpg",
+    "year": 2013,
+    "date": "2013-04-21",
+    "cat": "videos",
+    "catLabel": "Vídeos & Jogos",
+    "rarity": "Classico",
+    "by": "Web BR",
+    "context": "A expressão de espanto e fascínio gravada no quarto que se tornou bordão unânime no gaming e no humor nacional.",
+    "views": 39000,
+    "saves": 1400
+  },
+  {
+    "id": "ce-e-louco-cachoeira",
+    "title": "Cê É Louco, Cachoeira!",
+    "file": "se-e-louco-cachoeira.jpg",
+    "year": 2013,
+    "date": "2013-07-16",
+    "cat": "tv",
+    "catLabel": "TV",
+    "rarity": "Reliquia",
+    "by": "Comunidade Hip Hop / TV",
+    "context": "O bordão paulistano que virou gíria cotidiana para reagir a situações inacreditáveis do dia a dia.",
+    "views": 32000,
+    "saves": 1150
+  },
+  {
+    "id": "eu-sou-farao",
+    "title": "Eu Sou Faraó!",
+    "file": "sou-farao.jpg",
+    "year": 2013,
+    "date": "2013-08-30",
+    "cat": "musica",
+    "catLabel": "Música & TV",
+    "rarity": "Reliquia",
+    "by": "TV Local",
+    "context": "Cidadão fantasiado de monarca do antigo Egito proclamando sua nobreza faraônica em plena praça pública.",
+    "views": 27000,
+    "saves": 980
+  },
+  {
+    "id": "taca-le-pau-marcos",
+    "title": "Taca-le Pau Nesse Carrinho, Marcos!",
+    "file": "taca-le-pau-nesse-carrinho-marco-veio.jpg",
+    "year": 2014,
+    "date": "2014-06-01",
+    "cat": "videos",
+    "catLabel": "Vídeos & Infância",
+    "rarity": "Mitico",
+    "by": "Leandro Beninca",
+    "context": "A narração da descida de carrinho de rolimã no morro da Vó Salvelina: 'Taca-le pau, Marco Véio! Taca-le pau!'",
+    "views": 155000,
+    "saves": 10400
+  },
+  {
+    "id": "giovana-forninho",
+    "title": "Eita, Giovana! O Forninho Caiu!",
+    "file": "forninho-caiu-giovana.webp",
+    "year": 2014,
+    "date": "2014-04-12",
+    "cat": "videos",
+    "catLabel": "Vídeos & Infância",
+    "rarity": "Mitico",
+    "by": "Giovana e Prima",
+    "context": "A prima dançando funk apoiada num forninho elétrico de brinquedo até a estrutura ceder no momento exato do refrão.",
+    "views": 170000,
+    "saves": 11900
+  },
+  {
+    "id": "faustao-churrasqueira",
+    "title": "Tá Pegando Fogo, Bicho! (Faustão)",
+    "file": "faustao-ta-pegando-fogo-bicho.jpg",
+    "year": 2014,
+    "date": "2014-09-07",
+    "cat": "tv",
+    "catLabel": "TV Ao Vivo",
+    "rarity": "Mitico",
+    "by": "Domingão do Faustão",
+    "context": "A churrasqueira a controle remoto do inventor Leonardo Pereira explode em chamas ao vivo e Faustão corre pedindo bombeiros.",
+    "views": 195000,
+    "saves": 14100
+  },
+  {
+    "id": "pao-de-batata",
+    "title": "Pão de Batataaaaa!",
+    "file": "pao-de-batata.webp",
+    "year": 2014,
+    "date": "2014-03-29",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Classico",
+    "by": "Web Criativa",
+    "context": "A dublagem dramática de animação celebrando a glória culinária do pão de batata recheado de catupiry.",
+    "views": 51000,
+    "saves": 2400
+  },
+  {
+    "id": "acertou-mizeravi",
+    "title": "Acertou, Mizerávi!",
+    "file": "acertou-mizeravi.jpg",
+    "year": 2014,
+    "date": "2014-11-19",
+    "cat": "videos",
+    "catLabel": "Vídeos & Rua",
+    "rarity": "Lendario",
+    "by": "Gênio da Matemática",
+    "context": "Perguntas complexas de tabuada respondidas por um garoto com respostas hilárias e o elogio icônico: 'Acertou, mizerávi!'",
+    "views": 84000,
+    "saves": 4300
+  },
+  {
+    "id": "vestido-azul-dourado",
+    "title": "O Vestido: Azul e Preto ou Branco e Dourado?",
+    "file": "vestido-axzul-ou-dourado.webp",
+    "year": 2015,
+    "date": "2015-02-26",
+    "cat": "fotos",
+    "catLabel": "Ilusão de Óptica",
+    "rarity": "Mitico",
+    "by": "Tumblr / Twitter",
+    "context": "Uma foto em baixa iluminação que dividiu a humanidade entre quem enxergava azul e preto e quem via branco e dourado.",
+    "views": 210000,
+    "saves": 15800
+  },
+  {
+    "id": "ja-acabou-jessica",
+    "title": "Já Acabou, Jéssica?",
+    "file": "ja-acabou-jessica.jpg",
+    "year": 2015,
+    "date": "2015-11-20",
+    "cat": "videos",
+    "catLabel": "Vídeos & Escola",
+    "rarity": "Lendario",
+    "by": "Lara",
+    "context": "Após uma briga de escola na calçada, a garota se levanta com pose triunfante, arruma o cabelo e pergunta: 'Já acabou, Jéssica?'",
+    "views": 92000,
+    "saves": 5100
+  },
+  {
+    "id": "mc-brinquedo-meca-suas-palavras",
+    "title": "Meça Suas Palavras, Parça!",
+    "file": "mc-brinquedo-meca-suas-palavas.jpg",
+    "year": 2015,
+    "date": "2015-05-14",
+    "cat": "musica",
+    "catLabel": "Funk & Entrevista",
+    "rarity": "Classico",
+    "by": "MC Brinquedo",
+    "context": "O garoto do funk paulista dando lição de respeito e postura de quebrada durante entrevista de estúdio.",
+    "views": 61000,
+    "saves": 2800
+  },
+  {
+    "id": "felipe-smith-romero-britto",
+    "title": "Felipe Smith e o Romero Britto",
+    "file": "Felipe-Smith-romero-britto.webp",
+    "year": 2015,
+    "date": "2015-07-22",
+    "cat": "videos",
+    "catLabel": "Vídeos & Arte",
+    "rarity": "Reliquia",
+    "by": "Felipe Smith",
+    "context": "Análise contundente e sem papas na língua sobre a estética colorida e repetitiva dos quadros de Romero Britto.",
+    "views": 37000,
+    "saves": 1600
+  },
+  {
+    "id": "aonde-e-que-eu-to-sertaozinho",
+    "title": "Aonde É Que Eu Tô? Sertãozinho!",
+    "file": "aonde-e-q-eu-to-sertaozinho.jpg",
+    "year": 2015,
+    "date": "2015-10-09",
+    "cat": "videos",
+    "catLabel": "Vídeos de Rua",
+    "rarity": "Classico",
+    "by": "Web Caipira",
+    "context": "Um rapaz meio perdido acorda da carona e pergunta em looping a sua localização geográfica no interior paulista.",
+    "views": 44000,
+    "saves": 1850
+  },
+  {
+    "id": "drauzio-cacete-de-agulha",
+    "title": "Drauzio Varella: Cacete de Agulha",
+    "file": "cacete-de-agulha.jpg",
+    "year": 2015,
+    "date": "2015-12-03",
+    "cat": "tv",
+    "catLabel": "Saúde & TV",
+    "rarity": "Classico",
+    "by": "Dr. Drauzio Varella",
+    "context": "O médico mais respeitado do país reagindo com sinceridade cirúrgica à dor de uma injeção inesperada.",
+    "views": 53000,
+    "saves": 2500
+  },
+  {
+    "id": "ta-tranquilo-ta-favoravel",
+    "title": "Tá Tranquilo, Tá Favorável",
+    "file": "mc-bin-laden-ta-tranquilo-ta-favoravel.webp",
+    "year": 2016,
+    "date": "2016-01-18",
+    "cat": "musica",
+    "catLabel": "Música & Dança",
+    "rarity": "Mitico",
+    "by": "MC Bin Laden",
+    "context": "O sinal de Ronaldinho Gaúcho com os dedos e o passinho sem camisa que virou febre nas praias e foi dançado até por Neymar.",
+    "views": 160000,
+    "saves": 11000
+  },
+  {
+    "id": "nazare-tedesco-confusa",
+    "title": "Nazaré Confusa com Matemática",
+    "file": "nazare-tedesco-pensando.webp",
+    "year": 2016,
+    "date": "2016-08-15",
+    "cat": "tv",
+    "catLabel": "Novelas & Global",
+    "rarity": "Mitico",
+    "by": "Senhora do Destino / Renata Sorrah",
+    "context": "A maior vilã da teledramaturgia brasileira encarando a cela com equações diferenciais sobrepostas, virando meme no mundo todo.",
+    "views": 230000,
+    "saves": 18200
+  },
+  {
+    "id": "meu-nome-e-julia",
+    "title": "Meu Nome É Júlia!",
+    "file": "Meu-Nome-e-Julia.webp",
+    "year": 2016,
+    "date": "2016-06-27",
+    "cat": "videos",
+    "catLabel": "Infância & Dublagem",
+    "rarity": "Classico",
+    "by": "Júlia",
+    "context": "A garotinha que cantou sua autoafirmação com convicção e energia contagiante diante da câmera.",
+    "views": 49000,
+    "saves": 2200
+  },
+  {
+    "id": "tainha-vinho-sexo",
+    "title": "Tainha, Vinho e Muito Sexo",
+    "file": "tainha-vinho-e-muito-sexo.jpg",
+    "year": 2016,
+    "date": "2016-07-04",
+    "cat": "tv",
+    "catLabel": "Entrevistas de Inverno",
+    "rarity": "Classico",
+    "by": "TV Sul",
+    "context": "O casal catarinense que resumiu com perfeição a receita infalível para aproveitar o inverno no litoral sulista.",
+    "views": 62000,
+    "saves": 3100
+  },
+  {
+    "id": "sargento-fahur-chapado",
+    "title": "Sargento Fahur: Tô Chapado Até Agora",
+    "file": "to-chapado-ate-agora-sargento-fahur.jpg",
+    "year": 2016,
+    "date": "2016-09-21",
+    "cat": "tv",
+    "catLabel": "TV Policial",
+    "rarity": "Reliquia",
+    "by": "Sargento Fahur",
+    "context": "O motorista flagrado com carga suspeita confessa sem rodeios o estado mental perante o enérgico sargento.",
+    "views": 41000,
+    "saves": 1700
+  },
+  {
+    "id": "cade-o-richard",
+    "title": "Cadê o Richard?",
+    "file": "cade-o-richard.jpg",
+    "year": 2017,
+    "date": "2017-04-05",
+    "cat": "tv",
+    "catLabel": "TV",
+    "rarity": "Classico",
+    "by": "Jornalismo Aventura",
+    "context": "A procura aflita pelo explorador de animais silvestres no meio do matagal que virou bordão de busca.",
+    "views": 31000,
+    "saves": 1250
+  },
+  {
+    "id": "canarinho-pistola",
+    "title": "Canarinho Pistola",
+    "file": "canarinho-pistola.webp",
+    "year": 2018,
+    "date": "2018-06-16",
+    "cat": "esportes",
+    "catLabel": "Copa do Mundo",
+    "rarity": "Mitico",
+    "by": "CBF / Copa 2018",
+    "context": "O mascote oficial da Seleção Brasileira com cara de ódio e determinação implacável que conquistou a torcida na Rússia.",
+    "views": 140000,
+    "saves": 9800
+  },
+  {
+    "id": "cachorro-dancando-forro",
+    "title": "Cachorro Dançando Forró",
+    "file": "cachorro-dancando.jpg",
+    "year": 2018,
+    "date": "2018-09-02",
+    "cat": "zoeira",
+    "catLabel": "Zoeira & Pets",
+    "rarity": "Classico",
+    "by": "Nordeste Web",
+    "context": "O vira-lata caramelo bailarino que dança nos dois pés com um compasso impecável ao som de sanfona.",
+    "views": 57000,
+    "saves": 2700
+  },
+  {
+    "id": "cabelo-solto-de-prancha",
+    "title": "Cabelo Solto de Prancha",
+    "file": "cabelo-solto-de-prancha.jpg",
+    "year": 2018,
+    "date": "2018-11-12",
+    "cat": "musica",
+    "catLabel": "Música",
+    "rarity": "Classico",
+    "by": "Música Web",
+    "context": "A faixa musical e os vídeos de coreografia celebrando a autoestima da chapinha bem feita.",
+    "views": 36000,
+    "saves": 1400
+  },
+  {
+    "id": "panificadora-alfa",
+    "title": "Panificadora Alfa",
+    "file": "panificadora-alfa.jpg",
+    "year": 2019,
+    "date": "2019-02-19",
+    "cat": "videos",
+    "catLabel": "Vídeos & Vinhetas",
+    "rarity": "Lendario",
+    "by": "Panificadora Alfa",
+    "context": "A vinheta 3D psicodélica de padaria que virou remix techno e tomou conta de todos os grupos do WhatsApp.",
+    "views": 82000,
+    "saves": 4600
+  },
+  {
+    "id": "galo-cego",
+    "title": "Galo Cego: Nada a Ver, Irmão!",
+    "file": "galo-cego-nada-a-ver.jpg",
+    "year": 2019,
+    "date": "2019-05-23",
+    "cat": "tv",
+    "catLabel": "TV & Memes",
+    "rarity": "Reliquia",
+    "by": "Entrevista de Rua",
+    "context": "A resposta direta, calma e contundente desmentindo qualquer acusação: 'Nada a ver, irmão... nada a ver.'",
+    "views": 48000,
+    "saves": 2100
+  },
+  {
+    "id": "celso-portiolli-11-setembro",
+    "title": "Celso Portiolli e o 11 de Setembro",
+    "file": "celso-portioli-aviao-11-setembro.jpeg",
+    "year": 2019,
+    "date": "2019-09-11",
+    "cat": "cultura",
+    "catLabel": "Conspiração Zoeira",
+    "rarity": "Mitico",
+    "by": "Twitter / X Brasil",
+    "context": "A lenda urbana de que o apresentador do Domingo Legal jamais teve qualquer envolvimento com a queda das Torres Gêmeas.",
+    "views": 185000,
+    "saves": 13700
+  },
+  {
+    "id": "uma-sopa-pa-noiz",
+    "title": "Uma Sopa Pá Nóis",
+    "file": "uma-sopa-pa-noiz.jpg",
+    "year": 2020,
+    "date": "2020-07-15",
+    "cat": "videos",
+    "catLabel": "Culinária & Quarentena",
+    "rarity": "Classico",
+    "by": "Web BR",
+    "context": "O preparo afetuoso de uma refeição quentinha que virou conforto e piada durante as noites frias de isolamento.",
+    "views": 42000,
+    "saves": 1800
+  },
+  {
+    "id": "to-cagado-de-fome",
+    "title": "Tô Cagado de Fome",
+    "file": "to-cagad-de-fome.jpg",
+    "year": 2021,
+    "date": "2021-03-10",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Classico",
+    "by": "Tik Tok / Reels",
+    "context": "A expressão hiperbólica da fome aguda brasileira, pronunciada com desespero cômico.",
+    "views": 46000,
+    "saves": 1950
+  },
+  {
+    "id": "to-triste-nao-to-feliz",
+    "title": "Tô Triste Não, Tô Feliz!",
+    "file": "to-triste-nao-to-feliz.jpg",
+    "year": 2022,
+    "date": "2022-08-28",
+    "cat": "videos",
+    "catLabel": "Vídeos & Entrevistas",
+    "rarity": "Classico",
+    "by": "Web BR",
+    "context": "A resposta resiliente e espontânea que mistura lágrimas, otimismo e aceitação do destino.",
+    "views": 39000,
+    "saves": 1600
+  },
+  {
+    "id": "video-viral-2023",
+    "title": "Registro Viral Comunitário 2023",
+    "file": "1064550255_1794969532808627.mp4",
+    "year": 2023,
+    "date": "2023-11-05",
+    "cat": "videos",
+    "catLabel": "Vídeos Curtos",
+    "rarity": "Classico",
+    "by": "Comunidade XET",
+    "context": "Corte em vídeo resgatado dos grupos de mensagens e streams da comunidade.",
+    "views": 25000,
+    "saves": 890
+  },
+  {
+    "id": "que-show-da-xuxa-e-esse",
+    "title": "Que Show da Xuxa É Esse?!",
+    "file": "que-show-da-xuxa-e-esse.jpg",
+    "year": 2024,
+    "date": "2024-09-20",
+    "cat": "tv",
+    "catLabel": "Documentário & TV",
+    "rarity": "Mitico",
+    "by": "Doc Pra Sempre Paquitas",
+    "context": "A menina revoltada de laço na cabeça barrada na gravação do Xou da Xuxa em 1988, descoberta no documentário de 2024 e virando febre instantânea.",
+    "views": 240000,
+    "saves": 19500
+  },
+  {
+    "id": "video-viral-2024",
+    "title": "Corte de Live 2024",
+    "file": "lv_0_20261117231817.mp4",
+    "year": 2024,
+    "date": "2024-11-17",
+    "cat": "videos",
+    "catLabel": "Vídeos",
+    "rarity": "Classico",
+    "by": "Comunidade XET",
+    "context": "Momento hilário capturado em live recente antes da inauguração do museu.",
+    "views": 22000,
+    "saves": 950
+  }
+];
+
+    // State
+    const STATE = {
+      view: 'home',
+      activeYear: 2012,
+      activeCategory: 'all',
+      collectionFilter: 'all',
+      packs: 2,
+      collectedIds: new Set(ALL_MEMES.slice(0, 26).map(m => m.id)),
+      catConfig: { fur: 'prata', pattern: 'tigrado', eyes: 'ambar', acc: [], outfit: 'hoodie', bg: 'azul' }
+    };
+
+    // Initialize UI
+    document.addEventListener('DOMContentLoaded', () => {
+      renderYearsRail();
+      renderTodayCard();
+      renderHomeHighlights();
+      renderTimelineMemes();
+      renderAlbum();
+      renderFeed();
+      renderAvatar();
+      syncAvatarButtons();
+      renderRanking();
+      populateSubmitYears();
+      openMemeFromHash();
+    });
+
+    window.addEventListener('hashchange', openMemeFromHash);
+
+    // Esc fecha modal; Enter/Espaço ativa cards (role="button")
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
+        closeMobileNav();
+      } else if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+
+    // Utilidades de segurança / texto
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function normalizeText(s) {
+      return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+    }
+
+    // Toasts
+    function toast(message, type) {
+      const root = document.getElementById('toastRoot');
+      if (!root) return;
+      const icons = { success: '✓', error: '✕', info: 'ℹ' };
+      const kind = icons[type] ? type : 'info';
+      const el = document.createElement('div');
+      el.className = 'toast ' + kind;
+      const icon = document.createElement('span');
+      icon.className = 'toast-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = icons[kind];
+      const text = document.createElement('span');
+      text.textContent = message;
+      el.append(icon, text);
+      root.appendChild(el);
+      while (root.children.length > 4) root.firstElementChild.remove();
+
+      let timer;
+      const dismiss = () => {
+        clearTimeout(timer);
+        el.classList.add('leaving');
+        setTimeout(() => el.remove(), 220);
+      };
+      timer = setTimeout(dismiss, 3600);
+      el.addEventListener('click', dismiss);
+    }
+
+    // View Switching
+    function showView(viewId) {
+      STATE.view = viewId;
+      document.querySelectorAll('.view-panel').forEach(p => p.style.display = 'none');
+      const target = document.getElementById('view-' + viewId);
+      if (target) target.style.display = 'block';
+
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('onclick') === "showView('" + viewId + "')");
+      });
+      closeMobileNav();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal helpers
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      if (id === 'memeModal' && /^#meme=/.test(location.hash)) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    }
+
+    function openGitHubModal() { openModal('githubModal'); }
+    function openSubmitModal() { openModal('submitModal'); }
+
+    // Deep link: #meme=<id>
+    function openMemeFromHash() {
+      const m = /^#meme=(.+)$/.exec(location.hash);
+      if (!m) return;
+      let id;
+      try { id = decodeURIComponent(m[1]); } catch (_) { id = ''; }
+      if (ALL_MEMES.some(x => x.id === id)) {
+        openMemeModal(id);
+      } else {
+        toast('Meme não encontrado no acervo.', 'error');
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          ta.remove();
+          return ok;
+        } catch (__) {
+          return false;
+        }
+      }
+    }
+
+    async function copyGitHubLink() {
+      const ok = await copyText('https://github.com/willianjack0/naosalvo-2');
+      toast(ok ? 'Link do repositório copiado!' : 'Não foi possível copiar. Selecione o link manualmente.', ok ? 'success' : 'error');
+    }
+
+    function handleGitHubRequest(e) {
+      e.preventDefault();
+      const input = document.getElementById('ghUsernameInput');
+      const nick = input.value.trim().replace(/^@/, '');
+      // Regra oficial de usernames do GitHub: alfanumérico e hífens, 1-39 chars, sem hífen no início/fim
+      if (!/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(nick)) {
+        toast('Usuário do GitHub inválido. Use letras, números e hífens (máx. 39).', 'error');
+        input.focus();
+        return;
+      }
+      toast('Pedido registrado para @' + nick + '. Você receberá o convite em breve.', 'success');
+      input.value = '';
+      closeModal('githubModal');
+    }
+
+    // Years Rail
+    function renderYearsRail() {
+      const rail = document.getElementById('timelineYearsRail');
+      if (!rail) return;
+      const years = Array.from(new Set(ALL_MEMES.map(m => m.year))).sort((a, b) => a - b);
+      rail.innerHTML = years.map(y => {
+        const count = ALL_MEMES.filter(m => m.year === y).length;
+        const active = y === STATE.activeYear ? 'active' : '';
+        return `<button class="year-btn ${active}" onclick="selectYear(${y}, this)">${y} (${count})</button>`;
+      }).join('');
+    }
+
+    function selectYear(year, btn) {
+      STATE.activeYear = year;
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderTimelineMemes();
+    }
+
+    function filterCategory(cat, btn) {
+      STATE.activeCategory = cat;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderTimelineMemes();
+    }
+
+    // Render Timeline
+    function renderTimelineMemes() {
+      const grid = document.getElementById('timelineGrid');
+      if (!grid) return;
+      let list = ALL_MEMES.filter(m => m.year === STATE.activeYear);
+      if (STATE.activeCategory !== 'all') {
+        list = list.filter(m => m.cat === STATE.activeCategory);
+      }
+      if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--text-muted); background: var(--bg-surface); border-radius: 12px;">Nenhum meme cadastrado para esta categoria em ${STATE.activeYear}. Seja o primeiro a salvar!</div>`;
+        return;
+      }
+      grid.innerHTML = list.map(m => renderMemeCardHtml(m)).join('');
+    }
+
+    function renderMemeCardHtml(m) {
+      const isVideo = m.file.endsWith('.mp4');
+      const mediaHtml = isVideo
+        ? `<video src="memes/${m.file}" muted playsinline loop preload="metadata" onmouseover="this.play()" onmouseout="this.pause()" ontouchstart="this.paused ? this.play() : this.pause()"></video>`
+        : `<img src="memes/${m.file}" alt="${m.title}" loading="lazy">`;
+
+      return `
+        <div class="meme-card" role="button" tabindex="0" aria-label="Abrir ${escapeHtml(m.title)}" onclick="openMemeModal('${m.id}')">
+          <div class="card-media">
+            ${mediaHtml}
+            <span class="card-badge-top">${m.year}</span>
+            <span class="card-rarity rarity-${m.rarity}">${m.rarity}</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">${m.title}</h3>
+            <p class="card-desc">${m.context}</p>
+            <div class="card-footer">
+              <span>👤 ${m.by}</span>
+              <div class="card-actions" onclick="event.stopPropagation()">
+                <button class="icon-btn" onclick="saveMeme('${m.id}')" title="Salvar no Baú">💾 Salvar</button>
+                <button class="icon-btn" onclick="shareMeme('${m.id}')" title="Compartilhar">🔗</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Highlights
+    function renderHomeHighlights() {
+      const grid = document.getElementById('homeHighlightsGrid');
+      if (!grid) return;
+      const top = [...ALL_MEMES].sort((a, b) => b.saves - a.saves).slice(0, 6);
+      grid.innerHTML = top.map(m => renderMemeCardHtml(m)).join('');
+    }
+
+    // Today in History
+    function renderTodayCard() {
+      const prev = document.getElementById('todayPreviewContent');
+      if (!prev) return;
+      const sample = ALL_MEMES.find(m => m.year === 2012) || ALL_MEMES[0];
+      const isVideo = sample.file.endsWith('.mp4');
+      const mediaEl = isVideo 
+        ? `<video class="today-thumb" src="memes/${sample.file}" muted></video>` 
+        : `<img class="today-thumb" src="memes/${sample.file}" alt="${sample.title}">`;
+
+      prev.innerHTML = `
+        ${mediaEl}
+        <div class="today-details">
+          <h4>${sample.title}</h4>
+          <p>${sample.context.substring(0, 110)}...</p>
+        </div>
+      `;
+    }
+
+    // ===== Álbum: coleções, raridades, molduras e disquetes =====
+    const RARITIES = [
+      { id: 'comum', name: 'Comum', color: '#9aa3b2', xp: 2, dup: 5 },
+      { id: 'relevante', name: 'Relevante', color: '#2fbf5b', xp: 4, dup: 10 },
+      { id: 'raro', name: 'Raro', color: '#2f86ff', xp: 8, dup: 20 },
+      { id: 'reliquia', name: 'Relíquia', color: '#a855f7', xp: 15, dup: 40 },
+      { id: 'lendario', name: 'Lendário', color: '#f5b70a', xp: 30, dup: 80 },
+      { id: 'mitico', name: 'Mítico', color: '#ff3b47', xp: 60, dup: 150 }
+    ];
+    const RAR = Object.fromEntries(RARITIES.map(r => [r.id, r]));
+    const RAR_ORDER = RARITIES.map(r => r.id);
+    const MEME_RARITY = { Classico: 'raro', Reliquia: 'reliquia', Lendario: 'lendario', Mitico: 'mitico' };
+    const FOIL = new Set(['reliquia', 'lendario', 'mitico']);
+
+    // style = moldura da arte: polaroid | tv | film | classic
+    const COLLECTIONS = [
+      { id: 'fotolog', name: 'Fotolog Legends', total: 16, icon: '📷', color: '#7c5cff', style: 'polaroid', about: 'As lendas do flash no espelho, da franja e do livro de visitas lotado. O Fotolog foi a primeira rede de fotos a dominar o Brasil.' },
+      { id: 'lendas-orkut', name: 'Lendas do Orkut', total: 14, icon: '💗', color: '#e5338f', style: 'classic', about: 'Criadores de comunidade, perfis e personagens que pararam a rede social mais brasileira de todos os tempos.' },
+      { id: 'expansao-orkut', name: 'Expansão Orkut', total: 14, icon: '💙', color: '#ff4fa3', style: 'classic', about: 'Comunidades, depoimentos e a cultura de scraps que nasceu depois da fase de ouro do Orkut.' },
+      { id: 'youtube-classico', name: 'YouTube Clássico', total: 16, icon: '▶', color: '#ff3b47', style: 'film', about: 'Os vídeos que fizeram o país descobrir o botão de compartilhar, direto da era dos 240p.' },
+      { id: 'memes-iconicos', name: 'Memes Icônicos', total: 16, icon: '😂', color: '#f5b70a', style: 'classic', about: 'Imagens e piadas que viraram vocabulário comum, repetidas em todo grupo e todo fórum.' },
+      { id: 'plataformas', name: 'Plataformas Raiz', total: 20, icon: '🖥', color: '#14b89a', style: 'tv', about: 'MSN, Fotolog, mIRC, Kazaa e os sites onde a internet brasileira aprendeu a conversar.' },
+      { id: 'blogs', name: 'Blogs & Épicos', total: 15, icon: '✍', color: '#3fb6e8', style: 'classic', about: 'Textões, tretas e histórias épicas que circularam por blogs e correntes de e-mail.' },
+      { id: 'tv-intervalo', name: 'TV & Intervalo', total: 21, icon: '📺', color: '#2459ff', style: 'tv', about: 'Bordões, gafes ao vivo e cenas de programa que saíram da televisão e foram parar na web.' },
+      { id: 'hits-internet', name: 'Hits da Internet', total: 24, icon: '🎵', color: '#9b5cff', style: 'tv', about: 'Músicas, paródias e funks que tocaram em todo celular, caixa de som e lan house.' },
+      { id: 'era-do-zap', name: 'Era do Zap', total: 22, icon: '💬', color: '#7cc243', style: 'film', about: 'Vídeos e áudios que só existiram para circular em grupo de família e de trabalho.' },
+      { id: 'videos-curtos', name: 'Vídeos Curtos', total: 17, icon: '📱', color: '#ff7a00', style: 'film', about: 'A geração do scroll infinito: clipes de poucos segundos que viram assunto de uma semana.' }
+    ];
+
+    const ODDS_STD = { comum: 52, relevante: 26, raro: 13, reliquia: 6, lendario: 2.5, mitico: 0.5 };
+    const ODDS_GOLD = { comum: 0, relevante: 30, raro: 38, reliquia: 19, lendario: 10, mitico: 3 };
+    const ODDS_EVENT = { comum: 44, relevante: 26, raro: 15, reliquia: 9, lendario: 5, mitico: 1 };
+    const PACKS = [
+      { id: 'diario', name: 'Disquete Diário', subtitle: 'Cartas de todas as coleções', size: 4, price: null, collections: 'all', odds: ODDS_STD, guarantee: 'relevante', color: '#2459ff', label: 'DIÁRIO' },
+      { id: 'boas-vindas', name: 'Disquete de Boas-vindas', subtitle: 'Garante 1 carta Rara ou melhor', size: 5, price: null, collections: 'all', odds: ODDS_STD, guarantee: 'raro', color: '#9b5cff', label: 'BEM-VINDO' },
+      { id: 'evento-orkut', name: 'Disquete Semana do Orkut', subtitle: 'Evento: chance dobrada de Lendário', size: 5, price: 90, collections: ['lendas-orkut', 'expansao-orkut'], odds: ODDS_EVENT, guarantee: 'raro', color: '#ff4fa3', label: 'EVENTO', event: true },
+      { id: 'orkut', name: 'Disquete Orkut', subtitle: 'Lendas do Orkut + Expansão Orkut', size: 5, price: 150, collections: ['lendas-orkut', 'expansao-orkut'], odds: ODDS_STD, guarantee: 'relevante', color: '#e5338f', label: 'ORKUT' },
+      { id: 'fotolog', name: 'Disquete Fotolog', subtitle: 'Só Fotolog Legends', size: 5, price: 150, collections: ['fotolog'], odds: ODDS_STD, guarantee: 'relevante', color: '#7c5cff', label: 'FOTOLOG' },
+      { id: 'youtube', name: 'Disquete Viral', subtitle: 'YouTube Clássico + Memes Icônicos', size: 5, price: 150, collections: ['youtube-classico', 'memes-iconicos'], odds: ODDS_STD, guarantee: 'relevante', color: '#ff3b47', label: 'VIRAL' },
+      { id: 'web', name: 'Disquete Web Raiz', subtitle: 'Plataformas + Blogs & Épicos', size: 5, price: 150, collections: ['plataformas', 'blogs'], odds: ODDS_STD, guarantee: 'relevante', color: '#14b89a', label: 'WEB RAIZ' },
+      { id: 'horario-nobre', name: 'Disquete Horário Nobre', subtitle: 'TV & Intervalo + Hits da Internet', size: 5, price: 150, collections: ['tv-intervalo', 'hits-internet'], odds: ODDS_STD, guarantee: 'relevante', color: '#3fb6e8', label: 'H. NOBRE' },
+      { id: 'zap', name: 'Disquete Zap', subtitle: 'Era do Zap + Vídeos Curtos', size: 5, price: 150, collections: ['era-do-zap', 'videos-curtos'], odds: ODDS_STD, guarantee: 'relevante', color: '#7cc243', label: 'ZAP' },
+      { id: 'ouro', name: 'Disquete Ouro', subtitle: 'Sem comuns. Garante Relíquia ou melhor', size: 5, price: 400, collections: 'all', odds: ODDS_GOLD, guarantee: 'reliquia', color: '#f5b70a', label: 'OURO' }
+    ];
+
+    const ALBUM = { col: null, page: 0, sel: null, welcome: false, dupes: 0, built: false };
+    const ALBUM_PAGE = 6;
+    STATE.coins = 300;
+
+    function collectionOf(m) {
+      if (m.cat === 'fotos' || m.cat === 'cultura') return 'fotolog';
+      if (m.cat === 'zoeira' || m.cat === 'esportes') return 'memes-iconicos';
+      if (m.cat === 'musica') return 'hits-internet';
+      if (m.year <= 2008) return 'lendas-orkut';
+      if (m.cat === 'tv') return 'tv-intervalo';
+      if (m.year <= 2015) return 'youtube-classico';
+      if (m.year <= 2020) return 'era-do-zap';
+      return 'videos-curtos';
+    }
+
+    function buildAlbum() {
+      COLLECTIONS.forEach(c => { c.cards = []; });
+      ALL_MEMES.forEach(m => {
+        const c = COLLECTIONS.find(x => x.id === collectionOf(m));
+        c.cards.push({ meme: m, rarity: MEME_RARITY[m.rarity] || 'raro' });
+      });
+      const filler = ['comum', 'relevante', 'comum', 'raro', 'comum', 'relevante'];
+      COLLECTIONS.forEach(c => {
+        c.cards.sort((a, b) => RAR_ORDER.indexOf(b.rarity) - RAR_ORDER.indexOf(a.rarity));
+        let i = 0;
+        while (c.cards.length < c.total) c.cards.push({ meme: null, rarity: filler[i++ % filler.length] });
+        c.cards.forEach((card, n) => { card.n = n + 1; card.cid = c.id; card.key = card.meme ? card.meme.id : c.id + '-' + (n + 1); });
+      });
+      const first = COLLECTIONS.find(c => c.cards.some(isOwnedCard)) || COLLECTIONS[0];
+      ALBUM.col = first.id;
+      ALBUM.sel = first.cards[0].key;
+      ALBUM.built = true;
+    }
+
+    function isOwnedCard(card) { return !!card.meme && STATE.collectedIds.has(card.meme.id); }
+    function curCollection() { return COLLECTIONS.find(c => c.id === ALBUM.col) || COLLECTIONS[0]; }
+
+    function albumCardHtml(card, opt = {}) {
+      const r = RAR[card.rarity];
+      const col = COLLECTIONS.find(c => c.id === card.cid);
+      const owned = opt.forceOwned || isOwnedCard(card);
+      const foil = owned && FOIL.has(card.rarity);
+      const n = String(card.n).padStart(3, '0');
+      let art;
+      if (owned) {
+        const f = card.meme.file;
+        art = /\.mp4$/i.test(f)
+          ? `<video src="memes/${f}#t=0.1" muted playsinline preload="metadata"></video>`
+          : `<img src="memes/${f}" alt="${escapeHtml(card.meme.title)}" loading="lazy" decoding="async">`;
+      } else {
+        art = '<svg class="ccard-ghost" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="17"/><path d="M14 100 C16 72 32 62 50 62 C68 62 84 72 86 100 Z"/></svg>';
+      }
+      const cls = `ccard r-${card.rarity} st-${col.style} ${owned ? 'is-owned' : 'is-locked'}${foil ? ' foil' : ''}${opt.selected ? ' is-selected' : ''}`;
+      const inner = `
+        <span class="ccard-top"><span class="ccard-n">${n}</span><span class="ccard-rar"><i aria-hidden="true">⬢</i> ${r.name}</span></span>
+        <span class="ccard-art">${art}</span>
+        <span class="ccard-name">${owned ? escapeHtml(card.meme.title) : '???'}</span>
+        <span class="ccard-col"><i aria-hidden="true">${col.icon}</i> ${escapeHtml(col.name)}</span>`;
+      const style = `--rc:${r.color}`;
+      if (opt.tag === 'div') return `<div class="${cls}" style="${style}">${inner}</div>`;
+      return `<button type="button" class="${cls}" style="${style}" aria-pressed="${!!opt.selected}" aria-label="Carta ${n} ${r.name}${owned ? ': ' + escapeHtml(card.meme.title) : ' bloqueada'}" onclick="selectAlbumCard('${card.key}')">${inner}</button>`;
+    }
+
+    function renderAlbum() {
+      if (!document.getElementById('albumBinder')) return;
+      if (!ALBUM.built) buildAlbum();
+      renderAlbumSide();
+      renderBinder();
+      renderAlbumDetail();
+      renderPacks();
+      renderRarityLegend();
+    }
+
+    function renderAlbumSide() {
+      const list = document.getElementById('albumCollections');
+      list.innerHTML = COLLECTIONS.map(c => {
+        const own = c.cards.filter(isOwnedCard).length;
+        const pct = Math.round(own / c.cards.length * 100);
+        return `<button type="button" class="col-item${c.id === ALBUM.col ? ' on' : ''}" style="--cc:${c.color}" aria-pressed="${c.id === ALBUM.col}" onclick="selectCollection('${c.id}')">
+          <span class="col-ico" aria-hidden="true">${c.icon}</span>
+          <span class="col-info"><b>${escapeHtml(c.name)}</b><small>${own} / ${c.cards.length} cartas</small><span class="col-bar"><i style="width:${pct}%"></i></span></span>
+          <em>${pct}%</em></button>`;
+      }).join('');
+      const all = COLLECTIONS.flatMap(c => c.cards);
+      const owned = all.filter(isOwnedCard);
+      document.getElementById('albumTotals').innerHTML = `
+        <div class="side-label">Cartas totais</div>
+        <div class="side-total-num"><strong>${owned.length}</strong> / ${all.length}</div>
+        <div class="side-label">Raridades</div>
+        <div class="rarity-counts">${RARITIES.map(r => `<span title="${r.name}"><i style="color:${r.color}" aria-hidden="true">⬢</i> ${owned.filter(c => c.rarity === r.id).length}</span>`).join('')}</div>
+        <div class="side-label">Moedas</div>
+        <div class="side-coins"><i aria-hidden="true">🪙</i> <strong>${STATE.coins}</strong></div>`;
+    }
+
+    function renderBinder() {
+      const c = curCollection();
+      const pages = Math.ceil(c.cards.length / ALBUM_PAGE);
+      ALBUM.page = Math.min(ALBUM.page, pages - 1);
+      const own = c.cards.filter(isOwnedCard).length;
+      const pct = Math.round(own / c.cards.length * 100);
+      const slice = c.cards.slice(ALBUM.page * ALBUM_PAGE, (ALBUM.page + 1) * ALBUM_PAGE);
+      const pager = pages > 1
+        ? `<nav class="pager" aria-label="Páginas do álbum">
+            <button type="button" class="pager-btn" onclick="setAlbumPage(${ALBUM.page - 1})" ${ALBUM.page === 0 ? 'disabled' : ''} aria-label="Página anterior">‹</button>
+            ${Array.from({ length: pages }, (_, i) => `<button type="button" class="pager-btn${i === ALBUM.page ? ' is-on' : ''}" ${i === ALBUM.page ? 'aria-current="page"' : ''} onclick="setAlbumPage(${i})">${i + 1}</button>`).join('')}
+            <button type="button" class="pager-btn" onclick="setAlbumPage(${ALBUM.page + 1})" ${ALBUM.page === pages - 1 ? 'disabled' : ''} aria-label="Próxima página">›</button>
+          </nav>` : '';
+      document.getElementById('albumBinder').style.setProperty('--cc', c.color);
+      document.getElementById('albumBinder').innerHTML = `
+        <div class="binder-rings" aria-hidden="true">${'<span></span>'.repeat(12)}</div>
+        <div class="binder-page">
+          <header class="binder-head">
+            <div>
+              <h3 class="binder-title">${escapeHtml(c.name)}</h3>
+              <div class="binder-progress"><span>${own} / ${c.cards.length} cartas</span><span class="col-bar"><i style="width:${pct}%"></i></span><span>${pct}%</span></div>
+            </div>
+            <button type="button" class="btn-secondary" onclick="openCollectionAbout()">ℹ Sobre a coleção</button>
+          </header>
+          <div class="binder-grid">${slice.map(card => albumCardHtml(card, { selected: card.key === ALBUM.sel })).join('')}</div>
+          ${pager}
+        </div>`;
+    }
+
+    function renderAlbumDetail() {
+      const c = curCollection();
+      const card = c.cards.find(x => x.key === ALBUM.sel) || c.cards[0];
+      const r = RAR[card.rarity];
+      const owned = isOwnedCard(card);
+      const n = String(card.n).padStart(3, '0');
+      const box = document.getElementById('albumDetail');
+      if (owned) {
+        const m = card.meme;
+        box.innerHTML = `
+          <div class="detail-card">${albumCardHtml(card, { tag: 'div', forceOwned: true })}</div>
+          <h4 class="detail-title">${escapeHtml(m.title)}</h4>
+          <div class="detail-meta"><span style="color:${r.color}">⬢ ${r.name}</span><span>${m.year}</span><span>${escapeHtml(m.catLabel)}</span></div>
+          <p class="detail-text">${escapeHtml(m.context)}</p>
+          <div class="detail-actions"><button type="button" class="btn-primary" onclick="openMemeModal('${m.id}')">Ver ficha</button></div>`;
+      } else {
+        box.innerHTML = `
+          <div class="detail-card">${albumCardHtml(card, { tag: 'div' })}</div>
+          <h4 class="detail-title">Carta ${n} bloqueada</h4>
+          <div class="detail-meta"><span style="color:${r.color}">⬢ ${r.name}</span><span>+${r.xp} XP</span><span>repetida: ${r.dup} 🪙</span></div>
+          <p class="detail-text">${card.meme ? 'Esta carta faz parte do acervo, mas você ainda não a tirou de um disquete.' : 'Esta vaga está reservada para um registro que ainda será catalogado pela comunidade.'}</p>
+          <div class="detail-actions"><button type="button" class="btn-primary" onclick="showBoosterPackModal()">Abrir disquete diário</button></div>`;
+      }
+    }
+
+    function renderPacks() {
+      const grid = document.getElementById('packGrid');
+      if (!grid) return;
+      grid.innerHTML = PACKS.map(p => {
+        let cta, disabled = false;
+        if (p.id === 'diario') { cta = `Abrir · ${STATE.packs} disp.`; disabled = STATE.packs <= 0; }
+        else if (p.id === 'boas-vindas') { cta = ALBUM.welcome ? 'Já aberto' : 'Abrir grátis'; disabled = ALBUM.welcome; }
+        else { cta = `🪙 ${p.price}`; disabled = STATE.coins < p.price; }
+        return `<article class="pack${p.event ? ' pack-event' : ''}" style="--pc:${p.color}">
+          <div class="pack-disk" aria-hidden="true"><span class="pack-label">${p.label}</span><span class="pack-slot"></span></div>
+          <h4>${escapeHtml(p.name)}</h4>
+          <p>${escapeHtml(p.subtitle)}</p>
+          <div class="pack-foot"><small>${p.size} cartas</small><button type="button" class="btn-secondary" ${disabled ? 'disabled' : ''} onclick="openPack('${p.id}')">${cta}</button></div>
+        </article>`;
+      }).join('');
+    }
+
+    function renderRarityLegend() {
+      const el = document.getElementById('rarityLegend');
+      if (!el) return;
+      el.innerHTML = RARITIES.map(r => `<div class="rar-chip" style="--rc:${r.color}"><b><i aria-hidden="true">⬢</i> ${r.name}</b><small>+${r.xp} XP · repetida ${r.dup} 🪙</small></div>`).join('');
+    }
+
+    function selectCollection(id) {
+      const c = COLLECTIONS.find(x => x.id === id);
+      if (!c) return;
+      ALBUM.col = id; ALBUM.page = 0; ALBUM.sel = c.cards[0].key;
+      renderAlbum();
+    }
+    function setAlbumPage(i) { ALBUM.page = Math.max(0, i); renderBinder(); }
+    function selectAlbumCard(key) { ALBUM.sel = key; renderBinder(); renderAlbumDetail(); }
+    function openCollectionAbout() { const c = curCollection(); toast(`${c.name}: ${c.about}`, 'info'); }
+
+    // ----- Disquetes -----
+    function pickRarity(odds, min) {
+      const ids = RAR_ORDER.filter((r, i) => i >= min && odds[r] > 0);
+      const total = ids.reduce((s, r) => s + odds[r], 0);
+      let x = Math.random() * total;
+      for (const r of ids) { x -= odds[r]; if (x < 0) return r; }
+      return ids[ids.length - 1];
+    }
+    function pickCard(byRarity, rarity, taken) {
+      const i = RAR_ORDER.indexOf(rarity);
+      const order = [...RAR_ORDER.slice(0, i + 1).reverse(), ...RAR_ORDER.slice(i + 1)];
+      // Primeiro tenta uma carta ainda não sorteada neste disquete (da raridade mais próxima); só repete se acabar o pool.
+      for (const r of order) {
+        const fresh = (byRarity.get(r) || []).filter(c => !taken.includes(c));
+        if (fresh.length) return fresh[Math.floor(Math.random() * fresh.length)];
+      }
+      for (const r of order) {
+        const list = byRarity.get(r);
+        if (list && list.length) return list[Math.floor(Math.random() * list.length)];
+      }
+      return null;
+    }
+    function drawPack(p) {
+      let pool = COLLECTIONS.filter(c => p.collections === 'all' || p.collections.includes(c.id)).flatMap(c => c.cards).filter(c => c.meme);
+      if (!pool.length) pool = COLLECTIONS.flatMap(c => c.cards).filter(c => c.meme);
+      const byRarity = new Map();
+      pool.forEach(c => { const l = byRarity.get(c.rarity) || []; l.push(c); byRarity.set(c.rarity, l); });
+      const out = [];
+      for (let i = 0; i < p.size; i++) {
+        let r = pickRarity(p.odds, 0);
+        if (i === p.size - 1 && p.guarantee) {
+          const min = RAR_ORDER.indexOf(p.guarantee);
+          if (!out.some(c => RAR_ORDER.indexOf(c.rarity) >= min) && RAR_ORDER.indexOf(r) < min) r = pickRarity(p.odds, min);
+        }
+        const card = pickCard(byRarity, r, out);
+        if (card) out.push(card);
+      }
+      return out.sort((a, b) => RAR_ORDER.indexOf(a.rarity) - RAR_ORDER.indexOf(b.rarity));
+    }
+
+    function openPack(id) {
+      const p = PACKS.find(x => x.id === id);
+      if (!p) return;
+      if (p.id === 'diario') {
+        if (STATE.packs <= 0) { toast('Sem disquetes diários. Recicle 5 repetidas ou volte amanhã.', 'info'); return; }
+        STATE.packs--;
+      } else if (p.id === 'boas-vindas') {
+        if (ALBUM.welcome) { toast('O disquete de boas-vindas já foi aberto.', 'info'); return; }
+        ALBUM.welcome = true;
+      } else {
+        if (STATE.coins < p.price) { toast(`Faltam ${p.price - STATE.coins} moedas para este disquete.`, 'info'); return; }
+        STATE.coins -= p.price;
+      }
+      const drawn = drawPack(p);
+      const arena = document.getElementById('boosterArena');
+      arena.innerHTML = drawn.map((card, i) => {
+        const dup = STATE.collectedIds.has(card.meme.id);
+        if (dup) { STATE.coins += RAR[card.rarity].dup; ALBUM.dupes++; } else { STATE.collectedIds.add(card.meme.id); }
+        const note = dup ? `<span class="pack-note dup">REPETIDA +${RAR[card.rarity].dup} 🪙</span>` : '<span class="pack-note new">NOVA</span>';
+        return `<div class="booster-card-flip" style="--i:${i}" role="button" tabindex="0" aria-label="Virar carta ${i + 1}" onclick="this.classList.toggle('revealed')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('revealed')}">
+          <div class="card-face back"><div class="back-mark">✨</div>NÃO SALVO<br>${escapeHtml(p.label)}</div>
+          <div class="card-face front">${albumCardHtml(card, { tag: 'div', forceOwned: true })}${note}</div>
+        </div>`;
+      }).join('');
+      document.getElementById('packCounter').innerText = STATE.packs + ' Pacotes';
+      renderAlbum();
+      startPackAnimation(p, drawn);
+    }
+
+    function showBoosterPackModal() { openPack('diario'); }
+
+    function recycleDuplicates() {
+      if (ALBUM.dupes < 5) { toast(`Você tem ${ALBUM.dupes} repetida${ALBUM.dupes === 1 ? '' : 's'}. São necessárias 5 para trocar por um disquete.`, 'info'); return; }
+      ALBUM.dupes -= 5;
+      STATE.packs++;
+      document.getElementById('packCounter').innerText = STATE.packs + ' Pacotes';
+      renderPacks();
+      toast('5 repetidas recicladas: +1 disquete diário.', 'success');
+    }
+
+    // Brilho reflexivo nas cartas especiais (segue o ponteiro)
+    (function initFoilTilt() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.addEventListener('pointermove', e => {
+        const c = e.target.closest && e.target.closest('.ccard.foil');
+        if (!c) return;
+        const r = c.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        c.classList.add('is-tilting');
+        c.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        c.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        c.style.transform = `perspective(700px) rotateY(${((px - 0.5) * 14).toFixed(2)}deg) rotateX(${((0.5 - py) * 14).toFixed(2)}deg) translateY(-4px)`;
+      });
+      document.addEventListener('pointerout', e => {
+        const c = e.target.closest && e.target.closest('.ccard.foil');
+        if (c && !c.contains(e.relatedTarget)) { c.classList.remove('is-tilting'); c.style.transform = ''; }
+      });
+    })();
+
+    // Feed
+    function renderFeed() {
+      const stream = document.getElementById('feedStream');
+      if (!stream) return;
+      const feedMemes = ALL_MEMES.slice(0, 10);
+      stream.innerHTML = feedMemes.map(m => {
+        const isVideo = m.file.endsWith('.mp4');
+        const mediaHtml = isVideo
+          ? `<video src="memes/${m.file}" controls style="width: 100%; border-radius: 8px;"></video>`
+          : `<img src="memes/${m.file}" alt="${m.title}" style="width: 100%; border-radius: 8px; max-height: 480px; object-fit: contain; background: #000;">`;
+
+        return `
+          <div style="background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <div>
+                <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff;">${m.title}</h3>
+                <span style="font-size: 13px; color: var(--text-muted);">${m.year} · Descoberto por @${m.by}</span>
+              </div>
+              <span class="card-rarity rarity-${m.rarity}">${m.rarity}</span>
+            </div>
+            ${mediaHtml}
+            <p style="font-size: 14px; color: #cbd5e1; margin-top: 14px; line-height: 1.5;">${m.context}</p>
+            <div style="display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);">
+              <button class="btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="saveMeme('${m.id}')">💾 Salvar no Baú</button>
+              <button class="btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="shareMeme('${m.id}')">Compartilhar ↗</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ===== Criador de gatos (gatinho SVG modular: pelo, padrão, olhos, acessórios, roupa, fundo) =====
+    const CAT = {
+      fur: [
+        { id: 'prata', name: 'Prata', base: '#b9b3ab', dark: '#5d5650', light: '#efebe5', innerEar: '#f1a9b5', nose: '#e58b9b' },
+        { id: 'laranja', name: 'Laranja', base: '#ec9a43', dark: '#b65f1c', light: '#fde6c8', innerEar: '#f6a7a8', nose: '#e57f86' },
+        { id: 'preto', name: 'Preto', base: '#202027', dark: '#0d0d11', light: '#3d3d48', innerEar: '#9a6676', nose: '#5a3a44', dark_fur: true },
+        { id: 'branco', name: 'Branco', base: '#f5f0e7', dark: '#d6cbb8', light: '#ffffff', innerEar: '#f6b3c0', nose: '#ee95a6' },
+        { id: 'marrom', name: 'Marrom', base: '#8c5f3d', dark: '#472c1b', light: '#dcbd99', innerEar: '#d48d93', nose: '#8a4a4f' },
+        { id: 'cinza', name: 'Cinza', base: '#8f959d', dark: '#5f646c', light: '#d8dbdf', innerEar: '#dca0ad', nose: '#b97483' },
+        { id: 'fumaca', name: 'Fumaça', base: '#3e4351', dark: '#262a35', light: '#7d8394', innerEar: '#a77587', nose: '#6b4655', dark_fur: true },
+        { id: 'creme', name: 'Creme', base: '#e8c793', dark: '#c29659', light: '#faefd9', innerEar: '#f4abb0', nose: '#e2878f' },
+        { id: 'tricolor', name: 'Tricolor', base: '#f6f1e9', dark: '#2a2630', light: '#ffffff', innerEar: '#f3aab8', nose: '#e88b9c', patches: ['#e58a3b', '#2a2630'] },
+        { id: 'cosmico', name: 'Cósmico', base: '#ff5fc1', base2: '#7b5cff', dark: '#5b2fa8', light: '#ffd6f1', innerEar: '#ffe0f3', nose: '#ffffff' }
+      ],
+      pattern: [
+        { id: 'tigrado', name: 'Tigrado' }, { id: 'marmore', name: 'Mármore' }, { id: 'pintado', name: 'Pintado' },
+        { id: 'smoking', name: 'Smoking' }, { id: 'liso', name: 'Liso' }
+      ],
+      eyes: [
+        { id: 'ambar', name: 'Âmbar', color: '#f2a516' }, { id: 'verde', name: 'Verde', color: '#7cc243' },
+        { id: 'azul', name: 'Azul', color: '#3f9bff' }, { id: 'agua', name: 'Verde-água', color: '#22c7a3' },
+        { id: 'roxo', name: 'Roxo', color: '#a463ff' }
+      ],
+      acc: [
+        { id: 'oculos-redondo', name: 'Óculos redondo', slot: 'eyes' }, { id: 'oculos-escuro', name: 'Óculos escuro', slot: 'eyes' },
+        { id: 'bone', name: 'Boné', slot: 'head' }, { id: 'gorro', name: 'Gorro', slot: 'head' }, { id: 'fone', name: 'Fone', slot: 'head' },
+        { id: 'bandana', name: 'Bandana', slot: 'neck' }, { id: 'corrente', name: 'Corrente', slot: 'neck' }, { id: 'monoculo', name: 'Monóculo', slot: 'eyes' }
+      ],
+      outfit: [
+        { id: 'hoodie', name: 'Hoodie' }, { id: 'camiseta', name: 'Camiseta' }, { id: 'jaqueta-jeans', name: 'Jaqueta jeans' },
+        { id: 'moletom', name: 'Moletom' }, { id: 'bomber', name: 'Jaqueta bomber' }, { id: 'xadrez', name: 'Camisa xadrez' }, { id: 'regata', name: 'Regata' }
+      ],
+      bg: [
+        { id: 'azul', name: 'Azul' }, { id: 'roxo', name: 'Roxo' }, { id: 'rosa', name: 'Rosa' }, { id: 'agua', name: 'Verde-água' },
+        { id: 'laranja', name: 'Laranja' }, { id: 'synthwave', name: 'Synthwave' }, { id: 'galaxia', name: 'Galáxia' }, { id: 'grade', name: 'Grade' }
+      ]
+    };
+    const CAT_DEFAULT = { fur: 'prata', pattern: 'tigrado', eyes: 'ambar', acc: [], outfit: 'hoodie', bg: 'azul' };
+    const CAT_PATHS = {
+      head: 'M100 58 C129 58 151 74 155 99 C158 117 152 134 138 144 C126 152 113 155 100 155 C87 155 74 152 62 144 C48 134 42 117 45 99 C49 74 71 58 100 58 Z',
+      earL: 'M49 96 C47 74 51 52 58 38 Q61 32 67 35 C77 41 87 51 94 62 Z',
+      earR: 'M151 96 C153 74 149 52 142 38 Q139 32 133 35 C123 41 113 51 106 62 Z',
+      inL: 'M58 84 C57 68 59 54 63 46 Q65 42 69 45 C76 50 82 57 86 64 Z',
+      inR: 'M142 84 C143 68 141 54 137 46 Q135 42 131 45 C124 50 118 57 114 64 Z',
+      tuftL: 'M50 114 L36 120 L47 125 L39 133 L55 133 Z',
+      tuftR: 'M150 114 L164 120 L153 125 L161 133 L145 133 Z',
+      body: 'M28 200 C30 172 56 154 100 152 C144 154 170 172 172 200 Z'
+    };
+    const catById = (list, id) => list.find(x => x.id === id) || list[0];
+    const catSlot = id => (CAT.acc.find(x => x.id === id) || {}).slot;
+
+    function catRng(seed) {
+      let a = seed >>> 0;
+      return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    }
+
+    function catPatternSvg(pattern, fur) {
+      const st = `stroke="${fur.dark}" stroke-linecap="round" fill="none" opacity=".72"`;
+      switch (pattern) {
+        case 'tigrado':
+          return `<g><path d="M100 62 V82" stroke-width="4.5" ${st}/><path d="M90 64 Q92 72 91 80 M110 64 Q108 72 109 80" stroke-width="4" ${st}/><path d="M80 70 Q83 76 83 83 M120 70 Q117 76 117 83" stroke-width="3.2" ${st}/><path d="M45 100 Q56 101 63 106 M44 112 Q55 112 62 116" stroke-width="4" ${st}/><path d="M155 100 Q144 101 137 106 M156 112 Q145 112 138 116" stroke-width="4" ${st}/></g>`;
+        case 'marmore':
+          return `<g><path d="M86 64 C94 72 106 72 114 64 M89 76 C96 80 104 80 111 76 M100 58 V70" stroke-width="4.5" ${st}/><path d="M46 94 C60 90 68 104 60 113 C54 119 45 113 50 106" stroke-width="5" ${st}/><path d="M154 94 C140 90 132 104 140 113 C146 119 155 113 150 106" stroke-width="5" ${st}/></g>`;
+        case 'pintado': {
+          const dots = [[84, 72, 3.6], [100, 66, 3.2], [116, 72, 3.6], [92, 82, 2.6], [108, 82, 2.6], [58, 98, 4], [66, 111, 3], [52, 113, 3.2], [142, 98, 4], [134, 111, 3], [148, 113, 3.2]];
+          return `<g fill="${fur.dark}" opacity=".7">${dots.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}"/>`).join('')}</g>`;
+        }
+        case 'smoking':
+          return `<path d="M100 84 C93 96 86 110 74 122 C72 140 86 152 100 152 C114 152 128 140 126 122 C114 110 107 96 100 84 Z" fill="#f8f6f2"/>`;
+        default:
+          return '';
+      }
+    }
+
+    function catBgSvg(a, bg) {
+      const circ = g => `<circle cx="100" cy="100" r="100" fill="url(#${a}-${g})"/>`;
+      switch (bg) {
+        case 'roxo': return circ('bgroxo');
+        case 'rosa': return `<rect width="200" height="200" fill="url(#${a}-bgrosa)"/>`;
+        case 'agua': return circ('bgagua');
+        case 'laranja': return circ('bglaranja');
+        case 'synthwave': {
+          const bars = [0, 1, 2, 3, 4].map(r => `<rect x="40" y="${120 + r * 9}" width="120" height="${2 + r * 0.6}" fill="#2a0b4a" opacity=".9"/>`).join('');
+          const rays = [-80, -40, 0, 40, 80].map(r => `<line x1="${100 + r * 0.3}" y1="150" x2="${100 + r * 1.6}" y2="200" stroke="#ff4fd8" stroke-width="1.2" opacity=".7"/>`).join('');
+          const hz = [156, 166, 180].map(r => `<line x1="0" y1="${r}" x2="200" y2="${r}" stroke="#ff4fd8" stroke-width="1" opacity=".55"/>`).join('');
+          return `<g><rect width="200" height="200" fill="url(#${a}-bgsky)"/><circle cx="100" cy="112" r="52" fill="url(#${a}-bgsun)"/>${bars}<rect y="150" width="200" height="50" fill="#1a0730"/>${rays}${hz}</g>`;
+        }
+        case 'galaxia': {
+          const rnd = catRng(42);
+          const stars = Array.from({ length: 34 }, () => `<circle cx="${(rnd() * 200).toFixed(1)}" cy="${(rnd() * 200).toFixed(1)}" r="${(rnd() * 1.4 + 0.3).toFixed(2)}" fill="#fff" opacity="${(rnd() * 0.7 + 0.3).toFixed(2)}"/>`).join('');
+          return `<g>${circ('bggal')}${stars}</g>`;
+        }
+        case 'grade': {
+          const lines = Array.from({ length: 11 }, (_, n) => `<g stroke="#2459ff" stroke-width=".8" opacity=".35"><line x1="${n * 20}" y1="0" x2="${n * 20}" y2="200"/><line x1="0" y1="${n * 20}" x2="200" y2="${n * 20}"/></g>`).join('');
+          return `<g><rect width="200" height="200" fill="#0a0d16"/>${lines}</g>`;
+        }
+        default: return circ('bgazul');
+      }
+    }
+
+    function catOutfitSvg(a, outfit) {
+      const torso = 'M24 200 C26 170 52 152 74 150 L126 150 C148 152 174 170 176 200 Z';
+      switch (outfit) {
+        case 'camiseta':
+          return `<g><path d="M26 200 C28 172 54 154 76 151 Q100 164 124 151 C146 154 172 172 174 200 Z" fill="#f1f1f4"/><path d="M76 151 Q100 166 124 151" stroke="#cfd0d8" stroke-width="4" fill="none"/><path d="M52 170 Q57 186 55 200 M148 170 Q143 186 145 200" stroke="#dadbe2" stroke-width="2" fill="none"/></g>`;
+        case 'jaqueta-jeans':
+          return `<g><path d="${torso}" fill="#3f70aa"/><path d="M86 152 L100 200 L114 152 Z" fill="#f1f1f4"/><path d="M74 150 L92 153 L98 178 L79 166 Z" fill="#2c5a8e"/><path d="M126 150 L108 153 L102 178 L121 166 Z" fill="#2c5a8e"/><rect x="58" y="172" width="20" height="13" rx="2" fill="none" stroke="#2c5a8e" stroke-width="2"/><rect x="122" y="172" width="20" height="13" rx="2" fill="none" stroke="#2c5a8e" stroke-width="2"/><path d="M60 168 L64 200 M140 168 L136 200" stroke="#d6ad5c" stroke-width="1.3" stroke-dasharray="3 3"/><circle cx="86" cy="190" r="2.4" fill="#d6ad5c"/><circle cx="114" cy="190" r="2.4" fill="#d6ad5c"/></g>`;
+        case 'moletom':
+          return `<g><path d="${torso}" fill="#d9d2c3"/><path d="M72 150 Q100 170 128 150 L131 157 Q100 179 69 157 Z" fill="#c4bba7"/><path d="M60 192 H140" stroke="#c4bba7" stroke-width="5"/></g>`;
+        case 'bomber':
+          return `<g><path d="${torso}" fill="#4c5b3a"/><path d="M70 150 Q100 170 130 150 L133 157 Q100 179 67 157 Z" fill="#2c3523"/><path d="M70 153 Q100 173 130 153" stroke="#e08a2c" stroke-width="1.6" fill="none"/><path d="M100 170 V200" stroke="#c9ccd3" stroke-width="2.4"/><rect x="40" y="176" width="14" height="10" rx="1.5" fill="#3d4a2e"/><path d="M42 179 H52" stroke="#c9ccd3" stroke-width="1"/></g>`;
+        case 'xadrez':
+          return `<g><path d="${torso}" fill="url(#${a}-plaid)"/><path d="M76 150 L98 158 L88 170 Z" fill="#7a161c"/><path d="M124 150 L102 158 L112 170 Z" fill="#7a161c"/><path d="M100 160 V200" stroke="#5e1015" stroke-width="1.5"/><circle cx="100" cy="178" r="2" fill="#f2e7d6"/><circle cx="100" cy="192" r="2" fill="#f2e7d6"/></g>`;
+        case 'regata':
+          return `<path d="M64 200 C64 182 70 166 75 157 L85 155 Q100 170 115 155 L125 157 C130 166 136 182 136 200 Z" fill="#1d1d23"/>`;
+        default:
+          return `<g><path d="${torso}" fill="#17181d"/><path d="M54 152 C62 136 138 136 146 152 C140 168 60 168 54 152 Z" fill="#0f1014"/><path d="M90 161 L88 186 M110 161 L112 186" stroke="#d9d9de" stroke-width="2.4" stroke-linecap="round"/><rect x="85.6" y="185" width="4.6" height="6" rx="1.2" fill="#b9bac2"/><rect x="109.8" y="185" width="4.6" height="6" rx="1.2" fill="#b9bac2"/><path d="M68 200 Q72 186 100 186 Q128 186 132 200 Z" fill="#121318"/></g>`;
+      }
+    }
+
+    function catSvg(cfg, uid, label) {
+      const a = 'cat' + uid;
+      const o = catById(CAT.fur, cfg.fur);
+      const iris = catById(CAT.eyes, cfg.eyes).color;
+      const acc = new Set(cfg.acc || []);
+      const c = o.base2 ? `url(#${a}-fur)` : o.base;
+      const darkFur = !!o.dark_fur;
+      const whisk = darkFur || o.id === 'cosmico' ? 'rgba(255,255,255,.75)' : 'rgba(70,55,50,.5)';
+      const mouth = darkFur ? '#0b0b0e' : '#3a2228';
+      const smoking = cfg.pattern === 'smoking';
+      const muzzle = smoking ? '#f8f6f2' : o.light;
+      const earFillL = o.patches ? o.patches[0] : c;
+      const earFillR = o.patches ? o.patches[1] : c;
+      const ears = `<g><path d="${CAT_PATHS.earL}" fill="${earFillL}"/><path d="${CAT_PATHS.earR}" fill="${earFillR}"/><path d="${CAT_PATHS.inL}" fill="${o.innerEar}"/><path d="${CAT_PATHS.inR}" fill="${o.innerEar}"/></g>`;
+      const stop = (off, col, extra = '') => `<stop offset="${off}" stop-color="${col}"${extra}/>`;
+
+      const defs = `<defs>
+        <clipPath id="${a}-clip"><circle cx="100" cy="100" r="100"/></clipPath>
+        <clipPath id="${a}-head"><path d="${CAT_PATHS.head}"/></clipPath>
+        <radialGradient id="${a}-bgazul" cx=".35" cy=".3" r=".9">${stop(0, '#4a83ff')}${stop(1, '#1238b8')}</radialGradient>
+        <radialGradient id="${a}-bgroxo" cx=".35" cy=".3" r=".9">${stop(0, '#9a74ff')}${stop(1, '#3d1fa8')}</radialGradient>
+        <linearGradient id="${a}-bgrosa" x1="0" y1="0" x2="1" y2="1">${stop(0, '#ff62a5')}${stop(1, '#8a3dff')}</linearGradient>
+        <radialGradient id="${a}-bgagua" cx=".35" cy=".3" r=".9">${stop(0, '#3ee0bf')}${stop(1, '#0b7f70')}</radialGradient>
+        <radialGradient id="${a}-bglaranja" cx=".35" cy=".3" r=".9">${stop(0, '#ffc04d')}${stop(1, '#ff7a00')}</radialGradient>
+        <linearGradient id="${a}-bgsky" x1="0" y1="0" x2="0" y2="1">${stop(0, '#1a0636')}${stop(0.75, '#7a1d6e')}</linearGradient>
+        <linearGradient id="${a}-bgsun" x1="0" y1="0" x2="0" y2="1">${stop(0, '#ffd34d')}${stop(1, '#ff3d8b')}</linearGradient>
+        <radialGradient id="${a}-bggal" cx=".3" cy=".3" r=".9">${stop(0, '#3b2f8f')}${stop(0.6, '#141238')}${stop(1, '#07081c')}</radialGradient>
+        ${o.base2 ? `<linearGradient id="${a}-fur" x1="0" y1="0" x2="1" y2="1">${stop(0, o.base)}${stop(1, o.base2)}</linearGradient>` : ''}
+        <radialGradient id="${a}-iris" cx=".5" cy=".55" r=".6">${stop(0, '#fff', ' stop-opacity=".55"')}${stop(0.35, iris)}${stop(1, iris)}</radialGradient>
+        <linearGradient id="${a}-lens" x1="0" y1="0" x2="1" y2="1">${stop(0, '#3a3f4f')}${stop(0.5, '#0c0d12')}${stop(1, '#1d2130')}</linearGradient>
+        <pattern id="${a}-plaid" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#b3262d"/><rect y="5" width="16" height="4" fill="#5e1015" opacity=".75"/><rect x="5" width="4" height="16" fill="#5e1015" opacity=".6"/><rect y="12" width="16" height="1" fill="#f0c9a0" opacity=".45"/><rect x="12" width="1" height="16" fill="#f0c9a0" opacity=".45"/></pattern>
+      </defs>`;
+
+      const bandana = acc.has('bandana')
+        ? `<g><path d="M60 146 Q100 162 140 146 L100 188 Z" fill="#c92f3a"/>${[[86, 158], [100, 164], [114, 158], [94, 172], [106, 172], [100, 180]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.6" fill="#fff" opacity=".85"/>`).join('')}</g>` : '';
+      const corrente = acc.has('corrente')
+        ? `<g><path d="M64 146 Q100 180 136 146" stroke="#e7b923" stroke-width="4.5" stroke-dasharray="5 2.6" fill="none"/><circle cx="100" cy="168" r="8" fill="#f5c842" stroke="#a87c10" stroke-width="1.6"/><path d="M100 163.5 L101.6 167 L105.2 168 L101.6 169 L100 172.5 L98.4 169 L94.8 168 L98.4 167 Z" fill="#a87c10"/></g>` : '';
+      const patches = o.patches
+        ? `<g><path d="M40 66 C58 52 88 54 94 66 C88 84 66 94 40 104 Z" fill="${o.patches[0]}"/><path d="M160 88 C152 68 132 58 116 62 C118 80 136 94 160 108 Z" fill="${o.patches[1]}"/></g>` : '';
+      const cosmic = o.id === 'cosmico'
+        ? `<g fill="#fff"><circle cx="72" cy="78" r="1.6" opacity=".9"/><circle cx="128" cy="74" r="1.2" opacity=".8"/><circle cx="140" cy="122" r="1.4" opacity=".7"/><circle cx="58" cy="124" r="1.1" opacity=".7"/></g>` : '';
+      const eyesSvg = [78, 122].map(x => `<g><ellipse cx="${x}" cy="106" rx="12.5" ry="12.2" fill="url(#${a}-iris)" stroke="#1b1512" stroke-width="2.2"/><ellipse cx="${x}" cy="107" rx="5.4" ry="8.6" fill="#0d0a09"/><circle cx="${x + 4.2}" cy="101" r="3.2" fill="#fff"/><circle cx="${x - 4}" cy="111.5" r="1.5" fill="#fff" opacity=".8"/></g>`).join('');
+
+      const bone = acc.has('bone')
+        ? `<g><path d="M64 76 C64 44 136 44 136 76 Z" fill="#d8343b"/><path d="M100 47 V76 M82 50 Q78 62 80 76 M118 50 Q122 62 120 76" stroke="#000" stroke-opacity=".18" stroke-width="1.4" fill="none"/><circle cx="100" cy="46" r="3.6" fill="#b4262c"/><path d="M57 78 C76 69 124 69 143 78 C138 87 62 87 57 78 Z" fill="#b4262c"/><rect x="89" y="57" width="22" height="11" rx="3" fill="#fff"/><text x="100" y="65.6" text-anchor="middle" font-size="8.5" font-weight="800" font-family="Barlow Condensed, sans-serif" fill="#d8343b">NS</text></g>` : '';
+      const gorro = acc.has('gorro')
+        ? `<g><path d="M50 84 C46 42 154 42 150 84 Z" fill="#2f3d5c"/><path d="M46 80 C70 71 130 71 154 80 L154 93 C130 84 70 84 46 93 Z" fill="#23304a"/><g stroke="#1a2338" stroke-width="1.3">${[56, 66, 76, 86, 96, 106, 116, 126, 136, 146].map(x => `<line x1="${x}" y1="${x < 100 ? 79 - (100 - x) * 0.02 : 79 - (x - 100) * 0.02}" x2="${x}" y2="89"/>`).join('')}</g><circle cx="100" cy="40" r="10" fill="#ece8df"/>${ears}</g>` : '';
+      const fone = acc.has('fone')
+        ? `<g><path d="M44 112 C40 52 160 52 156 112" stroke="#26272d" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M47 104 C46 60 154 60 153 104" stroke="#3b3d46" stroke-width="1.6" fill="none"/><rect x="33" y="97" width="21" height="35" rx="8" fill="#26272d"/><rect x="37.5" y="103" width="12" height="23" rx="5" fill="#2459ff"/><rect x="146" y="97" width="21" height="35" rx="8" fill="#26272d"/><rect x="150.5" y="103" width="12" height="23" rx="5" fill="#2459ff"/></g>` : '';
+      const oculosR = acc.has('oculos-redondo')
+        ? `<g stroke="#c9a25b" stroke-width="3" fill="rgba(200,230,255,.12)"><circle cx="78" cy="106" r="15.5"/><circle cx="122" cy="106" r="15.5"/><path d="M93.5 104 Q100 99 106.5 104 M62.5 104 L48 99 M137.5 104 L152 99" fill="none"/></g>` : '';
+      const oculosE = acc.has('oculos-escuro')
+        ? `<g><path d="M59 96 H96 Q97 113 86 118 H70 Q59 116 59 96 Z" fill="url(#${a}-lens)"/><path d="M141 96 H104 Q103 113 114 118 H130 Q141 116 141 96 Z" fill="url(#${a}-lens)"/><path d="M54 96.5 H146" stroke="#0c0d12" stroke-width="4.5" stroke-linecap="round"/><path d="M66 101 L76 101 M110 101 L120 101" stroke="#fff" stroke-opacity=".35" stroke-width="2.2" stroke-linecap="round"/></g>` : '';
+      const mono = acc.has('monoculo')
+        ? `<g stroke="#d4af37" fill="none"><circle cx="122" cy="106" r="15.5" stroke-width="3" fill="rgba(255,255,255,.1)"/><path d="M136 113 Q147 138 130 160" stroke-width="1.4"/></g>` : '';
+
+      return `<svg viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="${escapeHtml(label || 'Avatar de gatinho')}">${defs}
+        <g clip-path="url(#${a}-clip)">
+          ${catBgSvg(a, cfg.bg)}
+          <path d="${CAT_PATHS.body}" fill="${c}"/>
+          ${smoking || o.patches ? '<path d="M78 156 Q100 150 122 156 L118 200 L82 200 Z" fill="#f8f6f2"/>' : ''}
+          ${catOutfitSvg(a, cfg.outfit)}
+          ${bandana}${corrente}${ears}
+          <path d="${CAT_PATHS.tuftL}" fill="${c}"/>
+          <path d="${CAT_PATHS.tuftR}" fill="${o.patches ? o.patches[1] : c}"/>
+          <path d="${CAT_PATHS.head}" fill="${c}"/>
+          <g clip-path="url(#${a}-head)">${patches}${catPatternSvg(cfg.pattern, o)}${cosmic}</g>
+          <ellipse cx="66" cy="123" rx="7.5" ry="4.2" fill="#ff7a9a" opacity=".22"/><ellipse cx="134" cy="123" rx="7.5" ry="4.2" fill="#ff7a9a" opacity=".22"/>
+          ${eyesSvg}
+          <ellipse cx="90" cy="131" rx="12" ry="8.6" fill="${muzzle}" opacity=".95"/><ellipse cx="110" cy="131" rx="12" ry="8.6" fill="${muzzle}" opacity=".95"/><ellipse cx="100" cy="141" rx="9" ry="5.6" fill="${muzzle}" opacity=".9"/>
+          <path d="M93 121 Q100 118 107 121 Q105 126 100 128 Q95 126 93 121 Z" fill="${o.nose}"/>
+          <path d="M100 128 V132 M100 132 Q95 138 89 134 M100 132 Q105 138 111 134" stroke="${mouth}" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <g stroke="${whisk}" stroke-width="1.2" stroke-linecap="round"><path d="M80 128 L54 122 M80 131 L52 132 M80 134 L55 142"/><path d="M120 128 L146 122 M120 131 L148 132 M120 134 L145 142"/></g>
+          ${bone}${gorro}${fone}${oculosR}${oculosE}${mono}
+        </g></svg>`;
+    }
+
+    // ----- Estado, renderização e construtor (abas Pelo / Acessórios / Roupa / Fundo) -----
+    const CAT_TABS = [
+      { id: 'pelo', label: '1. Pelo' }, { id: 'acessorios', label: '2. Acessórios' },
+      { id: 'roupa', label: '3. Roupa' }, { id: 'fundo', label: '4. Fundo' }
+    ];
+    let catTab = 'pelo';
+    let catUid = 0;
+
+    function catFurStyle(f) {
+      if (f.base2) return `linear-gradient(135deg, ${f.base}, ${f.base2})`;
+      if (f.patches) return `conic-gradient(${f.base} 0 33%, ${f.patches[0]} 33% 66%, ${f.patches[1]} 66%)`;
+      return `radial-gradient(circle at 35% 30%, ${f.light}, ${f.base} 58%, ${f.dark})`;
+    }
+    function catPatternStyle(p, f) {
+      const r = f.base, n = f.dark_fur ? f.light : f.dark;
+      switch (p) {
+        case 'tigrado': return `repeating-linear-gradient(100deg, ${r} 0 6px, ${n} 6px 10px)`;
+        case 'marmore': return `repeating-radial-gradient(circle at 30% 40%, ${r} 0 5px, ${n} 5px 8px)`;
+        case 'pintado': return `radial-gradient(${n} 24%, transparent 27%) 0 0/12px 12px, ${r}`;
+        case 'smoking': return `linear-gradient(90deg, ${r} 0 34%, #f8f6f2 34% 66%, ${r} 66%)`;
+        default: return r;
+      }
+    }
+
+    function renderAvatar() {
+      const container = document.getElementById('avatarSvgContainer');
+      if (!container) return;
+      container.innerHTML = catSvg(STATE.catConfig, 'main', 'Mascote gato personalizado');
+      renderCatBuilder();
+    }
+
+    function renderCatBuilder() {
+      const tabs = document.getElementById('catTabs');
+      const pane = document.getElementById('catPane');
+      if (!tabs || !pane) return;
+      const cfg = STATE.catConfig;
+      const check = '<span class="swatch-check" aria-hidden="true">✓</span>';
+
+      tabs.innerHTML = CAT_TABS.map(t =>
+        `<button type="button" role="tab" class="cat-tab ${t.id === catTab ? 'active' : ''}" aria-selected="${t.id === catTab}" onclick="setCatTab('${t.id}')">${t.label}</button>`
+      ).join('');
+
+      const fur = catById(CAT.fur, cfg.fur);
+      const swatch = (key, id, name, style, extra = '') => {
+        const on = cfg[key] === id;
+        return `<button type="button" class="cat-swatch ${on ? 'on' : ''}" aria-pressed="${on}" aria-label="${escapeHtml(name)}" title="${escapeHtml(name)}" style="background:${style}" onclick="setCatOption('${key}','${id}')">${on ? check : ''}${extra}</button>`;
+      };
+      const group = (title, body) => `<div class="cat-group"><div class="cat-group-title">${title}</div><div class="cat-swatch-row">${body}</div></div>`;
+      const mini = (override, name, on, handler) => {
+        const svg = catSvg({ ...cfg, ...override }, 'm' + (catUid++), name);
+        return `<button type="button" class="cat-item ${on ? 'on' : ''}" aria-pressed="${on}" title="${escapeHtml(name)}" onclick="${handler}"><span class="cat-item-art">${svg}</span><span class="cat-item-name">${escapeHtml(name)}</span></button>`;
+      };
+
+      let html = '';
+      if (catTab === 'pelo') {
+        html += group('Cor do pelo', CAT.fur.map(f => swatch('fur', f.id, f.name, catFurStyle(f))).join(''));
+        html += group('Padrão', CAT.pattern.map(p => swatch('pattern', p.id, p.name, catPatternStyle(p.id, fur))).join(''));
+        html += group('Cor dos olhos', CAT.eyes.map(e => swatch('eyes', e.id, e.name, `radial-gradient(ellipse 28% 62% at 50% 52%, #0d0a09 0 98%, transparent 100%), radial-gradient(circle at 50% 55%, #fff6 0, ${e.color} 40%)`)).join(''));
+      } else if (catTab === 'acessorios') {
+        const none = cfg.acc.length === 0;
+        html += '<div class="cat-group"><div class="cat-group-title">Acessórios <small>opcional · um por cabeça, olhos e pescoço</small></div><div class="cat-item-grid">';
+        html += `<button type="button" class="cat-item cat-item-none ${none ? 'on' : ''}" aria-pressed="${none}" onclick="clearCatAcc()"><span class="cat-item-art cat-none-art" aria-hidden="true">⊘</span><span class="cat-item-name">Nenhum</span></button>`;
+        html += CAT.acc.map(x => mini({ acc: [x.id] }, x.name, cfg.acc.includes(x.id), `toggleCatAcc('${x.id}')`)).join('');
+        html += '</div></div>';
+      } else if (catTab === 'roupa') {
+        html += '<div class="cat-group"><div class="cat-group-title">Roupa</div><div class="cat-item-grid">';
+        html += CAT.outfit.map(x => mini({ outfit: x.id }, x.name, cfg.outfit === x.id, `setCatOption('outfit','${x.id}')`)).join('');
+        html += '</div></div>';
+      } else {
+        html += '<div class="cat-group"><div class="cat-group-title">Fundo do perfil</div><div class="cat-item-grid">';
+        html += CAT.bg.map(x => mini({ bg: x.id }, x.name, cfg.bg === x.id, `setCatOption('bg','${x.id}')`)).join('');
+        html += '</div></div>';
+      }
+      pane.innerHTML = html;
+    }
+
+    function setCatTab(id) { catTab = id; renderCatBuilder(); }
+
+    function syncAvatarButtons() { renderCatBuilder(); }
+
+    function setCatOption(key, val) {
+      if (!(key in CAT_DEFAULT) || key === 'acc') return;
+      const list = CAT[key];
+      if (!list || !list.some(x => x.id === val)) return;
+      STATE.catConfig[key] = val;
+      renderAvatar();
+    }
+
+    function toggleCatAcc(id) {
+      const cur = STATE.catConfig.acc || [];
+      if (cur.includes(id)) { STATE.catConfig.acc = cur.filter(x => x !== id); }
+      else { const slot = catSlot(id); STATE.catConfig.acc = [...cur.filter(x => catSlot(x) !== slot), id]; }
+      renderAvatar();
+    }
+
+    function clearCatAcc() { STATE.catConfig.acc = []; renderAvatar(); }
+
+    function randomizeCat() {
+      const pick = list => list[Math.floor(Math.random() * list.length)].id;
+      const acc = [];
+      ['head', 'eyes', 'neck'].forEach(slot => {
+        if (Math.random() < 0.45) acc.push(pick(CAT.acc.filter(x => x.slot === slot)));
+      });
+      STATE.catConfig = { fur: pick(CAT.fur), pattern: pick(CAT.pattern), eyes: pick(CAT.eyes), acc, outfit: pick(CAT.outfit), bg: pick(CAT.bg) };
+      renderAvatar();
+    }
+
+    function downloadMemberCard() {
+      toast('Carteirinha de Membro gerada! (download em breve)', 'success');
+    }
+
+    // ===== Ranking: pódio, tabela e patentes =====
+    const RANKS = [
+      { id: 'discado', name: 'Discado', min: 1, color: '#9aa3b2', desc: 'Navega no acervo, abre disquetes e coleciona cartas.' },
+      { id: 'banda-larga', name: 'Banda larga', min: 3, color: '#2fbf5b', desc: 'Pode enviar vídeos para o acervo.' },
+      { id: 'colaborador', name: 'Colaborador', min: 5, color: '#2f86ff', desc: 'Pode adicionar o link de virais antigos que estão sem vídeo.' },
+      { id: 'moderador', name: 'Moderador', min: 10, color: '#a855f7', desc: 'Modera envios de quem tem patente menor.' },
+      { id: 'dono', name: 'Dono de comunidade', min: 15, color: '#f5b70a', desc: 'Selo dourado no perfil e no ranking.' },
+      { id: 'lenda', name: 'Lenda da internet', min: 20, color: '#ff3b47', desc: 'Selo vermelho de lenda. Respeito máximo.' }
+    ];
+    const LEVEL_POINTS = [[0, 1], [260, 3], [460, 4], [761, 5], [900, 5], [2400, 9], [2950, 10], [3900, 12], [5430, 14], [6130, 15], [7860, 17], [9320, 18], [12540, 21], [30000, 30]];
+    const RANK_USERS = [
+      { name: 'ipsilva', xp: 12540, approved: 212, cards: 98, chat: true },
+      { name: 'bruninhotv', xp: 9320, approved: 158, cards: 91, chat: true },
+      { name: 'Cid Cidoso', xp: 9240, approved: 184, cards: 88, guardian: true },
+      { name: 'viralizador', xp: 7860, approved: 131, cards: 77 },
+      { name: 'SePPZAO', xp: 7100, approved: 142, cards: 80, guardian: true },
+      { name: 'faqo', xp: 6130, approved: 97, cards: 84, chat: true },
+      { name: 'lendariin', xp: 5430, approved: 88, cards: 69 },
+      { name: 'Riba', xp: 4900, approved: 98, cards: 66, guardian: true },
+      { name: 'cigarra_eletronica', xp: 4250, approved: 85, cards: 63, guardian: true },
+      { name: 'scrapeiro_2006', xp: 3900, approved: 54, cards: 61 },
+      { name: 'Dev_Gon', xp: 3200, approved: 64, cards: 52, guardian: true },
+      { name: 'mestre_do_mirc', xp: 2950, approved: 41, cards: 58, chat: true },
+      { name: 'Subversivo', xp: 2550, approved: 51, cards: 44, guardian: true },
+      { name: 'dona_da_comunidade', xp: 2400, approved: 33, cards: 47 },
+      { name: 'kibador', xp: 900, approved: 9, cards: 31 },
+      { name: 'gasanzin', xp: 851, approved: 7, cards: 26, chat: true },
+      { name: 'emo_de_franja', xp: 780, approved: 6, cards: 28 },
+      { name: 'mancha', xp: 761, approved: 5, cards: 24, chat: true },
+      { name: 'flogao_vip', xp: 520, approved: 3, cards: 22 },
+      { name: 'scrap_master', xp: 460, approved: 2, cards: 19 },
+      { name: 'novato_2009', xp: 260, approved: 0, cards: 12 },
+      { name: 'repostador', xp: 255, approved: 1, cards: 9 }
+    ];
+    const RANK_METRICS = {
+      xp: { label: 'XP geral', col: 'XP geral', val: u => u.xp.toLocaleString('pt-BR'), unit: 'XP' },
+      approved: { label: 'Envios aprovados', col: 'Envios', val: u => String(u.approved), unit: 'envios' },
+      cards: { label: 'Cartas coletadas', col: 'Cartas', val: u => String(u.cards), unit: 'cartas' }
+    };
+    let rankMetric = 'xp';
+
+    function levelOf(xp) {
+      for (let i = 1; i < LEVEL_POINTS.length; i++) {
+        const [x1, l1] = LEVEL_POINTS[i];
+        if (xp <= x1) { const [x0, l0] = LEVEL_POINTS[i - 1]; return Math.floor(l0 + (l1 - l0) * (xp - x0) / (x1 - x0)); }
+      }
+      return LEVEL_POINTS[LEVEL_POINTS.length - 1][1];
+    }
+    function rankOf(level) { return [...RANKS].reverse().find(r => level >= r.min) || RANKS[0]; }
+
+    function catFromName(name) {
+      let h = 2166136261;
+      for (let i = 0; i < name.length; i++) { h ^= name.charCodeAt(i); h = Math.imul(h, 16777619); }
+      const rnd = catRng(h >>> 0);
+      const pick = list => list[Math.floor(rnd() * list.length)].id;
+      const acc = [];
+      ['head', 'eyes', 'neck'].forEach(slot => { if (rnd() < 0.45) acc.push(pick(CAT.acc.filter(x => x.slot === slot))); });
+      return { fur: pick(CAT.fur), pattern: pick(CAT.pattern), eyes: pick(CAT.eyes), acc, outfit: pick(CAT.outfit), bg: pick(CAT.bg) };
+    }
+    function rankBadge(level) {
+      const r = rankOf(level);
+      return `<span class="rank-badge" style="--rc:${r.color}"><i aria-hidden="true">⬢</i> ${r.name} · NV ${level}</span>`;
+    }
+    function rankTag(u) {
+      return u.chat ? '<span class="rank-chip">💬 Chat</span>' : (u.guardian ? '<span class="rank-chip guardian">★ Guardião</span>' : '');
+    }
+
+    function setRankMetric(m) { if (RANK_METRICS[m]) { rankMetric = m; renderRanking(); } }
+
+    function renderRanking() {
+      const list = document.getElementById('rankingList');
+      if (!list) return;
+      const metric = RANK_METRICS[rankMetric];
+      const key = rankMetric;
+      const users = [...RANK_USERS].sort((a, b) => b[key] - a[key]).map((u, i) => ({ ...u, pos: i + 1, level: levelOf(u.xp) }));
+
+      document.getElementById('rankTabs').innerHTML = Object.entries(RANK_METRICS).map(([id, m]) =>
+        `<button type="button" class="rank-tab${id === rankMetric ? ' on' : ''}" aria-pressed="${id === rankMetric}" onclick="setRankMetric('${id}')">${m.label}</button>`).join('');
+
+      const pod = (u, cls, label) => `
+        <div class="pod ${cls}">
+          ${cls === 'p1' ? '<div class="pod-crown" aria-hidden="true">♛</div>' : ''}
+          <div class="pod-avatar">${catSvg(catFromName(u.name), 'pod' + u.pos, 'Gato de @' + u.name)}</div>
+          <div class="pod-name">@${escapeHtml(u.name)}</div>
+          ${rankBadge(u.level)}
+          <div class="pod-val">${metric.val(u)} ${metric.unit}</div>
+          <div class="pod-block"><span>${label}</span></div>
+        </div>`;
+      document.getElementById('rankPodium').innerHTML = pod(users[1], 'p2', '2º') + pod(users[0], 'p1', '1º') + pod(users[2], 'p3', '3º');
+
+      document.getElementById('rankColLabel').textContent = metric.col;
+      list.innerHTML = users.map(u => `
+        <div class="rank-line" style="--i:${Math.min(u.pos, 14)}">
+          <span class="rank-pos pos-${u.pos <= 3 ? u.pos : 'n'}">${u.pos}</span>
+          <span class="rank-user"><span class="rank-ava">${catSvg(catFromName(u.name), 'rk' + u.pos, 'Gato de @' + u.name)}</span><b>@${escapeHtml(u.name)}</b>${rankTag(u)}</span>
+          <span class="rank-patente">${rankBadge(u.level)}</span>
+          <span class="rank-xp">${metric.val(u)}</span>
+        </div>`).join('');
+
+      document.getElementById('rankPatentes').innerHTML = RANKS.map(r =>
+        `<li style="--rc:${r.color}"><i class="rk-ico" aria-hidden="true">⬢</i><div><b>${r.name}</b> <small>Nível ${r.min}+</small><p>${r.desc}</p></div></li>`).join('');
+    }
+
+    // ===== Animação de abertura do disquete =====
+    let packTimers = [];
+    function packSchedule(fn, ms) { packTimers.push(setTimeout(fn, ms)); }
+    function packClear() { packTimers.forEach(clearTimeout); packTimers = []; }
+
+    function startPackAnimation(p, drawn) {
+      const stage = document.getElementById('packStage');
+      const arena = document.getElementById('boosterArena');
+      const hint = document.getElementById('boosterHint');
+      const best = drawn.length ? RAR[drawn[drawn.length - 1].rarity] : RAR.comum;
+      packClear();
+      stage.style.setProperty('--pc', p.color);
+      stage.style.setProperty('--bc', best.color);
+      stage.querySelector('.pack-label').textContent = p.label;
+      document.getElementById('packSparks').innerHTML = Array.from({ length: 26 }, (_, i) => {
+        const a = (i / 26) * Math.PI * 2 + Math.random() * 0.4, d = 110 + Math.random() * 120;
+        return `<span class="spark" style="--dx:${Math.cos(a) * d | 0}px;--dy:${Math.sin(a) * d | 0}px;--sd:${(Math.random() * 0.15).toFixed(2)}s"></span>`;
+      }).join('');
+      arena.classList.remove('deal');
+      document.getElementById('revealAllBtn').hidden = true;
+      openModal('boosterModal');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finishPackAnimation(); return; }
+      arena.classList.add('hold');
+      stage.className = 'pack-stage show';
+      hint.textContent = 'Inserindo o disquete…';
+      packSchedule(() => { stage.classList.add('shake'); hint.textContent = 'Lendo cartas…'; }, 750);
+      packSchedule(() => { stage.classList.add('burst'); }, 1750);
+      packSchedule(finishPackAnimation, 2150);
+    }
+
+    function skipPackAnimation() {
+      if (document.getElementById('packStage').classList.contains('show')) finishPackAnimation();
+    }
+
+    function finishPackAnimation() {
+      packClear();
+      const stage = document.getElementById('packStage');
+      const arena = document.getElementById('boosterArena');
+      stage.className = 'pack-stage';
+      arena.classList.remove('hold');
+      arena.classList.add('deal');
+      document.getElementById('boosterHint').textContent = 'Toque nas cartas para virar e descobrir quais figurinhas você tirou!';
+      document.getElementById('revealAllBtn').hidden = false;
+    }
+
+    function revealAllCards() {
+      document.querySelectorAll('#boosterArena .booster-card-flip:not(.revealed)').forEach((c, i) => {
+        packSchedule(() => c.classList.add('revealed'), i * 260);
+      });
+    }
+
+    // Details Modal
+    function openMemeModal(id) {
+      const m = ALL_MEMES.find(x => x.id === id);
+      if (!m) return;
+      document.getElementById('memeModalTitle').innerText = m.title;
+      const isVideo = m.file.endsWith('.mp4');
+      const mediaHtml = isVideo
+        ? `<video src="memes/${m.file}" controls style="width: 100%; max-height: 400px; border-radius: 8px; margin-bottom: 16px;"></video>`
+        : `<img src="memes/${m.file}" style="width: 100%; max-height: 400px; object-fit: contain; background: #000; border-radius: 8px; margin-bottom: 16px;">`;
+
+      document.getElementById('memeModalBody').innerHTML = `
+        ${mediaHtml}
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div>
+            <span class="card-rarity rarity-${m.rarity}">${m.rarity}</span>
+            <span style="font-size: 13px; color: var(--text-muted); margin-left: 10px;">Ano: ${m.year}</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Autor/Fonte: @${m.by}</span>
+        </div>
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">História & Contexto:</h4>
+        <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px;">${m.context}</p>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-primary" style="flex: 1; justify-content: center;" onclick="saveMeme('${m.id}')">💾 Salvar no Meu Baú</button>
+          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="shareMeme('${m.id}')">Compartilhar Link ↗</button>
+        </div>
+      `;
+      openModal('memeModal');
+    }
+
+    function saveMeme(id) {
+      toast('Meme salvo no seu baú pessoal!', 'success');
+    }
+
+    async function shareMeme(id) {
+      const url = window.location.origin + window.location.pathname + '#meme=' + encodeURIComponent(id);
+      const ok = await copyText(url);
+      toast(ok ? 'Link do meme copiado!' : 'Não foi possível copiar o link.', ok ? 'success' : 'error');
+    }
+
+    function handleSearch(q) {
+      // Mantém as duas caixas de busca (desktop e mobile) sincronizadas
+      ['searchInput', 'searchInputMobile'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.value !== q) el.value = q;
+      });
+      const raw = String(q).slice(0, 80).trim();
+      const term = normalizeText(raw);
+      if (!term) {
+        renderTimelineMemes();
+        return;
+      }
+      if (STATE.view !== 'timeline') showView('timeline');
+      const filtered = ALL_MEMES.filter(m => normalizeText(m.title).includes(term) || normalizeText(m.context).includes(term));
+      const grid = document.getElementById('timelineGrid');
+      if (grid) {
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--text-muted); background: var(--bg-surface); border-radius: 12px;">Nenhum meme encontrado para "${escapeHtml(raw)}".</div>`;
+        } else {
+          grid.innerHTML = filtered.map(m => renderMemeCardHtml(m)).join('');
+        }
+      }
+    }
+
+    function populateSubmitYears() {
+      const sel = document.getElementById('submitYearSelect');
+      if (!sel) return;
+      const years = Array.from(new Set(ALL_MEMES.map(m => m.year))).sort((a, b) => b - a);
+      sel.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
+    }
+
+    function handleMemeSubmit(e) {
+      e.preventDefault();
+      toast('Obrigado por contribuir! Meme enviado para a curadoria (+50 XP).', 'success');
+      e.target.reset();
+      closeModal('submitModal');
+    }
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mainNav');
+      const btn = document.getElementById('mobileMenuBtn');
+      if (!nav) return;
+      const open = nav.classList.toggle('open');
+      if (btn) {
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+        btn.textContent = open ? '✕' : '☰';
+      }
+    }
+
+    function closeMobileNav() {
+      const nav = document.getElementById('mainNav');
+      if (nav && nav.classList.contains('open')) toggleMobileNav();
+    }
+  </script>
+  <script>
+    // Efeitos visuais: mosaico do hero, revelar ao rolar, contador
+    document.addEventListener('DOMContentLoaded', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const mosaic = document.getElementById('heroMosaic');
+      if (mosaic && Array.isArray(ALL_MEMES)) {
+        const imgs = ALL_MEMES.filter(m => /\.(jpe?g|png|webp|gif)$/i.test(m.file)).map(m => 'memes/' + m.file);
+        const cols = 5;
+        for (let c = 0; c < cols; c++) {
+          const col = document.createElement('div');
+          col.className = 'mosaic-col';
+          const mine = imgs.filter((_, i) => i % cols === c);
+          // duplica a lista para o loop de rolagem ficar sem emenda
+          [...mine, ...mine].forEach(src => {
+            const im = document.createElement('img');
+            im.src = src; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+            col.appendChild(im);
+          });
+          mosaic.appendChild(col);
+        }
+      }
+
+      const targets = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduce) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        targets.forEach(t => io.observe(t));
+      } else {
+        targets.forEach(t => t.classList.add('in'));
+      }
+
+      const counter = document.getElementById('totalMemesCount');
+      if (counter && !reduce) {
+        const end = parseInt(counter.textContent, 10) || 0;
+        const t0 = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - t0) / 1200, 1);
+          counter.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        counter.textContent = '0';
+        requestAnimationFrame(tick);
+      }
+    });
+  </script>
+</body>
+</html>

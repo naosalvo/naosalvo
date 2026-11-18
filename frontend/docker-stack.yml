@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    image: naosalvo-frontend:latest
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=v0net"
+        - "traefik.http.routers.naosalvo.rule=Host(`naosalvo-local.fishlab.com.br`)"
+        - "traefik.http.routers.naosalvo.entrypoints=websecure"
+        - "traefik.http.routers.naosalvo.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.naosalvo.loadbalancer.server.port=80"
+    networks:
+      - v0net
+
+networks:
+  v0net:
+    external: true
